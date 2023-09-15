@@ -15,8 +15,8 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding IdImprovementDegree}" FontSize="16" />
-                        <TextBlock Text="{Binding NameImprovementDegree}" FontSize="13" />
+                        <TextBlock Text="{Binding Locality.NameLocality}" FontSize="16" />
+                        <TextBlock Text="{Binding NameStreet}" FontSize="13" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
