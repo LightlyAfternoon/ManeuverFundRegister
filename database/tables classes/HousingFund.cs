@@ -18,10 +18,12 @@ namespace Реестр_маневренного_фонда
         public Street Street { get; set; }
         public ImprovementDegree ImprovementDegree { get; set; }
 
+        ApplicationContext db = new ApplicationContext();
+
         public string getFullAddress() 
         {
-            string LocalityName = "";
-            string StreetName = "";
+            string LocalityName = db.Street.First(s => s.IdStreet == StreetId).Locality.NameLocality;
+            string StreetName = db.Street.First(s => s.IdStreet == StreetId).NameStreet;
             
             if (ApartmentNumber == null)
                 return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}"
