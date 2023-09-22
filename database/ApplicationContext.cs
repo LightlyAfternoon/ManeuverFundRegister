@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда
@@ -17,7 +18,7 @@ namespace Реестр_маневренного_фонда
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=C:\\Users\\DNS\\OneDrive\\Рабочий стол\\Visual Studio\\Реестр маневренного фонда\\database\\ManeuverFundRegister.db");
+            optionsBuilder.UseSqlite("Data Source=" + Environment.CurrentDirectory + @"\database\ManeuverFundRegister.db");
         }
     }
 }
