@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда
 {
@@ -26,11 +28,11 @@ namespace Реестр_маневренного_фонда
             string StreetName = db.Street.First(s => s.IdStreet == StreetId).NameStreet;
             
             if (ApartmentNumber == null)
-                return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}"
+                return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}";
             else if (RoomNumber == null)
-                return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}"
+                return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}";
             else
-                return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}"
+                return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}";
         }
     }
 }
