@@ -15,18 +15,5 @@ namespace Реестр_маневренного_фонда.database.tables_class
         public string FirstName { get; set; }
         public string? Patronymic { get; set; }
         public string? Remark { get; set; }
-
-        private string fullName;
-        public string FullName
-        {
-            get => fullName;
-            set
-            {
-                if (!string.IsNullOrWhiteSpace(Patronymic))
-                    fullName = $"{LastName} {FirstName} {Patronymic}";
-                else
-                    fullName = $"{LastName} {FirstName}";
-            }
-        }
     }
 }

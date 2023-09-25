@@ -8,7 +8,7 @@ namespace Реестр_маневренного_фонда
     {
         [Key]
         public int IdRegistration { get; set; }
-        public int HouseId { get; set; }
+        public int HousingFundId { get; set; }
         public int TempResidentId { get; set; }
         public DateTime DateStartResidence { get; set; }
         public DateTime? DateEndResidence { get; set; }

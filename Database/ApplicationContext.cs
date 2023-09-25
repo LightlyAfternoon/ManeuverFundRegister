@@ -28,7 +28,7 @@ namespace Реестр_маневренного_фонда
         //переопределение метода OnConfiguring для установления параметров подключения к бд
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source= C:\Users\Vika\Source\Repos\LightlyAfternoon\ManeuverFundRegister\Database\ManeuverFundRegister.db");
+            optionsBuilder.UseSqlite(@"Data Source=C:\Users\Vika\Source\Repos\LightlyAfternoon\ManeuverFundRegister\Database\ManeuverFundRegister.db");
         }
     }
 }

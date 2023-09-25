@@ -9,7 +9,7 @@ namespace Реестр_маневренного_фонда
         public int IdDecree { get; set; }
         public int NumberDecree { get; set; }
         public DateTime DateDecree { get; set; }
-        public int HouseId { get; set; }
+        public int HousingFundId { get; set; }
         public bool Status { get; set; }
 
         public virtual HousingFund HousingFund { get; set; }

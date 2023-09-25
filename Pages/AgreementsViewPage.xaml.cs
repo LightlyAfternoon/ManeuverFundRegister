@@ -31,7 +31,7 @@ namespace Реестр_маневренного_фонда.Pages
             db.Locality.Load();
             db.Street.Load();
             db.TempResident.Load();
-            dg_Agreements.ItemsSource = ApplicationContext.GetContext().Agreement.ToList();
+            dg_Agreements.ItemsSource = db.Agreement.Local.ToObservableCollection();
         }
     }
 }

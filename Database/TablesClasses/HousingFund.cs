@@ -7,8 +7,8 @@ namespace Реестр_маневренного_фонда
     public partial class HousingFund
     {
         [Key]
-        public int IdHouse { get; set; }
-        public static int StreetId { get; set; }
+        public int IdHousingFund { get; set; }
+        public int StreetId { get; set; }
         public int HouseNumber { get; set; }
         public int? ApartmentNumber { get; set; }
         public int? RoomNumber { get; set; }
@@ -19,30 +19,10 @@ namespace Реестр_маневренного_фонда
 
         public virtual Street Street { get; set; }
         public virtual ImprovementDegree ImprovementDegree { get; set; }
-
-        private string LocalityName = ApplicationContext.GetContext().Street.First(s => s.IdStreet == StreetId).Locality.NameLocality;
-        private string StreetName = ApplicationContext.GetContext().Street.First(s => s.IdStreet == StreetId).NameStreet;
-
-        private string fullAddress;
-        public string FullAddress
+        public string getFullAddress() 
         {
-
-            get => fullAddress;
-            set
-            {
-                if (ApartmentNumber == null)
-                    fullAddress = $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}";
-                else if (RoomNumber == null)
-                    fullAddress = $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}";
-                else
-                    fullAddress = $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}";
-            }
-
-        }
-        /*public string getFullAddress() 
-        {
-            string LocalityName = db.Street.First(s => s.IdStreet == StreetId).Locality.NameLocality;
-            string StreetName = db.Street.First(s => s.IdStreet == StreetId).NameStreet;
+            string LocalityName = ApplicationContext.GetContext().Street.First(s => s.IdStreet == StreetId).Locality.NameLocality;
+            string StreetName = ApplicationContext.GetContext().Street.First(s => s.IdStreet == StreetId).NameStreet;
             
             if (ApartmentNumber == null)
                 return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}";
@@ -50,6 +30,6 @@ namespace Реестр_маневренного_фонда
                 return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}";
             else
                 return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}";
-        }*/
+        }
     }
 }
