@@ -12,7 +12,7 @@ namespace Реестр_маневренного_фонда
         public DateTime DateConclusionAgreement { get; set; }
         public DateTime DateEndAgreement { get; set; }
         public DateTime? DateTerminationAgreement { get; set; }
-        public string Remark { get; set; }
+        public string? Remark { get; set; }
 
         public TempResident TempResident { get; set; }
         public HousingFund HousingFund { get; set; }
