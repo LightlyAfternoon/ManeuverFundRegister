@@ -27,9 +27,7 @@ namespace Реестр_маневренного_фонда
         {
             InitializeComponent();
 
-            db.Street.Load();
-            db.Locality.Load();
-            DataContext = db.Street.Local.ToObservableCollection();
+            
         }
     }
 }

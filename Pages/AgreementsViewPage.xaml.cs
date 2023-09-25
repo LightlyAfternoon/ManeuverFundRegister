@@ -28,7 +28,10 @@ namespace Реестр_маневренного_фонда
             InitializeComponent();
 
             db.Agreement.Load();
-            dgAgreements.ItemsSource = dg.Agreement.Local.ToObservableCollection();
+            db.TempResident.Load();
+            db.HousingFund.Load();
+
+            dg_Agreements.ItemsSource = dg.Agreement.Local.ToObservableCollection();
         }
     }
 }

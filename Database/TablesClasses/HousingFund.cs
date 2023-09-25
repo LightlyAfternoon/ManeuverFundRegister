@@ -22,7 +22,23 @@ namespace Реестр_маневренного_фонда
 
         ApplicationContext db = new ApplicationContext();
 
-        public string getFullAddress() 
+        private string fullAddress;
+        public string FullAddress
+        {
+            string LocalityName = db.Street.First(s => s.IdStreet == StreetId).Locality.NameLocality;
+            string StreetName = db.Street.First(s => s.IdStreet == StreetId).NameStreet;
+
+            get => fullAddress;
+            set =>
+                if (ApartmentNumber == null)
+                    fullAddress = $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}";
+                else if (RoomNumber == null)
+                    fullAddress = $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}";
+                else
+                    fullAddress = $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}";
+
+        }
+        /*public string getFullAddress() 
         {
             string LocalityName = db.Street.First(s => s.IdStreet == StreetId).Locality.NameLocality;
             string StreetName = db.Street.First(s => s.IdStreet == StreetId).NameStreet;
@@ -33,6 +49,6 @@ namespace Реестр_маневренного_фонда
                 return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}";
             else
                 return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}";
-        }
+        }*/
     }
 }

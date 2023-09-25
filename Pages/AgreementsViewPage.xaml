@@ -6,7 +6,16 @@
         xmlns:local="clr-namespace:Реестр_маневренного_фонда.Pages"
         mc:Ignorable="d">
     <Grid>
-        <DataGrid x:Name = "dgAgreements" AutoGenerateColumns = "False">
+        <DataGrid x:Name = "dg_Agreements" AutoGenerateColumns = "False">
+            <DataGrid.Columns>
+                <DataGridTextColumnHeader = "Номер договора" Binding = "{Binding NumberAgreement}"/>
+                <DataGridTextColumnHeader = "ФИО нанимателя" Binding = "{Binding TempResident.FullName}"/>
+                <DataGridTextColumnHeader = "Адрес жилья" Binding = "{Binding HousingFund.FullAddress}"/>
+                <DataGridTextColumnHeader = "Дата заключения" Binding = "{Binding DateConclusionAgreement, StringFormat = '{0:dd.MM.yyyy}'"/>
+                <DataGridTextColumnHeader = "Дата окончания" Binding = "{DateEndAgreement, StringFormat = '{0:dd.MM.yyyy}'"/>
+                <DataGridTextColumnHeader = "Дата расторжения" Binding = "{DateTerminationAgreement, StringFormat = '{0:dd.MM.yyyy}'"/>
+                <DataGridTextColumnHeader = "Примечание" Binding = "{Binding Remark}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>

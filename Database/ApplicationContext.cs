@@ -16,6 +16,7 @@ namespace Реестр_маневренного_фонда
         public DbSet<Street> Street { get; set; }
         public DbSet<TempResident> TempResident { get; set; }
 
+        //переопределение метода OnConfiguring для установления параметров подключения к бд
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=" + Environment.CurrentDirectory + @"\Database\ManeuverFundRegister.db");

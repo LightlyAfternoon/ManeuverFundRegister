@@ -11,15 +11,17 @@
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <ListBox x:Name="usersList" ItemsSource="{Binding}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Locality.NameLocality}" FontSize="16" />
-                        <TextBlock Text="{Binding NameStreet}" FontSize="13" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+
+        <StackPanel Orientation = "Vertical">
+            <Button Name = "bt_AgreementsViewPage"/>
+            <Button Name = "bt_DecreesViewPage"/>
+            <Button Name = "bt_HousingFundViewPage"/>
+            <Button Name = "bt_LocalitiesViewPage"/>
+            <Button Name = "bt_ResidenceRegistrationsViewPage"/>
+            <Button Name = "bt_StreetsViewPage"/>
+            <Button Name = "bt_TempResidentsViewPage"/>
+        </StackPanel>
+
+        <Frame x:Name = "fr_Frame" NavigationUIVisibility = "Hidden"/>
     </Grid>
 </Window>
