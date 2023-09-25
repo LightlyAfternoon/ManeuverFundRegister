@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Database.TablesClasses;
 
 namespace Реестр_маневренного_фонда
 {
