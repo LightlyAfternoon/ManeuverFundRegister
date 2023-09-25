@@ -2,7 +2,7 @@
 
 namespace Реестр_маневренного_фонда.database.tables_classes
 {
-    public class Locality
+    public partial class Locality
     {
         [Key]
         public int IdLocality { get; set; }

@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation = "Vertical">
-            <Button Name = "bt_AgreementsViewPage"/>
+            <Button Name = "bt_AgreementsViewPage" Content="Договоры" Click="bt_AgreementsViewPage_Click"/>
             <Button Name = "bt_DecreesViewPage"/>
             <Button Name = "bt_HousingFundViewPage"/>
             <Button Name = "bt_LocalitiesViewPage"/>

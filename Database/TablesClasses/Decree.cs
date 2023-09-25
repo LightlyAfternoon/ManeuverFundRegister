@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Реестр_маневренного_фонда
 {
-    public class Decree
+    public partial class Decree
     {
         [Key]
         public int IdDecree { get; set; }
@@ -12,6 +12,6 @@ namespace Реестр_маневренного_фонда
         public int HouseId { get; set; }
         public bool Status { get; set; }
 
-        public HousingFund HousingFund { get; set; }
+        public virtual HousingFund HousingFund { get; set; }
     }
 }

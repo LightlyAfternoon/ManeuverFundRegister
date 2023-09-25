@@ -1,8 +1,10 @@
+using System;
 using System.ComponentModel.DataAnnotations;
+using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда
 {
-    public class Agreement
+    public partial class Agreement
     {
         [Key]
         public int IdAgreement { get; set; }
@@ -14,7 +16,7 @@ namespace Реестр_маневренного_фонда
         public DateTime? DateTerminationAgreement { get; set; }
         public string? Remark { get; set; }
 
-        public TempResident TempResident { get; set; }
-        public HousingFund HousingFund { get; set; }
+        public virtual TempResident TempResident { get; set; }
+        public virtual HousingFund HousingFund { get; set; }
     }
 }

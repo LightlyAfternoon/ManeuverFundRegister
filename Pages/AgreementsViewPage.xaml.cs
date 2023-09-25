@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +14,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Реестр_маневренного_фонда
+namespace Реестр_маневренного_фонда.Pages
 {
     /// <summary>
-    /// Interaction logic for AgreementsViewPage.xaml
+    /// Логика взаимодействия для AgreementsViewPage.xaml
     /// </summary>
     public partial class AgreementsViewPage : Page
     {
@@ -28,10 +28,10 @@ namespace Реестр_маневренного_фонда
             InitializeComponent();
 
             db.Agreement.Load();
+            db.Locality.Load();
+            db.Street.Load();
             db.TempResident.Load();
-            db.HousingFund.Load();
-
-            dg_Agreements.ItemsSource = dg.Agreement.Local.ToObservableCollection();
+            dg_Agreements.ItemsSource = ApplicationContext.GetContext().Agreement.ToList();
         }
     }
 }

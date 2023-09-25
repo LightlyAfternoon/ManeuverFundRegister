@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Реестр_маневренного_фонда.Database.TablesClasses;
+using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда
 {
-    public class ResidenceRegistration
+    public partial class ResidenceRegistration
     {
         [Key]
         public int IdRegistration { get; set; }

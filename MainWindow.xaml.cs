@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Реестр_маневренного_фонда.Pages;
 
 namespace Реестр_маневренного_фонда
 {
@@ -21,13 +22,15 @@ namespace Реестр_маневренного_фонда
     /// </summary>
     public partial class MainWindow : Window
     {
-        ApplicationContext db = new ApplicationContext();
 
         public MainWindow()
         {
             InitializeComponent();
+        }
 
-            
+        private void bt_AgreementsViewPage_Click(object sender, RoutedEventArgs e)
+        {
+            fr_Frame.Navigate(new AgreementsViewPage());
         }
     }
 }

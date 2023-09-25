@@ -4,22 +4,31 @@ using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда
 {
-    public class ApplicationContext : DbContext
+    public partial class ApplicationContext : DbContext
     {
-        public DbSet<Agreement> Agreement { get; set; }
-        public DbSet<Decree> Decree { get; set; }
-        public DbSet<HousingFund> HousingFund { get; set; }
-        public DbSet<ImprovementDegree> ImprovementDegree { get; set; }
-        public DbSet<Locality> Locality { get; set; }
-        public DbSet<Notification> Notification { get; set; }
-        public DbSet<ResidenceRegistration> ResidenceRegistration { get; set; }
-        public DbSet<Street> Street { get; set; }
-        public DbSet<TempResident> TempResident { get; set; }
+        public static ApplicationContext _context;
+        public static ApplicationContext GetContext()
+        {
+            if (_context == null)
+                _context = new ApplicationContext();
+
+            return _context;
+        }
+
+        public virtual DbSet<Agreement> Agreement { get; set; }
+        public virtual DbSet<Decree> Decree { get; set; }
+        public virtual DbSet<HousingFund> HousingFund { get; set; }
+        public virtual DbSet<ImprovementDegree> ImprovementDegree { get; set; }
+        public virtual DbSet<Locality> Locality { get; set; }
+        public virtual DbSet<Notification> Notification { get; set; }
+        public virtual DbSet<ResidenceRegistration> ResidenceRegistration { get; set; }
+        public virtual DbSet<Street> Street { get; set; }
+        public virtual DbSet<TempResident> TempResident { get; set; }
 
         //переопределение метода OnConfiguring для установления параметров подключения к бд
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=" + Environment.CurrentDirectory + @"\Database\ManeuverFundRegister.db");
+            optionsBuilder.UseSqlite(@"Data Source= C:\Users\Vika\Source\Repos\LightlyAfternoon\ManeuverFundRegister\Database\ManeuverFundRegister.db");
         }
     }
 }
