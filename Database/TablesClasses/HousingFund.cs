@@ -19,6 +19,28 @@ namespace Реестр_маневренного_фонда
 
         public virtual Street Street { get; set; }
         public virtual ImprovementDegree ImprovementDegree { get; set; }
+
+        [NotMapped]
+        private string LocalityName = ApplicationContext.GetContext().Street.First(s => s.IdStreet == StreetId).Locality.NameLocality;
+        [NotMapped]
+        private string StreetName = ApplicationContext.GetContext().Street.First(s => s.IdStreet == StreetId).NameStreet;
+        
+        [NotMapped]
+        private string fullAddress
+        [NotMapped]
+        public String FullAddress
+        {
+            get => fullAddress;
+            set
+            {
+                if (ApartmentNumber == null)
+                    fullAddress = $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}";
+                else if (RoomNumber == null)
+                    fullAddress = $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}";
+                else
+                    fullAddress = $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}";
+            }
+        }
         public string getFullAddress() 
         {
             string LocalityName = ApplicationContext.GetContext().Street.First(s => s.IdStreet == StreetId).Locality.NameLocality;
