@@ -30,6 +30,7 @@ namespace Реестр_маневренного_фонда
 
         private void bt_AgreementsViewPage_Click(object sender, RoutedEventArgs e)
         {
+            tb.Text = ApplicationContext.GetContext().TempResident.First(t => t.IdTempResident == 1).FullName;
             fr_Frame.Navigate(new AgreementsViewPage());
         }
     }
