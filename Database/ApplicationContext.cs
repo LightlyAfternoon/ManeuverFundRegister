@@ -6,7 +6,7 @@ namespace Реестр_маневренного_фонда
 {
     public partial class ApplicationContext : DbContext
     {
-        public static ApplicationContext _context;
+        private static ApplicationContext _context;
         public static ApplicationContext GetContext()
         {
             if (_context == null)
