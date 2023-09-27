@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace Реестр_маневренного_фонда.Pages
     /// </summary>
     public partial class DecreesViewPage : Page
     {
+        ApplicationContext AppContext = ApplicationContext.GetContext();
+
         public DecreesViewPage()
         {
             InitializeComponent();
+
+            AppContext.HousingFund.Load();
+            dg_Decrees.ItemsSource = AppContext.Decree.ToList();
         }
     }
 }

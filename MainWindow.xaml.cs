@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using Реестр_маневренного_фонда.Pages;
 
@@ -13,6 +15,8 @@ namespace Реестр_маневренного_фонда
         public MainWindow()
         {
             InitializeComponent();
+
+            tb.Text = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         }
 
         private void bt_AgreementsViewPage_Click(object sender, RoutedEventArgs e)
