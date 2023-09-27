@@ -1,18 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Реестр_маневренного_фонда.Pages
 {
@@ -21,17 +10,16 @@ namespace Реестр_маневренного_фонда.Pages
     /// </summary>
     public partial class AgreementsViewPage : Page
     {
-        ApplicationContext db = new ApplicationContext();
+        ApplicationContext AppContext = ApplicationContext.GetContext();
 
         public AgreementsViewPage()
         {
             InitializeComponent();
 
-            db.Agreement.Load();
-            db.Locality.Load();
-            db.Street.Load();
-            db.TempResident.Load();
-            dg_Agreements.ItemsSource = db.Agreement.Local.ToObservableCollection();
+            AppContext.Locality.Load();
+            AppContext.Street.Load();
+            AppContext.HousingFund.Load();
+            dg_Agreements.ItemsSource = AppContext.Agreement.ToList();
         }
     }
 }
