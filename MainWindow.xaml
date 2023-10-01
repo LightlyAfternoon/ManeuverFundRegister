@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Реестр_маневренного_фонда"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MaxHeight="768" MaxWidth="1366">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="160"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation = "Vertical">
+            <Button Name = "bt_NotificationsView" HorizontalAlignment="Right" Content="Оповещения" Click="bt_NotificationsView_Click"/>
             <Button Name = "bt_AgreementsViewPage" Content="Договоры" Click="bt_AgreementsViewPage_Click"/>
             <Button Name = "bt_DecreesViewPage" Content="Постановления" Click="bt_DecreesViewPage_Click"/>
-            <Button Name = "bt_HousingFundViewPage"/>
-            <Button Name = "bt_LocalitiesViewPage"/>
-            <Button Name = "bt_ResidenceRegistrationsViewPage"/>
-            <Button Name = "bt_StreetsViewPage"/>
-            <Button Name = "bt_TempResidentsViewPage"/>
-            <TextBox x:Name="tb" TextAlignment="Center" Text="00"/>
+            <Button Name = "bt_HousingFundViewPage" Content="Жильё фонда" Click="bt_HousingFundViewPage_Click"/>
+            <Button Name = "bt_LocalitiesViewPage" Content="Населённые пункты" Click="bt_LocalitiesViewPage_Click"/>
+            <Button Name = "bt_ResidenceRegistrationViewPage" Content="Факты проживания в жилье" Click="bt_ResidenceRegistrationViewPage_Click"/>
+            <Button Name = "bt_StreetsViewPage" Content="Улицы" Click="bt_StreetsViewPage_Click"/>
+            <Button Name = "bt_TempResidentsViewPage" Content="Наниматели" Click="bt_TempResidentsViewPage_Click"/>
         </StackPanel>
 
         <Frame Grid.Row="1" x:Name = "fr_Frame" NavigationUIVisibility = "Hidden"/>

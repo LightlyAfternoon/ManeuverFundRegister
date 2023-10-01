@@ -5,9 +5,39 @@
     <Compile Update="Pages\DecreesViewPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\HousingFundViewPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\LocalitiesViewPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\ResidenceRegistrationViewPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\StreetsViewPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\TempResidentsViewPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\DecreesViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\HousingFundViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\LocalitiesViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\ResidenceRegistrationViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\StreetsViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\TempResidentsViewPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

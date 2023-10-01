@@ -11,8 +11,8 @@
     <Grid>
         <DataGrid x:Name = "dg_Decrees" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер постановления" Binding = "{Binding NumberDecree}"/>
-                <DataGridTextColumn Header = "Дата постановления" Binding="{Binding DateDecree}"/>
+                <DataGridTextColumn Header = "Номер постановления" Binding = "{Binding NumberDecree}"/>
+                <DataGridTextColumn Header = "Дата постановления" Binding="{Binding DateDecree, StringFormat = 'dd.MM.yyyy'}"/>
                 <DataGridTextColumn Header = "Адрес жилья" Binding = "{Binding HousingFund.FullAddress}"/>
                 <DataGridTextColumn Header = "Статус" Binding = "{Binding StatusName}"/>
             </DataGrid.Columns>

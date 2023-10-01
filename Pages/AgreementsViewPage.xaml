@@ -11,7 +11,7 @@
     <Grid>
         <DataGrid x:Name = "dg_Agreements" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер договора" Binding = "{Binding NumberAgreement}"/>
+                <DataGridTextColumn Header = "Номер договора" Binding = "{Binding NumberAgreement}"/>
                 <DataGridTextColumn Header = "ФИО нанимателя" Binding="{Binding TempResident.FullName}"/>
                 <DataGridTextColumn Header = "Адрес жилья" Binding = "{Binding HousingFund.FullAddress}"/>
                 <DataGridTextColumn Header = "Дата заключения" Binding = "{Binding DateConclusionAgreement, StringFormat = 'dd.MM.yyyy'}"/>

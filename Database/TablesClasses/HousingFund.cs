@@ -25,6 +25,8 @@ namespace Реестр_маневренного_фонда
 
         public string getFullAddress()
         {
+            ApplicationContext.GetContext().Locality.Load();
+            ApplicationContext.GetContext().Street.Load();
             string LocalityName = Street.Locality.NameLocality;
             string StreetName = Street.NameStreet;
 
