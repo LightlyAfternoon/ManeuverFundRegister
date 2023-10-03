@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,7 +26,7 @@ namespace Реестр_маневренного_фонда
             List<Agreement> listAgreements = dbContext.Agreement.ToList();
             foreach (Agreement agreement in listAgreements)
             {
-                if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(6) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1)
+                if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(1) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1)
                 {
                     Notification newNotification = new Notification
                     {
@@ -35,6 +36,12 @@ namespace Реестр_маневренного_фонда
 
                     dbContext.Notification.Add(newNotification);
                     dbContext.SaveChanges();
+
+                    new ToastContentBuilder()
+                        .AddArgument("action", "viewConversation")
+                        .AddArgument("conversationId", 9813)
+                        .AddText($"Срок договора №{agreement.NumberAgreement} от {string.Format("{0:dd.MM.yyyy}",agreement.DateConclusionAgreement)} заканчивается {string.Format("{0:dd.MM.yyyy}", agreement.DateEndAgreement)}")
+                        .Show();
                 }
             }
             foreach (Notification notification in dbContext.Notification.ToList())
