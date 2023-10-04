@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Toolkit.Uwp.Notifications;
+using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using Реестр_маневренного_фонда.Pages;
-using Microsoft.Win32.TaskScheduler;
 
 namespace Реестр_маневренного_фонда
 {
@@ -33,7 +32,7 @@ namespace Реестр_маневренного_фонда
 
                 // Create an action that will launch Notepad whenever the trigger fires
                 // Создать консольное приложение для выполнения методов из NotificationManager
-                */td.Actions.Add(new ExecAction("notepad.exe", "c:\\test.log", null));
+                /*td.Actions.Add(new ExecAction("notepad.exe", "c:\\test.log", null));
 
                 // Register the task in the root folder
                 ts.RootFolder.RegisterTaskDefinition(@"Test", td);
