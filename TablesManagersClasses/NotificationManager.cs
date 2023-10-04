@@ -4,6 +4,11 @@ namespace Реестр_маневренного_фонда
 {
   public partial class NotificationManager
   {
+    ApplicationContext dbContext = ApplicationContext.GetContext();
+    
+    dbContext.Agreement.Load();
+    dbContext.Notification.Load();
+    
     List<Agreement> listAgreements = dbContext.Agreement.ToList();
     List<Notification> listNotifications = dbContext.Notification.ToList();
 
