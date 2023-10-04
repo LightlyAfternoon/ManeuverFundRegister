@@ -18,8 +18,6 @@ namespace Реестр_маневренного_фонда.database.tables_class
         public string? Remark { get; set; }
 
         [NotMapped]
-        private string _fullName = "tt";
-        [NotMapped]
         public string FullName => $"{LastName} {FirstName} {Patronymic}";
     }
 }
