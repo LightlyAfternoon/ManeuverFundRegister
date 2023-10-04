@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using Реестр_маневренного_фонда.Pages;
+using Microsoft.Win32.TaskScheduler;
 
 namespace Реестр_маневренного_фонда
 {
@@ -21,36 +22,23 @@ namespace Реестр_маневренного_фонда
         {
             InitializeComponent();
 
-            dbContext.Agreement.Load();
-            dbContext.Notification.Load();
-            List<Agreement> listAgreements = dbContext.Agreement.ToList();
-            foreach (Agreement agreement in listAgreements)
+            using (TaskService ts = new TaskService())
             {
-                if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(1) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1)
-                {
-                    Notification newNotification = new Notification
-                    {
-                        AgreementId = agreement.IdAgreement,
-                        RecievingDate = DateTime.Now
-                    };
+                // Создание новой задачи и добавление её описания
+                TaskDefinition td = ts.NewTask();
+                td.RegistrationInfo.Description = "Does something";
 
-                    dbContext.Notification.Add(newNotification);
-                    dbContext.SaveChanges();
+                // Создание триггера, который будет запускать задачу в это время каждый день
+                td.Triggers.Add(new DailyTrigger { DaysInterval = 1 });
 
-                    new ToastContentBuilder()
-                        .AddArgument("action", "viewConversation")
-                        .AddArgument("conversationId", 9813)
-                        .AddText($"Срок договора №{agreement.NumberAgreement} от {string.Format("{0:dd.MM.yyyy}",agreement.DateConclusionAgreement)} заканчивается {string.Format("{0:dd.MM.yyyy}", agreement.DateEndAgreement)}")
-                        .Show();
-                }
-            }
-            foreach (Notification notification in dbContext.Notification.ToList())
-            {
-                if (notification.RecievingDate > DateTime.Now.AddMonths(6))
-                {
-                    dbContext.Remove(notification);
-                    dbContext.SaveChanges();
-                }
+                // Create an action that will launch Notepad whenever the trigger fires
+                */td.Actions.Add(new ExecAction("notepad.exe", "c:\\test.log", null));
+
+                // Register the task in the root folder
+                ts.RootFolder.RegisterTaskDefinition(@"Test", td);
+
+                // Remove the task we just created
+                ts.RootFolder.DeleteTask("Test");*/
             }
         }
 
