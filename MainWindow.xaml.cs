@@ -2,11 +2,13 @@
 using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using Реестр_маневренного_фонда.Pages;
+using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда
 {
@@ -20,25 +22,25 @@ namespace Реестр_маневренного_фонда
         public MainWindow()
         {
             InitializeComponent();
+            //работает
+            //NotificationManager notificationManager = new NotificationManager();
+            //notificationManager.AddNotification();
+            //notificationManager.RemoveNotification();
 
             using (TaskService ts = new TaskService())
             {
                 // Создание новой задачи и добавление её описания
                 TaskDefinition td = ts.NewTask();
-                td.RegistrationInfo.Description = "Does something";
+                td.RegistrationInfo.Description = "Добавление и удаление уведомлений";
 
-                // Создание триггера, который будет запускать задачу в это время каждый день
+                // Создание триггера, который будет запускать задачу в 10 часов каждый день
                 td.Triggers.Add(new DailyTrigger { DaysInterval = 1 });
 
-                // Create an action that will launch Notepad whenever the trigger fires
-                // Создать консольное приложение для выполнения методов из NotificationManager
-                /*td.Actions.Add(new ExecAction("notepad.exe", "c:\\test.log", null));
+                // Определение команды, которую нужно запустить
+                td.Actions.Add(new ExecAction("C:\\Users\\Vika\\source\\repos\\LightlyAfternoon\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe"));
 
-                // Register the task in the root folder
-                ts.RootFolder.RegisterTaskDefinition(@"Test", td);
-
-                // Remove the task we just created
-                ts.RootFolder.DeleteTask("Test");*/
+                // Регистрация задачи в планировщике
+                ts.RootFolder.RegisterTaskDefinition(@"AddAndRemoveNotifications", td);
             }
         }
 

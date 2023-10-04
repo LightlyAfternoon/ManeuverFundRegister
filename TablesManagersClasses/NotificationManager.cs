@@ -3,8 +3,6 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Реестр_маневренного_фонда.TablesManagersClasses
 {
@@ -15,7 +13,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         List<Agreement> listAgreements;
         List<Notification> listNotifications;
 
-        void AddNotification()
+        public void AddNotification()
         {
             dbContext.Agreement.Load();
             dbContext.Notification.Load();
@@ -45,7 +43,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
         }
 
-        void RemoveNotification()
+        public void RemoveNotification()
         {
             dbContext.Agreement.Load();
             dbContext.Notification.Load();
