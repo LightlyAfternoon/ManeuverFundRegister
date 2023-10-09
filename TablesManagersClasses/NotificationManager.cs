@@ -18,12 +18,12 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             dbContext.Agreement.Load();
             dbContext.Notification.Load();
 
-            List<Agreement> listAgreements = dbContext.Agreement.ToList();
-            List<Notification> listNotifications = dbContext.Notification.ToList();
+            listAgreements = dbContext.Agreement.ToList();
+            listNotifications = dbContext.Notification.ToList();
 
             foreach (Agreement agreement in listAgreements)
             {
-                if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(1) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1)
+                if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(6) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1 && string.IsNullOrWhiteSpace(agreement.DateTerminationAgreement.ToString()))
                 {
                     Notification newNotification = new Notification
                     {
@@ -48,8 +48,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             dbContext.Agreement.Load();
             dbContext.Notification.Load();
 
-            List<Agreement> listAgreements = dbContext.Agreement.ToList();
-            List<Notification> listNotifications = dbContext.Notification.ToList();
+            listAgreements = dbContext.Agreement.ToList();
+            listNotifications = dbContext.Notification.ToList();
 
             foreach (Notification notification in listNotifications)
             {
