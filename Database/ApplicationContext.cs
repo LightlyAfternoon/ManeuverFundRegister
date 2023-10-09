@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Реестр_маневренного_фонда.database.tables_classes;
 
@@ -28,8 +29,7 @@ namespace Реестр_маневренного_фонда
         //переопределение метода OnConfiguring для установления параметров подключения к бд
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //не находит
-            optionsBuilder.UseSqlite("Data Source=C:\\Users\\Vika\\source\\repos\\LightlyAfternoon\\ManeuverFundRegister\\Database\\ManeuverFundRegister.db");
+            optionsBuilder.UseSqlite("Data Source="+ Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()) + "\\ManeuverFundRegister\\Database\\ManeuverFundRegister.db");
         }
     }
 }
