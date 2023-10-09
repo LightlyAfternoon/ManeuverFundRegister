@@ -1,14 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.TaskScheduler;
-using System;
-using System.Collections.Generic;
-using System.DirectoryServices.ActiveDirectory;
-using System.IO;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-using System.Windows.Documents;
 using Реестр_маневренного_фонда.Pages;
-using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда
 {
@@ -17,18 +12,15 @@ namespace Реестр_маневренного_фонда
     /// </summary>
     public partial class MainWindow : Window
     {
-        ApplicationContext dbContext = ApplicationContext.GetContext();
-
         public MainWindow()
         {
             InitializeComponent();
-            //работает
-            //NotificationManager notificationManager = new NotificationManager();
-            //notificationManager.AddNotification();
-            //notificationManager.RemoveNotification();
 
             using (TaskService ts = new TaskService())
             {
+                // Создание процесса консольной программы для проверки уведомлений
+                Process.Start("C:\\Users\\Vika\\source\\repos\\LightlyAfternoon\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
+
                 // Создание новой задачи и добавление её описания
                 TaskDefinition td = ts.NewTask();
                 td.RegistrationInfo.Description = "Добавление и удаление уведомлений";
@@ -81,7 +73,19 @@ namespace Реестр_маневренного_фонда
 
         private void bt_NotificationsView_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationContext.GetContext().Agreement.Load();
+            lv_pop.ItemsSource = ApplicationContext.GetContext().Notification.ToList();
 
+            if (!pop_Notif.IsOpen)
+                pop_Notif.IsOpen = true;
+            else
+                pop_Notif.IsOpen = false;
+        }
+
+        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (pop_Notif.IsOpen)
+                pop_Notif.IsOpen = false;
         }
     }
 }

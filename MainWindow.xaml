@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Реестр_маневренного_фонда"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MaxHeight="768" MaxWidth="1366">
+        Title="MainWindow" Height="450" Width="800" MaxHeight="768" MaxWidth="1366" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="160"/>
@@ -21,6 +21,26 @@
             <Button Name = "bt_ResidenceRegistrationViewPage" Content="Факты проживания в жилье" Click="bt_ResidenceRegistrationViewPage_Click"/>
             <Button Name = "bt_StreetsViewPage" Content="Улицы" Click="bt_StreetsViewPage_Click"/>
             <Button Name = "bt_TempResidentsViewPage" Content="Наниматели" Click="bt_TempResidentsViewPage_Click"/>
+            <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget ="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="200">
+                <ListView x:Name="lv_pop">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="Срок договора №{0} от {1} заканчивается {2}">
+                                            <Binding Path="Agreement.NumberAgreement"/>
+                                            <Binding Path="Agreement.DateConclusionAgreement" StringFormat="dd.MM.yyyy"/>
+                                            <Binding Path="Agreement.DateEndAgreement" StringFormat="dd.MM.yyyy"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Text="{Binding RecievingDate, StringFormat='dd.MM.yyyy'}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Popup>
         </StackPanel>
 
         <Frame Grid.Row="1" x:Name = "fr_Frame" NavigationUIVisibility = "Hidden"/>
