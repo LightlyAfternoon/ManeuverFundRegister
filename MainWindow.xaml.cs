@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using Реестр_маневренного_фонда.Pages;
 
@@ -21,7 +22,7 @@ namespace Реестр_маневренного_фонда
             using (TaskService ts = new TaskService())
             {
                 // Создание процесса консольной программы для проверки уведомлений
-                Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
+                Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
 
                 // Создание новой задачи и добавление её описания
                 TaskDefinition td = ts.NewTask();
@@ -31,7 +32,7 @@ namespace Реестр_маневренного_фонда
                 td.Triggers.Add(new DailyTrigger { DaysInterval = 1 });
 
                 // Определение команды, которую нужно запустить
-                td.Actions.Add(new ExecAction(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe"));
+                td.Actions.Add(new ExecAction(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe"));
 
                 // Регистрация задачи в планировщике
                 ts.RootFolder.RegisterTaskDefinition(@"AddAndRemoveNotifications", td);
