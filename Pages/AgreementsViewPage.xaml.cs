@@ -9,14 +9,23 @@ namespace Реестр_маневренного_фонда.Pages
     /// </summary>
     public partial class AgreementsViewPage : Page
     {
-        ApplicationContext dbContext = ApplicationContext.GetContext();
+        ApplicationContext dbContext;
 
         public AgreementsViewPage()
         {
             InitializeComponent();
 
-            dbContext.HousingFund.Load();
-            dg_Agreements.ItemsSource = dbContext.Agreement.ToList();
+            try
+            {
+                dbContext = ApplicationContext.GetContext();
+
+                dbContext.HousingFund.Load();
+                dg_Agreements.ItemsSource = dbContext.Agreement.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

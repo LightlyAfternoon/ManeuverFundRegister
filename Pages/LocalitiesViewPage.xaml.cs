@@ -9,12 +9,21 @@ namespace Реестр_маневренного_фонда.Pages
     /// </summary>
     public partial class LocalitiesViewPage : Page
     {
-        ApplicationContext dbContext = ApplicationContext.GetContext();
+        ApplicationContext dbContext;
         public LocalitiesViewPage()
         {
             InitializeComponent();
 
-            dg_Localities.ItemsSource = dbContext.Locality.ToList();
+            try
+            {
+                dbContext = ApplicationContext.GetContext();
+                
+                dg_Localities.ItemsSource = dbContext.Locality.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

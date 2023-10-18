@@ -9,15 +9,24 @@ namespace Реестр_маневренного_фонда.Pages
     /// </summary>
     public partial class ResidenceRegistrationViewPage : Page
     {
-        ApplicationContext dbContext = ApplicationContext.GetContext();
+        ApplicationContext dbContext;
 
         public ResidenceRegistrationViewPage()
         {
             InitializeComponent();
 
-            dbContext.HousingFund.Load();
-            dbContext.TempResident.Load();
-            dg_ResidenceRegistration.ItemsSource = dbContext.ResidenceRegistration.ToList();
+            try
+            {
+                dbContext = ApplicationContext.GetContext();
+                
+                dbContext.HousingFund.Load();
+                dbContext.TempResident.Load();
+                dg_ResidenceRegistration.ItemsSource = dbContext.ResidenceRegistration.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

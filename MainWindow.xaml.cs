@@ -83,13 +83,20 @@ namespace Реестр_маневренного_фонда
 
         private void bt_NotificationsView_Click(object sender, RoutedEventArgs e)
         {
-            ApplicationContext.GetContext().Agreement.Load();
-            lv_pop.ItemsSource = ApplicationContext.GetContext().Notification.ToList();
+            try
+            {
+                ApplicationContext.GetContext().Agreement.Load();
+                lv_pop.ItemsSource = ApplicationContext.GetContext().Notification.ToList();
 
-            if (!pop_Notif.IsOpen)
-                pop_Notif.IsOpen = true;
-            else
-                pop_Notif.IsOpen = false;
+                if (!pop_Notif.IsOpen)
+                    pop_Notif.IsOpen = true;
+                else
+                    pop_Notif.IsOpen = false;
+                }
+                catch
+                {
+                    MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
         }
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

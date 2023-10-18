@@ -9,14 +9,23 @@ namespace Реестр_маневренного_фонда.Pages
     /// </summary>
     public partial class StreetsViewPage : Page
     {
-        ApplicationContext dbContext = ApplicationContext.GetContext();
+        ApplicationContext dbContext;
 
         public StreetsViewPage()
         {
             InitializeComponent();
 
-            dbContext.Locality.Load();
-            dg_Streets.ItemsSource = dbContext.Street.ToList();
+            try
+            {
+                dbContext = ApplicationContext.GetContext();
+                
+                dbContext.Locality.Load();
+                dg_Streets.ItemsSource = dbContext.Street.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

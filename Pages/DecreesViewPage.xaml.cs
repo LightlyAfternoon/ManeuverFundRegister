@@ -9,14 +9,23 @@ namespace Реестр_маневренного_фонда.Pages
     /// </summary>
     public partial class DecreesViewPage : Page
     {
-        ApplicationContext dbContext = ApplicationContext.GetContext();
+        ApplicationContext dbContext;
 
         public DecreesViewPage()
         {
             InitializeComponent();
 
-            dbContext.HousingFund.Load();
-            dg_Decrees.ItemsSource = dbContext.Decree.ToList();
+            try
+            {
+                dbContext = ApplicationContext.GetContext();
+
+                dbContext.HousingFund.Load();
+                dg_Decrees.ItemsSource = dbContext.Decree.ToList();
+            }
+            catch 
+            {
+                MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

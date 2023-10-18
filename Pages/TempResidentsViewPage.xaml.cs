@@ -14,7 +14,16 @@ namespace Реестр_маневренного_фонда.Pages
         {
             InitializeComponent();
 
-            dg_TempResidents.ItemsSource = dbContext.TempResident.ToList();
+            try
+            {
+                dbContext = ApplicationContext.GetContext();
+                
+                dg_TempResidents.ItemsSource = dbContext.TempResident.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
