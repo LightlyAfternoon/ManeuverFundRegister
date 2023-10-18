@@ -41,7 +41,7 @@ namespace Реестр_маневренного_фонда
                 }
                 catch
                 {
-                    MessageBox.Show("Система оповещений не работает.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Система оповещений не работает.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
