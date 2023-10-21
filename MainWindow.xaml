@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Реестр_маневренного_фонда"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MaxHeight="768" MaxWidth="1366" MouseDown="Window_MouseDown">
+        Title="Реестр маневренного фонда" Height="450" Width="800" MaxHeight="768" MaxWidth="1366" MinHeight="450" MinWidth="800" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="160"/>
+            <RowDefinition Height="180"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 

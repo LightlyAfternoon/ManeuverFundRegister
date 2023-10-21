@@ -89,14 +89,18 @@ namespace Реестр_маневренного_фонда
                 lv_pop.ItemsSource = ApplicationContext.GetContext().Notification.ToList();
 
                 if (!pop_Notif.IsOpen)
+                {
                     pop_Notif.IsOpen = true;
+                }
                 else
+                {
                     pop_Notif.IsOpen = false;
                 }
-                catch
-                {
-                    MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            }
+            catch
+            {
+                MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

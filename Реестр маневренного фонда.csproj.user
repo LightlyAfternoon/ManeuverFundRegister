@@ -2,42 +2,126 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Pages\DecreesViewPage.xaml.cs">
+    <Compile Update="Pages\Agreements\AddNewAgreementPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\HousingFundViewPage.xaml.cs">
+    <Compile Update="Pages\Agreements\EditAgreementPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\LocalitiesViewPage.xaml.cs">
+    <Compile Update="Pages\Decrees\AddNewDecreePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\ResidenceRegistrationViewPage.xaml.cs">
+    <Compile Update="Pages\Decrees\DecreesViewPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\StreetsViewPage.xaml.cs">
+    <Compile Update="Pages\Decrees\EditDecreePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\TempResidentsViewPage.xaml.cs">
+    <Compile Update="Pages\HousingFund\AddNewHouseInFundPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\HousingFund\EditHouseInFundPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\HousingFund\HousingFundViewPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Localities\AddNewLocalityPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Localities\EditLocalityPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Localities\LocalitiesViewPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\ResidenceRegistration\AddNewResidenceRegistrationPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\ResidenceRegistration\EditResidenceRegistrationPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\ResidenceRegistration\ResidenceRegistrationViewPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Streets\AddNewStreetPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Streets\EditStreetPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Streets\StreetsViewPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\TempResidents\AddNewTempResidentPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\TempResidents\EditTempResidentPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\TempResidents\TempResidentsViewPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\DecreesViewPage.xaml">
+    <Page Update="Pages\Agreements\AddNewAgreementPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\HousingFundViewPage.xaml">
+    <Page Update="Pages\Agreements\EditAgreementPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\LocalitiesViewPage.xaml">
+    <Page Update="Pages\Decrees\AddNewDecreePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\ResidenceRegistrationViewPage.xaml">
+    <Page Update="Pages\Decrees\DecreesViewPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\StreetsViewPage.xaml">
+    <Page Update="Pages\Decrees\EditDecreePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\TempResidentsViewPage.xaml">
+    <Page Update="Pages\HousingFund\AddNewHouseInFundPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\HousingFund\EditHouseInFundPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\HousingFund\HousingFundViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Localities\AddNewLocalityPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Localities\EditLocalityPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Localities\LocalitiesViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\ResidenceRegistration\AddNewResidenceRegistrationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\ResidenceRegistration\EditResidenceRegistrationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\ResidenceRegistration\ResidenceRegistrationViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Streets\AddNewStreetPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Streets\EditStreetPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Streets\StreetsViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\TempResidents\AddNewTempResidentPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\TempResidents\EditTempResidentPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\TempResidents\TempResidentsViewPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
