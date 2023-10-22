@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Реестр_маневренного_фонда.Pages.Agreements;
 
 namespace Реестр_маневренного_фонда.Pages
 {
@@ -27,6 +28,22 @@ namespace Реестр_маневренного_фонда.Pages
             {
                 MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void bt_EditAgreement_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Agreement currentAgreement = (sender as Button).DataContext as Agreement;
+
+                NavigationService.Navigate(new EditAgreementPage(currentAgreement));
+            }
+            catch {}
+        }
+
+        private void bt_DeleteAgreement_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

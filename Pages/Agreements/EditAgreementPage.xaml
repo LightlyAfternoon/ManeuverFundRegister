@@ -9,6 +9,30 @@
       Title="EditAgreementPage">
 
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="10,0">
+                    <TextBlock Text="Номер"/>
+                    <TextBox Height="25" x:Name="tb_Number"/>
+                    <TextBlock Text="Временно проживающий"/>
+                    <ComboBox x:Name="cmb_TempReident" Height="25" DisplayMemberPath="FullName"/>
+                    <TextBlock Text="Адрес жилья"/>
+                    <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress"/>
+                </StackPanel>
+
+                <StackPanel Margin="10,0">
+                    <TextBlock Text="Дата заключения"/>
+                    <DatePicker x:Name="dp_DateConclusion"/>
+                    <TextBlock Text="Дата окончания"/>
+                    <DatePicker x:Name="dp_DateEnd"/>
+                    <TextBlock Text="Дата расторжения"/>
+                    <DatePicker x:Name="dp_DateTermination"/>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Text="Примечание"/>
+            <TextBox Height="25" x:Name="tb_Remark"/>
+            
+            <Button x:Name="bt_Edit" Content="Изменить" Margin="0,10" Click="bt_Edit_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -18,6 +18,20 @@
                 <DataGridTextColumn Header = "Дата окончания" Binding = "{Binding DateEndAgreement, StringFormat = 'dd.MM.yyyy'}"/>
                 <DataGridTextColumn Header = "Дата расторжения" Binding = "{Binding DateTerminationAgreement, StringFormat = 'dd.MM.yyyy'}"/>
                 <DataGridTextColumn Header = "Примечание" Binding = "{Binding Remark}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" x:Name="bt_EditAgreement" Click="bt_EditAgreement_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" x:Name="bt_DeleteAgreement" Click="bt_DeleteAgreement_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
