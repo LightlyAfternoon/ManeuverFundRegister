@@ -19,6 +19,8 @@ namespace Реестр_маневренного_фонда
         {
             InitializeComponent();
 
+            MainFrameObj.mainFrame = fr_Frame;
+
             using (TaskService ts = new TaskService())
             {
                 try

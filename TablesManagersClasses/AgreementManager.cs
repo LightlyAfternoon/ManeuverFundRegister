@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Pages;
 
 namespace Реестр_маневренного_фонда.TablesManagersClasses
 {
@@ -49,60 +46,79 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату окончания договора");
             }
-
-            MessageBox.Show(errors);
-            errors = string.Empty;
         }
 
         public void AddAgreement(string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, string? remark)
         {
             Agreement newAgreement = new Agreement();
 
+            showErrors(number, tempResident, housingFund, dateConclusion, dateEnd);
             if (!string.IsNullOrEmpty(errors))
             {
-                showErrors(number, tempResident, housingFund, dateConclusion, dateEnd);
+                MessageBox.Show(errors);
+                errors = string.Empty;
             }
             else
             {
-                newAgreement.NumberAgreement = Convert.ToInt32(number);
-                newAgreement.TempResident = tempResident;
-                newAgreement.HousingFund = housingFund;
-                newAgreement.DateConclusionAgreement = Convert.ToDateTime(dateConclusion);
-                newAgreement.DateEndAgreement = Convert.ToDateTime(dateEnd);
-                if (!string.IsNullOrWhiteSpace(remark))
+                try
                 {
-                    newAgreement.Remark = remark;
-                }
+                    newAgreement.NumberAgreement = Convert.ToInt32(number);
+                    newAgreement.TempResident = tempResident;
+                    newAgreement.HousingFund = housingFund;
+                    newAgreement.DateConclusionAgreement = Convert.ToDateTime(dateConclusion);
+                    newAgreement.DateEndAgreement = Convert.ToDateTime(dateEnd);
+                    if (!string.IsNullOrWhiteSpace(remark))
+                    {
+                        newAgreement.Remark = remark;
+                    }
 
-                dbContext.Agreement.Add(newAgreement);
-                dbContext.SaveChanges();
+                    dbContext.Agreement.Add(newAgreement);
+                    dbContext.SaveChanges();
+
+                    MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
+                }
+                catch
+                {
+                    MessageBox.Show("Не удалось добавить договор", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
         public void EditAgreement(Agreement currentAgreement, string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, DateTime? dateTermination, string? remark)
         {
+            showErrors(number, tempResident, housingFund, dateConclusion, dateEnd);
             if (!string.IsNullOrEmpty(errors))
             {
-                showErrors(number, tempResident, housingFund, dateConclusion, dateEnd);
+                MessageBox.Show(errors);
+                errors = string.Empty;
             }
             else
             {
-                currentAgreement.NumberAgreement = Convert.ToInt32(number);
-                currentAgreement.TempResident = tempResident;
-                currentAgreement.HousingFund = housingFund;
-                currentAgreement.DateConclusionAgreement = Convert.ToDateTime(dateConclusion);
-                currentAgreement.DateEndAgreement = Convert.ToDateTime(dateEnd);
-                if (dateTermination != null)
+                try
                 {
-                    currentAgreement.DateTerminationAgreement = dateTermination;
-                }
-                if (!string.IsNullOrWhiteSpace(remark))
-                {
-                    currentAgreement.Remark = remark;
-                }
+                    currentAgreement.NumberAgreement = Convert.ToInt32(number);
+                    currentAgreement.TempResident = tempResident;
+                    currentAgreement.HousingFund = housingFund;
+                    currentAgreement.DateConclusionAgreement = Convert.ToDateTime(dateConclusion);
+                    currentAgreement.DateEndAgreement = Convert.ToDateTime(dateEnd);
+                    if (dateTermination != null)
+                    {
+                        currentAgreement.DateTerminationAgreement = dateTermination;
+                    }
+                    if (!string.IsNullOrWhiteSpace(remark))
+                    {
+                        currentAgreement.Remark = remark;
+                    }
 
-                dbContext.Agreement.Update(currentAgreement);
-                dbContext.SaveChanges();
+                    dbContext.Agreement.Update(currentAgreement);
+                    dbContext.SaveChanges();
+
+                    MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
+                }
+                catch
+                {
+                    MessageBox.Show("Не удалось изменить договор", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -112,6 +128,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 dbContext.Agreement.Remove(currentAgreement);
                 dbContext.SaveChanges();
+
+                MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
             }
             catch
             {

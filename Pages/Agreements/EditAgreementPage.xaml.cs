@@ -35,7 +35,7 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             tb_Number.Text = agreement.NumberAgreement.ToString();
             cmb_HousingFund.SelectedItem = agreement.HousingFund;
             cmb_TempReident.SelectedItem = agreement.TempResident;
-            dp_DateConclusion.SelectedDate = agreement.DateTerminationAgreement;
+            dp_DateConclusion.SelectedDate = agreement.DateConclusionAgreement;
             dp_DateEnd.SelectedDate = agreement.DateEndAgreement;
             dp_DateTermination.SelectedDate = agreement.DateTerminationAgreement;
             tb_Remark.Text = agreement.Remark;

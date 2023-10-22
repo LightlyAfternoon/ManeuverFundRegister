@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Pages;
 
 namespace Реестр_маневренного_фонда.TablesManagersClasses
 {
@@ -56,13 +57,22 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
             else
             {
-                newDecree.NumberDecree = Convert.ToInt32(number);
-                newDecree.DateDecree = Convert.ToDateTime(dateDecree);
-                newDecree.HousingFund = housingFund;
-                newDecree.Status = Convert.ToBoolean(status);
+                try
+                {
+                    newDecree.NumberDecree = Convert.ToInt32(number);
+                    newDecree.DateDecree = Convert.ToDateTime(dateDecree);
+                    newDecree.HousingFund = housingFund;
+                    newDecree.Status = Convert.ToBoolean(status);
 
-                dbContext.Decree.Add(newDecree);
-                dbContext.SaveChanges();
+                    dbContext.Decree.Add(newDecree);
+                    dbContext.SaveChanges();
+
+                    MainFrameObj.mainFrame.Navigate(new DecreesViewPage());
+                }
+                catch
+                {
+                    MessageBox.Show("Не удалось изменить договор", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
