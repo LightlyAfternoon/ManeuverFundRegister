@@ -21,17 +21,17 @@
             <Button Name = "bt_ResidenceRegistrationViewPage" Content="Факты проживания в жилье" Click="bt_ResidenceRegistrationViewPage_Click"/>
             <Button Name = "bt_StreetsViewPage" Content="Улицы" Click="bt_StreetsViewPage_Click"/>
             <Button Name = "bt_TempResidentsViewPage" Content="Наниматели" Click="bt_TempResidentsViewPage_Click"/>
-            <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget ="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="200">
+            <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget ="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="200" Width="500">
                 <ListView x:Name="lv_pop">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock>
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat="Срок договора №{0} от {1} заканчивается {2}">
+                                        <MultiBinding StringFormat="Срок договора №{0} от {1:dd.MM.yyyy} заканчивается {2:dd.MM.yyyy}">
                                             <Binding Path="Agreement.NumberAgreement"/>
-                                            <Binding Path="Agreement.DateConclusionAgreement" StringFormat="dd.MM.yyyy"/>
-                                            <Binding Path="Agreement.DateEndAgreement" StringFormat="dd.MM.yyyy"/>
+                                            <Binding Path="Agreement.DateConclusionAgreement"/>
+                                            <Binding Path="Agreement.DateEndAgreement"/>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
