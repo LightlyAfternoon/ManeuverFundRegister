@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.Pages;
 
 namespace Реестр_маневренного_фонда.TablesManagersClasses
@@ -50,10 +45,12 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         public void AddDecree(string? number, DateTime? dateDecree, HousingFund? housingFund, bool? status)
         {
             Decree newDecree = new Decree();
-
+            
+            showErrors(number, dateDecree, housingFund, status);
             if (!string.IsNullOrEmpty(errors))
             {
-                showErrors(number, dateDecree, housingFund, status);
+                MessageBox.Show(errors);
+                errors = string.Empty;
             }
             else
             {
@@ -71,19 +68,53 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
                 catch
                 {
-                    MessageBox.Show("Не удалось изменить договор", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Не удалось добавить постановление", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
 
         public void EditDecree(Decree currentDecree, string? number, DateTime? dateDecree, HousingFund? housingFund, bool? status)
         {
+            showErrors(number, dateDecree, housingFund, status);
+            if (!string.IsNullOrEmpty(errors))
+            {
+                MessageBox.Show(errors);
+                errors = string.Empty;
+            }
+            else
+            {
+                try
+                {
+                    currentDecree.NumberDecree = Convert.ToInt32(number);
+                    currentDecree.DateDecree = Convert.ToDateTime(dateDecree);
+                    currentDecree.HousingFund = housingFund;
+                    currentDecree.Status = Convert.ToBoolean(status);
 
+                    dbContext.Decree.Update(currentDecree);
+                    dbContext.SaveChanges();
+
+                    MainFrameObj.mainFrame.Navigate(new DecreesViewPage());
+                }
+                catch
+                {
+                    MessageBox.Show("Не удалось изменить постановление", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         public void RemoveDecree(Decree currentDecree)
         {
+            try
+            {
+                dbContext.Decree.Remove(currentDecree);
+                dbContext.SaveChanges();
 
+                MainFrameObj.mainFrame.Navigate(new DecreesViewPage());
+            }
+            catch
+            {
+                MessageBox.Show("Не получилось удалить постановление", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда
@@ -12,12 +10,12 @@ namespace Реестр_маневренного_фонда
         [Key]
         public int IdHousingFund { get; set; }
         public int StreetId { get; set; }
-        public int HouseNumber { get; set; }
+        public string HouseNumber { get; set; }
         public int? ApartmentNumber { get; set; }
         public int? RoomNumber { get; set; }
         public int ImprovementDegreeId { get; set; }
-        public float? DecreeArea { get; set; }
-        public float? RegisterArea { get; set; }
+        public double? DecreeArea { get; set; }
+        public double? RegisterArea { get; set; }
         public string? Remark { get; set; }
 
         public virtual Street Street { get; set; }
