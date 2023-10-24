@@ -21,7 +21,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
             if (string.IsNullOrWhiteSpace(nameStreet))
             {
-                errors += ("Неоходимо ввести название улицы\n");
+                errors += ("Неоходимо ввести название улицы");
             }
 
             MessageBox.Show(errors);
