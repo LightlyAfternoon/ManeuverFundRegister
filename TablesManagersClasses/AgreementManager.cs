@@ -27,7 +27,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
                 catch
                 {
-                    errors += ("Укажите номер договора корректно (только цифры)");
+                    errors += ("Укажите номер договора корректно (только цифры)\n");
                 }
             }
             if (tempResident == null) 
