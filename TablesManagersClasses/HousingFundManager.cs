@@ -36,7 +36,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
                 catch
                 {
-                    errors += ("Укажите номер квартиры корректно (только цифры)");
+                    errors += ("Укажите номер квартиры корректно (только цифры)\n");
                 }
             }
             if (!string.IsNullOrWhiteSpace(roomNumber))
@@ -50,7 +50,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
                 catch
                 {
-                    errors += ("Укажите номер комнаты корректно (только цифры)");
+                    errors += ("Укажите номер комнаты корректно (только цифры)\n");
                 }
             }
             if (improvementDegree == null)
@@ -68,7 +68,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
                 catch
                 {
-                    errors += ("Укажите площадь по постановлению корректно");
+                    errors += ("Укажите площадь по постановлению корректно\n");
                 }
             }
             if (!string.IsNullOrWhiteSpace(registerArea))
