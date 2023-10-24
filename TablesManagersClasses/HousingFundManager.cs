@@ -89,6 +89,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             MessageBox.Show(errors);
             errors = string.Empty;
         }
+        
         public void AddHouseInFund(Street? street, string? houseNumber, string? apartmentNumber, string? roomNumber, ImprovementDegree? improvementDegree, string? decreeArea, string? registerArea, string? remark)
         {
             HousingFund newHouseInFund = new HousingFund();
@@ -130,6 +131,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     dbContext.HousingFund.Add(newHouseInFund);
                     dbContext.SaveChanges();
 
+                    MessageBox.Show("Жильё добавлено", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainFrameObj.mainFrame.Navigate(new HousingFundViewPage());
                 }
                 catch
@@ -139,14 +141,69 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
         }
 
-        public void EditHouseInFund(HousingFund currentHousingFund)
+        public void EditHouseInFund(HousingFund currentHouseInFund, Street? street, string? houseNumber, string? apartmentNumber, string? roomNumber, ImprovementDegree? improvementDegree, string? decreeArea, string? registerArea, string? remark)
         {
+            showErrors(street, houseNumber, apartmentNumber, roomNumber, improvementDegree, decreeArea, registerArea);
+            if (!string.IsNullOrEmpty(errors))
+            {
+                MessageBox.Show(errors);
+                errors = string.Empty;
+            }
+            else
+            {
+                try
+                {
+                    currentHouseInFund.StreetId = street.IdStreet;
+                    currentHouseInFund.HouseNumber = houseNumber;
+                    if (!string.IsNullOrWhiteSpace(apartmentNumber))
+                    {
+                        currentHouseInFund.ApartmentNumber = Convert.ToInt32(apartmentNumber);
+                    }
+                    if (!string.IsNullOrWhiteSpace(roomNumber))
+                    {
+                        currentHouseInFund.RoomNumber = Convert.ToInt32(roomNumber);
+                    }
+                    newHouseInFund.ImprovementDegreeId = improvementDegree.IdImprovementDegree;
+                    if (!string.IsNullOrWhiteSpace(decreeArea))
+                    {
+                        currentHouseInFund.DecreeArea = Convert.ToDouble(decreeArea);
+                    }
+                    if (!string.IsNullOrWhiteSpace(registerArea))
+                    {
+                        currentHouseInFund.RegisterArea = Convert.ToDouble(registerArea);
+                    }
+                    if (!string.IsNullOrWhiteSpace(remark))
+                    {
+                        currentHouseInFund.Remark = remark;
+                    }
 
+                    dbContext.HousingFund.Update(currentHouseInFund);
+                    dbContext.SaveChanges();
+
+                    MessageBox.Show("Данные жилья изменены", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MainFrameObj.mainFrame.Navigate(new HousingFundViewPage());
+                }
+                catch
+                {
+                    MessageBox.Show("Не удалось изменить данные жилья", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
-        public void RemoveHouseInFund(HousingFund currentHousingFund)
+        public void RemoveHouseInFund(HousingFund currentHouseInFund)
         {
-
+            try
+            {
+                dbContext.HousingFund.Remove(currentHouseInFund);
+                dbContext.SaveChanges();
+                
+                MessageBox.Show("Жильё удалено", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MainFrameObj.mainFrame.Navigate(new HousingFundViewPage());
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось удалить жильё", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
