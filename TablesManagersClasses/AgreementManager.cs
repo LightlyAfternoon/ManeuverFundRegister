@@ -75,6 +75,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     dbContext.Agreement.Add(newAgreement);
                     dbContext.SaveChanges();
 
+                    MessageBox.Show("Договор добавлен", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
                 }
                 catch
@@ -113,6 +114,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     dbContext.Agreement.Update(currentAgreement);
                     dbContext.SaveChanges();
 
+                    MessageBox.Show("Договор изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
                 }
                 catch
@@ -129,6 +131,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 dbContext.Agreement.Remove(currentAgreement);
                 dbContext.SaveChanges();
 
+                MessageBox.Show("Договор удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
             }
             catch
