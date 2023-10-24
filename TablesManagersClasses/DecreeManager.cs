@@ -64,6 +64,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     dbContext.Decree.Add(newDecree);
                     dbContext.SaveChanges();
 
+                    MessageBox.Show("Постановление добавлено", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainFrameObj.mainFrame.Navigate(new DecreesViewPage());
                 }
                 catch
@@ -93,6 +94,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     dbContext.Decree.Update(currentDecree);
                     dbContext.SaveChanges();
 
+                    MessageBox.Show("Постановление изменено", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainFrameObj.mainFrame.Navigate(new DecreesViewPage());
                 }
                 catch
@@ -108,7 +110,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 dbContext.Decree.Remove(currentDecree);
                 dbContext.SaveChanges();
-
+                
+                MessageBox.Show("Постановление удалено", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 MainFrameObj.mainFrame.Navigate(new DecreesViewPage());
             }
             catch
