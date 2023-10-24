@@ -27,7 +27,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
                 catch
                 {
-                    errors += ("Укажите номер постановления корректно (только цифры)");
+                    errors += ("Укажите номер постановления корректно (только цифры)\n");
                 }
             }
             if (housingFund == null)
@@ -36,7 +36,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
             if (dateDecree == null)
             {
-                errors += ("Необходимо выбрать дату постановления\n");
+                errors += ("Необходимо выбрать дату постановления");
             }
 
             MessageBox.Show(errors);
