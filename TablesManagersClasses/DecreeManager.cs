@@ -59,7 +59,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 {
                     newDecree.NumberDecree = Convert.ToInt32(number);
                     newDecree.DateDecree = Convert.ToDateTime(dateDecree);
-                    newDecree.HousingFund = housingFund;
+                    newDecree.HousingFundId = housingFund.IdHousingFund;
                     newDecree.Status = Convert.ToBoolean(status);
 
                     dbContext.Decree.Add(newDecree);
@@ -89,7 +89,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 {
                     currentDecree.NumberDecree = Convert.ToInt32(number);
                     currentDecree.DateDecree = Convert.ToDateTime(dateDecree);
-                    currentDecree.HousingFund = housingFund;
+                    currentDecree.HousingFundId = housingFund.IdHousingFund;
                     currentDecree.Status = Convert.ToBoolean(status);
 
                     dbContext.Decree.Update(currentDecree);
