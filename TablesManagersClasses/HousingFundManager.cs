@@ -141,7 +141,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
         }
 
-        public void EditHouseInFund(HousingFund currentHouseInFund, Street? street, string? houseNumber, string? apartmentNumber, string? roomNumber, ImprovementDegree? improvementDegree, string? decreeArea, string? registerArea, string? remark)
+        public void EditHouseInFund(HousingFund? currentHouseInFund, Street? street, string? houseNumber, string? apartmentNumber, string? roomNumber, ImprovementDegree? improvementDegree, string? decreeArea, string? registerArea, string? remark)
         {
             showErrors(street, houseNumber, apartmentNumber, roomNumber, improvementDegree, decreeArea, registerArea);
             if (!string.IsNullOrEmpty(errors))
@@ -163,7 +163,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     {
                         currentHouseInFund.RoomNumber = Convert.ToInt32(roomNumber);
                     }
-                    newHouseInFund.ImprovementDegreeId = improvementDegree.IdImprovementDegree;
+                    currentHouseInFund.ImprovementDegreeId = improvementDegree.IdImprovementDegree;
                     if (!string.IsNullOrWhiteSpace(decreeArea))
                     {
                         currentHouseInFund.DecreeArea = Convert.ToDouble(decreeArea);
@@ -190,7 +190,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
         }
 
-        public void RemoveHouseInFund(HousingFund currentHouseInFund)
+        public void RemoveHouseInFund(HousingFund? currentHouseInFund)
         {
             try
             {

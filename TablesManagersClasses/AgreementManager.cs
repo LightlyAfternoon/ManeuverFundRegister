@@ -75,7 +75,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
                     newRegistration.HousingFundId = housingFund.IdHousingFund;
                     newRegistration.TempResidentId = tempResident.IdTempResident;
-                    newRegistration.DateStartResidence = dateConclusion;
+                    newRegistration.DateStartResidence = (DateTime)dateConclusion;
 
                     dbContext.Agreement.Add(newAgreement);
                     dbContext.ResidenceRegistration.Add(newRegistration);
