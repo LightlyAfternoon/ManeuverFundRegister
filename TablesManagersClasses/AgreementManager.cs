@@ -51,6 +51,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         public void AddAgreement(string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, string? remark)
         {
             Agreement newAgreement = new Agreement();
+            ResidenceRegistration newRegistration = new ResidenceRegistration();
 
             showErrors(number, tempResident, housingFund, dateConclusion, dateEnd);
             if (!string.IsNullOrEmpty(errors))
@@ -63,8 +64,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 try
                 {
                     newAgreement.NumberAgreement = Convert.ToInt32(number);
-                    newAgreement.TempResident = tempResident;
-                    newAgreement.HousingFund = housingFund;
+                    newAgreement.TempResidentId = tempResident.IdTempResident;
+                    newAgreement.HousingFundId = housingFund.IdHousingFund;
                     newAgreement.DateConclusionAgreement = Convert.ToDateTime(dateConclusion);
                     newAgreement.DateEndAgreement = Convert.ToDateTime(dateEnd);
                     if (!string.IsNullOrWhiteSpace(remark))
@@ -72,10 +73,15 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                         newAgreement.Remark = remark;
                     }
 
+                    newRegistration.HousingFundId = housingFund.IdHousingFund;
+                    newRegistration.TempResidentId = tempResident.IdTempResident;
+                    newRegistration.DateStartResidence = dateConclusion;
+
                     dbContext.Agreement.Add(newAgreement);
+                    dbContext.ResidenceRegistration.Add(newRegistration);
                     dbContext.SaveChanges();
 
-                    MessageBox.Show("Договор добавлен", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Договор и факт начала проживания в жилье добавлен", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
                 }
                 catch
@@ -98,8 +104,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 try
                 {
                     currentAgreement.NumberAgreement = Convert.ToInt32(number);
-                    currentAgreement.TempResident = tempResident;
-                    currentAgreement.HousingFund = housingFund;
+                    currentAgreement.TempResidentId = tempResident.IdTempResident;
+                    currentAgreement.HousingFundId = housingFund.IdHousingFund;
                     currentAgreement.DateConclusionAgreement = Convert.ToDateTime(dateConclusion);
                     currentAgreement.DateEndAgreement = Convert.ToDateTime(dateEnd);
                     if (dateTermination != null)
