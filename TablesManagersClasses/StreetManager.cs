@@ -43,7 +43,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 try
                 {
                     newStreet.LocalityId = locality.IdLocality;
-                    newDecree.NameStreet = nameStreet;
+                    newStreet.NameStreet = nameStreet;
 
                     dbContext.Street.Add(newStreet);
                     dbContext.SaveChanges();
