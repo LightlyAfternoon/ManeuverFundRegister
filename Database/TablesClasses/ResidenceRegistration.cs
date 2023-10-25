@@ -12,8 +12,10 @@ namespace Реестр_маневренного_фонда
         public int TempResidentId { get; set; }
         public DateTime DateStartResidence { get; set; }
         public DateTime? DateEndResidence { get; set; }
+        public int StartAgreementId { get; set; }
 
         public virtual TempResident TempResident { get; set; }
         public virtual HousingFund HousingFund { get; set; }
+        public virtual Agreement Agreement { get; set; }
     }
 }
