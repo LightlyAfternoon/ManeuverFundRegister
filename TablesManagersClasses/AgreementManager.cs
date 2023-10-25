@@ -82,6 +82,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     newRegistration.DateStartResidence = (DateTime)dateConclusion;
 
                     dbContext.Agreement.Add(newAgreement);
+                    newRegistration.StartAgreementId = newAgreement.IdAgreement;
                     dbContext.ResidenceRegistration.Add(newRegistration);
                     dbContext.SaveChanges();
 
