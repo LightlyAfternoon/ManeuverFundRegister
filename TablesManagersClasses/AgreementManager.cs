@@ -126,6 +126,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     currentRegistration.DateStartResidence = Convert.ToDateTime(dateConclusion);
 
                     dbContext.Agreement.Update(currentAgreement);
+                    dbContext.ResidenceRegistration.Update(currentRegistration);
                     dbContext.SaveChanges();
 
                     MessageBox.Show("Договор изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
