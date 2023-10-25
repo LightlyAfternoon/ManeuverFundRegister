@@ -109,8 +109,19 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 try
                 {
-                    ResidenceRegistration currentRegistration = dbContext.ResidenceRegistration.First(r => r.TempResidentId == tempResident.IdTempResident && r.HousingFundId == housingFund.IdHousingFund && string.Format("{0:dd.MM.yyyy}", r.DateStartResidence) == string.Format("{0:dd.MM.yyyy}", dateConclusion));
-                    
+                    ResidenceRegistration currentRegistration = dbContext.ResidenceRegistration.First(r => r.StartAgreementId == currentAgreement.IdAgreement);
+
+                    MessageBoxResult messageBoxResult = MessageBox.Show($"Изменить время начала проживания в соответсвии с датой заключения договора?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    switch (messageBoxResult)
+                    {
+                        case MessageBoxResult.Yes:
+                            currentRegistration.DateStartResidence = Convert.ToDateTime(dateConclusion);
+                            dbContext.ResidenceRegistration.Update(currentRegistration);
+                            break;
+                        case MessageBoxResult.No:
+                            break;
+                    }
+
                     currentAgreement.NumberAgreement = Convert.ToInt32(number);
                     currentAgreement.TempResidentId = tempResident.IdTempResident;
                     currentAgreement.HousingFundId = housingFund.IdHousingFund;
@@ -125,10 +136,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                         currentAgreement.Remark = remark;
                     }
 
-                    currentRegistration.DateStartResidence = Convert.ToDateTime(dateConclusion);
-
                     dbContext.Agreement.Update(currentAgreement);
-                    dbContext.ResidenceRegistration.Update(currentRegistration);
                     dbContext.SaveChanges();
 
                     MessageBox.Show("Договор изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
