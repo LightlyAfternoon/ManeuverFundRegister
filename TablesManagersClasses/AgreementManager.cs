@@ -46,6 +46,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату окончания договора");
             }
+            if (dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && string.Format("{0:dd.MM.yyyy}", a.DateConclusion) == string.Format("{0:dd.MM.yyyy}", dateConclusion)) > 0)
+            {
+                errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен");
+            }
         }
 
         public void AddAgreement(string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, string? remark)
@@ -103,6 +107,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 try
                 {
+                    ResidenceRegistration currentRegistration = dbContext.ResidenceRegistration.First(r => r.TempResidentId == tempResident.IdTempResident && r.HousingFundId == housingFund.IdHousingFund && string.Format("{0:dd.MM.yyyy}", r.DateStartResidence) == string.Format("{0:dd.MM.yyyy}", dateConclusion));
+                    
                     currentAgreement.NumberAgreement = Convert.ToInt32(number);
                     currentAgreement.TempResidentId = tempResident.IdTempResident;
                     currentAgreement.HousingFundId = housingFund.IdHousingFund;
@@ -116,6 +122,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     {
                         currentAgreement.Remark = remark;
                     }
+
+                    currentRegistration.DateStartResidence = Convert.ToDateTime(dateConclusion);
 
                     dbContext.Agreement.Update(currentAgreement);
                     dbContext.SaveChanges();
