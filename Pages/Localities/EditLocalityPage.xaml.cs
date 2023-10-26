@@ -20,7 +20,7 @@ namespace Реестр_маневренного_фонда.Pages.Localities
     /// </summary>
     public partial class EditLocalityPage : Page
     {
-        public EditLocalityPage()
+        public EditLocalityPage(Locali)
         {
             InitializeComponent();
         }

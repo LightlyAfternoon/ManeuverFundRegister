@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Реестр_маневренного_фонда.Pages.Agreements;
+using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages
 {
@@ -12,6 +13,7 @@ namespace Реестр_маневренного_фонда.Pages
     public partial class AgreementsViewPage : Page
     {
         ApplicationContext dbContext;
+        Agreement currentAgreement;
 
         public AgreementsViewPage()
         {
@@ -34,7 +36,7 @@ namespace Реестр_маневренного_фонда.Pages
         {
             try
             {
-                Agreement currentAgreement = (sender as Button).DataContext as Agreement;
+                currentAgreement = (sender as Button).DataContext as Agreement;
 
                 NavigationService.Navigate(new EditAgreementPage(currentAgreement));
             }
@@ -43,7 +45,13 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void bt_DeleteAgreement_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                AgreementManager am = new AgreementManager();
+                currentAgreement = (sender as Button).DataContext as Agreement;
+                am.RemoveAgreement(currentAgreement);
+            }
+            catch { }
         }
     }
 }

@@ -1,0 +1,42 @@
+﻿<Page x:Class="Реестр_маневренного_фонда.Pages.HousingFund.AddNewHouseInFundPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Реестр_маневренного_фонда.Pages.HousingFund"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddNewHouseInFundPage">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Margin="10,0" Orientation="Horizontal">
+                <StackPanel Margin="10,0">
+                    <TextBlock Text="Населённый пункт"/>
+                    <ComboBox Height="25" x:Name="cmb_Locality" DisplayMemberPath="NameLocality" DropDownClosed="cmb_Locality_DropDownClosed" SelectionChanged="cmb_Locality_SelectionChanged"/>
+                    <TextBlock Text="Улица"/>
+                    <ComboBox Height="25" x:Name="cmb_Street" DisplayMemberPath="NameStreet" IsEnabled="False"/>
+                    <TextBlock Text="Номер дома"/>
+                    <TextBox Height="25" x:Name="tb_HouseNumber"/>
+                    <TextBlock Text="Номер квартиры"/>
+                    <TextBox Height="25" x:Name="tb_ApartmentNumber"/>
+                    <TextBlock Text="Номер комнаты"/>
+                    <TextBox Height="25" x:Name="tb_RoomNumber"/>
+                </StackPanel>
+
+                <StackPanel Margin="10,0">
+                    <TextBlock Text="Степень благоустройства"/>
+                    <ComboBox Height="25" x:Name="cmb_ImprovementDegree" DisplayMemberPath="NameImprovementDegree"/>
+                    <TextBlock Text="DecreeArea"/>
+                    <TextBox Height="25" x:Name="tb_DecreeArea"/>
+                    <TextBlock Text="Площадь по реестру"/>
+                    <TextBox Height="25" x:Name="tb_RegisterArea"/>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Text="Примечание" Margin="0,10"/>
+            <TextBox x:Name="tb_Remark" Height="25"/>
+
+            <Button x:Name="bt_Add" Content="Добавить" Margin="0,10" Click="bt_Add_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -81,12 +81,12 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
                     ResidenceRegistration lastRegistration = dbContext.ResidenceRegistration.Last(r => r.HousingFundId == housingFund.IdHousingFund);
 
-                    if (dbContext.ResidenceRegistration.Count(r => r.HousingFundId == housingFund.IdHousingFund > 0 && lastRegistration.DateEndResidence == null) 
+                    ResidenceRegistration newRegistration = new ResidenceRegistration();
+                    if (dbContext.ResidenceRegistration.Count(r => r.HousingFundId == housingFund.IdHousingFund && lastRegistration.DateEndResidence == null) > 0)
                     {
                         if (lastRegistration.TempResidentId != tempResident.IdTempResident)
                         {
-                            ResidenceRegistration newRegistration = new ResidenceRegistration();
-                            MessageBoxResult boxResult = MessageBox.Show($"Для данного жилья на данный момент проживающим числится {lastRegistration.TempResident.FullName}. Поставить дату окончания его проживания в жилье и назначить сейчас проживающим {tempResident.FullName}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            MessageBoxResult boxResult = MessageBox.Show($"Для данного жилья на данный момент проживающим числится {lastRegistration.TempResident.FullName}. Поставить дату окончания его проживания в жилье и назначить сейчас проживающим {tempResident.FullName}?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                             switch (boxResult)
                             {
@@ -102,7 +102,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                                     dbContext.ResidenceRegistration.Add(newRegistration);
                                     break;
                                 case MessageBoxResult.No:
-                                    MessageBox.Show("Необходимо выбрать другое жильё", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                                    MessageBox.Show("Необходимо выбрать другое жильё", "", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
                                     errors += "Необходимо выбрать другое жильё";
                                     AddAgreement(number, tempResident, housingFund, dateConclusion, dateEnd, remark);
                                     break;

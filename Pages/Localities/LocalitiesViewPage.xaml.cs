@@ -26,5 +26,15 @@ namespace Реестр_маневренного_фонда.Pages
                 MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void bt_EditLocality_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_DeleteLocality_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

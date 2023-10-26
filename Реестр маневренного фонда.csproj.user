@@ -17,13 +17,13 @@
     <Compile Update="Pages\Decrees\EditDecreePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\HousingFund\AddNewHouseInFundPage.xaml.cs">
+    <Compile Update="Pages\HousingsFund\AddNewHouseInFundPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\HousingFund\EditHouseInFundPage.xaml.cs">
+    <Compile Update="Pages\HousingsFund\EditHouseInFundPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\HousingFund\HousingFundViewPage.xaml.cs">
+    <Compile Update="Pages\HousingsFund\HousingFundViewPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\Localities\AddNewLocalityPage.xaml.cs">
@@ -35,13 +35,13 @@
     <Compile Update="Pages\Localities\LocalitiesViewPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\ResidenceRegistration\AddNewResidenceRegistrationPage.xaml.cs">
+    <Compile Update="Pages\ResidenceRegistrations\AddNewResidenceRegistrationPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\ResidenceRegistration\EditResidenceRegistrationPage.xaml.cs">
+    <Compile Update="Pages\ResidenceRegistrations\EditResidenceRegistrationPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\ResidenceRegistration\ResidenceRegistrationViewPage.xaml.cs">
+    <Compile Update="Pages\ResidenceRegistrations\ResidenceRegistrationViewPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\Streets\AddNewStreetPage.xaml.cs">
@@ -79,13 +79,13 @@
     <Page Update="Pages\Decrees\EditDecreePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\HousingFund\AddNewHouseInFundPage.xaml">
+    <Page Update="Pages\HousingsFund\AddNewHouseInFundPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\HousingFund\EditHouseInFundPage.xaml">
+    <Page Update="Pages\HousingsFund\EditHouseInFundPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\HousingFund\HousingFundViewPage.xaml">
+    <Page Update="Pages\HousingsFund\HousingFundViewPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Localities\AddNewLocalityPage.xaml">
@@ -97,13 +97,13 @@
     <Page Update="Pages\Localities\LocalitiesViewPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\ResidenceRegistration\AddNewResidenceRegistrationPage.xaml">
+    <Page Update="Pages\ResidenceRegistrations\AddNewResidenceRegistrationPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\ResidenceRegistration\EditResidenceRegistrationPage.xaml">
+    <Page Update="Pages\ResidenceRegistrations\EditResidenceRegistrationPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\ResidenceRegistration\ResidenceRegistrationViewPage.xaml">
+    <Page Update="Pages\ResidenceRegistrations\ResidenceRegistrationViewPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Streets\AddNewStreetPage.xaml">

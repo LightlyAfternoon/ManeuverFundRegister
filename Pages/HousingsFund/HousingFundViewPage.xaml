@@ -16,6 +16,20 @@
                 <DataGridTextColumn Header = "S по постановлению" Binding = "{Binding DecreeArea}"/>
                 <DataGridTextColumn Header = "S по реестру" Binding="{Binding RegisterArea}"/>
                 <DataGridTextColumn Header = "Примечание" Binding="{Binding Remark}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" x:Name="bt_EditHousingFund" Click="bt_EditHousingFund_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" x:Name="bt_DeleteHousingFund" Click="bt_DeleteHousingFund_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

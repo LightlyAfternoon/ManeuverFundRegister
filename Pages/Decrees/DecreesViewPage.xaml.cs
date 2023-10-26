@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Реестр_маневренного_фонда.Pages.Decrees;
+using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages
 {
@@ -11,7 +13,7 @@ namespace Реестр_маневренного_фонда.Pages
     public partial class DecreesViewPage : Page
     {
         ApplicationContext dbContext;
-
+        Decree currentDecree;
         public DecreesViewPage()
         {
             InitializeComponent();
@@ -27,6 +29,23 @@ namespace Реестр_маневренного_фонда.Pages
             {
                 MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void bt_EditDecree_Click(object sender, RoutedEventArgs e)
+        {
+            Decree currentDecree = (sender as Button).DataContext as Decree;
+            NavigationService.Navigate(new EditDecreePage(currentDecree));
+        }
+
+        private void bt_DeleteDecree_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                currentDecree = (sender as Button).DataContext as Decree;
+                DecreeManager dm = new DecreeManager();
+                dm.RemoveDecree(currentDecree);
+            }
+            catch { }
         }
     }
 }

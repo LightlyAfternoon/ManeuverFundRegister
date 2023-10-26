@@ -19,16 +19,14 @@
                 </StackPanel>
 
                 <StackPanel Margin="10,0">
-                    <TextBlock Text="Включение в фонд"/>
-                    <RadioButton x:Name="rb_Inclusion" IsChecked = "true" Checked=""/>
-                    <TextBlock Text="Исключение из фонда"/>
-                    <RadioButton x:Name="rb_Exclusion" Checked=""/>
+                    <RadioButton x:Name="rb_Inclusion" Content="Включение в фонд" Margin="0,20,0,0"/>
+                    <RadioButton x:Name="rb_Exclusion" Content="Исключение из фонда" Margin="0,20,0,0"/>
                 </StackPanel>
                 </StackPanel>
-            <TextBlock Text="Адрес жилья"/>
+            <TextBlock Text="Адрес жилья" Margin="0,10"/>
             <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress"/>
 
-            <Button x:Name="bt_Edit" Content="Изменить" Margin="0,10" Click=""/>
+            <Button x:Name="bt_Edit" Content="Изменить" Margin="0,10" Click="bt_Edit_Click"/>
         </StackPanel>
     </Grid>
 </Page>
