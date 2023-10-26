@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages.Localities
 {
@@ -20,9 +10,21 @@ namespace Реестр_маневренного_фонда.Pages.Localities
     /// </summary>
     public partial class EditLocalityPage : Page
     {
-        public EditLocalityPage(Locali)
+        Locality locality;
+
+        public EditLocalityPage(Locality currentLocality)
         {
             InitializeComponent();
+
+            locality = currentLocality;
+
+            tb_NameLocality.Text = currentLocality.NameLocality;
+        }
+
+        private void bt_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            LocalityManager lm = new LocalityManager();
+            lm.EditLocality(locality, tb_NameLocality.Text);
         }
     }
 }

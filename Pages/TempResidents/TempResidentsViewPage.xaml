@@ -13,6 +13,20 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "ФИО временно проживающего" Binding = "{Binding FullName}"/>
                 <DataGridTextColumn Header = "Примечание" Binding="{Binding Remark}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" x:Name="bt_EditTempResident" Click="bt_EditTempResident_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" x:Name="bt_DeleteTempResident" Click="bt_DeleteTempResident_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

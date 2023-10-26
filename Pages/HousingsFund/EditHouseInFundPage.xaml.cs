@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
-namespace Реестр_маневренного_фонда.Pages.HousingFund
+namespace Реестр_маневренного_фонда.Pages.HousingsFund
 {
     /// <summary>
     /// Логика взаимодействия для EditHouseInFundPage.xaml

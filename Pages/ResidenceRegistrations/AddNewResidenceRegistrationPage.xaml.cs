@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Реестр_маневренного_фонда.Pages.ResidenceRegistration
+namespace Реестр_маневренного_фонда.Pages.ResidenceRegistrations
 {
     /// <summary>
     /// Логика взаимодействия для AddNewResidenceRegistrationPage.xaml

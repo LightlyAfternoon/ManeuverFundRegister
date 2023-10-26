@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Реестр_маневренного_фонда.Pages
+namespace Реестр_маневренного_фонда.Pages.ResidenceRegistrations
 {
     /// <summary>
     /// Логика взаимодействия для ResidenceRegistrationViewPage.xaml
@@ -19,7 +19,7 @@ namespace Реестр_маневренного_фонда.Pages
             try
             {
                 dbContext = ApplicationContext.GetContext();
-                
+
                 dbContext.HousingFund.Load();
                 dbContext.TempResident.Load();
                 dg_ResidenceRegistration.ItemsSource = dbContext.ResidenceRegistration.ToList();

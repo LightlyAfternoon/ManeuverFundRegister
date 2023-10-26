@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
-namespace Реестр_маневренного_фонда.Pages.HousingFund
+namespace Реестр_маневренного_фонда.Pages.HousingsFund
 {
     /// <summary>
     /// Логика взаимодействия для AddNewHouseInFundPage.xaml
@@ -32,15 +32,15 @@ namespace Реестр_маневренного_фонда.Pages.HousingFund
             }
         }
 
+        private void cmb_Locality_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            cmb_Street.SelectedItem = null;
+        }
+
         private void bt_Add_Click(object sender, RoutedEventArgs e)
         {
             HousingFundManager hm = new HousingFundManager();
             hm.AddHouseInFund(cmb_Street.SelectedItem as Street, tb_HouseNumber.Text, tb_ApartmentNumber.Text, tb_RoomNumber.Text, cmb_ImprovementDegree.SelectedItem as ImprovementDegree, tb_DecreeArea.Text, tb_RegisterArea.Text, tb_Remark.Text);
-        }
-
-        private void cmb_Locality_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            cmb_Street.SelectedItem = null;
         }
     }
 }

@@ -13,6 +13,20 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "Населённый пункт" Binding = "{Binding Locality.NameLocality}"/>
                 <DataGridTextColumn Header = "Наименование улицы" Binding="{Binding NameStreet}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" x:Name="bt_EditStreet" Click="bt_EditStreet_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" x:Name="bt_DeleteStreet" Click="bt_DeleteStreet_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

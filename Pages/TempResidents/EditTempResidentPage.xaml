@@ -9,6 +9,17 @@
       Title="EditTempResidentPage">
 
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Фамилия"/>
+            <TextBox Height="25" x:Name="tb_LastName"/>
+            <TextBlock Text="Имя"/>
+            <TextBox Height="25" x:Name="tb_FirstName"/>
+            <TextBlock Text="Отчество"/>
+            <TextBox Height="25" x:Name="tb_Patronymic"/>
+            <TextBlock Text="Примечание" Margin="0,20,0,0"/>
+            <TextBox Height="25" x:Name="tb_Remark" Width="200"/>
+
+            <Button x:Name="bt_Edit" Content="Добавить" Margin="0,10" Click="bt_Edit_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

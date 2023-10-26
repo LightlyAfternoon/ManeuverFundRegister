@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages.TempResidents
 {
@@ -20,9 +11,17 @@ namespace Реестр_маневренного_фонда.Pages.TempResidents
     /// </summary>
     public partial class AddNewTempResidentPage : Page
     {
+        ApplicationContext dbContext;
+
         public AddNewTempResidentPage()
         {
             InitializeComponent();
+        }
+
+        private void bt_Add_Click(object sender, RoutedEventArgs e)
+        {
+            TempResidentManager tm = new TempResidentManager();
+            tm.AddTempResident(tb_LastName.Text, tb_FirstName.Text, tb_Patronymic.Text, tb_Remark.Text);
         }
     }
 }

@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 using Реестр_маневренного_фонда.TablesManagersClasses;
-using Реестр_маневренного_фонда.database.tables_classes;
 
-namespace Реестр_маневренного_фонда.Pages
+namespace Реестр_маневренного_фонда.Pages.HousingsFund
 {
     /// <summary>
     /// Логика взаимодействия для HousingFundViewPage.xaml
@@ -26,7 +26,7 @@ namespace Реестр_маневренного_фонда.Pages
                 dbContext.ImprovementDegree.Load();
                 dg_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
