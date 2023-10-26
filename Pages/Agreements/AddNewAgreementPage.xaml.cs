@@ -20,9 +20,22 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
     /// </summary>
     public partial class AddNewAgreementPage : Page
     {
+        ApplicationContext dbContext = ApplicationContext.GetContext();
+        List<Decree> listDecrees = dbContext.Decree.OrderBy(d => d.DateDecree).ToList();
+        List<HousingFund> listHousingFund = new List<HousingFund>();
         public AddNewAgreementPage()
         {
             InitializeComponent();
+
+            foreach (Decree decree in listDecrees)
+            {
+                if (decree.HousingFundId != listDecrees.Skip(1)) // if this hfId != next hfId
+                {
+                    
+                }
+            }
+            cmb_HousingFund.ItemsSource = dbContext.HousingFund.Where(h => h.).ToList();
+            cmb_TempReident.ItemsSource = dbContext.TempResident.ToList();
         }
     }
 }
