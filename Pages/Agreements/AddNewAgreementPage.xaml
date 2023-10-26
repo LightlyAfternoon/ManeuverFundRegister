@@ -32,7 +32,7 @@
             <TextBlock Text="Примечание"/>
             <TextBox Height="25" x:Name="tb_Remark"/>
             
-            <Button x:Name="bt_Add" Content="Изменить" Margin="0,10" Click=""/>
+            <Button x:Name="bt_Add" Content="Добавить" Margin="0,10" Click=""/>
         </StackPanel>
     </Grid>
 </Page>
