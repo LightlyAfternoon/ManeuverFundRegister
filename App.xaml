@@ -15,6 +15,7 @@
 
             <Style TargetType="DataGrid">
                 <Setter Property="FontSize" Value="14"/>
+                <Setter Property="IsReadOnly" Value="true"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
