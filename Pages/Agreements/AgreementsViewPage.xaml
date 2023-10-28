@@ -9,7 +9,21 @@
       Title="AgreementsViewPage">
 
     <Grid>
-        <DataGrid x:Name = "dg_Agreements" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="ФИО нанимателя"/>
+                <ComboBox x:Name="cmb_FullNameTR" DisplayMemberPath="FullName" Width="250" IsEditable="True"/>
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="1" x:Name="bt_showOrHideFilterGrid" Content="^v^" Click="bt_showOrHideFilterGrid_Click"/>
+
+        <DataGrid Grid.Row="2" x:Name = "dg_Agreements" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "Номер договора" Binding = "{Binding NumberAgreement}"/>
                 <DataGridTextColumn Header = "ФИО нанимателя" Binding="{Binding TempResident.FullName}"/>

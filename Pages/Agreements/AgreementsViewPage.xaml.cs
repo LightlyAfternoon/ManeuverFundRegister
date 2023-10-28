@@ -53,5 +53,17 @@ namespace Реестр_маневренного_фонда.Pages
             }
             catch { }
         }
+
+        private void bt_showOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
+        {
+            if (gr_FilterGrid.Visibility == Visibility.Collapsed)
+            {
+                gr_FilterGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                gr_FilterGrid.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }
