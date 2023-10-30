@@ -15,7 +15,7 @@
                     <TextBlock Text="Адрес жилья"/>
                     <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress"/>
                     <TextBlock Text="Временно проживающий"/>
-                    <ComboBox x:Name="cmb_TempReident" Height="25" DisplayMemberPath="FullName"/>
+                    <ComboBox x:Name="cmb_TempResident" Height="25" DisplayMemberPath="FullName"/>
                 </StackPanel>
 
                 <StackPanel Margin="10,0">
