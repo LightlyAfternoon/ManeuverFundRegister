@@ -105,7 +105,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 try
                 {
-                    ResidenceRegistration currentRegistration = dbContext.ResidenceRegistration.First(r => r.StartAgreementId == currentAgreement.IdAgreement);
+                    ResidenceRegistration currentResidenceRegistration = dbContext.ResidenceRegistration.First(r => r.StartAgreementId == currentAgreement.IdAgreement);
 
                     MessageBoxResult messageBoxResult = MessageBox.Show($"Изменить дату начала проживания в соответсвии с датой заключения договора?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     switch (messageBoxResult)
