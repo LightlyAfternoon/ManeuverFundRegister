@@ -79,45 +79,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
                     dbContext.Agreement.Add(newAgreement);
 
-                    ResidenceRegistration lastRegistration = dbContext.ResidenceRegistration.Last(r => r.HousingFundId == housingFund.IdHousingFund);
-
-                    ResidenceRegistration newRegistration = new ResidenceRegistration();
-                    if (dbContext.ResidenceRegistration.Count(r => r.HousingFundId == housingFund.IdHousingFund && lastRegistration.DateEndResidence == null) > 0)
-                    {
-                        if (lastRegistration.TempResidentId != tempResident.IdTempResident)
-                        {
-                            MessageBoxResult boxResult = MessageBox.Show($"Для данного жилья на данный момент проживающим числится {lastRegistration.TempResident.FullName}. Поставить дату окончания его проживания в жилье и назначить сейчас проживающим {tempResident.FullName}?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                            switch (boxResult)
-                            {
-                                case MessageBoxResult.Yes:
-                                    lastRegistration.TempResidentId = tempResident.IdTempResident;
-                                    lastRegistration.DateStartResidence = Convert.ToDateTime(dateConclusion);
-                                    
-                                    newRegistration.HousingFundId = housingFund.IdHousingFund;
-                                    newRegistration.TempResidentId = tempResident.IdTempResident;
-                                    newRegistration.DateStartResidence = (DateTime)dateConclusion;
-                                    newRegistration.StartAgreementId = newAgreement.IdAgreement;
-                                    
-                                    dbContext.ResidenceRegistration.Add(newRegistration);
-                                    break;
-                                case MessageBoxResult.No:
-                                    MessageBox.Show("Необходимо выбрать другое жильё", "", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                                    errors += "Необходимо выбрать другое жильё";
-                                    AddAgreement(number, tempResident, housingFund, dateConclusion, dateEnd, remark);
-                                    break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        newRegistration.HousingFundId = housingFund.IdHousingFund;
-                        newRegistration.TempResidentId = tempResident.IdTempResident;
-                        newRegistration.DateStartResidence = (DateTime)dateConclusion;
-                        newRegistration.StartAgreementId = newAgreement.IdAgreement;
-                        
-                        dbContext.ResidenceRegistration.Add(newRegistration);
-                    }
+                    AddResidenceRegistration(newAgreement, errors)
                     
                     dbContext.SaveChanges();
 
