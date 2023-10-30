@@ -19,10 +19,10 @@
                 </StackPanel>
 
                 <StackPanel Margin="10,0">
-                    <TextBlock Text="Дата заключения"/>
-                    <DatePicker x:Name="dp_DateConclusion"/>
-                    <TextBlock Text="Дата окончания"/>
-                    <DatePicker x:Name="dp_DateEnd"/>
+                    <TextBlock Text="Дата начала проживания"/>
+                    <DatePicker x:Name="dp_DateStartResidence"/>
+                    <TextBlock Text="Дата окончания проживания"/>
+                    <DatePicker x:Name="dp_DateEndResidence"/>
                     <TextBlock Text="Начальный договор"/>
                     <ComboBox x:Name="cmb_Agreement" Height="25" DisplayMemberPath="NumberAgreement"/>
                 </StackPanel>
