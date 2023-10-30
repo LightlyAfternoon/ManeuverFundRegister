@@ -11,6 +11,12 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         private ApplicationContext dbContext = ApplicationContext.GetContext();
 
         private string errors = string.Empty;
+
+        public void AddError(string error)
+        {
+            errors += error;
+        }
+        
         private void showErrors(string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd)
         {
             if (string.IsNullOrWhiteSpace(number))
