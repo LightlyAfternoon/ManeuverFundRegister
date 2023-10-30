@@ -39,12 +39,12 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             }
 
             cmb_HousingFund.ItemsSource = listAvailableHousingFund;
-            cmb_TempReident.ItemsSource = dbContext.TempResident.ToList();
+            cmb_TempResident.ItemsSource = dbContext.TempResident.ToList();
             agreement = currentAgreement;
 
             tb_Number.Text = agreement.NumberAgreement.ToString();
             cmb_HousingFund.SelectedItem = agreement.HousingFund;
-            cmb_TempReident.SelectedItem = agreement.TempResident;
+            cmb_TempResident.SelectedItem = agreement.TempResident;
             dp_DateConclusion.SelectedDate = agreement.DateConclusionAgreement;
             dp_DateEnd.SelectedDate = agreement.DateEndAgreement;
             dp_DateTermination.SelectedDate = agreement.DateTerminationAgreement;
@@ -54,7 +54,7 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
         private void bt_Edit_Click(object sender, RoutedEventArgs e)
         {
             AgreementManager am = new AgreementManager();
-            am.EditAgreement(agreement, tb_Number.Text, cmb_TempReident.SelectedItem as TempResident, cmb_HousingFund.SelectedItem as HousingFund, dp_DateConclusion.SelectedDate, dp_DateEnd.SelectedDate, dp_DateTermination.SelectedDate, tb_Remark.Text);
+            am.EditAgreement(agreement, tb_Number.Text, cmb_TempResident.SelectedItem as TempResident, cmb_HousingFund.SelectedItem as HousingFund, dp_DateConclusion.SelectedDate, dp_DateEnd.SelectedDate, dp_DateTermination.SelectedDate, tb_Remark.Text);
         }
     }
 }
