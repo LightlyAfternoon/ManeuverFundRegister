@@ -20,9 +20,21 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
     /// </summary>
     public partial class EditResidenceRegistrationPage : Page
     {
-        public EditResidenceRegistrationPage()
+        ApplicationContext dbContext = ApplicationContext.GetContext();
+        
+        public EditResidenceRegistrationPage(ResidenceRegistration currentResidenceRegistration)
         {
             InitializeComponent();
+
+            cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
+            cmb_TempResident.ItemsSource = dbContext.TempResident.ToList();
+            cmb_Agreement.ItemsSource = dbContext.Agreement.ToList();
+
+            cmb_HousingFund.SelectedItem = currentResidenceRegistration.HousingFund;
+            cmb_TempResident.SelectedItem = currentResidenceRegistration.TempResident;
+            dp_DateStartResidence.SelectedDate = currentResidenceRegistration.DateStartResidence;
+            dp_DateEndResidence.SelectedDate = currentResidenceRegistration.DateEndResidence;
+            cmb_Agreement.SelectedItem = currentResidenceRegistration.Agreement;
         }
     }
 }
