@@ -10,11 +10,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         private string errors = string.Empty;
 
-        public void AddError(string error)
-        {
-            errors += error;
-        }
-
         private void showErrors(string? number, DateTime? dateDecree, HousingFund? housingFund, bool? status)
         {
             if (string.IsNullOrWhiteSpace(number))
