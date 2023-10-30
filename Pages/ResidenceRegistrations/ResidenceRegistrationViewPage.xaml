@@ -15,6 +15,20 @@
                 <DataGridTextColumn Header = "ФИО нанимателя" Binding="{Binding TempResident.FullName}"/>
                 <DataGridTextColumn Header = "Дата начала проживания" Binding = "{Binding DateStartResidence, StringFormat = 'dd.MM.yyyy'}"/>
                 <DataGridTextColumn Header = "Дата окончания проживания" Binding = "{Binding DateEndResidence, StringFormat = 'dd.MM.yyyy'}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" x:Name="bt_EditResidenceRegistration" Click/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" x:Name="bt_DeleteResidenceRegistration" Click/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
