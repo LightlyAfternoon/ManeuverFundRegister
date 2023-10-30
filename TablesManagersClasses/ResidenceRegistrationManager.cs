@@ -11,7 +11,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
     {
         private ApplicationContext dbContext = ApplicationContext.GetContext();
         
-        public void AddResidenceRegistration(Agreement? newAgreement, string? errors)
+        public void AddResidenceRegistration(Agreement? newAgreement)
         {
             ResidenceRegistration lastRegistration = dbContext.ResidenceRegistration.Last(r => r.HousingFundId == newAgreement.HousingFundId);
             
@@ -35,9 +35,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                             dbContext.ResidenceRegistration.Add(newRegistration);
                             break;
                         case MessageBoxResult.No:
-                            MessageBox.Show("Необходимо выбрать другое жильё", "", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                            errors += "Необходимо выбрать другое жильё";
-                            AddAgreement(newAgreement.number, newAgreement.TempResident, newAgreement.HousingFund, newAgreement.DateConclusion, newAgreement.DateEnd, newAgreement.Remark);
+                            MessageBox.Show("Необходимо выбрать другое жильё", "", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            AgreementManager am = new AgreementManager();
+                            am.AddError("Необходимо выбрать другое жильё");
+                            am.AddAgreement(newAgreement.number, newAgreement.TempResident, newAgreement.HousingFund, newAgreement.DateConclusion, newAgreement.DateEnd, newAgreement.Remark);
                             break;
                     }
                 }
@@ -55,7 +56,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditResidenceRegistration(ResidenceRegistration currentResidenceRegistration)
         {
-
+            
         }
 
         public void RemoveResidenceRegistration(Locality currenResidenceRegistration)
