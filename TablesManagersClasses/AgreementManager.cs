@@ -79,7 +79,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
                     dbContext.Agreement.Add(newAgreement);
 
-                    AddResidenceRegistration(newAgreement, errors)
+                    AddResidenceRegistration(newAgreement)
                     
                     dbContext.SaveChanges();
 
