@@ -32,6 +32,11 @@ namespace Реестр_маневренного_фонда.Pages
             }
         }
 
+        private void Filtering()
+        {
+            
+        }
+
         private void bt_EditStreet_Click(object sender, RoutedEventArgs e)
         {
             currentStreet = (sender as Button).DataContext as Street;
