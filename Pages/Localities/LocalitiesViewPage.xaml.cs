@@ -14,6 +14,7 @@ namespace Реестр_маневренного_фонда.Pages
     {
         ApplicationContext dbContext;
         Locality currentLocality;
+        
         public LocalitiesViewPage()
         {
             InitializeComponent();
@@ -28,6 +29,11 @@ namespace Реестр_маневренного_фонда.Pages
             {
                 MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Filtering()
+        {
+            
         }
 
         private void bt_EditLocality_Click(object sender, RoutedEventArgs e)
