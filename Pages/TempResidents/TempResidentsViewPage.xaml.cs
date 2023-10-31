@@ -31,6 +31,11 @@ namespace Реестр_маневренного_фонда.Pages
             }
         }
 
+        private void Filtering()
+        {
+            
+        }
+
         private void bt_EditTempResident_Click(object sender, RoutedEventArgs e)
         {
             currentTempResident = (sender as Button).DataContext as TempResident;
