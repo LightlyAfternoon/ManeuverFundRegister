@@ -25,6 +25,9 @@ namespace Реестр_маневренного_фонда.Pages
 
                 dbContext.HousingFund.Load();
                 dg_Agreements.ItemsSource = dbContext.Agreement.ToList();
+
+                cmb_FullNameTR.ItemsSource = dbContext.TempResident.ToList();
+                cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
             }
             catch
             {
