@@ -35,6 +35,11 @@ namespace Реестр_маневренного_фонда.Pages
             }
         }
 
+        private void Filtering()
+        {
+            
+        }
+
         private void bt_EditAgreement_Click(object sender, RoutedEventArgs e)
         {
             try
