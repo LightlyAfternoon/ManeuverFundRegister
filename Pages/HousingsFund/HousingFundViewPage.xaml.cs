@@ -35,6 +35,11 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             }
         }
 
+        private void Filtering()
+        {
+            
+        }
+
         private void bt_EditHousingFund_Click(object sender, RoutedEventArgs e)
         {
             currentHousingFund = (sender as Button).DataContext as HousingFund;
