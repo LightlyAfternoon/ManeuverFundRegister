@@ -9,7 +9,40 @@
       Title="HousingFundViewPage">
 
     <Grid>
-        <DataGrid x:Name = "dg_HousingFund" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
+            <StackPanel>
+                  <StackPanel Orientation="Horizontal">
+                      <TextBlock Text="Улица"/>
+                      <ComboBox x:Name="cmb_Street" DisplayMemberPath="NameStreet" Width="200" IsEditable="True"/>
+                      <TextBlock Text="№ дома"/>
+                      <TextBox x:Name="tb_HouseNumber" Width="50"/>
+                      <TextBlock Text="№ квартиры"/>
+                      <TextBox x:Name="tb_ApartmentNumber" Width="50"/>
+                      <TextBlock Text="№ комнаты"/>
+                      <TextBox x:Name="tb_RoomNumber" Width="50"/>
+                  </StackPanel>
+
+                  <StackPanel Orientation="Horizontal">
+                      <TextBlock Text="Степень благоустройства"/>
+                      <ComboBox x:Name="cmb_ImprovementDegree" DisplayMemberPath="NameStreet" Width="200"/>
+                      <TextBlock Text="S по постановлению"/>
+                      <TextBox x:Name="tb_DecreeArea" Width="50"/>
+                      <TextBlock Text="S по реестру"/>
+                      <TextBox x:Name="tb_RegisterArea" Width="50"/>
+                  </StackPanel>
+
+            <Button x:Name="bt_Filter" Content="Отфильтровать" Click/>
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="^v^" Click/>
+
+        <DataGrid Grid.Row="2" x:Name = "dg_HousingFund" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "Адрес жилья" Binding = "{Binding FullAddress}" Width="2*"/>
                 <DataGridTextColumn Header = "Степень благоустроености" Binding = "{Binding ImprovementDegree.NameImprovementDegree}"/>
