@@ -14,6 +14,7 @@ namespace Реестр_маневренного_фонда.Pages
     {
         ApplicationContext dbContext;
         Decree currentDecree;
+        
         public DecreesViewPage()
         {
             InitializeComponent();
@@ -31,6 +32,11 @@ namespace Реестр_маневренного_фонда.Pages
             {
                 MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Filtering()
+        {
+            
         }
 
         private void bt_EditDecree_Click(object sender, RoutedEventArgs e)
