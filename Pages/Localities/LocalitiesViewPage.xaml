@@ -10,7 +10,23 @@
 
 
     <Grid>
-        <DataGrid x:Name = "dg_Localities" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
+            <StackPanel>
+                  <TextBlock Text="Наименование н/п"/>
+                  <TextBox x:Name="tb_NameLocality" Width="50"/>
+
+                  <Button x:Name="bt_Filter" Content="Отфильтровать" Click/>
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="^v^" Click/>
+
+        <DataGrid Grid.Row="2" x:Name = "dg_Localities" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "Наименование населённого пункта" Binding = "{Binding NameLocality}"/>
                 <DataGridTemplateColumn>
