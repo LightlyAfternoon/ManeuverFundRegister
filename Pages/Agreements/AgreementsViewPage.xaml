@@ -16,9 +16,24 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="ФИО нанимателя"/>
-                <ComboBox x:Name="cmb_FullNameTR" DisplayMemberPath="FullName" Width="250" IsEditable="True"/>
+            <StackPanel>
+                  <StackPanel Orientation="Horizontal">
+                      <TextBlock Text="ФИО нанимателя"/>
+                      <ComboBox x:Name="cmb_FullNameTR" DisplayMemberPath="FullName" Width="250" IsEditable="True"/>
+                      <TextBlock Text="Адрес"/>
+                      <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True"/>
+                  </StackPanel>
+
+                  <StackPanel Orientation="Horizontal">
+                      <TextBlock Text="Дата заключения"/>
+                      <DatePicker x:Name="dp_DateConclusionAgreement"/>
+                      <TextBlock Text="Дата окончания"/>
+                      <DatePicker x:Name="dp_DateEndAgreement"/>
+                      <TextBlock Text="Дата расторжения"/>
+                      <DatePicker x:Name="dp_DateTerminationAgreement"/>
+                  </StackPanel>
+
+            <Button x:Name="bt_Filter" Content="Отфильтровать" Click/>
             </StackPanel>
         </Grid>
         <Button Grid.Row="1" x:Name="bt_showOrHideFilterGrid" Content="^v^" Click="bt_showOrHideFilterGrid_Click"/>
