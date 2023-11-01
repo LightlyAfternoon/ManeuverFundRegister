@@ -9,12 +9,39 @@
       Title="ResidenceRegistrationViewPage">
 
     <Grid>
-        <DataGrid x:Name = "dg_ResidenceRegistration" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
+            <StackPanel>
+                  <StackPanel Orientation="Horizontal">
+                      <TextBlock Text="ФИО нанимателя"/>
+                      <ComboBox x:Name="cmb_FullNameTR" DisplayMemberPath="FullName" Width="250" IsEditable="True"/>
+                      <TextBlock Text="Адрес"/>
+                      <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True"/>
+                  </StackPanel>
+
+                  <StackPanel Orientation="Horizontal">
+                      <TextBlock Text="Дата начала проживания"/>
+                      <DatePicker x:Name="dp_DateStartResidence"/>
+                      <TextBlock Text="Дата окончания проживания"/>
+                      <DatePicker x:Name="dp_DateEndResidence"/>
+                  </StackPanel>
+
+            <Button x:Name="bt_Filter" Content="Отфильтровать" Click/>
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="1" x:Name="bt_showOrHideFilterGrid" Content="^v^" Click="bt_showOrHideFilterGrid_Click"/>
+
+        <DataGrid Grid.Row="2" x:Name = "dg_ResidenceRegistration" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
             <DataGrid.Columns>
-                <DataGridTextColumn Header = "Адрес жилья" Binding = "{Binding HousingFund.FullAddress}"/>
-                <DataGridTextColumn Header = "ФИО нанимателя" Binding="{Binding TempResident.FullName}"/>
-                <DataGridTextColumn Header = "Дата начала проживания" Binding = "{Binding DateStartResidence, StringFormat = 'dd.MM.yyyy'}"/>
-                <DataGridTextColumn Header = "Дата окончания проживания" Binding = "{Binding DateEndResidence, StringFormat = 'dd.MM.yyyy'}"/>
+                <DataGridTextColumn Header="Адрес жилья" Binding="{Binding HousingFund.FullAddress}"/>
+                <DataGridTextColumn Header="ФИО нанимателя" Binding="{Binding TempResident.FullName}"/>
+                <DataGridTextColumn Header="Дата начала проживания" Binding="{Binding DateStartResidence, StringFormat='dd.MM.yyyy'}"/>
+                <DataGridTextColumn Header="Дата окончания проживания" Binding="{Binding DateEndResidence, StringFormat='dd.MM.yyyy'}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
