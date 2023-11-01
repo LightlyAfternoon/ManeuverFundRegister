@@ -41,23 +41,23 @@ namespace Реестр_маневренного_фонда.Pages
             
             if (cmb_FullNameTR.SelectedItem != null)
             {
-                currentAgreement = currentAgreement.Where(a => a.TempResidentId == cmb_FullNameTR.SelectedItem as TempResident);
+                currentAgreements = currentAgreements.Where(a => a.TempResidentId == cmb_FullNameTR.SelectedItem as TempResident);
             }
             if (cmb_HousingFund.SelectedItem != null)
             {
-                currentAgreement = currentAgreement.Where(a => a.HousingFundId == cmb_HousingFund.SelectedItem as HousingFund);
+                currentAgreements = currentAgreements.Where(a => a.HousingFundId == cmb_HousingFund.SelectedItem as HousingFund);
             }
             if (dp_DateConclusionAgreement.SelectedDate != null)
             {
-                currentAgreement = currentAgreement.Where(a => a.DateConclusionAgreement == dp_DateConclusionAgreement.SelectedDate);
+                currentAgreements = currentAgreements.Where(a => a.DateConclusionAgreement == dp_DateConclusionAgreement.SelectedDate);
             }
             if (dp_DateEndAgreement.SelectedDate != null)
             {
-                currentAgreement = currentAgreement.Where(a => a.DateEndAgreement == dp_DateEndAgreement.SelectedDate);
+                currentAgreements = currentAgreements.Where(a => a.DateEndAgreement == dp_DateEndAgreement.SelectedDate);
             }
             if (dp_DateTerminationAgreement.SelectedDate != null)
             {
-                currentAgreement = currentAgreement.Where(a => a.DateTerminationAgreement == dp_DateTerminationAgreement.SelectedDate);
+                currentAgreements = currentAgreements.Where(a => a.DateTerminationAgreement == dp_DateTerminationAgreement.SelectedDate);
             }
 
             dg_Agreements.ItemsSource = currentAgreements.ToList();
