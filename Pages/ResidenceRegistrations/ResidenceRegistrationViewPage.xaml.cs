@@ -39,11 +39,11 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             
             if (cmb_FullNameTR.SelectedItem != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.TempResidentId == cmb_FullNameTR.SelectedItem as TempResident);
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.TempResidentId == (cmb_FullNameTR.SelectedItem as TempResident).IdTempResident);
             }
             if (cmb_HousingFund.SelectedItem != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.HousingFundId == cmb_HousingFund.SelectedItem as HousingFund);
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund);
             }
             if (dp_DateStartResidence.SelectedDate != null)
             {
