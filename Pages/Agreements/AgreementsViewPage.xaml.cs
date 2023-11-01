@@ -41,11 +41,11 @@ namespace Реестр_маневренного_фонда.Pages
             
             if (cmb_FullNameTR.SelectedItem != null)
             {
-                currentAgreements = currentAgreements.Where(a => a.TempResidentId == cmb_FullNameTR.SelectedItem as TempResident);
+                currentAgreements = currentAgreements.Where(a => a.TempResidentId == (cmb_FullNameTR.SelectedItem as TempResident).IdTempResident);
             }
             if (cmb_HousingFund.SelectedItem != null)
             {
-                currentAgreements = currentAgreements.Where(a => a.HousingFundId == cmb_HousingFund.SelectedItem as HousingFund);
+                currentAgreements = currentAgreements.Where(a => a.HousingFundId == cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund;
             }
             if (dp_DateConclusionAgreement.SelectedDate != null)
             {
