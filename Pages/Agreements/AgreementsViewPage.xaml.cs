@@ -37,7 +37,30 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void Filtering()
         {
+            var currentAgreements = dbContext.Agreement.ToList();
             
+            if (cmb_FullNameTR.SelectedItem != null)
+            {
+                currentAgreement = currentAgreement.Where(a => a.TempResidentId == cmb_FullNameTR.SelectedItem as TempResident);
+            }
+            if (cmb_HousingFund.SelectedItem != null)
+            {
+                currentAgreement = currentAgreement.Where(a => a.HousingFundId == cmb_HousingFund.SelectedItem as HousingFund);
+            }
+            if (dp_DateConclusionAgreement.SelectedDate != null)
+            {
+                currentAgreement = currentAgreement.Where(a => a.DateConclusionAgreement == dp_DateConclusionAgreement.SelectedDate);
+            }
+            if (dp_DateEndAgreement.SelectedDate != null)
+            {
+                currentAgreement = currentAgreement.Where(a => a.DateEndAgreement == dp_DateEndAgreement.SelectedDate);
+            }
+            if (dp_DateTerminationAgreement.SelectedDate != null)
+            {
+                currentAgreement = currentAgreement.Where(a => a.DateTerminationAgreement == dp_DateTerminationAgreement.SelectedDate);
+            }
+
+            dg_Agreements.ItemsSource = currentAgreements.ToList();
         }
 
         private void bt_EditAgreement_Click(object sender, RoutedEventArgs e)
