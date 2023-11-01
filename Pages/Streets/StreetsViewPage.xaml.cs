@@ -25,6 +25,8 @@ namespace Реестр_маневренного_фонда.Pages
                 
                 dbContext.Locality.Load();
                 dg_Streets.ItemsSource = dbContext.Street.ToList();
+
+                cmb_Locality.ItemsSource = dbContext.Locality.ToList();
             }
             catch
             {
