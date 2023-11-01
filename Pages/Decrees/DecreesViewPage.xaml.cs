@@ -44,7 +44,7 @@ namespace Реестр_маневренного_фонда.Pages
             }
             if (cmb_HousingFund.SelectedItem != null)
             {
-                currentDecrees = currentDecrees.Where(d => d.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).HousingFund);
+                currentDecrees = currentDecrees.Where(d => d.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund);
             }
             if (chb_Inclusion.IsChecked == true)
             {
