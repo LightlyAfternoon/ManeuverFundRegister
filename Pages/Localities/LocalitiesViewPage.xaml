@@ -19,7 +19,7 @@
         <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
             <StackPanel>
                   <TextBlock Text="Наименование н/п"/>
-                  <TextBox x:Name="tb_NameLocality" Width="50"/>
+                  <TextBox x:Name="tb_NameLocality" Width="150"/>
 
                   <Button x:Name="bt_Filter" Content="Отфильтровать" Click/>
             </StackPanel>
