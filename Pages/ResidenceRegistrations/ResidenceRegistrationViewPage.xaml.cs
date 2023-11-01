@@ -23,6 +23,9 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
                 dbContext.HousingFund.Load();
                 dbContext.TempResident.Load();
                 dg_ResidenceRegistration.ItemsSource = dbContext.ResidenceRegistration.ToList();
+                
+                cmb_FullNameTR.ItemsSource = dbContext.TempResident.ToList();
+                cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
             }
             catch
             {
@@ -32,8 +35,26 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
         private void Filtering()
         {
+            var currentResidenceRegistrations = dbContext.ResidenceRegistration.ToList();
             
-        }
+            if (cmb_FullNameTR.SelectedItem != null)
+            {
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.TempResidentId == cmb_FullNameTR.SelectedItem as TempResident);
+            }
+            if (cmb_HousingFund.SelectedItem != null)
+            {
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.HousingFundId == cmb_HousingFund.SelectedItem as HousingFund);
+            }
+            if (dp_DateStartResidence.SelectedDate != null)
+            {
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateStartResidence == dp_DateStartResidence.SelectedDate);
+            }
+            if (dp_DateEndResidence.SelectedDate != null)
+            {
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence == dp_DateEndResidence.SelectedDate);
+            }
 
+            dg_ResidenceRegistration.ItemsSource = currentResidenceRegistrations.ToList();
+        }
     }
 }
