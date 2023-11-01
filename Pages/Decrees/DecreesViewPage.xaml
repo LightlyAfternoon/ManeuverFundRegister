@@ -19,7 +19,7 @@
             <StackPanel>
                   <StackPanel Orientation="Horizontal">
                       <TextBlock Text="Дата постановления"/>
-                      <DatePicker x:Name="dp_DateConclusionAgreement"/>
+                      <DatePicker x:Name="dp_DateDecree"/>
                       <TextBlock Text="Адрес"/>
                       <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True"/>
                       <CheckBox x:Name="chb_Inclusion" Content="Включение в фонд" IsChecked="True"/>
