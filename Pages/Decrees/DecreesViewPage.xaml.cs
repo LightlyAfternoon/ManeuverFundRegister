@@ -36,7 +36,26 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void Filtering()
         {
+            var currentDecrees = dbContext.Decree.ToList();
             
+            if (dp_DateConclusionAgreement.SelectedDate != null)
+            {
+                currentDecrees = currentDecrees.Where(d => d.DateDecree == dp_DateDecree.SelectedDate);
+            }
+            if (cmb_HousingFund.SelectedItem != null)
+            {
+                currentDecrees = currentDecrees.Where(d => d.HousingFundId == cmb_HousingFund.SelectedItem as HousingFund);
+            }
+            if (chb_Inclusion.IsChecked == true)
+            {
+                currentDecrees = currentDecrees.Where(d => d.Status == true);
+            }
+            if (chb_Exclusion.IsChecked == true)
+            {
+                currentDecrees = currentDecrees.Where(d => d.Status == false);
+            }
+
+            dg_Decrees.ItemsSource = currentDecrees.ToList();
         }
 
         private void bt_EditDecree_Click(object sender, RoutedEventArgs e)
