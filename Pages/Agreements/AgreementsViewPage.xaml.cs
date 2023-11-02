@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.Pages.Agreements;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
@@ -41,23 +42,23 @@ namespace Реестр_маневренного_фонда.Pages
             
             if (cmb_FullNameTR.SelectedItem != null)
             {
-                currentAgreements = currentAgreements.Where(a => a.TempResidentId == (cmb_FullNameTR.SelectedItem as TempResident).IdTempResident);
+                currentAgreements = currentAgreements.Where(a => a.TempResidentId == (cmb_FullNameTR.SelectedItem as TempResident).IdTempResident).ToList();
             }
             if (cmb_HousingFund.SelectedItem != null)
             {
-                currentAgreements = currentAgreements.Where(a => a.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund);
+                currentAgreements = currentAgreements.Where(a => a.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund).ToList();
             }
             if (dp_DateConclusionAgreement.SelectedDate != null)
             {
-                currentAgreements = currentAgreements.Where(a => a.DateConclusionAgreement == dp_DateConclusionAgreement.SelectedDate);
+                currentAgreements = currentAgreements.Where(a => a.DateConclusionAgreement == dp_DateConclusionAgreement.SelectedDate).ToList();
             }
             if (dp_DateEndAgreement.SelectedDate != null)
             {
-                currentAgreements = currentAgreements.Where(a => a.DateEndAgreement == dp_DateEndAgreement.SelectedDate);
+                currentAgreements = currentAgreements.Where(a => a.DateEndAgreement == dp_DateEndAgreement.SelectedDate).ToList();
             }
             if (dp_DateTerminationAgreement.SelectedDate != null)
             {
-                currentAgreements = currentAgreements.Where(a => a.DateTerminationAgreement == dp_DateTerminationAgreement.SelectedDate);
+                currentAgreements = currentAgreements.Where(a => a.DateTerminationAgreement == dp_DateTerminationAgreement.SelectedDate).ToList();
             }
 
             dg_Agreements.ItemsSource = currentAgreements.ToList();
@@ -95,6 +96,11 @@ namespace Реестр_маневренного_фонда.Pages
             {
                 gr_FilterGrid.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void bt_Filter_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -59,5 +59,10 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
 
             dm.EditDecree(decree, tb_Number.Text, dp_DateConclusion.SelectedDate, cmb_HousingFund.SelectedItem as HousingFund, status);
         }
+
+        private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

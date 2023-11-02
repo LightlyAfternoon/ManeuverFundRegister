@@ -22,10 +22,10 @@
                   <TextBlock Text="Наименование улицы"/>
                   <TextBox x:Name="tb_NameStreet" Width="150"/>
 
-                  <Button x:Name="bt_Filter" Content="Отфильтровать" Click/>
+                  <Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>
             </StackPanel>
         </Grid>
-        <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="^v^" Click/>
+        <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="^v^" Click="bt_ShowOrHideFilterGrid_Click"/>
 
         <DataGrid Grid.Row="2" x:Name = "dg_Streets" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
             <DataGrid.Columns>

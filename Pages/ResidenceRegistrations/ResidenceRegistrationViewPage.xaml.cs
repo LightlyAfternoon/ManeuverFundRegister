@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда.Pages.ResidenceRegistrations
 {
@@ -39,22 +40,32 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             
             if (cmb_FullNameTR.SelectedItem != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.TempResidentId == (cmb_FullNameTR.SelectedItem as TempResident).IdTempResident);
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.TempResidentId == (cmb_FullNameTR.SelectedItem as TempResident).IdTempResident).ToList();
             }
             if (cmb_HousingFund.SelectedItem != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund);
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund).ToList();
             }
             if (dp_DateStartResidence.SelectedDate != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateStartResidence == dp_DateStartResidence.SelectedDate);
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateStartResidence == dp_DateStartResidence.SelectedDate).ToList();
             }
             if (dp_DateEndResidence.SelectedDate != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence == dp_DateEndResidence.SelectedDate);
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence == dp_DateEndResidence.SelectedDate).ToList();
             }
 
             dg_ResidenceRegistration.ItemsSource = currentResidenceRegistrations.ToList();
+        }
+
+        private void bt_Filter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_ShowOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -9,7 +9,7 @@
       Title="EditDecreePage">
 
     <Grid>
-        <Button x:Name="bt_AttachFile" Content="Прикрепить документ" Click/>
+        <Button x:Name="bt_AttachFile" Content="Прикрепить документ" Click="bt_AttachFile_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
               <StackPanel Margin="10,0" Orientation="Horizontal">
                 <StackPanel Margin="10,0">

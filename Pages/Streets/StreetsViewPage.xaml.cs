@@ -40,11 +40,11 @@ namespace Реестр_маневренного_фонда.Pages
 
             if (cmb_Locality.SelectedItem != null)
             {
-                currentStreets = currentStreets.Where(s => s.LocalityId == (cmb_Locality.SelectedItem as Locality).IdLocality);
+                currentStreets = currentStreets.Where(s => s.LocalityId == (cmb_Locality.SelectedItem as Locality).IdLocality).ToList();
             }
             if (!string.IsNullOrWhiteSpace(tb_NameStreet.Text))
             {
-                currentStreets = currentStreets.Where(s => s.NameStreet.ToLower().Contains(tb_NameStreet.Text.ToLower()));
+                currentStreets = currentStreets.Where(s => s.NameStreet.ToLower().Contains(tb_NameStreet.Text.ToLower())).ToList();
             }
         
             dg_Streets.ItemsSource = currentStreets.ToList();
@@ -61,6 +61,16 @@ namespace Реестр_маневренного_фонда.Pages
             currentStreet = (sender as Button).DataContext as Street;
             StreetManager sm = new StreetManager();
             sm.RemoveStreet(currentStreet);
+        }
+
+        private void bt_Filter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_ShowOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages.HousingsFund
@@ -41,31 +42,31 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             
             if (cmb_Street.SelectedItem != null)
             {
-                currentHousesInFund = currentHousesInFund.Where(h => h.StreetId == (cmb_Street.SelectedItem as Street).IdStreet);
+                currentHousesInFund = currentHousesInFund.Where(h => h.StreetId == (cmb_Street.SelectedItem as Street).IdStreet).ToList();
             }
             if (!string.IsNullOrWhiteSpace(tb_HouseNumber.Text))
             {
-                currentHousesInFund = currentHousesInFund.Where(h => h.HouseNumber.ToLower().Contains(tb_HouseNumber.Text.ToLower()));
+                currentHousesInFund = currentHousesInFund.Where(h => h.HouseNumber.ToLower().Contains(tb_HouseNumber.Text.ToLower())).ToList();
             }
             if (!string.IsNullOrWhiteSpace(tb_ApartmentNumber.Text))
             {
-                currentHousesInFund = currentHousesInFund.Where(h => h.ApartmentNumber.Contains(tb_ApartmentNumber.Text));
+                currentHousesInFund = currentHousesInFund.Where(h => h.ApartmentNumber.ToString() == tb_ApartmentNumber.Text).ToList();
             }
             if (!string.IsNullOrWhiteSpace(tb_RoomNumber.Text))
             {
-                currentHousesInFund = currentHousesInFund.Where(h => h.RoomNumber.Contains(tb_RoomNumber.Text));
+                currentHousesInFund = currentHousesInFund.Where(h => h.RoomNumber.ToString() == tb_RoomNumber.Text).ToList();
             }
             if (cmb_ImprovementDegree.SelectedItem != null)
             {
-                currentHousesInFund = currentHousesInFund.Where(h => h.ImprovementDegreeId == (cmb_ImprovementDegree.SelectedItem as ImprovementDegree).IdImprovementDegree);
+                currentHousesInFund = currentHousesInFund.Where(h => h.ImprovementDegreeId == (cmb_ImprovementDegree.SelectedItem as ImprovementDegree).IdImprovementDegree).ToList();
             }
             if (!string.IsNullOrWhiteSpace(tb_DecreeArea.Text))
             {
-                currentHousesInFund = currentHousesInFund.Where(h => h.DecreeArea.Contains(tb_DecreeArea.Text));
+                currentHousesInFund = currentHousesInFund.Where(h => h.DecreeArea.ToString() == tb_DecreeArea.Text).ToList();
             }
             if (!string.IsNullOrWhiteSpace(tb_RegisterArea.Text))
             {
-                currentHousesInFund = currentHousesInFund.Where(h => h.RegisterArea.Contains(tb_RegisterArea.Text));
+                currentHousesInFund = currentHousesInFund.Where(h => h.RegisterArea.ToString() == tb_RegisterArea.Text).ToList();
             }
 
             dg_HousingFund.ItemsSource = currentHousesInFund.ToList();
@@ -82,6 +83,16 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             currentHousingFund = (sender as Button).DataContext as HousingFund;
             HousingFundManager hm = new HousingFundManager();
             hm.RemoveHouseInFund(currentHousingFund);
+        }
+
+        private void bt_Filter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_ShowOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

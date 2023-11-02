@@ -7,6 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using Реестр_маневренного_фонда.Pages;
+using Реестр_маневренного_фонда.Pages.HousingsFund;
+using Реестр_маневренного_фонда.Pages.ResidenceRegistrations;
 
 namespace Реестр_маневренного_фонда
 {

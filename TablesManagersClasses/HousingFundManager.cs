@@ -2,6 +2,7 @@
 using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.Pages;
+using Реестр_маневренного_фонда.Pages.HousingsFund;
 
 namespace Реестр_маневренного_фонда.TablesManagersClasses
 {

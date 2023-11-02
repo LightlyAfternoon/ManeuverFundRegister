@@ -38,21 +38,21 @@ namespace Реестр_маневренного_фонда.Pages
         {
             var currentDecrees = dbContext.Decree.ToList();
             
-            if (dp_DateConclusionAgreement.SelectedDate != null)
+            if (dp_DateDecree.SelectedDate != null)
             {
-                currentDecrees = currentDecrees.Where(d => d.DateDecree == dp_DateDecree.SelectedDate);
+                currentDecrees = currentDecrees.Where(d => d.DateDecree == dp_DateDecree.SelectedDate).ToList();
             }
             if (cmb_HousingFund.SelectedItem != null)
             {
-                currentDecrees = currentDecrees.Where(d => d.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund);
+                currentDecrees = currentDecrees.Where(d => d.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund).ToList();
             }
             if (chb_Inclusion.IsChecked == true)
             {
-                currentDecrees = currentDecrees.Where(d => d.Status == true);
+                currentDecrees = currentDecrees.Where(d => d.Status == true).ToList();
             }
             if (chb_Exclusion.IsChecked == true)
             {
-                currentDecrees = currentDecrees.Where(d => d.Status == false);
+                currentDecrees = currentDecrees.Where(d => d.Status == false).ToList();
             }
 
             dg_Decrees.ItemsSource = currentDecrees.ToList();
@@ -73,6 +73,16 @@ namespace Реестр_маневренного_фонда.Pages
                 dm.RemoveDecree(currentDecree);
             }
             catch { }
+        }
+
+        private void bt_Filter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_ShowOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

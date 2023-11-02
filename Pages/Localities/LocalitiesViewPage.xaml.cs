@@ -37,7 +37,7 @@ namespace Реестр_маневренного_фонда.Pages
         
             if (!string.IsNullOrWhiteSpace(tb_NameLocality.Text))
             {
-                currentLocalities = currentLocalities.Where(l => l.NameLocality.ToLower().Contains(tb_NameLocality.Text.ToLower()));
+                currentLocalities = currentLocalities.Where(l => l.NameLocality.ToLower().Contains(tb_NameLocality.Text.ToLower())).ToList();
             }
 
             dg_Localities.ItemsSource = currentLocalities.ToList();
@@ -54,6 +54,16 @@ namespace Реестр_маневренного_фонда.Pages
             LocalityManager lm = new LocalityManager();
             currentLocality = (sender as Button).DataContext as Locality;
             lm.RemoveLocality(currentLocality);
+        }
+
+        private void bt_Filter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_ShowOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -37,15 +37,15 @@ namespace Реестр_маневренного_фонда.Pages
 
             if (!string.IsNullOrWhiteSpace(tb_LastName.Text))
             {
-                currentTempResidents = currentTempResidents.Where(t => t.LastName.ToLower().Contains(tb_LastName.Text.ToLower()));
+                currentTempResidents = currentTempResidents.Where(t => t.LastName.ToLower().Contains(tb_LastName.Text.ToLower())).ToList();
             }
             if (!string.IsNullOrWhiteSpace(tb_FirstName.Text))
             {
-                currentTempResidents = currentTempResidents.Where(t => t.FirstName.ToLower().Contains(tb_FirstName.Text.ToLower()));
+                currentTempResidents = currentTempResidents.Where(t => t.FirstName.ToLower().Contains(tb_FirstName.Text.ToLower())).ToList();
             }
             if (!string.IsNullOrWhiteSpace(tb_Patronymic.Text))
             {
-                currentTempResidents = currentTempResidents.Where(t => t.Patronymic.ToLower().Contains(tb_Patronymic.Text.ToLower()));
+                currentTempResidents = currentTempResidents.Where(t => t.Patronymic.ToLower().Contains(tb_Patronymic.Text.ToLower())).ToList();
             }
             
             dg_TempResidents.ItemsSource = currentTempResidents.ToList();
@@ -62,6 +62,16 @@ namespace Реестр_маневренного_фонда.Pages
             currentTempResident = (sender as Button).DataContext as TempResident;
             TempResidentManager tm = new TempResidentManager();
             tm.RemoveTempResident(currentTempResident);
+        }
+
+        private void bt_Filter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_ShowOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

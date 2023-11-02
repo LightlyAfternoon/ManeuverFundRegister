@@ -56,5 +56,10 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             AgreementManager am = new AgreementManager();
             am.AddAgreement(tb_Number.Text, cmb_TempReident.SelectedItem as TempResident, cmb_HousingFund.SelectedItem as HousingFund, dp_DateConclusion.SelectedDate, dp_DateEnd.SelectedDate, tb_Remark.Text);
         }
+
+        private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
