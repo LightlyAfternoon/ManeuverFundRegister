@@ -36,7 +36,18 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void Filtering()
         {
-            
+            var currentStreets = dbContext.Street.ToList();
+
+            if (cmb_Locality.SelectedItem != null)
+            {
+                currentStreets = currentStreets.Where(s => s.LocalityId == (cmb_Locality.SelectedItem as Locality).IdLocality);
+            }
+            if (!string.IsNullOrWhiteSpace(tb_NameStreet.Text))
+            {
+                currentStreets = currentStreets.Where(s => s.NameStreet.ToLower().Contains(tb_NameStreet.Text.ToLower()));
+            }
+        
+            dg_Streets.ItemsSource = currentStreets.ToList();
         }
 
         private void bt_EditStreet_Click(object sender, RoutedEventArgs e)
