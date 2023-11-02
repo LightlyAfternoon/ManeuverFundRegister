@@ -45,7 +45,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             }
             if (!string.IsNullOrWhiteSpace(tb_HouseNumber.Text))
             {
-                currentHousesInFund = currentHousesInFund.Where(h => h.HouseNumber.Contains(tb_HouseNumber.Text));
+                currentHousesInFund = currentHousesInFund.Where(h => h.HouseNumber.ToLower().Contains(tb_HouseNumber.Text.ToLower()));
             }
             if (!string.IsNullOrWhiteSpace(tb_ApartmentNumber.Text))
             {
