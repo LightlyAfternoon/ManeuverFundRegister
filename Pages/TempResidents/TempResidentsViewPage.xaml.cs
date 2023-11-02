@@ -33,7 +33,22 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void Filtering()
         {
+            var currentTempResidents = dbContext.TempResident.ToList();
+
+            if (!string.IsNullOrWhiteSpace(tb_LastName.Text))
+            {
+                currentTempResidents = currentTempResidents.Where(t => t.LastName.ToLower().Contains(tb_LastName.Text.ToLower()));
+            }
+            if (!string.IsNullOrWhiteSpace(tb_FirstName.Text))
+            {
+                currentTempResidents = currentTempResidents.Where(t => t.FirstName.ToLower().Contains(tb_FirstName.Text.ToLower()));
+            }
+            if (!string.IsNullOrWhiteSpace(tb_Patronymic.Text))
+            {
+                currentTempResidents = currentTempResidents.Where(t => t.Patronymic.ToLower().Contains(tb_Patronymic.Text.ToLower()));
+            }
             
+            dg_TempResidents.ItemsSource = currentTempResidents.ToList();
         }
 
         private void bt_EditTempResident_Click(object sender, RoutedEventArgs e)
