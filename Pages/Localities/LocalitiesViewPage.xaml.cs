@@ -33,7 +33,14 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void Filtering()
         {
-            
+            var currentLocalities = dbContext.Locality.ToList();
+        
+            if (!string.IsNullOrWhiteSpace(tb_NameLocality.Text))
+            {
+                currentLocalities = currentLocalities.Where(l => l.NameLocality.ToLower().Contains(tb_NameLocality.Text.ToLower()));
+            }
+
+            dg_Localities.ItemsSource = currentLocalities.ToList();
         }
 
         private void bt_EditLocality_Click(object sender, RoutedEventArgs e)
