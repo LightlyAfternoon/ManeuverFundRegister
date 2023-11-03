@@ -60,12 +60,19 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
         private void bt_Filter_Click(object sender, RoutedEventArgs e)
         {
-
+            Filtering();
         }
 
         private void bt_ShowOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
         {
-
+            if (gr_FilterGrid.Visibility == Visibility.Collapsed)
+            {
+                gr_FilterGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                gr_FilterGrid.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
