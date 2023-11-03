@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Реестр_маневренного_фонда.TablesManagersClasses
 {
-    public class FileManager
+    public static class FileManager
     {
-        ApplicationContext dbContext = ApplicationContext.GetContext();
+        static ApplicationContext dbContext = ApplicationContext.GetContext();
 
-        public byte[] attachFile(string filePath)
+        public static byte[] attachFile(string filePath)
         {
             byte[] fileBytes;
             using (FileStream stream = new(filePath, FileMode.Open, FileAccess.Read))
@@ -24,7 +24,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             return fileBytes;
         }
 
-        public void getAttachedFile(byte[] fileBytes, string pathToNewLocation)
+        public static void getAttachedFile(byte[] fileBytes, string pathToNewLocation)
         {
             using (FileStream stream = new(pathToNewLocation, FileMode.Create, FileAccess.Write))
             {

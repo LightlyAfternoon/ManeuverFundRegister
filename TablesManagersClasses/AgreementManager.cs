@@ -53,9 +53,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
         }
 
-        public void AddAgreement(string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, string? remark)
+        public void AddAgreement(Agreement newAgreement,string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, string? remark)
         {
-            Agreement newAgreement = new Agreement();
 
             showErrors(number, tempResident, housingFund, dateConclusion, dateEnd);
             if (!string.IsNullOrEmpty(errors))

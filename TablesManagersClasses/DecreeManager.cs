@@ -43,10 +43,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             errors = string.Empty;
         }
         
-        public void AddDecree(string? number, DateTime? dateDecree, HousingFund? housingFund, bool? status)
-        {
-            Decree newDecree = new Decree();
-            
+        public void AddDecree(Decree newDecree, string? number, DateTime? dateDecree, HousingFund? housingFund, bool? status)
+        {   
             showErrors(number, dateDecree, housingFund, status);
             if (!string.IsNullOrEmpty(errors))
             {
