@@ -100,7 +100,7 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void bt_Filter_Click(object sender, RoutedEventArgs e)
         {
-
+            Filtering();
         }
     }
 }
