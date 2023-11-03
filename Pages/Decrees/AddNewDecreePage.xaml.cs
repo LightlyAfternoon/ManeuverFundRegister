@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Win32;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages.Decrees
@@ -11,6 +12,8 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
     public partial class AddNewDecreePage : Page
     {
         ApplicationContext dbContext = ApplicationContext.GetContext();
+
+        Decree newDecree = new Decree();
 
         public AddNewDecreePage()
         {
@@ -33,12 +36,17 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
                 status = false;
             }
 
-            dm.AddDecree(tb_Number.Text, dp_DateConclusion.SelectedDate, cmb_HousingFund.SelectedItem as HousingFund, status); ;
+            dm.AddDecree(newDecree, tb_Number.Text, dp_DateConclusion.SelectedDate, cmb_HousingFund.SelectedItem as HousingFund, status); ;
         }
 
         private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
         {
-
+            OpenFileDialog openFileDialog = new();
+            openFileDialog.Filter = "Word файлы(*.doc;*.docx)|*.doc;*.docx";
+            if (openFileDialog.ShowDialog() = true)
+            {
+                newDecree.File = FileManager.attachFile(openFileDialog.FileName);
+            }
         }
     }
 }
