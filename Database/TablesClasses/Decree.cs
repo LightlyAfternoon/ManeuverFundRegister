@@ -12,6 +12,7 @@ namespace Реестр_маневренного_фонда
         public DateTime DateDecree { get; set; }
         public int HousingFundId { get; set; }
         public bool Status { get; set; }
+        public byte[] File { get; set; }
 
         public virtual HousingFund HousingFund { get; set; }
 
