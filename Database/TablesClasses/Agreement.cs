@@ -15,9 +15,23 @@ namespace Реестр_маневренного_фонда
         public DateTime DateEndAgreement { get; set; }
         public DateTime? DateTerminationAgreement { get; set; }
         public string? Remark { get; set; }
-        public byte[] File { get; set; }
+        public byte[]? File { get; set; }
 
         public virtual TempResident TempResident { get; set; }
         public virtual HousingFund HousingFund { get; set; }
+
+        [NotMapped]
+        public Visible ShowButton 
+        {
+            get
+            {
+                bool existsFile;
+                if (File != null)
+                    existsFile = true;
+                else
+                    existsFile = false;
+                return (existsFile ? Visibility.Visible : Visibility.Collapsed);
+            }
+        };
     }
 }
