@@ -25,8 +25,7 @@ namespace Реестр_маневренного_фонда
 
             using (TaskService ts = new TaskService())
             {
-                try
-                {
+                
                     // Создание процесса консольной программы для проверки уведомлений
                     Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
 
@@ -42,11 +41,7 @@ namespace Реестр_маневренного_фонда
 
                     // Регистрация задачи в планировщике
                     ts.RootFolder.RegisterTaskDefinition(@"AddAndRemoveNotifications", td);
-                }
-                catch
-                {
-                    MessageBox.Show("Система оповещений не работает.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                
             }
         }
 

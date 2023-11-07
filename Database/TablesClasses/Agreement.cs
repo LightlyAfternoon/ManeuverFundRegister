@@ -1,5 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда
@@ -21,7 +23,7 @@ namespace Реестр_маневренного_фонда
         public virtual HousingFund HousingFund { get; set; }
 
         [NotMapped]
-        public Visible ShowButton 
+        public Visibility ShowButton 
         {
             get
             {
