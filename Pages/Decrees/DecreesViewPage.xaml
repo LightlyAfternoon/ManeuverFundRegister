@@ -40,6 +40,13 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
+                            <Button Visible="{Binding Path=ShowButton}" Content="Скачать файл" x:Name="bt_DownloadFile" Click/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
                             <Button Content="Редактировать" x:Name="bt_EditDecree" Click="bt_EditDecree_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
