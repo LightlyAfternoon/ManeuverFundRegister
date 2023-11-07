@@ -47,7 +47,13 @@
                 <DataGridTextColumn Header="Дата окончания" Binding="{Binding DateEndAgreement, StringFormat='dd.MM.yyyy'}"/>
                 <DataGridTextColumn Header="Дата расторжения" Binding="{Binding DateTerminationAgreement, StringFormat='dd.MM.yyyy'}"/>
                 <DataGridTextColumn Header="Примечание" Binding="{Binding Remark}"/>
-                <DataGridHyperlinkColumn Header="Файл"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Visible="{Binding Path=ShowButton}" Content="Файл" x:Name="bt_DownloadFile" Click/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
