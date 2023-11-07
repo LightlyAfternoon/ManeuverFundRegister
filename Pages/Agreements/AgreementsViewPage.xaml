@@ -40,13 +40,14 @@
 
         <DataGrid Grid.Row="2" x:Name = "dg_Agreements" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
             <DataGrid.Columns>
-                <DataGridTextColumn Header = "Номер договора" Binding = "{Binding NumberAgreement}"/>
-                <DataGridTextColumn Header = "ФИО нанимателя" Binding="{Binding TempResident.FullName}"/>
-                <DataGridTextColumn Header = "Адрес жилья" Binding = "{Binding HousingFund.FullAddress}"/>
-                <DataGridTextColumn Header = "Дата заключения" Binding = "{Binding DateConclusionAgreement, StringFormat = 'dd.MM.yyyy'}"/>
-                <DataGridTextColumn Header = "Дата окончания" Binding = "{Binding DateEndAgreement, StringFormat = 'dd.MM.yyyy'}"/>
-                <DataGridTextColumn Header = "Дата расторжения" Binding = "{Binding DateTerminationAgreement, StringFormat = 'dd.MM.yyyy'}"/>
-                <DataGridTextColumn Header = "Примечание" Binding = "{Binding Remark}"/>
+                <DataGridTextColumn Header="Номер договора" Binding="{Binding NumberAgreement}"/>
+                <DataGridTextColumn Header="ФИО нанимателя" Binding="{Binding TempResident.FullName}"/>
+                <DataGridTextColumn Header="Адрес жилья" Binding="{Binding HousingFund.FullAddress}"/>
+                <DataGridTextColumn Header="Дата заключения" Binding="{Binding DateConclusionAgreement, StringFormat='dd.MM.yyyy'}"/>
+                <DataGridTextColumn Header="Дата окончания" Binding="{Binding DateEndAgreement, StringFormat='dd.MM.yyyy'}"/>
+                <DataGridTextColumn Header="Дата расторжения" Binding="{Binding DateTerminationAgreement, StringFormat='dd.MM.yyyy'}"/>
+                <DataGridTextColumn Header="Примечание" Binding="{Binding Remark}"/>
+                <DataGridHyperlinkColumn Header="Файл"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
