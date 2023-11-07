@@ -32,6 +32,6 @@ namespace Реестр_маневренного_фонда
                     existsFile = false;
                 return (existsFile ? Visibility.Visible : Visibility.Collapsed);
             }
-        };
+        }
     }
 }
