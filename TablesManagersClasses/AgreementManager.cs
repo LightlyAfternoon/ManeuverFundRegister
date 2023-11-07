@@ -96,14 +96,14 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                                     newRegistration.HousingFundId = housingFund.IdHousingFund;
                                     newRegistration.TempResidentId = tempResident.IdTempResident;
                                     newRegistration.DateStartResidence = (DateTime)dateConclusion;
-                                    newRegistration.StartAgreementId = newAgreement.IdAgreement;
+                                    newRegistration.AgreementId = newAgreement.IdAgreement;
                                     
                                     dbContext.ResidenceRegistration.Add(newRegistration);
                                     break;
                                 case MessageBoxResult.No:
                                     MessageBox.Show("Необходимо выбрать другое жильё", "", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
                                     errors += "Необходимо выбрать другое жильё";
-                                    AddAgreement(number, tempResident, housingFund, dateConclusion, dateEnd, remark);
+                                    AddAgreement(newAgreement, number, tempResident, housingFund, dateConclusion, dateEnd, remark);
                                     break;
                             }
                         }
@@ -113,7 +113,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                         newRegistration.HousingFundId = housingFund.IdHousingFund;
                         newRegistration.TempResidentId = tempResident.IdTempResident;
                         newRegistration.DateStartResidence = (DateTime)dateConclusion;
-                        newRegistration.StartAgreementId = newAgreement.IdAgreement;
+                        newRegistration.AgreementId = newAgreement.IdAgreement;
                         
                         dbContext.ResidenceRegistration.Add(newRegistration);
                     }
@@ -142,7 +142,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 try
                 {
-                    ResidenceRegistration currentRegistration = dbContext.ResidenceRegistration.First(r => r.StartAgreementId == currentAgreement.IdAgreement);
+                    ResidenceRegistration currentRegistration = dbContext.ResidenceRegistration.First(r => r.AgreementId == currentAgreement.IdAgreement);
 
                     MessageBoxResult messageBoxResult = MessageBox.Show($"Изменить дату начала проживания в соответсвии с датой заключения договора?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     switch (messageBoxResult)

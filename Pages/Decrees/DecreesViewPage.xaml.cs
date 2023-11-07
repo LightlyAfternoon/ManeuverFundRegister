@@ -91,5 +91,10 @@ namespace Реестр_маневренного_фонда.Pages
                 gr_FilterGrid.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void bt_DownloadFile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

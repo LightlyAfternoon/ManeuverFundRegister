@@ -102,5 +102,10 @@ namespace Реестр_маневренного_фонда.Pages
         {
             Filtering();
         }
+
+        private void bt_DownloadFile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

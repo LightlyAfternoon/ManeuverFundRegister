@@ -17,16 +17,16 @@
 
         <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
             <StackPanel>
-                  <StackPanel Orientation="Horizontal">
-                      <TextBlock Text="Дата постановления"/>
-                      <DatePicker x:Name="dp_DateDecree"/>
-                      <TextBlock Text="Адрес"/>
-                      <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True"/>
-                      <CheckBox x:Name="chb_Inclusion" Content="Включение в фонд" IsChecked="True"/>
-                      <CheckBox x:Name="chb_Exclusion" Content="Исключение из фонда" IsChecked="True"/>
-                  </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Дата постановления"/>
+                    <DatePicker x:Name="dp_DateDecree"/>
+                    <TextBlock Text="Адрес"/>
+                    <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True"/>
+                    <CheckBox x:Name="chb_Inclusion" Content="Включение в фонд" IsChecked="True"/>
+                    <CheckBox x:Name="chb_Exclusion" Content="Исключение из фонда" IsChecked="True"/>
+                </StackPanel>
 
-            <Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>
+                <Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>
             </StackPanel>
         </Grid>
         <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="^v^" Click="bt_ShowOrHideFilterGrid_Click"/>
@@ -40,7 +40,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Visible="{Binding Path=ShowButton}" Content="Скачать файл" x:Name="bt_DownloadFile" Click/>
+                            <Button Visibility="{Binding Path=ShowButton}" Content="Скачать файл" x:Name="bt_DownloadFile" Click="bt_DownloadFile_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
