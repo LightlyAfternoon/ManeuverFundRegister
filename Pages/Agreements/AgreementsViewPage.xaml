@@ -50,7 +50,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Visible="{Binding Path=ShowButton}" Content="Файл" x:Name="bt_DownloadFile" Click/>
+                            <Button Visible="{Binding Path=ShowButton}" Content="Скачать файл" x:Name="bt_DownloadFile" Click/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
