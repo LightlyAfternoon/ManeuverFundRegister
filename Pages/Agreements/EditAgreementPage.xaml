@@ -9,8 +9,11 @@
       Title="EditAgreementPage">
 
     <Grid>
-        <Button x:Name="bt_AttachFile" Content="Прикрепить документ" Click="bt_AttachFile_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBlock x:Name="tbl_AttachedFile" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button x:Name="bt_AttachFile" Content="Прикрепить документ" Click="bt_AttachFile_Click"/>
+            <TextBlock x:Name="tbl_AttachedFile"/>
+        </StackPanel>
+
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="10,0">
