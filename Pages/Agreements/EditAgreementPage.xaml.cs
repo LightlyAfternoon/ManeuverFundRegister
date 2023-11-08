@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Win32;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
@@ -59,7 +61,15 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
 
         private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new();
+            openFileDialog.Filter = "Word файлы (*.doc; *.docx)|*.doc;*.docx";
 
+            if (openFileDialog.ShowDialog() == true)
+            {
+                agreement.File = FileManager.attachFile(openFileDialog.FileName);
+            }
+
+            tbl_AttachedFile.Text = new FileInfo(openFileDialog.FileName);
         }
     }
 }
