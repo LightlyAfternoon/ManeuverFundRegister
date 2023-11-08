@@ -69,7 +69,8 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
                 agreement.File = FileManager.attachFile(openFileDialog.FileName);
             }
 
-            tbl_AttachedFile.Text = new FileInfo(openFileDialog.FileName);
+            FileInfo fileInfo = new(openFileDialog.FileName);
+            tbl_AttachedFile.Text = fileInfo.Name;
         }
     }
 }
