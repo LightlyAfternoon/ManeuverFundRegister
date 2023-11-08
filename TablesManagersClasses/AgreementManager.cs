@@ -47,7 +47,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату окончания договора\n");
             }
-            if (dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && string.Format("{0:dd.MM.yyyy}", a.DateConclusionAgreement) == string.Format("{0:dd.MM.yyyy}", dateConclusion)) > 0)
+            if (dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 0)
             {
                 errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен\n");
             }

@@ -107,5 +107,10 @@ namespace Реестр_маневренного_фонда.Pages
         {
 
         }
+
+        private void cmb_HousingFund_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
