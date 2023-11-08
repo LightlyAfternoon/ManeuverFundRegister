@@ -75,7 +75,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
         private void bt_EditHousingFund_Click(object sender, RoutedEventArgs e)
         {
             currentHousingFund = (sender as Button).DataContext as HousingFund;
-            NavigationService.Navigate(currentHousingFund);
+            NavigationService.Navigate(new EditHouseInFundPage(currentHousingFund));
         }
 
         private void bt_DeleteHousingFund_Click(object sender, RoutedEventArgs e)
