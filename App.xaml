@@ -17,6 +17,10 @@
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="IsReadOnly" Value="true"/>
             </Style>
+
+            <Style TargetType="ComboBox">
+                <Setter Property="Background" Value="White"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
