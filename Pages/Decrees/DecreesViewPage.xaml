@@ -21,7 +21,7 @@
                     <TextBlock Text="Дата постановления"/>
                     <DatePicker x:Name="dp_DateDecree"/>
                     <TextBlock Text="Адрес"/>
-                    <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True"/>
+                    <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
                     <CheckBox x:Name="chb_Inclusion" Content="Включение в фонд" IsChecked="True"/>
                     <CheckBox x:Name="chb_Exclusion" Content="Исключение из фонда" IsChecked="True"/>
                 </StackPanel>

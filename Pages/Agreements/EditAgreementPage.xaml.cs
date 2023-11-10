@@ -72,5 +72,10 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             FileInfo fileInfo = new(openFileDialog.FileName);
             tbl_AttachedFile.Text = fileInfo.Name;
         }
+
+        private void cmb_HousingFund_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

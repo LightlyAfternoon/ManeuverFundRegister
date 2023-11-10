@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -98,11 +99,23 @@ namespace Реестр_маневренного_фонда.Pages
 
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Word файл (*.docx)|*.docx";
-            saveFileDialog.FileName = $"Постановление №{currentDecree.NumberDecree} от {currentDecree.DateDecree.toString("dd.MM.yyyy")}";
+            saveFileDialog.FileName = $"Постановление №{currentDecree.NumberDecree} от {currentDecree.DateDecree.ToString("dd.MM.yyyy")}";
 
             if (saveFileDialog.ShowDialog() == true)
             {
                 FileManager.getAttachedFile(currentDecree.File, saveFileDialog.FileName);
+            }
+        }
+
+        private void cmb_HousingFund_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string[] words;
+
+            words = cmb_HousingFund.Text.ToString().Split(new char[] { ' ', ',' });
+
+            foreach (string word in words)
+            {
+                cmb_HousingFund.ItemsSource = dbContext.HousingFund.AsEnumerable().Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
             }
         }
     }

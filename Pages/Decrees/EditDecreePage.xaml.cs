@@ -60,5 +60,10 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
                 decree.File = FileManager.attachFile(openFileDialog.FileName);
             }
         }
+
+        private void cmb_HousingFund_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

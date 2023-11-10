@@ -29,7 +29,7 @@
                 </StackPanel>
             </StackPanel>
             <TextBlock Text="Адрес жилья" Margin="0,10"/>
-            <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress"/>
+            <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
 
             <Button x:Name="bt_Add" Content="Добавить" Margin="0,10" Click="bt_Add_Click"/>
         </StackPanel>

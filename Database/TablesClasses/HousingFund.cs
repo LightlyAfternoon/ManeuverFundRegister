@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда
@@ -52,6 +53,7 @@ namespace Реестр_маневренного_фонда
                         isChecked = false;
                     }
                 }
+                return isChecked;
             }
         }
     }

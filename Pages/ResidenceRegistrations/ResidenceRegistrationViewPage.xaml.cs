@@ -74,5 +74,10 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
                 gr_FilterGrid.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void cmb_HousingFund_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
