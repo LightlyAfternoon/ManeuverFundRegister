@@ -94,7 +94,16 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void bt_DownloadFile_Click(object sender, RoutedEventArgs e)
         {
+            Decree currentDecree = (sender as Button).DataContext as Decree;
 
+            SaveFileDialog saveFileDialog = new();
+            saveFileDialog.Filter = "Word файл (*.docx)|*.docx";
+            saveFileDialog.FileName = $"Постановление №{currentDecree.NumberDecree} от {currentDecree.DateDecree.toString("dd.MM.yyyy")}";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                FileManager.getAttachedFile(currentDecree.File, saveFileDialog.FileName);
+            }
         }
     }
 }
