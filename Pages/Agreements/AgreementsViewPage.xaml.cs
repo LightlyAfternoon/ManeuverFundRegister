@@ -105,7 +105,15 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void bt_DownloadFile_Click(object sender, RoutedEventArgs e)
         {
+            Agreement currentAgreement = (sender as Button).DataContext as Agreement;
 
+            SaveFileDialog saveFileDialog = new();
+            saveFileDialog.Filter = "Word файл (*.docx)|*.docx";
+
+            if (saveFileDialog.ShowDialog == true)
+            {
+                FileManager.getAttachedFile(currentAgreement.File, saveFileDialog.FileName);
+            }
         }
 
         private void cmb_HousingFund_TextChanged(object sender, TextChangedEventArgs e)
