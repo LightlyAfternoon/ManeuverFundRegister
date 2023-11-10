@@ -110,6 +110,7 @@ namespace Реестр_маневренного_фонда.Pages
 
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Word файл (*.docx)|*.docx";
+            saveFileDialog.FileName = $"Договор №{currentAgreement.NumberAgreement} от {currentAgreement.DateConclusion.toString("dd.MM.yyyy")}";
 
             if (saveFileDialog.ShowDialog() == true)
             {
