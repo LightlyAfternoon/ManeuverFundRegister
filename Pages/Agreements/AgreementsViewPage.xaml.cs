@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -110,7 +111,7 @@ namespace Реестр_маневренного_фонда.Pages
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Word файл (*.docx)|*.docx";
 
-            if (saveFileDialog.ShowDialog == true)
+            if (saveFileDialog.ShowDialog() == true)
             {
                 FileManager.getAttachedFile(currentAgreement.File, saveFileDialog.FileName);
             }
