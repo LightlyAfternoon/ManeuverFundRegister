@@ -37,5 +37,22 @@ namespace Реестр_маневренного_фонда
         }
         [NotMapped]
         public string FullAddress => getFullAddress();
+
+        [NotMapped]
+        public bool IsFreeCheckbox
+        {
+            get
+            {
+                bool isChecked = true;
+                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                {
+                    ResidenceRegistration lastRegistration = ApplicationContext.GetContext().ResidenceRegistration.Last(r => r.HousingFundId == IdHousingFund);
+                    if (lastRegistration.DateEndResidence == null)
+                    {
+                        isChecked = false;
+                    }
+                }
+            }
+        }
     }
 }
