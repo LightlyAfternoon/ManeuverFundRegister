@@ -44,11 +44,12 @@
 
         <DataGrid Grid.Row="2" x:Name = "dg_HousingFund" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
             <DataGrid.Columns>
-                <DataGridTextColumn Header = "Адрес жилья" Binding = "{Binding FullAddress}" Width="2*"/>
-                <DataGridTextColumn Header = "Степень благоустроености" Binding = "{Binding ImprovementDegree.NameImprovementDegree}"/>
-                <DataGridTextColumn Header = "S по постановлению" Binding = "{Binding DecreeArea}"/>
-                <DataGridTextColumn Header = "S по реестру" Binding="{Binding RegisterArea}"/>
-                <DataGridTextColumn Header = "Примечание" Binding="{Binding Remark}"/>
+                <DataGridCheckBoxColumn Header="Свободно?" IsChecked="{Binding Path=IsFreeCheck}">
+                <DataGridTextColumn Header="Адрес жилья" Binding="{Binding FullAddress}" Width="2*"/>
+                <DataGridTextColumn Header="Степень благоустроености" Binding="{Binding ImprovementDegree.NameImprovementDegree}"/>
+                <DataGridTextColumn Header="S по постановлению" Binding="{Binding DecreeArea}"/>
+                <DataGridTextColumn Header="S по реестру" Binding="{Binding RegisterArea}"/>
+                <DataGridTextColumn Header="Примечание" Binding="{Binding Remark}"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
