@@ -117,6 +117,8 @@ namespace Реестр_маневренного_фонда.Pages
             {
                 cmb_HousingFund.ItemsSource = dbContext.HousingFund.AsEnumerable().Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
             }
+
+            cmb_HousingFund.IsDropDownOpen = true;
         }
     }
 }
