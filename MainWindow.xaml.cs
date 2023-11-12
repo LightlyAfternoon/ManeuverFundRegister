@@ -103,8 +103,30 @@ namespace Реестр_маневренного_фонда
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            DragMove();
+
             if (pop_Notif.IsOpen)
                 pop_Notif.IsOpen = false;
+        }
+
+        private void bt_CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_MaxWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_MinWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_Info_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
