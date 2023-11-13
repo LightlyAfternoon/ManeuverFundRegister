@@ -116,12 +116,14 @@ namespace Реестр_маневренного_фонда
 
         private void bt_MaxWindow_Click(object sender, RoutedEventArgs e)
         {
-            if (WindowState == WindowState.Minimized)
+            if (WindowState == WindowState.Maximized)
             {
                 WindowState = WindowState.Normal;
+                ResizeMode = ResizeMode.CanResize;
             }
             else
             {
+                ResizeMode = ResizeMode.NoResize;
                 WindowState = WindowState.Maximized;
             }
         }
