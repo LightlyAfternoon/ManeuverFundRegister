@@ -19,7 +19,7 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="ФИО нанимателя"/>
-                    <ComboBox x:Name="cmb_FullNameTR" DisplayMemberPath="FullName" Width="250" IsEditable="True"/>
+                    <ComboBox x:Name="cmb_FullNameTR" DisplayMemberPath="FullName" Width="250" IsEditable="True" IsEditable="True" TextBoxBase.TextChanged/>
                     <TextBlock Text="Адрес"/>
                     <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
                 </StackPanel>
