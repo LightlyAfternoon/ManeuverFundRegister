@@ -103,10 +103,10 @@ namespace Реестр_маневренного_фонда
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            DragMove();
-
             if (pop_Notif.IsOpen)
                 pop_Notif.IsOpen = false;
+                
+            DragMove();
         }
 
         private void bt_CloseWindow_Click(object sender, RoutedEventArgs e)
@@ -116,12 +116,19 @@ namespace Реестр_маневренного_фонда
 
         private void bt_MaxWindow_Click(object sender, RoutedEventArgs e)
         {
-            SystemCommands.MaximizeWindow(this);
+            if (WindowState == WindowState.Minimized)
+            {
+                WiindowState = WindowState.Normal;
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+            }
         }
 
         private void bt_MinWindow_Click(object sender, RoutedEventArgs e)
         {
-            SystemCommands.MinimizeWindow(this);
+            WindowState = WindowState.Minimized;
         }
 
         private void bt_Info_Click(object sender, RoutedEventArgs e)
