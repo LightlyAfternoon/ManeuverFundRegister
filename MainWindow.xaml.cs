@@ -118,7 +118,7 @@ namespace Реестр_маневренного_фонда
         {
             if (WindowState == WindowState.Minimized)
             {
-                WiindowState = WindowState.Normal;
+                WindowState = WindowState.Normal;
             }
             else
             {
