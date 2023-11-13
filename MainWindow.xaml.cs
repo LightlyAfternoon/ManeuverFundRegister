@@ -111,17 +111,17 @@ namespace Реестр_маневренного_фонда
 
         private void bt_CloseWindow_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void bt_MaxWindow_Click(object sender, RoutedEventArgs e)
         {
-
+            SystemCommands.MaximizeWindow(this);
         }
 
         private void bt_MinWindow_Click(object sender, RoutedEventArgs e)
         {
-
+            SystemCommands.MinimizeWindow(this);
         }
 
         private void bt_Info_Click(object sender, RoutedEventArgs e)
