@@ -18,7 +18,7 @@
                     <TextBlock Text="Номер"/>
                     <TextBox Height="25" x:Name="tb_Number"/>
                     <TextBlock Text="Временно проживающий"/>
-                    <ComboBox x:Name="cmb_TempReident" Height="25" DisplayMemberPath="FullName"/>
+                    <ComboBox x:Name="cmb_TempReident" Height="25" DisplayMemberPath="FullName" IsEditable="True" TextBoxBase.TextChanged/>
                     <TextBlock Text="Адрес жилья"/>
                     <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
                 </StackPanel>
