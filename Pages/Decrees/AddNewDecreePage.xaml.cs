@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
@@ -46,12 +47,24 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
             if (openFileDialog.ShowDialog() == true)
             {
                 newDecree.File = FileManager.attachFile(openFileDialog.FileName);
+
+                FileInfo fileInfo = new(openFileDialog.FileName);
+                tbl_AttachedFile.Text = fileInfo.Name;
             }
         }
 
         private void cmb_HousingFund_TextChanged(object sender, TextChangedEventArgs e)
         {
+            string[] words;
 
+            words = cmb_HousingFund.Text.ToString().Split(new char[] { ' ', ',' });
+
+            foreach (string word in words)
+            {
+                cmb_HousingFund.ItemsSource = dbContext.HousingFund.AsEnumerable().Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
+            }
+
+            cmb_HousingFund.IsDropDownOpen = true;
         }
     }
 }

@@ -18,18 +18,22 @@
               <StackPanel Margin="10,0" Orientation="Horizontal">
                 <StackPanel Margin="10,0">
                     <TextBlock Text="Номер"/>
-                    <TextBox Height="25" x:Name="tb_Number"/>
+                    <TextBox Height="25" x:Name="tb_Number" BorderBrush="Blue"/>
                     <TextBlock Text="Дата заключения"/>
-                    <DatePicker x:Name="dp_DateConclusion"/>
+                    <DatePicker x:Name="dp_DateConclusion" BorderBrush="Blue"/>
                 </StackPanel>
 
-                <StackPanel Margin="10,0">
-                    <RadioButton x:Name="rb_Inclusion" Content="Включение в фонд" Margin="0,20,0,0"/>
-                    <RadioButton x:Name="rb_Exclusion" Content="Исключение из фонда" Margin="0,20,0,0"/>
-                </StackPanel>
+                <Border BorderThickness="1" BorderBrush="Blue" Margin="10,0" Padding="5">
+                    <StackPanel>
+                        <RadioButton x:Name="rb_Inclusion" Content="Включение в фонд" Margin="0,10,0,0"/>
+                        <RadioButton x:Name="rb_Exclusion" Content="Исключение из фонда" Margin="0,20,0,0"/>
+                    </StackPanel>
+                </Border>
                 </StackPanel>
             <TextBlock Text="Адрес жилья" Margin="0,10"/>
-            <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
+            <Border BorderThickness="1" BorderBrush="Blue">
+                <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
+            </Border>
 
             <Button x:Name="bt_Edit" Content="Изменить" Margin="0,10" Click="bt_Edit_Click"/>
         </StackPanel>

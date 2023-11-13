@@ -11,9 +11,9 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Фамилия"/>
-            <TextBox Height="25" x:Name="tb_LastName"/>
+            <TextBox Height="25" x:Name="tb_LastName" BorderBrush="Blue"/>
             <TextBlock Text="Имя"/>
-            <TextBox Height="25" x:Name="tb_FirstName"/>
+            <TextBox Height="25" x:Name="tb_FirstName" BorderBrush="Blue"/>
             <TextBlock Text="Отчество"/>
             <TextBox Height="25" x:Name="tb_Patronymic"/>
             <TextBlock Text="Примечание" Margin="0,20,0,0"/>

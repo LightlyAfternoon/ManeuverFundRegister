@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Input;
 using Реестр_маневренного_фонда.Pages;
 using Реестр_маневренного_фонда.Pages.HousingsFund;
 using Реестр_маневренного_фонда.Pages.ResidenceRegistrations;
@@ -106,12 +107,13 @@ namespace Реестр_маневренного_фонда
             if (pop_Notif.IsOpen)
                 pop_Notif.IsOpen = false;
                 
-            DragMove();
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
         private void bt_CloseWindow_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void bt_MaxWindow_Click(object sender, RoutedEventArgs e)
@@ -135,7 +137,8 @@ namespace Реестр_маневренного_фонда
 
         private void bt_Info_Click(object sender, RoutedEventArgs e)
         {
-
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.Show();
         }
     }
 }

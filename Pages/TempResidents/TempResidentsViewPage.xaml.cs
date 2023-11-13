@@ -74,10 +74,12 @@ namespace Реестр_маневренного_фонда.Pages
             if (gr_FilterGrid.Visibility == Visibility.Collapsed)
             {
                 gr_FilterGrid.Visibility = Visibility.Visible;
+                bt_ShowOrHideFilterGrid.Content = "^";
             }
             else
             {
                 gr_FilterGrid.Visibility = Visibility.Collapsed;
+                bt_ShowOrHideFilterGrid.Content = "v";
             }
         }
     }

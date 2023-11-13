@@ -98,15 +98,23 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
         }
 
-        public void RemoveTempResident(TempResident currenTempResident)
+        public void RemoveTempResident(TempResident currentTempResident)
         {
             try
             {
-                dbContext.TempResident.Remove(currenTempResident);
-                dbContext.SaveChanges();
-                
-                MessageBox.Show("Наниматель удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                MainFrameObj.mainFrame.Navigate(new TempResidentsViewPage());
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить нанимателя?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                switch (messageBoxResult)
+                {
+                    case MessageBoxResult.Yes:
+                        dbContext.TempResident.Remove(currentTempResident);
+                        dbContext.SaveChanges();
+
+                        MessageBox.Show("Наниматель удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MainFrameObj.mainFrame.Navigate(new TempResidentsViewPage());
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
             catch
             {

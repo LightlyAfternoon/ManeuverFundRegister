@@ -93,10 +93,12 @@ namespace Реестр_маневренного_фонда.Pages
             if (gr_FilterGrid.Visibility == Visibility.Collapsed)
             {
                 gr_FilterGrid.Visibility = Visibility.Visible;
+                bt_ShowOrHideFilterGrid.Content = "^";
             }
             else
             {
                 gr_FilterGrid.Visibility = Visibility.Collapsed;
+                bt_ShowOrHideFilterGrid.Content = "v";
             }
         }
 
@@ -131,6 +133,20 @@ namespace Реестр_маневренного_фонда.Pages
             }
 
             cmb_HousingFund.IsDropDownOpen = true;
+        }
+
+        private void cmb_FullNameTR_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string[] words;
+
+            words = cmb_FullNameTR.Text.ToString().Split(' ');
+
+            foreach (string word in words)
+            {
+                cmb_FullNameTR.ItemsSource = dbContext.TempResident.AsEnumerable().Where(h => h.FullName.ToLower().Contains(word.ToLower())).ToList();
+            }
+
+            cmb_FullNameTR.IsDropDownOpen = true;
         }
     }
 }

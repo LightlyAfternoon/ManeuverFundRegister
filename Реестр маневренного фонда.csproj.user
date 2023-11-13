@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="HelpWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Agreements\AddNewAgreementPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -64,6 +67,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="HelpWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Agreements\AddNewAgreementPage.xaml">
       <SubType>Designer</SubType>
     </Page>

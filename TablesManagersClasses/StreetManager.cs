@@ -87,11 +87,19 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         {
             try
             {
-                dbContext.Street.Remove(currenStreet);
-                dbContext.SaveChanges();
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить улицу?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                switch (messageBoxResult)
+                {
+                    case MessageBoxResult.Yes:
+                        dbContext.Street.Remove(currenStreet);
+                        dbContext.SaveChanges();
                 
-                MessageBox.Show("Улица удалена", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                MainFrameObj.mainFrame.Navigate(new StreetsViewPage());
+                        MessageBox.Show("Улица удалена", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MainFrameObj.mainFrame.Navigate(new StreetsViewPage());
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
             catch
             {

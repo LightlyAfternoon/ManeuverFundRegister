@@ -13,11 +13,15 @@
             <StackPanel Margin="10,0" Orientation="Horizontal">
                 <StackPanel Margin="10,0">
                     <TextBlock Text="Населённый пункт"/>
-                    <ComboBox Height="25" x:Name="cmb_Locality" DisplayMemberPath="NameLocality" DropDownClosed="cmb_Locality_DropDownClosed"  SelectionChanged="cmb_Locality_SelectionChanged"/>
+                    <Border BorderThickness="1" BorderBrush="Blue">
+                        <ComboBox Height="25" x:Name="cmb_Locality" DisplayMemberPath="NameLocality" DropDownClosed="cmb_Locality_DropDownClosed"  SelectionChanged="cmb_Locality_SelectionChanged"/>
+                    </Border>
                     <TextBlock Text="Улица"/>
-                    <ComboBox Height="25" x:Name="cmb_Street" DisplayMemberPath="NameStreet"/>
+                    <Border BorderThickness="1" BorderBrush="Blue">
+                        <ComboBox Height="25" x:Name="cmb_Street" DisplayMemberPath="NameStreet"/>
+                    </Border>
                     <TextBlock Text="Номер дома"/>
-                    <TextBox Height="25" x:Name="tb_HouseNumber"/>
+                    <TextBox Height="25" x:Name="tb_HouseNumber" BorderBrush="Blue"/>
                     <TextBlock Text="Номер квартиры"/>
                     <TextBox Height="25" x:Name="tb_ApartmentNumber"/>
                     <TextBlock Text="Номер комнаты"/>
@@ -26,7 +30,9 @@
 
                 <StackPanel Margin="10,0">
                     <TextBlock Text="Степень благоустройства"/>
-                    <ComboBox Height="25" x:Name="cmb_ImprovementDegree" DisplayMemberPath="NameImprovementDegree"/>
+                    <Border BorderThickness="1" BorderBrush="Blue">
+                        <ComboBox Height="25" x:Name="cmb_ImprovementDegree" DisplayMemberPath="NameImprovementDegree"/>
+                    </Border>
                     <TextBlock Text="DecreeArea"/>
                     <TextBox Height="25" x:Name="tb_DecreeArea"/>
                     <TextBlock Text="Площадь по реестру"/>

@@ -7,10 +7,11 @@
         <ResourceDictionary>
             <Style TargetType="TextBlock">
                 <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
             </Style>
 
             <Style TargetType="Button">
-                
+
             </Style>
 
             <Style TargetType="DataGrid">
@@ -20,6 +21,7 @@
 
             <Style TargetType="ComboBox">
                 <Setter Property="Background" Value="White"/>
+                <Setter Property="StaysOpenOnEdit" Value="True"/>
             </Style>
 
             <Style x:Key="titleBarButtons" TargetType="Button">

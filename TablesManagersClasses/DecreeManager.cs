@@ -107,11 +107,19 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         {
             try
             {
-                dbContext.Decree.Remove(currentDecree);
-                dbContext.SaveChanges();
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить нанимателя?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                switch (messageBoxResult)
+                {
+                    case MessageBoxResult.Yes:
+                        dbContext.Decree.Remove(currentDecree);
+                        dbContext.SaveChanges();
                 
-                MessageBox.Show("Постановление удалено", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                MainFrameObj.mainFrame.Navigate(new DecreesViewPage());
+                        MessageBox.Show("Постановление удалено", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MainFrameObj.mainFrame.Navigate(new DecreesViewPage());
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
             catch
             {

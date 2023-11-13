@@ -120,7 +120,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     
                     dbContext.SaveChanges();
 
-                    MessageBox.Show("Договор и факт начала проживания в жилье добавлен", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Договор добавлен", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
                 }
                 catch
@@ -186,11 +186,19 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         {
             try
             {
-                dbContext.Agreement.Remove(currentAgreement);
-                dbContext.SaveChanges();
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить договор?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                switch (messageBoxResult)
+                {
+                    case MessageBoxResult.Yes:
+                        dbContext.Agreement.Remove(currentAgreement);
+                        dbContext.SaveChanges();
 
-                MessageBox.Show("Договор удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
+                        MessageBox.Show("Удаление прошло успешно", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
             catch
             {

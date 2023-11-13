@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Pages;
 using Реестр_маневренного_фонда.Pages.HousingsFund;
 
 namespace Реестр_маневренного_фонда.TablesManagersClasses
@@ -190,11 +191,19 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         {
             try
             {
-                dbContext.HousingFund.Remove(currentHouseInFund);
-                dbContext.SaveChanges();
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить нанимателя?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                switch (messageBoxResult)
+                {
+                    case MessageBoxResult.Yes:
+                        dbContext.HousingFund.Remove(currentHouseInFund);
+                        dbContext.SaveChanges();
                 
-                MessageBox.Show("Жильё удалено", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                MainFrameObj.mainFrame.Navigate(new HousingFundViewPage());
+                        MessageBox.Show("Жильё удалено", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MainFrameObj.mainFrame.Navigate(new HousingFundViewPage());
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
             catch
             {

@@ -81,11 +81,19 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         {
             try
             {
-                dbContext.Locality.Remove(currenLocality);
-                dbContext.SaveChanges();
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить нанимателя?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                switch (messageBoxResult)
+                {
+                    case MessageBoxResult.Yes:
+                        dbContext.Locality.Remove(currenLocality);
+                        dbContext.SaveChanges();
                 
-                MessageBox.Show("Населённый пункт удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                MainFrameObj.mainFrame.Navigate(new LocalitiesViewPage());
+                        MessageBox.Show("Населённый пункт удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MainFrameObj.mainFrame.Navigate(new LocalitiesViewPage());
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
             catch
             {

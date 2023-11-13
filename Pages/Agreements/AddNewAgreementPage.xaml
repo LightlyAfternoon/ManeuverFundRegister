@@ -18,18 +18,22 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="10,0">
                     <TextBlock Text="Номер"/>
-                    <TextBox Height="25" x:Name="tb_Number"/>
+                    <TextBox Height="25" x:Name="tb_Number" BorderBrush="Blue"/>
                     <TextBlock Text="Временно проживающий"/>
-                    <ComboBox x:Name="cmb_TempReident" Height="25" DisplayMemberPath="FullName" IsEditable="True" TextBoxBase.TextChanged/>
+                    <Border BorderThickness="1" BorderBrush="Blue">
+                        <ComboBox x:Name="cmb_TempReident" Height="25" DisplayMemberPath="FullName" IsEditable="True" TextBoxBase.TextChanged="cmb_TempReident_TextChanged"/>
+                    </Border>
                     <TextBlock Text="Адрес жилья"/>
-                    <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
+                    <Border BorderThickness="1" BorderBrush="Blue">
+                        <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged" BorderBrush="Blue"/>
+                    </Border>
                 </StackPanel>
 
                 <StackPanel Margin="10,0">
                     <TextBlock Text="Дата заключения"/>
-                    <DatePicker x:Name="dp_DateConclusion"/>
+                    <DatePicker x:Name="dp_DateConclusion" BorderBrush="Blue"/>
                     <TextBlock Text="Дата окончания"/>
-                    <DatePicker x:Name="dp_DateEnd"/>
+                    <DatePicker x:Name="dp_DateEnd" BorderBrush="Blue"/>
                 </StackPanel>
             </StackPanel>
             <TextBlock Text="Примечание"/>
