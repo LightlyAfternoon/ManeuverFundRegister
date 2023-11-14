@@ -122,5 +122,10 @@ namespace Реестр_маневренного_фонда.Pages
 
             cmb_HousingFund.IsDropDownOpen = true;
         }
+
+        private void bt_AddNewDecree_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

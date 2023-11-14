@@ -103,5 +103,10 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
                 bt_ShowOrHideFilterGrid.Content = "v";
             }
         }
+
+        private void bt_AddNewHouseInFund_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

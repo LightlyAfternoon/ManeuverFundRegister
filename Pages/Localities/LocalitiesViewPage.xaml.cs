@@ -74,5 +74,10 @@ namespace Реестр_маневренного_фонда.Pages
                 bt_ShowOrHideFilterGrid.Content = "v";
             }
         }
+
+        private void bt_AddNewLocality_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

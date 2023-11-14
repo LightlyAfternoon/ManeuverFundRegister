@@ -67,12 +67,12 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     dbContext.Locality.Update(currentLocality);
                     dbContext.SaveChanges();
 
-                    MessageBox.Show("Населённый пункт добавлен", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Населённый пункт изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainFrameObj.mainFrame.Navigate(new LocalitiesViewPage());
                 }
                 catch
                 {
-                    MessageBox.Show("Не удалось добавить населённый пункт", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Не удалось изменить населённый пункт", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

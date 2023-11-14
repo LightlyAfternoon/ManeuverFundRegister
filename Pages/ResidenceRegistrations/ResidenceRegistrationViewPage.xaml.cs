@@ -104,5 +104,15 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
             cmb_FullNameTR.IsDropDownOpen = true;
         }
+
+        private void bt_EditRegitration_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_DeleteRegistration_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

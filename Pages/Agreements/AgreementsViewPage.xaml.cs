@@ -148,5 +148,10 @@ namespace Реестр_маневренного_фонда.Pages
 
             cmb_FullNameTR.IsDropDownOpen = true;
         }
+
+        private void bt_AddNewAgreement_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

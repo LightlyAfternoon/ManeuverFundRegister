@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Pages.Streets;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages
@@ -53,7 +54,7 @@ namespace Реестр_маневренного_фонда.Pages
         private void bt_EditStreet_Click(object sender, RoutedEventArgs e)
         {
             currentStreet = (sender as Button).DataContext as Street;
-            NavigationService.Navigate(currentStreet);
+            NavigationService.Navigate(new EditStreetPage(currentStreet));
         }
 
         private void bt_DeleteStreet_Click(object sender, RoutedEventArgs e)
@@ -80,6 +81,11 @@ namespace Реестр_маневренного_фонда.Pages
                 gr_FilterGrid.Visibility = Visibility.Collapsed;
                 bt_ShowOrHideFilterGrid.Content = "v";
             }
+        }
+
+        private void bt_AddNewStreet_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
