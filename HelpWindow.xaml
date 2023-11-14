@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Реестр_маневренного_фонда"
         mc:Ignorable="d"
-        Title="HelpWindow" Height="450" Width="800" MouseDown="Window_MouseDown"
+        Title="Справка" Height="450" Width="800" MouseDown="Window_MouseDown"
         WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
@@ -28,7 +28,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button x:Name="bt_MaxWindow" Content="🗖" Click="bt_MaxWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
+            <Button x:Name="bt_MaxWindow" Content="☐" Click="bt_MaxWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
             <Button x:Name="bt_MinWindow" Content="🗕" Click="bt_MinWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
         </DockPanel>
         
