@@ -29,7 +29,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button x:Name="bt_MaxWindow" Content="🗖" Click="bt_MaxWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
+            <Button x:Name="bt_MaxWindow" Content="☐" Click="bt_MaxWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
             <Button x:Name="bt_MinWindow" Content="🗕" Click="bt_MinWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
             <Button x:Name="bt_Info" Content="🛈" Click="bt_Info_Click" DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
         </DockPanel>
