@@ -24,11 +24,13 @@ namespace Реестр_маневренного_фонда
             {
                 WindowState = WindowState.Normal;
                 ResizeMode = ResizeMode.CanResize;
+                bt_MaxWindow.Content = "☐";
             }
             else
             {
                 ResizeMode = ResizeMode.NoResize;
                 WindowState = WindowState.Maximized;
+                bt_MaxWindow.Content = "❐";
             }
         }
 
