@@ -7,64 +7,81 @@
         mc:Ignorable="d"
         Title="Реестр маневренного фонда" Height="450" Width="800" MinHeight="450" MinWidth="800" MouseDown="Window_MouseDown"
         WindowStyle="None" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="180"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
+    <Grid Height="25">
         <DockPanel LastChildFill="False">
-            <Image Source="Resources/town-hall.png" Margin="7,0" VerticalAlignment="Center" Height="17"/>
-            <TextBlock DockPanel.Dock="Left" Text="Реестр маневренного фонда" VerticalAlignment="Center" FontSize="12"/>
-            <Button x:Name="bt_CloseWindow" Content="✕" Click="bt_CloseWindow_Click"  DockPanel.Dock="Right">
-                <Button.Style>
-                    <Style TargetType="Button" BasedOn="{StaticResource titleBarButtons}">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="Red"/>
-                                <Setter Property="Foreground" Value="White"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button x:Name="bt_MaxWindow" Content="☐" Click="bt_MaxWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
-            <Button x:Name="bt_MinWindow" Content="🗕" Click="bt_MinWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
-            <Button x:Name="bt_Info" Content="🛈" Click="bt_Info_Click" DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
+                <Image Source="Resources/town-hall.png" Margin="7,0" VerticalAlignment="Center" Height="17"/>
+                <TextBlock DockPanel.Dock="Left" Text="Реестр маневренного фонда" VerticalAlignment="Center" FontSize="12"/>
+                <Button x:Name="bt_CloseWindow" Content="✕" Click="bt_CloseWindow_Click"  DockPanel.Dock="Right">
+                        <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource titleBarButtons}">
+                                        <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="Red"/>
+                                                        <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                        </Style.Triggers>
+                                </Style>
+                        </Button.Style>
+                </Button>
+                <Button x:Name="bt_MaxWindow" Content="☐" Click="bt_MaxWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
+                <Button x:Name="bt_MinWindow" Content="🗕" Click="bt_MinWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
+                <Button x:Name="bt_Info" Content="🛈" Click="bt_Info_Click" DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
         </DockPanel>
 
-        <StackPanel Grid.Row="1" Orientation = "Vertical">
-            <Button Name = "bt_NotificationsView" HorizontalAlignment="Right" Content="Оповещения" Click="bt_NotificationsView_Click"/>
-            <Button Name = "bt_AgreementsViewPage" Content="Договоры" Click="bt_AgreementsViewPage_Click"/>
-            <Button Name = "bt_DecreesViewPage" Content="Постановления" Click="bt_DecreesViewPage_Click"/>
-            <Button Name = "bt_HousingFundViewPage" Content="Жильё фонда" Click="bt_HousingFundViewPage_Click"/>
-            <Button Name = "bt_LocalitiesViewPage" Content="Населённые пункты" Click="bt_LocalitiesViewPage_Click"/>
-            <Button Name = "bt_ResidenceRegistrationViewPage" Content="Факты проживания в жилье" Click="bt_ResidenceRegistrationViewPage_Click"/>
-            <Button Name = "bt_StreetsViewPage" Content="Улицы" Click="bt_StreetsViewPage_Click"/>
-            <Button Name = "bt_TempResidentsViewPage" Content="Наниматели" Click="bt_TempResidentsViewPage_Click"/>
-            <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget ="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="200" Width="500">
-                <ListView x:Name="lv_pop">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock>
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="Срок договора №{0} от {1:dd.MM.yyyy} заканчивается {2:dd.MM.yyyy}">
-                                            <Binding Path="Agreement.NumberAgreement"/>
-                                            <Binding Path="Agreement.DateConclusionAgreement"/>
-                                            <Binding Path="Agreement.DateEndAgreement"/>
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                                <TextBlock Text="{Binding RecievingDate, StringFormat='dd.MM.yyyy'}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Popup>
-        </StackPanel>
+        <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+        
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Height="auto"/>
+                    <ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-        <Frame Grid.Row="2" x:Name = "fr_Frame" NavigationUIVisibility = "Hidden"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button x:Name="bt_MenuVisibility" Content=">" Click="bt_MenuVisibility_Click"/>
+                    <StackPanel x:Name="sp_ViewPageButtons" Visibility="Collapsed" Grid.Row="1">
+                        <Button Name = "bt_NotificationsView" HorizontalAlignment="Right" Content="Оповещения" Click="bt_NotificationsView_Click"/>
+                        <Button Name = "bt_AgreementsViewPage" Content="Договоры" Click="bt_AgreementsViewPage_Click"/>
+                        <Button Name = "bt_DecreesViewPage" Content="Постановления" Click="bt_DecreesViewPage_Click"/>
+                        <Button Name = "bt_HousingFundViewPage" Content="Жильё фонда" Click="bt_HousingFundViewPage_Click"/>
+                        <Button Name = "bt_LocalitiesViewPage" Content="Населённые пункты" Click="bt_LocalitiesViewPage_Click"/>
+                        <Button Name = "bt_ResidenceRegistrationViewPage" Content="Факты проживания в жилье" Click="bt_ResidenceRegistrationViewPage_Click"/>
+                        <Button Name = "bt_StreetsViewPage" Content="Улицы" Click="bt_StreetsViewPage_Click"/>
+                        <Button Name = "bt_TempResidentsViewPage" Content="Наниматели" Click="bt_TempResidentsViewPage_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Grid.Column="1" Orientation = "Vertical">
+                    <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget ="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="200" Width="500">
+                        <ListView x:Name="lv_pop">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Срок договора №{0} от {1:dd.MM.yyyy} заканчивается {2:dd.MM.yyyy}">
+                                                    <Binding Path="Agreement.NumberAgreement"/>
+                                                    <Binding Path="Agreement.DateConclusionAgreement"/>
+                                                    <Binding Path="Agreement.DateEndAgreement"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding RecievingDate, StringFormat='dd.MM.yyyy'}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Popup>
+                </StackPanel>
+        
+                <Frame Grid.Row="1" Grid.Column="1" x:Name = "fr_Frame" NavigationUIVisibility = "Hidden"/>
+            </Grid>
     </Grid>
 </Window>
