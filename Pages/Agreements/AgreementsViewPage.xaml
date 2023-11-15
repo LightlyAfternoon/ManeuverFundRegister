@@ -17,60 +17,61 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
-            <StackPanel>
+            <StackPanel HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="ФИО нанимателя"/>
-                    <ComboBox x:Name="cmb_FullNameTR" DisplayMemberPath="FullName" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_FullNameTR_TextChanged"/>
-                    <TextBlock Text="Адрес"/>
-                    <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
+                    <TextBlock Text="ФИО нанимателя" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmb_FullNameTR" DisplayMemberPath="FullName" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_FullNameTR_TextChanged" Margin="10" VerticalAlignment="Center"/>
+                    <TextBlock Text="Адрес" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged" Margin="0,10,0,10"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Дата заключения"/>
-                    <DatePicker x:Name="dp_DateConclusionAgreement"/>
-                    <TextBlock Text="Дата окончания"/>
-                    <DatePicker x:Name="dp_DateEndAgreement"/>
-                    <TextBlock Text="Дата расторжения"/>
-                    <DatePicker x:Name="dp_DateTerminationAgreement"/>
+                    <TextBlock Text="Дата заключения" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <DatePicker x:Name="dp_DateConclusionAgreement" Margin="10"/>
+                    <TextBlock Text="Дата окончания" VerticalAlignment="Center"/>
+                    <DatePicker x:Name="dp_DateEndAgreement" Margin="10"/>
+                    <TextBlock Text="Дата расторжения" VerticalAlignment="Center"/>
+                    <DatePicker x:Name="dp_DateTerminationAgreement"  Margin="10,0,10,0" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>
             </StackPanel>
         </Grid>
+
         <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="v" Click="bt_showOrHideFilterGrid_Click"/>
 
-        <DataGrid Grid.Row="2" x:Name = "dg_Agreements" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер договора" Binding="{Binding NumberAgreement}"/>
-                <DataGridTextColumn Header="ФИО нанимателя" Binding="{Binding TempResident.FullName}"/>
-                <DataGridTextColumn Header="Адрес жилья" Binding="{Binding HousingFund.FullAddress}"/>
-                <DataGridTextColumn Header="Дата заключения" Binding="{Binding DateConclusionAgreement, StringFormat='dd.MM.yyyy'}"/>
-                <DataGridTextColumn Header="Дата окончания" Binding="{Binding DateEndAgreement, StringFormat='dd.MM.yyyy'}"/>
-                <DataGridTextColumn Header="Дата расторжения" Binding="{Binding DateTerminationAgreement, StringFormat='dd.MM.yyyy'}"/>
-                <DataGridTextColumn Header="Примечание" Binding="{Binding Remark}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
+        <ListBox Grid.Row="2" x:Name = "lb_Agreements">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Margin" Value="0,5"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Left" Text="{Binding NumberAgreement, StringFormat='Договор №{0}'}" VerticalAlignment="Center"/>
+
+                        <StackPanel Margin="20" HorizontalAlignment="Stretch">
+                            <TextBlock Text="{Binding TempResident.FullName, StringFormat='Наниматель {0}'}"/>
+                            <TextBlock Text="{Binding HousingFund.FullAddress, StringFormat='Адрес жилья: {0}'}"/>
+                            <TextBlock Text="{Binding DateConclusionAgreement, StringFormat='Дата заключения: {0:dd.MM.yyyy}'}"/>
+                            <TextBlock Text="{Binding DateEndAgreement, StringFormat='Дата окончания: {0:dd.MM.yyyy}'}"/>
+                            <TextBlock Text="{Binding DateTerminationAgreement, StringFormat='Дата расторжения: {0:dd.MM.yyyy}'}"/>
+                            <TextBlock Text="{Binding Remark, StringFormat='Примечание: {0}'}"/>
+                        </StackPanel>
+
+                        <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center">
                             <Button Visibility="{Binding Path=ShowButton}" Content="Скачать файл" x:Name="bt_DownloadFile" Click="bt_DownloadFile_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
                             <Button Content="Редактировать" x:Name="bt_EditAgreement" Click="bt_EditAgreement_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
                             <Button Content="Удалить" x:Name="bt_DeleteAgreement" Click="bt_DeleteAgreement_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <Button Grid.Row="3" x:Name="bt_AddNewAgreement" Content="Добавить договор" Click="bt_AddNewAgreement_Click"/>
     </Grid>

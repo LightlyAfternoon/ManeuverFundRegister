@@ -78,7 +78,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
                     dbContext.Agreement.Add(newAgreement);
 
-                    ResidenceRegistration lastRegistration = dbContext.ResidenceRegistration.Last(r => r.HousingFundId == housingFund.IdHousingFund);
+                    ResidenceRegistration lastRegistration = dbContext.ResidenceRegistration.OrderBy(t => t.DateStartResidence).Last(r => r.HousingFundId == housingFund.IdHousingFund);
 
                     ResidenceRegistration newRegistration = new ResidenceRegistration();
                     if (dbContext.ResidenceRegistration.Count(r => r.HousingFundId == housingFund.IdHousingFund && lastRegistration.DateEndResidence == null) > 0)

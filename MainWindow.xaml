@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Реестр_маневренного_фонда"
         mc:Ignorable="d"
-        Title="Реестр маневренного фонда" Height="450" Width="800" MinHeight="450" MinWidth="800" MouseDown="Window_MouseDown"
+        Title="Реестр маневренного фонда" Height="450" Width="825" MinHeight="450" MinWidth="800" MouseDown="Window_MouseDown"
         WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -30,58 +30,59 @@
                 </Button>
                 <Button x:Name="bt_MaxWindow" Content="☐" Click="bt_MaxWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
                 <Button x:Name="bt_MinWindow" Content="🗕" Click="bt_MinWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
-                <Button x:Name="bt_Info" Content="🛈" Click="bt_Info_Click" DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
+            <Button Name = "bt_NotificationsView" HorizontalAlignment="Right" DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}" Content="🔔" Click="bt_NotificationsView_Click"/>
+            <Button x:Name="bt_Info" Content="🛈" Click="bt_Info_Click" DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
         </DockPanel>
 
         <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+            <Grid Background="LightBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-                    <Button x:Name="bt_MenuVisibility" Content=">" Click="bt_MenuVisibility_Click"/>
-                    <StackPanel x:Name="sp_ViewPageButtons" Visibility="Collapsed" Grid.Row="1">
-                        <Button Name = "bt_NotificationsView" HorizontalAlignment="Right" Content="Оповещения" Click="bt_NotificationsView_Click"/>
-                        <Button Name = "bt_AgreementsViewPage" Content="Договоры" Click="bt_AgreementsViewPage_Click"/>
-                        <Button Name = "bt_DecreesViewPage" Content="Постановления" Click="bt_DecreesViewPage_Click"/>
-                        <Button Name = "bt_HousingFundViewPage" Content="Жильё фонда" Click="bt_HousingFundViewPage_Click"/>
-                        <Button Name = "bt_LocalitiesViewPage" Content="Населённые пункты" Click="bt_LocalitiesViewPage_Click"/>
-                        <Button Name = "bt_ResidenceRegistrationViewPage" Content="Факты проживания в жилье" Click="bt_ResidenceRegistrationViewPage_Click"/>
-                        <Button Name = "bt_StreetsViewPage" Content="Улицы" Click="bt_StreetsViewPage_Click"/>
-                        <Button Name = "bt_TempResidentsViewPage" Content="Наниматели" Click="bt_TempResidentsViewPage_Click"/>
-                    </StackPanel>
-                </Grid>
+                <Button x:Name="bt_MenuVisibility" Content="☰" Click="bt_MenuVisibility_Click" HorizontalAlignment="Right" Style="{StaticResource menuButtons}" Padding="3,0,3,1"/>
 
-                <StackPanel Grid.Column="1" Orientation = "Vertical">
-                    <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget ="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="200" Width="500">
-                        <ListView x:Name="lv_pop">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock>
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="Срок договора №{0} от {1:dd.MM.yyyy} заканчивается {2:dd.MM.yyyy}">
-                                                    <Binding Path="Agreement.NumberAgreement"/>
-                                                    <Binding Path="Agreement.DateConclusionAgreement"/>
-                                                    <Binding Path="Agreement.DateEndAgreement"/>
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding RecievingDate, StringFormat='dd.MM.yyyy'}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Popup>
+                <StackPanel Grid.Row="1" x:Name="sp_ViewPageButtons" Visibility="Collapsed" VerticalAlignment="Center">
+                    <Button Name="bt_AgreementsViewPage" Content="Договоры" Click="bt_AgreementsViewPage_Click" Style="{StaticResource menuButtons}"/>
+                    <Button Name="bt_DecreesViewPage" Content="Постановления" Click="bt_DecreesViewPage_Click" Style="{StaticResource menuButtons}"/>
+                    <Button Name="bt_HousingFundViewPage" Content="Жильё фонда" Click="bt_HousingFundViewPage_Click" Style="{StaticResource menuButtons}"/>
+                    <Button Name="bt_LocalitiesViewPage" Content="Населённые пункты" Click="bt_LocalitiesViewPage_Click" Style="{StaticResource menuButtons}"/>
+                    <Button Name="bt_ResidenceRegistrationViewPage" Content="Факты проживания в жилье" Click="bt_ResidenceRegistrationViewPage_Click" Style="{StaticResource menuButtons}"/>
+                    <Button Name="bt_StreetsViewPage" Content="Улицы" Click="bt_StreetsViewPage_Click" Style="{StaticResource menuButtons}"/>
+                    <Button Name="bt_TempResidentsViewPage" Content="Наниматели" Click="bt_TempResidentsViewPage_Click" Style="{StaticResource menuButtons}"/>
                 </StackPanel>
-        
-                <Frame Grid.Column="1" x:Name = "fr_Frame" NavigationUIVisibility = "Hidden"/>
             </Grid>
+
+            <StackPanel Grid.Column="1" Orientation = "Vertical">
+                <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="200" Width="500">
+                    <ListView x:Name="lv_pop">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Срок договора №{0} от {1:dd.MM.yyyy} заканчивается {2:dd.MM.yyyy}">
+                                                <Binding Path="Agreement.NumberAgreement"/>
+                                                <Binding Path="Agreement.DateConclusionAgreement"/>
+                                                <Binding Path="Agreement.DateEndAgreement"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding RecievingDate, StringFormat='dd.MM.yyyy'}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Popup>
+            </StackPanel>
+
+            <Frame Grid.Column="1" x:Name = "fr_Frame" NavigationUIVisibility = "Hidden"/>
+        </Grid>
     </Grid>
 </Window>

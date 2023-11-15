@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,7 +26,7 @@ namespace Реестр_маневренного_фонда.Pages
                 dbContext = ApplicationContext.GetContext();
 
                 dbContext.HousingFund.Load();
-                dg_Agreements.ItemsSource = dbContext.Agreement.ToList();
+                lb_Agreements.ItemsSource = dbContext.Agreement.ToList();
 
                 cmb_FullNameTR.ItemsSource = dbContext.TempResident.ToList();
                 cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
@@ -63,7 +62,7 @@ namespace Реестр_маневренного_фонда.Pages
                 currentAgreements = currentAgreements.Where(a => a.DateTerminationAgreement == dp_DateTerminationAgreement.SelectedDate).ToList();
             }
 
-            dg_Agreements.ItemsSource = currentAgreements.ToList();
+            lb_Agreements.ItemsSource = currentAgreements.ToList();
         }
 
         private void bt_EditAgreement_Click(object sender, RoutedEventArgs e)
@@ -151,7 +150,7 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void bt_AddNewAgreement_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddNewAgreementPage());
         }
     }
 }

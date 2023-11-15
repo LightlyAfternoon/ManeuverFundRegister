@@ -17,25 +17,25 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
-            <StackPanel>
+            <StackPanel HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Улица"/>
-                    <ComboBox x:Name="cmb_Street" DisplayMemberPath="NameStreet" Width="200" IsEditable="True"/>
-                    <TextBlock Text="№ дома"/>
-                    <TextBox x:Name="tb_HouseNumber" Width="50"/>
-                    <TextBlock Text="№ квартиры"/>
-                    <TextBox x:Name="tb_ApartmentNumber" Width="50"/>
-                    <TextBlock Text="№ комнаты"/>
-                    <TextBox x:Name="tb_RoomNumber" Width="50"/>
+                    <TextBlock Text="Улица" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmb_Street" DisplayMemberPath="NameStreet" Width="200" IsEditable="True" Margin="10"/>
+                    <TextBlock Text="№ дома" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="tb_HouseNumber" Width="50" Margin="10"/>
+                    <TextBlock Text="№ квартиры" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="tb_ApartmentNumber" Width="50" Margin="10"/>
+                    <TextBlock Text="№ комнаты" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="tb_RoomNumber" Width="50" Margin="0,10,0,10"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Степень благоустройства"/>
-                    <ComboBox x:Name="cmb_ImprovementDegree" DisplayMemberPath="NameStreet" Width="200"/>
-                    <TextBlock Text="S по постановлению"/>
-                    <TextBox x:Name="tb_DecreeArea" Width="50"/>
-                    <TextBlock Text="S по реестру"/>
-                    <TextBox x:Name="tb_RegisterArea" Width="50"/>
+                    <TextBlock Text="Степень благоустройства" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmb_ImprovementDegree" DisplayMemberPath="NameStreet" Width="200" Margin="10"/>
+                    <TextBlock Text="S по постановлению" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="tb_DecreeArea" Width="50" Margin="10"/>
+                    <TextBlock Text="S по реестру" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="tb_RegisterArea" Width="50" Margin="0,10,0,10"/>
                 </StackPanel>
 
                 <Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>
@@ -43,36 +43,37 @@
         </Grid>
         <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="v" Click="bt_ShowOrHideFilterGrid_Click"/>
 
-        <DataGrid Grid.Row="2" x:Name = "dg_HousingFund" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Свободно?">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
+        <ListBox Grid.Row="2" x:Name = "lb_HousingFund">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Margin" Value="0,5"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Left" Text="{Binding NumberDecree, StringFormat='Постановление №{0}'}" VerticalAlignment="Center"/>
+
+                        <StackPanel Margin="20" HorizontalAlignment="Stretch">
                             <CheckBox IsChecked="{Binding Path=IsFreeCheck}" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Адрес жилья" Binding="{Binding FullAddress}" Width="2*"/>
-                <DataGridTextColumn Header="Степень благоустроености" Binding="{Binding ImprovementDegree.NameImprovementDegree}"/>
-                <DataGridTextColumn Header="S по постановлению" Binding="{Binding DecreeArea}"/>
-                <DataGridTextColumn Header="S по реестру" Binding="{Binding RegisterArea}"/>
-                <DataGridTextColumn Header="Примечание" Binding="{Binding Remark}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
+                            <TextBlock Text="{Binding HousingFund.FullAddress, StringFormat='Адрес жилья: {0}'}"/>
+                            <TextBlock Text="{Binding ImprovementDegree.NameImprovementDegree}"/>
+                            <TextBlock Text="{Binding DecreeArea, StringFormat='S по постановлению: {0}'}"/>
+                            <TextBlock Text="{Binding RegisterArea, StringFormat='S по реестру: {0}'}"/>
+                            <TextBlock Text="{Binding Remark, StringFormat='Примечание: {0}'}"/>
+                        </StackPanel>
+
+                        <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center">
                             <Button Content="Редактировать" x:Name="bt_EditHousingFund" Click="bt_EditHousingFund_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
                             <Button Content="Удалить" x:Name="bt_DeleteHousingFund" Click="bt_DeleteHousingFund_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <Button Grid.Row="3" x:Name="bt_AddNewHouseInFund" Content="Добавить жильё" Click="bt_AddNewHouseInFund_Click"/>
     </Grid>

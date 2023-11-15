@@ -25,7 +25,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
                 dbContext = ApplicationContext.GetContext();
 
                 dbContext.ImprovementDegree.Load();
-                dg_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
+                lb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
 
                 cmb_Street.ItemsSource = dbContext.Street.ToList();
                 cmb_ImprovementDegree.ItemsSource = dbContext.ImprovementDegree.ToList();
@@ -69,7 +69,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
                 currentHousesInFund = currentHousesInFund.Where(h => h.RegisterArea.ToString() == tb_RegisterArea.Text).ToList();
             }
 
-            dg_HousingFund.ItemsSource = currentHousesInFund.ToList();
+            lb_HousingFund.ItemsSource = currentHousesInFund.ToList();
         }
 
         private void bt_EditHousingFund_Click(object sender, RoutedEventArgs e)

@@ -25,23 +25,21 @@ namespace Реестр_маневренного_фонда
 
             using (TaskService ts = new TaskService())
             {
-                
-                    // Создание процесса консольной программы для проверки уведомлений
-                    Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
+                //// Создание процесса консольной программы для проверки уведомлений
+                //Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
 
-                    // Создание новой задачи и добавление её описания
-                    TaskDefinition td = ts.NewTask();
-                    td.RegistrationInfo.Description = "Добавление и удаление уведомлений";
+                //// Создание новой задачи и добавление её описания
+                //TaskDefinition td = ts.NewTask();
+                //td.RegistrationInfo.Description = "Добавление и удаление уведомлений";
 
-                    // Создание триггера, который будет запускать задачу в 10 часов каждый день
-                    td.Triggers.Add(new DailyTrigger { DaysInterval = 1 });
+                //// Создание триггера, который будет запускать задачу в 10 часов каждый день
+                //td.Triggers.Add(new DailyTrigger { DaysInterval = 1 });
 
-                    // Определение команды, которую нужно запустить
-                    td.Actions.Add(new ExecAction(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe"));
+                //// Определение команды, которую нужно запустить
+                //td.Actions.Add(new ExecAction(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe"));
 
-                    // Регистрация задачи в планировщике
-                    ts.RootFolder.RegisterTaskDefinition(@"AddAndRemoveNotifications", td);
-                
+                //// Регистрация задачи в планировщике
+                //ts.RootFolder.RegisterTaskDefinition(@"AddAndRemoveNotifications", td);
             }
         }
 
@@ -147,12 +145,12 @@ namespace Реестр_маневренного_фонда
         {
             if (sp_ViewPageButtons.Visibility == Visibility.Collapsed)
             {
-                bt_MenuVisibility.Content="<";
+                bt_MenuVisibility.Content= "✕";
                 sp_ViewPageButtons.Visibility = Visibility.Visible;
             }
             else
             {
-                bt_MenuVisibility.Content=">";
+                bt_MenuVisibility.Content= "☰";
                 sp_ViewPageButtons.Visibility = Visibility.Collapsed;
             }
         }

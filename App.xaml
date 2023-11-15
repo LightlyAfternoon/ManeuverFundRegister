@@ -11,12 +11,12 @@
             </Style>
 
             <Style TargetType="Button">
-
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Padding" Value="5"/>
             </Style>
 
-            <Style TargetType="DataGrid">
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="IsReadOnly" Value="true"/>
+            <Style TargetType="ListBoxItem">
+                <Setter Property="FontSize" Value="24"/>
             </Style>
 
             <Style TargetType="ComboBox">
@@ -43,6 +43,11 @@
                         <Setter Property="Background" Value="LightGray"/>
                     </Trigger>
                 </Style.Triggers>
+            </Style>
+
+            <Style x:Key="menuButtons" TargetType="Button">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Margin" Value="10"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

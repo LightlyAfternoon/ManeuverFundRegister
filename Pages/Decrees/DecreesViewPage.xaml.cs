@@ -25,7 +25,7 @@ namespace Реестр_маневренного_фонда.Pages
                 dbContext = ApplicationContext.GetContext();
 
                 dbContext.HousingFund.Load();
-                dg_Decrees.ItemsSource = dbContext.Decree.ToList();
+                lb_Decrees.ItemsSource = dbContext.Decree.ToList();
 
                 cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
             }
@@ -47,16 +47,16 @@ namespace Реестр_маневренного_фонда.Pages
             {
                 currentDecrees = currentDecrees.Where(d => d.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund).ToList();
             }
-            if (chb_Inclusion.IsChecked == true)
+            if (chb_Inclusion.IsChecked == true && chb_Exclusion.IsChecked == false)
             {
                 currentDecrees = currentDecrees.Where(d => d.Status == true).ToList();
             }
-            if (chb_Exclusion.IsChecked == true)
+            if (chb_Inclusion.IsChecked == false && chb_Exclusion.IsChecked == true)
             {
                 currentDecrees = currentDecrees.Where(d => d.Status == false).ToList();
             }
 
-            dg_Decrees.ItemsSource = currentDecrees.ToList();
+            lb_Decrees.ItemsSource = currentDecrees.ToList();
         }
 
         private void bt_EditDecree_Click(object sender, RoutedEventArgs e)

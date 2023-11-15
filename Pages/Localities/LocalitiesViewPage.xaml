@@ -18,34 +18,39 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
-            <StackPanel>
-                <TextBlock Text="Наименование н/п"/>
-                <TextBox x:Name="tb_NameLocality" Width="150"/>
+            <StackPanel HorizontalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Text="Наименование н/п" Margin="10"/>
+                    <TextBox x:Name="tb_NameLocality" Width="150" VerticalAlignment="Center"/>
+                </StackPanel>
 
                 <Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>
             </StackPanel>
         </Grid>
         <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="v" Click="bt_ShowOrHideFilterGrid_Click"/>
 
-        <DataGrid Grid.Row="2" x:Name = "dg_Localities" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header = "Наименование населённого пункта" Binding = "{Binding NameLocality}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
+        <ListBox Grid.Row="2" x:Name = "lb_Localities">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Margin" Value="0,5"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <TextBlock Text="{Binding NameLocality}" VerticalAlignment="Center"/>
+
+                        <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center" Orientation="Horizontal">
                             <Button Content="Редактировать" x:Name="bt_EditLocality" Click="bt_EditLocality_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
                             <Button Content="Удалить" x:Name="bt_DeleteLocality" Click="bt_DeleteLocality_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <Button Grid.Row="3" x:Name="bt_AddNewLocality" Content="Добавить н/п" Click="bt_AddNewLocality_Click"/>
     </Grid>

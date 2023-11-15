@@ -23,7 +23,7 @@ namespace Реестр_маневренного_фонда.Pages
             {
                 dbContext = ApplicationContext.GetContext();
                 
-                dg_Localities.ItemsSource = dbContext.Locality.ToList();
+                lb_Localities.ItemsSource = dbContext.Locality.ToList();
             }
             catch
             {
@@ -40,7 +40,7 @@ namespace Реестр_маневренного_фонда.Pages
                 currentLocalities = currentLocalities.Where(l => l.NameLocality.ToLower().Contains(tb_NameLocality.Text.ToLower())).ToList();
             }
 
-            dg_Localities.ItemsSource = currentLocalities.ToList();
+            lb_Localities.ItemsSource = currentLocalities.ToList();
         }
 
         private void bt_EditLocality_Click(object sender, RoutedEventArgs e)
