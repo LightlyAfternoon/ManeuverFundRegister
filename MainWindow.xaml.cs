@@ -145,7 +145,7 @@ namespace Реестр_маневренного_фонда
 
         private void bt_MenuVisibility_Click(object sender, RoutedEventArgs e)
         {
-            if (sp_ViewPageButtons.Visibility == Visibilty.Collapsed)
+            if (sp_ViewPageButtons.Visibility == Visibility.Collapsed)
             {
                 bt_MenuVisibility.Content="<";
                 sp_ViewPageButtons.Visibility = Visibility.Visible;
@@ -153,7 +153,7 @@ namespace Реестр_маневренного_фонда
             else
             {
                 bt_MenuVisibility.Content=">";
-                sp_ViewPageButtons.Visibility = Visibilty.Collapsed;
+                sp_ViewPageButtons.Visibility = Visibility.Collapsed;
             }
         }
     }
