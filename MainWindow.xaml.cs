@@ -142,5 +142,19 @@ namespace Реестр_маневренного_фонда
             HelpWindow helpWindow = new HelpWindow();
             helpWindow.Show();
         }
+
+        private void bt_MenuVisibility_Click(object sender, RoutedEventArgs e)
+        {
+            if (sp_ViewPageButtons.Visibility == Visibilty.Collapsed)
+            {
+                bt_MenuVisibility.Content="<";
+                sp_ViewPageButtons.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                bt_MenuVisibility.Content=">";
+                sp_ViewPageButtons.Visibility = Visibilty.Collapsed;
+            }
+        }
     }
 }
