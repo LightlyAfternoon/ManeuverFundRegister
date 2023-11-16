@@ -16,9 +16,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Неоходимо ввести название населённого пункта");
             }
-
-            MessageBox.Show(errors);
-            errors = string.Empty;
         }
      
         public void AddLocality(string? nameLocality)

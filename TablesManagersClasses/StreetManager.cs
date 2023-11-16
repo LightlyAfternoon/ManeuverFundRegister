@@ -20,9 +20,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Неоходимо ввести название улицы");
             }
-
-            MessageBox.Show(errors);
-            errors = string.Empty;
         }
         
         public void AddStreet(Locality? locality, string? nameStreet)

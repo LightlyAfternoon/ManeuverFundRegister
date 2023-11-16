@@ -60,7 +60,7 @@
             </Grid>
 
             <StackPanel Grid.Column="1" Orientation = "Vertical">
-                <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="200" Width="500">
+                <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="400" Width="500">
                     <ListView x:Name="lv_pop">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -74,7 +74,7 @@
                                             </MultiBinding>
                                         </TextBlock.Text>
                                     </TextBlock>
-                                    <TextBlock Text="{Binding RecievingDate, StringFormat='dd.MM.yyyy'}"/>
+                                    <TextBlock Text="{Binding RecievingDate, StringFormat='dd.MM.yyyy'}" FontStyle="Italic" Foreground="Gray"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

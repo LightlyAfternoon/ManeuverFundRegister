@@ -45,21 +45,27 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <DockPanel>
-                        <TextBlock DockPanel.Dock="Left" Text="{Binding NumberDecree, StringFormat='Постановление №{0}'}" VerticalAlignment="Center"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
 
-                        <StackPanel Margin="20" HorizontalAlignment="Stretch">
+                        <TextBlock Text="{Binding NumberDecree, StringFormat='Постановление №{0}'}" VerticalAlignment="Center"/>
+
+                        <StackPanel Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
                             <TextBlock Text="{Binding DateDecree, StringFormat='Дата постановления: {0:dd.MM.yyyy}'}"/>
                             <TextBlock Text="{Binding HousingFund.FullAddress, StringFormat='Адрес жилья: {0}'}"/>
                             <TextBlock Text="{Binding StatusName}"/>
                         </StackPanel>
 
-                        <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center">
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
                             <Button Visibility="{Binding Path=ShowButton}" Content="Скачать файл" x:Name="bt_DownloadFile" Click="bt_DownloadFile_Click"/>
                             <Button Content="Редактировать" x:Name="bt_EditDecree" Click="bt_EditDecree_Click"/>
                             <Button Content="Удалить" x:Name="bt_DeleteDecree" Click="bt_DeleteDecree_Click"/>
                         </StackPanel>
-                    </DockPanel>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

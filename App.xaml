@@ -16,7 +16,11 @@
             </Style>
 
             <Style TargetType="ListBoxItem">
-                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+            </Style>
+
+            <Style TargetType="ListBox">
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
             </Style>
 
             <Style TargetType="ComboBox">

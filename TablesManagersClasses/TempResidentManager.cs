@@ -20,9 +20,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо написать имя нанимателя");
             }
-
-            MessageBox.Show(errors);
-            errors = string.Empty;
         }
         public void AddTempResident(string? lastName, string? firstName, string? patronymic, string? remark)
         {

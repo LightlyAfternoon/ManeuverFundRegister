@@ -32,6 +32,7 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
             {
                 rb_Exclusion.IsChecked = true;
             }
+            cmb_HousingFund.SelectedItem = currentDecree.HousingFund;
         }
 
         private void bt_Edit_Click(object sender, RoutedEventArgs e)

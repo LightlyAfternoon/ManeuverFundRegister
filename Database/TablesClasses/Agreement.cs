@@ -35,5 +35,16 @@ namespace Реестр_маневренного_фонда
                 return (existsFile ? Visibility.Visible : Visibility.Collapsed);
             }
         }
+
+        [NotMapped]
+        public string numAgreementAndDataConcl
+        {
+            get
+            {
+                string agreementInfo = $"№{NumberAgreement} от {DateConclusionAgreement}";
+
+                return agreementInfo;
+            }
+        }
     }
 }

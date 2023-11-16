@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.TaskScheduler;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using Реестр_маневренного_фонда.Pages;
@@ -46,36 +43,57 @@ namespace Реестр_маневренного_фонда
         private void bt_AgreementsViewPage_Click(object sender, RoutedEventArgs e)
         {
             fr_Frame.Navigate(new AgreementsViewPage());
+
+            bt_MenuVisibility.Content = "☰";
+            sp_ViewPageButtons.Visibility = Visibility.Collapsed;
         }
 
         private void bt_DecreesViewPage_Click(object sender, RoutedEventArgs e)
         {
             fr_Frame.Navigate(new DecreesViewPage());
+
+            bt_MenuVisibility.Content = "☰";
+            sp_ViewPageButtons.Visibility = Visibility.Collapsed;
         }
 
         private void bt_HousingFundViewPage_Click(object sender, RoutedEventArgs e)
         {
             fr_Frame.Navigate(new HousingFundViewPage());
+
+            bt_MenuVisibility.Content = "☰";
+            sp_ViewPageButtons.Visibility = Visibility.Collapsed;
         }
 
         private void bt_LocalitiesViewPage_Click(object sender, RoutedEventArgs e)
         {
             fr_Frame.Navigate(new LocalitiesViewPage());
+
+            bt_MenuVisibility.Content = "☰";
+            sp_ViewPageButtons.Visibility = Visibility.Collapsed;
         }
 
         private void bt_ResidenceRegistrationViewPage_Click(object sender, RoutedEventArgs e)
         {
             fr_Frame.Navigate(new ResidenceRegistrationViewPage());
+
+            bt_MenuVisibility.Content = "☰";
+            sp_ViewPageButtons.Visibility = Visibility.Collapsed;
         }
 
         private void bt_StreetsViewPage_Click(object sender, RoutedEventArgs e)
         {
             fr_Frame.Navigate(new StreetsViewPage());
+
+            bt_MenuVisibility.Content = "☰";
+            sp_ViewPageButtons.Visibility = Visibility.Collapsed;
         }
 
         private void bt_TempResidentsViewPage_Click(object sender, RoutedEventArgs e)
         {
             fr_Frame.Navigate(new TempResidentsViewPage());
+
+            bt_MenuVisibility.Content = "☰";
+            sp_ViewPageButtons.Visibility = Visibility.Collapsed;
         }
 
         private void bt_NotificationsView_Click(object sender, RoutedEventArgs e)

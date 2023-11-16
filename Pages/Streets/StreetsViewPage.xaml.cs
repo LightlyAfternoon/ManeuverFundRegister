@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Pages.HousingsFund;
 using Реестр_маневренного_фонда.Pages.Streets;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
@@ -25,7 +26,7 @@ namespace Реестр_маневренного_фонда.Pages
                 dbContext = ApplicationContext.GetContext();
                 
                 dbContext.Locality.Load();
-                dg_Streets.ItemsSource = dbContext.Street.ToList();
+                lb_Streets.ItemsSource = dbContext.Street.ToList();
 
                 cmb_Locality.ItemsSource = dbContext.Locality.ToList();
             }
@@ -48,7 +49,7 @@ namespace Реестр_маневренного_фонда.Pages
                 currentStreets = currentStreets.Where(s => s.NameStreet.ToLower().Contains(tb_NameStreet.Text.ToLower())).ToList();
             }
         
-            dg_Streets.ItemsSource = currentStreets.ToList();
+            lb_Streets.ItemsSource = currentStreets.ToList();
         }
 
         private void bt_EditStreet_Click(object sender, RoutedEventArgs e)
@@ -85,7 +86,7 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void bt_AddNewStreet_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddNewStreetPage());
         }
     }
 }

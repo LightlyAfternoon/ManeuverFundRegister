@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Pages.HousingsFund;
 using Реестр_маневренного_фонда.Pages.TempResidents;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
@@ -23,7 +24,7 @@ namespace Реестр_маневренного_фонда.Pages
             {
                 dbContext = ApplicationContext.GetContext();
                 
-                dg_TempResidents.ItemsSource = dbContext.TempResident.ToList();
+                lb_TempResidents.ItemsSource = dbContext.TempResident.ToList();
             }
             catch
             {
@@ -48,7 +49,7 @@ namespace Реестр_маневренного_фонда.Pages
                 currentTempResidents = currentTempResidents.Where(t => t.Patronymic.ToLower().Contains(tb_Patronymic.Text.ToLower())).ToList();
             }
             
-            dg_TempResidents.ItemsSource = currentTempResidents.ToList();
+            lb_TempResidents.ItemsSource = currentTempResidents.ToList();
         }
 
         private void bt_EditTempResident_Click(object sender, RoutedEventArgs e)
@@ -85,7 +86,7 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void bt_AddNewTempResident_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddNewTempResidentPage());
         }
     }
 }

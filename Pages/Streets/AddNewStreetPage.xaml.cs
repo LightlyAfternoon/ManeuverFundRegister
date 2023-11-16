@@ -11,7 +11,7 @@ namespace Реестр_маневренного_фонда.Pages.Streets
     /// </summary>
     public partial class AddNewStreetPage : Page
     {
-        ApplicationContext dbContext;
+        ApplicationContext dbContext = ApplicationContext.GetContext();
 
         public AddNewStreetPage()
         {

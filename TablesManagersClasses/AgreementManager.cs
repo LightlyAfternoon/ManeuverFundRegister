@@ -190,6 +190,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 switch (messageBoxResult)
                 {
                     case MessageBoxResult.Yes:
+                        foreach (Notification notification in dbContext.Notification.Where(n => n.AgreementId == currentAgreement.IdAgreement).ToList())
+                        {
+                            dbContext.Notification.Remove(notification);
+                        }
                         dbContext.Agreement.Remove(currentAgreement);
                         dbContext.SaveChanges();
 

@@ -19,7 +19,7 @@
             <TextBlock Text="Примечание" Margin="0,20,0,0"/>
             <TextBox Height="25" x:Name="tb_Remark" Width="200"/>
 
-            <Button x:Name="bt_Edit" Content="Добавить" Margin="0,10" Click="bt_Edit_Click"/>
+            <Button x:Name="bt_Edit" Content="Изменить" Margin="0,10" Click="bt_Edit_Click"/>
         </StackPanel>
     </Grid>
 </Page>

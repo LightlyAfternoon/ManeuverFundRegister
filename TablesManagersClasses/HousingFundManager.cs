@@ -82,9 +82,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     errors += ("Укажите площадь по реестру корректно");
                 }
             }
-
-            MessageBox.Show(errors);
-            errors = string.Empty;
         }
         
         public void AddHouseInFund(Street? street, string? houseNumber, string? apartmentNumber, string? roomNumber, ImprovementDegree? improvementDegree, string? decreeArea, string? registerArea, string? remark)

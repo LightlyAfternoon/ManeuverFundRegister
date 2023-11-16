@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages.ResidenceRegistrations
 {
@@ -20,9 +10,28 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
     /// </summary>
     public partial class EditResidenceRegistrationPage : Page
     {
-        public EditResidenceRegistrationPage()
+        ApplicationContext dbContext = ApplicationContext.GetContext();
+        ResidenceRegistration residenceRegistration;
+
+        public EditResidenceRegistrationPage(ResidenceRegistration currentResidenceRegistration)
         {
             InitializeComponent();
+
+            cmb_Agreement.ItemsSource = dbContext.Agreement.ToList();
+            cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
+            cmb_TempReident.ItemsSource = dbContext.TempResident.ToList();
+
+            cmb_Agreement.SelectedItem = dbContext.Agreement;
+            cmb_HousingFund.SelectedItem = dbContext.HousingFund;
+            cmb_TempReident.SelectedItem = dbContext.TempResident;
+            dp_DateStart.SelectedDate = currentResidenceRegistration.DateStartResidence;
+            dp_DateEnd.SelectedDate = currentResidenceRegistration.DateEndResidence;
+        }
+
+        private void bt_Add_Click(object sender, RoutedEventArgs e)
+        {
+            ResidenceRegistrationManager rrm = new ResidenceRegistrationManager();
+            rrm.EditResidenceRegistration(residenceRegistration, dp_DateEnd.SelectedDate);
         }
     }
 }

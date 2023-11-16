@@ -3,6 +3,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Pages.Localities;
+using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages.ResidenceRegistrations
 {
@@ -12,6 +14,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
     public partial class ResidenceRegistrationViewPage : Page
     {
         ApplicationContext dbContext;
+        ResidenceRegistration currentRegistration;
 
         public ResidenceRegistrationViewPage()
         {
@@ -23,7 +26,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
                 dbContext.HousingFund.Load();
                 dbContext.TempResident.Load();
-                dg_ResidenceRegistration.ItemsSource = dbContext.ResidenceRegistration.ToList();
+                lb_ResidenceRegistration.ItemsSource = dbContext.ResidenceRegistration.ToList();
                 
                 cmb_FullNameTR.ItemsSource = dbContext.TempResident.ToList();
                 cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
@@ -55,7 +58,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
                 currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence == dp_DateEndResidence.SelectedDate).ToList();
             }
 
-            dg_ResidenceRegistration.ItemsSource = currentResidenceRegistrations.ToList();
+            lb_ResidenceRegistration.ItemsSource = currentResidenceRegistrations.ToList();
         }
 
         private void bt_Filter_Click(object sender, RoutedEventArgs e)
@@ -107,12 +110,15 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
         private void bt_EditRegitration_Click(object sender, RoutedEventArgs e)
         {
-
+            currentRegistration = (sender as Button).DataContext as ResidenceRegistration;
+            NavigationService.Navigate(new EditResidenceRegistrationPage(currentRegistration));
         }
 
         private void bt_DeleteRegistration_Click(object sender, RoutedEventArgs e)
         {
-
+            ResidenceRegistrationManager rrm = new ResidenceRegistrationManager();
+            currentRegistration = (sender as Button).DataContext as ResidenceRegistration;
+            rrm.RemoveResidenceRegistration(currentRegistration);
         }
     }
 }

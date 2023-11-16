@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Pages.Decrees;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages.HousingsFund
@@ -106,7 +107,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
 
         private void bt_AddNewHouseInFund_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddNewHouseInFundPage());
         }
     }
 }

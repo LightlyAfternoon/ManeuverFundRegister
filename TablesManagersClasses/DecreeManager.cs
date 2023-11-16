@@ -10,7 +10,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         private string errors = string.Empty;
 
-        private void showErrors(string? number, DateTime? dateDecree, HousingFund? housingFund, bool? status)
+        private void showErrors(string? number, DateTime? dateDecree, HousingFund? housingFund)
         {
             if (string.IsNullOrWhiteSpace(number))
             {
@@ -38,14 +38,11 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату постановления");
             }
-
-            MessageBox.Show(errors);
-            errors = string.Empty;
         }
         
         public void AddDecree(Decree newDecree, string? number, DateTime? dateDecree, HousingFund? housingFund, bool? status)
         {   
-            showErrors(number, dateDecree, housingFund, status);
+            showErrors(number, dateDecree, housingFund);
             if (!string.IsNullOrEmpty(errors))
             {
                 MessageBox.Show(errors);
@@ -75,7 +72,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditDecree(Decree currentDecree, string? number, DateTime? dateDecree, HousingFund? housingFund, bool? status)
         {
-            showErrors(number, dateDecree, housingFund, status);
+            showErrors(number, dateDecree, housingFund);
             if (!string.IsNullOrEmpty(errors))
             {
                 MessageBox.Show(errors);

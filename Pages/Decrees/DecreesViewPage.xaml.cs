@@ -125,7 +125,7 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void bt_AddNewDecree_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddNewDecreePage());
         }
     }
 }

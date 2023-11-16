@@ -17,38 +17,45 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
-            <StackPanel>
-                <TextBlock Text="Н/п"/>
-                <ComboBox x:Name="cmb_Locality" DisplayMemberPath="NameLocality" Width="200" IsEditable="True"/>
-                <TextBlock Text="Наименование улицы"/>
-                <TextBox x:Name="tb_NameStreet" Width="150"/>
+            <StackPanel HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Н/п" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmb_Locality" DisplayMemberPath="NameLocality" Width="200" IsEditable="True" Margin="10"/>
+                    <TextBlock Text="Наименование улицы" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="tb_NameStreet" Width="150" Margin="0,10,0,10"/>
+                </StackPanel>
 
                 <Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>
             </StackPanel>
         </Grid>
         <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="v" Click="bt_ShowOrHideFilterGrid_Click"/>
 
-        <DataGrid Grid.Row="2" x:Name = "dg_Streets" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header = "Населённый пункт" Binding = "{Binding Locality.NameLocality}"/>
-                <DataGridTextColumn Header = "Наименование улицы" Binding="{Binding NameStreet}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Редактировать" x:Name="bt_EditStreet" Click="bt_EditStreet_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Удалить" x:Name="bt_DeleteStreet" Click="bt_DeleteStreet_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListBox Grid.Row="2" x:Name = "lb_Streets">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Margin" Value="0,5"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Left">
+                            <TextBlock Text="{Binding Locality.NameLocality, StringFormat='Населённый пункт: {0}'}" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding NameStreet}" VerticalAlignment="Center"/>
+                        </StackPanel>
 
+                        <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center" Orientation="Horizontal">
+                            <Button Content="Редактировать" x:Name="bt_EditStreet" Click="bt_EditStreet_Click"/>
+                            <Button Content="Удалить" x:Name="bt_DeleteStreet" Click="bt_DeleteStreet_Click"/>
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
         <Button Grid.Row="3" x:Name="bt_AddNewStreet" Content="Добавить улицу" Click="bt_AddNewStreet_Click"/>
     </Grid>
 </Page>

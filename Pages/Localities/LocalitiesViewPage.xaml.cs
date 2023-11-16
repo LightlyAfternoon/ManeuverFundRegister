@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Pages.Decrees;
 using Реестр_маневренного_фонда.Pages.Localities;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
@@ -77,7 +78,7 @@ namespace Реестр_маневренного_фонда.Pages
 
         private void bt_AddNewLocality_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddNewLocalityPage());
         }
     }
 }

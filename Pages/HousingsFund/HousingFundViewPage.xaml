@@ -50,27 +50,33 @@
                     <Setter Property="BorderThickness" Value="1"/>
                     <Setter Property="BorderBrush" Value="Black"/>
                     <Setter Property="Margin" Value="0,5"/>
+                    <Setter Property="Background" Value="{Binding Path=BackColor}"/>
                 </Style>
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <DockPanel>
-                        <TextBlock DockPanel.Dock="Left" Text="{Binding NumberDecree, StringFormat='Постановление №{0}'}" VerticalAlignment="Center"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
 
-                        <StackPanel Margin="20" HorizontalAlignment="Stretch">
-                            <CheckBox IsChecked="{Binding Path=IsFreeCheck}" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{Binding HousingFund.FullAddress, StringFormat='Адрес жилья: {0}'}"/>
+                        <TextBlock Text="{Binding Path=Freedom}" VerticalAlignment="Center"/>
+
+                        <StackPanel Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
+                            <TextBlock Text="{Binding FullAddress, StringFormat='Адрес жилья: {0}'}"/>
                             <TextBlock Text="{Binding ImprovementDegree.NameImprovementDegree}"/>
                             <TextBlock Text="{Binding DecreeArea, StringFormat='S по постановлению: {0}'}"/>
                             <TextBlock Text="{Binding RegisterArea, StringFormat='S по реестру: {0}'}"/>
-                            <TextBlock Text="{Binding Remark, StringFormat='Примечание: {0}'}"/>
+                            <TextBlock Text="{Binding Remark, StringFormat='Примечание: {0}'}" MaxWidth="500" TextWrapping="Wrap"/>
                         </StackPanel>
 
-                        <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center">
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
                             <Button Content="Редактировать" x:Name="bt_EditHousingFund" Click="bt_EditHousingFund_Click"/>
                             <Button Content="Удалить" x:Name="bt_DeleteHousingFund" Click="bt_DeleteHousingFund_Click"/>
                         </StackPanel>
-                    </DockPanel>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

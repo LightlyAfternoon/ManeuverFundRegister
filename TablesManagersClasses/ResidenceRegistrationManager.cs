@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Windows;
-using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.Pages;
 using Реестр_маневренного_фонда.Pages.ResidenceRegistrations;
 
@@ -10,11 +8,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
     public class ResidenceRegistrationManager
     {
         private ApplicationContext dbContext = ApplicationContext.GetContext();
-
-        public void AddResidenceRegistration()
-        {
-
-        }
 
         public void EditResidenceRegistration(ResidenceRegistration currentResidenceRegistration, DateTime? dateEndResidence)
         {

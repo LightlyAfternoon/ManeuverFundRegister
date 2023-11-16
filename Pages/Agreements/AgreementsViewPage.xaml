@@ -51,24 +51,30 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <DockPanel>
-                        <TextBlock DockPanel.Dock="Left" Text="{Binding NumberAgreement, StringFormat='Договор №{0}'}" VerticalAlignment="Center"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="{Binding NumberAgreement, StringFormat='Договор №{0}'}" VerticalAlignment="Center"/>
 
-                        <StackPanel Margin="20" HorizontalAlignment="Stretch">
+                        <StackPanel Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
                             <TextBlock Text="{Binding TempResident.FullName, StringFormat='Наниматель {0}'}"/>
                             <TextBlock Text="{Binding HousingFund.FullAddress, StringFormat='Адрес жилья: {0}'}"/>
                             <TextBlock Text="{Binding DateConclusionAgreement, StringFormat='Дата заключения: {0:dd.MM.yyyy}'}"/>
                             <TextBlock Text="{Binding DateEndAgreement, StringFormat='Дата окончания: {0:dd.MM.yyyy}'}"/>
                             <TextBlock Text="{Binding DateTerminationAgreement, StringFormat='Дата расторжения: {0:dd.MM.yyyy}'}"/>
-                            <TextBlock Text="{Binding Remark, StringFormat='Примечание: {0}'}"/>
+                            <TextBlock Text="{Binding Remark, StringFormat='Примечание: {0}'}" MaxWidth="500" TextWrapping="Wrap"/>
                         </StackPanel>
 
-                        <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center">
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
                             <Button Visibility="{Binding Path=ShowButton}" Content="Скачать файл" x:Name="bt_DownloadFile" Click="bt_DownloadFile_Click"/>
                             <Button Content="Редактировать" x:Name="bt_EditAgreement" Click="bt_EditAgreement_Click"/>
                             <Button Content="Удалить" x:Name="bt_DeleteAgreement" Click="bt_DeleteAgreement_Click"/>
                         </StackPanel>
-                    </DockPanel>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

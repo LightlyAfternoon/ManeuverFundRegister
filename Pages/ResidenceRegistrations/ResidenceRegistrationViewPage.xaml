@@ -16,19 +16,19 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
-            <StackPanel>
+            <StackPanel HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="ФИО нанимателя"/>
-                    <ComboBox x:Name="cmb_FullNameTR" DisplayMemberPath="FullName" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_FullNameTR_TextChanged"/>
-                    <TextBlock Text="Адрес"/>
-                    <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
+                    <TextBlock Text="ФИО нанимателя" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmb_FullNameTR" DisplayMemberPath="FullName" Width="250" Margin="10" IsEditable="True" TextBoxBase.TextChanged="cmb_FullNameTR_TextChanged"/>
+                    <TextBlock Text="Адрес" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" Margin="0,10,0,10" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Дата начала проживания"/>
-                    <DatePicker x:Name="dp_DateStartResidence"/>
-                    <TextBlock Text="Дата окончания проживания"/>
-                    <DatePicker x:Name="dp_DateEndResidence"/>
+                    <TextBlock Text="Дата начала проживания" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <DatePicker x:Name="dp_DateStartResidence" Margin="10"/>
+                    <TextBlock Text="Дата окончания проживания" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <DatePicker x:Name="dp_DateEndResidence" Margin="0,10,0,10"/>
                 </StackPanel>
 
                 <Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>
@@ -36,27 +36,32 @@
         </Grid>
         <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="v" Click="bt_ShowOrHideFilterGrid_Click"/>
 
-        <DataGrid Grid.Row="2" x:Name = "dg_ResidenceRegistration" AutoGenerateColumns = "False" CanUserResizeColumns="True" ColumnWidth="*">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Адрес жилья" Binding="{Binding HousingFund.FullAddress}"/>
-                <DataGridTextColumn Header="ФИО нанимателя" Binding="{Binding TempResident.FullName}"/>
-                <DataGridTextColumn Header="Дата начала проживания" Binding="{Binding DateStartResidence, StringFormat='dd.MM.yyyy'}"/>
-                <DataGridTextColumn Header="Дата окончания проживания" Binding="{Binding DateEndResidence, StringFormat='dd.MM.yyyy'}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
+        <ListBox Grid.Row="2" x:Name = "lb_ResidenceRegistration">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Margin" Value="0,5"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Left" Margin="20" HorizontalAlignment="Stretch">
+                            <TextBlock Text="{Binding HousingFund.FullAddress, StringFormat='Адрес жилья: {0}'}"/>
+                            <TextBlock Text="{Binding TempResident.FullName, StringFormat='Наниматель {0}'}"/>
+                            <TextBlock Text="{Binding DateStartResidence, StringFormat='Дата начала проживания: {0:dd.MM.yyyy}'}"/>
+                            <TextBlock Text="{Binding DateEndResidence, StringFormat='Дата окончания проживания: {0:dd.MM.yyyy}'}"/>
+                        </StackPanel>
+
+                        <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center">
                             <Button Content="Редактировать" x:Name="bt_EditRegitration" Click="bt_EditRegitration_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
                             <Button Content="Удалить" x:Name="bt_DeleteRegistration" Click="bt_DeleteRegistration_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>
