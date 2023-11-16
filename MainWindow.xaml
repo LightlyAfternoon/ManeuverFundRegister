@@ -60,20 +60,30 @@
             </Grid>
 
             <StackPanel Grid.Column="1" Orientation = "Vertical">
-                <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="400" Width="500">
+                <Popup x:Name="pop_Notif" StaysOpen="True" Placement="Bottom" PlacementTarget="{Binding ElementName=bt_NotificationsView}" AllowsTransparency="True" Height="400" Width="450" Closed="pop_Notif_Closed">
                     <ListView x:Name="lv_pop">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock>
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="Срок договора №{0} от {1:dd.MM.yyyy} заканчивается {2:dd.MM.yyyy}">
-                                                <Binding Path="Agreement.NumberAgreement"/>
-                                                <Binding Path="Agreement.DateConclusionAgreement"/>
-                                                <Binding Path="Agreement.DateEndAgreement"/>
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="bt_ViewMark" Background="LightBlue" Width="5" Height="5" Visibility="{Binding Path=ViewButton}">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="Срок договора №{0} от {1:dd.MM.yyyy} заканчивается {2:dd.MM.yyyy}">
+                                                    <Binding Path="Agreement.NumberAgreement"/>
+                                                    <Binding Path="Agreement.DateConclusionAgreement"/>
+                                                    <Binding Path="Agreement.DateEndAgreement"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </StackPanel>
                                     <TextBlock Text="{Binding RecievingDate, StringFormat='dd.MM.yyyy'}" FontStyle="Italic" Foreground="Gray"/>
                                 </StackPanel>
                             </DataTemplate>

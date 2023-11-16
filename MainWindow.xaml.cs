@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.TaskScheduler;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
+using Windows.UI.Notifications;
 using Реестр_маневренного_фонда.Pages;
 using Реестр_маневренного_фонда.Pages.HousingsFund;
 using Реестр_маневренного_фонда.Pages.ResidenceRegistrations;
@@ -17,6 +19,8 @@ namespace Реестр_маневренного_фонда
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Notification> notifications = new();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -26,7 +30,8 @@ namespace Реестр_маневренного_фонда
             using (TaskService ts = new TaskService())
             {
                 // Создание процесса консольной программы для проверки уведомлений
-                Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
+                ////Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
+                Process.Start(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()) + "\\ExecuteNotificationManagerClass\\ExecuteNotificationManagerClass.exe");
 
                 // Создание новой задачи и добавление её описания
                 TaskDefinition td = ts.NewTask();
@@ -36,7 +41,7 @@ namespace Реестр_маневренного_фонда
                 td.Triggers.Add(new DailyTrigger { DaysInterval = 1 });
 
                 // Определение команды, которую нужно запустить
-                td.Actions.Add(new ExecAction(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe"));
+                td.Actions.Add(new ExecAction(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()) + "\\ExecuteNotificationManagerClass\\ExecuteNotificationManagerClass.exe"));
 
                 // Регистрация задачи в планировщике
                 ts.RootFolder.RegisterTaskDefinition(@"AddAndRemoveNotifications", td);
@@ -103,11 +108,13 @@ namespace Реестр_маневренного_фонда
         {
             try
             {
-                ApplicationContext.GetContext().Agreement.Load();
-                lv_pop.ItemsSource = ApplicationContext.GetContext().Notification.ToList();
 
                 if (!pop_Notif.IsOpen)
                 {
+                    ApplicationContext.GetContext().Agreement.Load();
+                    notifications = ApplicationContext.GetContext().Notification.ToList();
+                    lv_pop.ItemsSource = notifications;
+
                     pop_Notif.IsOpen = true;
                 }
                 else
@@ -173,6 +180,15 @@ namespace Реестр_маневренного_фонда
             {
                 bt_MenuVisibility.Content= "☰";
                 sp_ViewPageButtons.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void pop_Notif_Closed(object sender, System.EventArgs e)
+        {
+            foreach (Notification notification in notifications)
+            {
+                ApplicationContext.GetContext().Notification.First(n => n == notification).IsViewed = true;
+                ApplicationContext.GetContext().SaveChanges();
             }
         }
     }

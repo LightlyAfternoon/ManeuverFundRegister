@@ -28,7 +28,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     Notification newNotification = new Notification
                     {
                         AgreementId = agreement.IdAgreement,
-                        RecievingDate = DateTime.Now
+                        RecievingDate = DateTime.Now,
+                        IsViewed = false
                     };
 
                     dbContext.Notification.Add(newNotification);

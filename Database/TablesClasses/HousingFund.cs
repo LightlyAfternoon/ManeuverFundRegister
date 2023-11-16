@@ -90,7 +90,7 @@ namespace Реестр_маневренного_фонда
                     {
                         color = Brushes.PaleVioletRed;
                     }
-                    else
+                    else if (lastRegistration.DateEndResidence != null && lastDecree.Status == true)
                     {
                         color = Brushes.LightGreen;
                     }
