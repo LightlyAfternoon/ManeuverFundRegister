@@ -16,7 +16,7 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
     {
         ApplicationContext dbContext = ApplicationContext.GetContext();
 
-        Agreement newAgreement = new();
+        Agreement newAgreement = new Agreement();
 
         List<Decree> listDecrees = new List<Decree>();
         List<HousingFund> listAvailableHousingFund = new List<HousingFund>();
@@ -42,13 +42,13 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             }
 
             cmb_HousingFund.ItemsSource = listAvailableHousingFund;
-            cmb_TempReident.ItemsSource = dbContext.TempResident.ToList();
+            cmb_TempResident.ItemsSource = dbContext.TempResident.ToList();
         }
 
         private void bt_Add_Click(object sender, RoutedEventArgs e)
         {
             AgreementManager am = new AgreementManager();
-            am.AddAgreement(newAgreement,tb_Number.Text, cmb_TempReident.SelectedItem as TempResident, cmb_HousingFund.SelectedItem as HousingFund, dp_DateConclusion.SelectedDate, dp_DateEnd.SelectedDate, tb_Remark.Text);
+            am.AddAgreement(newAgreement,tb_Number.Text, cmb_TempResident.SelectedItem as TempResident, cmb_HousingFund.SelectedItem as HousingFund, dp_DateConclusion.SelectedDate, dp_DateEnd.SelectedDate, tb_Remark.Text);
         }
 
         private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
@@ -79,18 +79,18 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             cmb_HousingFund.IsDropDownOpen = true;
         }
 
-        private void cmb_TempReident_TextChanged(object sender, TextChangedEventArgs e)
+        private void cmb_TempResident_TextChanged(object sender, TextChangedEventArgs e)
         {
             string[] words;
 
-            words = cmb_TempReident.Text.ToString().Split(' ');
+            words = cmb_TempResident.Text.ToString().Split(' ');
 
             foreach (string word in words)
             {
-                cmb_TempReident.ItemsSource = dbContext.TempResident.AsEnumerable().Where(h => h.FullName.ToLower().Contains(word.ToLower())).ToList();
+                cmb_TempResident.ItemsSource = dbContext.TempResident.AsEnumerable().Where(h => h.FullName.ToLower().Contains(word.ToLower())).ToList();
             }
 
-            cmb_TempReident.IsDropDownOpen = true;
+            cmb_TempResident.IsDropDownOpen = true;
         }
     }
 }
