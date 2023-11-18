@@ -47,7 +47,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату окончания договора\n");
             }
-            if (dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 0)
+            if (dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 1)
             {
                 errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен\n");
             }
@@ -93,9 +93,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                                 switch (boxResult)
                                 {
                                     case MessageBoxResult.Yes:
-                                        lastRegistration.TempResidentId = tempResident.IdTempResident;
-                                        lastRegistration.DateEndResidence = Convert.ToDateTime(dateConclusion);
-
                                         newRegistration.HousingFundId = housingFund.IdHousingFund;
                                         newRegistration.TempResidentId = tempResident.IdTempResident;
                                         newRegistration.DateStartResidence = (DateTime)dateConclusion;

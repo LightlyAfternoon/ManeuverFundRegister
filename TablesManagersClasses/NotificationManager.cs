@@ -12,34 +12,66 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         List<Agreement> listAgreements;
         List<Notification> listNotifications;
+        List<ResidenceRegistration> listResidenceRegistration;
 
         public void AddNotification()
         {
             dbContext.Agreement.Load();
             dbContext.Notification.Load();
 
-            listAgreements = dbContext.Agreement.ToList();
+            listAgreements = dbContext.Agreement.OrderBy(a => a.DateConclusionAgreement).OrderBy(a => a.HousingFundId).Where(a => a.DateTerminationAgreement == null).ToList();
             listNotifications = dbContext.Notification.ToList();
-
-            foreach (Agreement agreement in listAgreements)
+            listResidenceRegistration = dbContext.ResidenceRegistration.OrderBy(r => r.DateStartResidence).OrderBy(r => r.HousingFundId).ToList();
+            foreach (ResidenceRegistration residenceRegistration in listResidenceRegistration)
             {
-                if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(6) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1 && string.IsNullOrWhiteSpace(agreement.DateTerminationAgreement.ToString()))
+                foreach (Agreement agreement in listAgreements)
                 {
-                    Notification newNotification = new Notification
+                    if (listAgreements.SkipWhile(a => a.IdAgreement != agreement.IdAgreement).Skip(1).FirstOrDefault() != null && listResidenceRegistration.SkipWhile(a => a.IdRegistration != residenceRegistration.IdRegistration).Skip(1).FirstOrDefault() != null)
                     {
-                        AgreementId = agreement.IdAgreement,
-                        RecievingDate = DateTime.Now,
-                        IsViewed = false
-                    };
+                        if (listResidenceRegistration.SkipWhile(a => a.IdRegistration != residenceRegistration.IdRegistration).Skip(1).FirstOrDefault().AgreementId == listAgreements.SkipWhile(a => a.IdAgreement != agreement.IdAgreement).Skip(1).FirstOrDefault().IdAgreement
+                            && residenceRegistration.DateEndResidence == null)
+                        {
+                            if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(1) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1)
+                            {
+                                Notification newNotification = new Notification
+                                {
+                                    AgreementId = agreement.IdAgreement,
+                                    RecievingDate = DateTime.Now,
+                                    IsViewed = false
+                                };
 
-                    dbContext.Notification.Add(newNotification);
-                    dbContext.SaveChanges();
+                                dbContext.Notification.Add(newNotification);
+                                dbContext.SaveChanges();
 
-                    new ToastContentBuilder()
-                        .AddArgument("action", "viewConversation")
-                        .AddArgument("conversationId", 9813)
-                        .AddText($"Срок договора №{agreement.NumberAgreement} от {string.Format("{0:dd.MM.yyyy}", agreement.DateConclusionAgreement)} заканчивается {string.Format("{0:dd.MM.yyyy}", agreement.DateEndAgreement)}")
-                        .Show();
+                                new ToastContentBuilder()
+                                    .AddArgument("action", "viewConversation")
+                                    .AddArgument("conversationId", 9813)
+                                    .AddText($"Срок договора №{agreement.NumberAgreement} от {string.Format("{0:dd.MM.yyyy}", agreement.DateConclusionAgreement)} заканчивается {string.Format("{0:dd.MM.yyyy}", agreement.DateEndAgreement)}")
+                                    .Show();
+                            }
+                        }
+                    }
+                    else if (residenceRegistration.DateEndResidence == null && agreement == listAgreements.Last() && residenceRegistration == listResidenceRegistration.Last())
+                    {
+                        if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(1) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1)
+                        {
+                            Notification newNotification = new Notification
+                            {
+                                AgreementId = agreement.IdAgreement,
+                                RecievingDate = DateTime.Now,
+                                IsViewed = false
+                            };
+
+                            dbContext.Notification.Add(newNotification);
+                            dbContext.SaveChanges();
+
+                            new ToastContentBuilder()
+                                .AddArgument("action", "viewConversation")
+                                .AddArgument("conversationId", 9813)
+                                .AddText($"Срок договора №{agreement.NumberAgreement} от {string.Format("{0:dd.MM.yyyy}", agreement.DateConclusionAgreement)} заканчивается {string.Format("{0:dd.MM.yyyy}", agreement.DateEndAgreement)}")
+                                .Show();
+                        }
+                    }
                 }
             }
         }

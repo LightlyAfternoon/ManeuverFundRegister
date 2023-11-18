@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using Реестр_маневренного_фонда.Pages;
 using Реестр_маневренного_фонда.Pages.ResidenceRegistrations;
 
 namespace Реестр_маневренного_фонда.TablesManagersClasses
@@ -18,12 +17,12 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 dbContext.ResidenceRegistration.Update(currentResidenceRegistration);
                 dbContext.SaveChanges();
 
-                MessageBox.Show("Факт проживания изменён изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                MainFrameObj.mainFrame.Navigate(new LocalitiesViewPage());
+                MessageBox.Show("Факт проживания изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MainFrameObj.mainFrame.Navigate(new ResidenceRegistrationViewPage());
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Не удалось изменить факт проживания", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Не удалось изменить факт проживания\n" + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

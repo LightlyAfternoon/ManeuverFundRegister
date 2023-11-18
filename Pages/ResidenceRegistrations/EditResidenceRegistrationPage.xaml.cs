@@ -17,13 +17,15 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
         {
             InitializeComponent();
 
+            residenceRegistration = currentResidenceRegistration;
+
             cmb_Agreement.ItemsSource = dbContext.Agreement.ToList();
             cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
             cmb_TempReident.ItemsSource = dbContext.TempResident.ToList();
 
-            cmb_Agreement.SelectedItem = dbContext.Agreement;
-            cmb_HousingFund.SelectedItem = dbContext.HousingFund;
-            cmb_TempReident.SelectedItem = dbContext.TempResident;
+            cmb_Agreement.SelectedItem = currentResidenceRegistration.Agreement;
+            cmb_HousingFund.SelectedItem = currentResidenceRegistration.HousingFund;
+            cmb_TempReident.SelectedItem = currentResidenceRegistration.TempResident;
             dp_DateStart.SelectedDate = currentResidenceRegistration.DateStartResidence;
             dp_DateEnd.SelectedDate = currentResidenceRegistration.DateEndResidence;
         }

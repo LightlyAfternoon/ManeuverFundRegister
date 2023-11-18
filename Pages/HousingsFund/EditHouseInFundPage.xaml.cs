@@ -25,11 +25,12 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             cmb_Street.ItemsSource = dbContext.Street.Where(s => s.IdStreet == currentHousingFund.StreetId).ToList();
             cmb_ImprovementDegree.ItemsSource = dbContext.ImprovementDegree.ToList();
 
+            cmb_Locality.SelectedItem = currentHousingFund.Street.Locality;
             cmb_Street.SelectedItem = currentHousingFund.Street;
             tb_HouseNumber.Text = currentHousingFund.HouseNumber;
             tb_ApartmentNumber.Text = currentHousingFund.ApartmentNumber.ToString();
             tb_RoomNumber.Text = currentHousingFund.RoomNumber.ToString();
-            cmb_ImprovementDegree.SelectedItem = currentHousingFund.Street;
+            cmb_ImprovementDegree.SelectedItem = currentHousingFund.ImprovementDegree;
             tb_DecreeArea.Text = currentHousingFund.DecreeArea.ToString();
             tb_RegisterArea.Text = currentHousingFund.RegisterArea.ToString();
             tb_Remark.Text = currentHousingFund.Remark;
