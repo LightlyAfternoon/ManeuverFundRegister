@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Resources\town-hall.png" />
+    <None Remove="Resources\townhall.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\townhall.ico" />
     <Resource Include="Resources\town-hall.png" />
   </ItemGroup>
 
