@@ -14,11 +14,11 @@
                 <StackPanel Margin="10,0">
                     <TextBlock Text="Населённый пункт"/>
                     <Border BorderThickness="1" BorderBrush="Blue">
-                        <ComboBox Height="25" x:Name="cmb_Locality" DisplayMemberPath="NameLocality" DropDownClosed="cmb_Locality_DropDownClosed"  SelectionChanged="cmb_Locality_SelectionChanged"/>
+                        <ComboBox Height="25" x:Name="cmb_Locality" DisplayMemberPath="NameLocality" IsEditable="True" DropDownClosed="cmb_Locality_DropDownClosed" SelectionChanged="cmb_Locality_SelectionChanged" TextBoxBase.TextChanged="cmb_Locality_TextChanged"/>
                     </Border>
                     <TextBlock Text="Улица"/>
                     <Border BorderThickness="1" BorderBrush="Blue">
-                        <ComboBox Height="25" x:Name="cmb_Street" DisplayMemberPath="NameStreet" IsEnabled="False"/>
+                        <ComboBox Height="25" x:Name="cmb_Street" IsEditable="True" DisplayMemberPath="NameStreet" IsEnabled="False" TextBoxBase.TextChanged="cmb_Street_TextChanged"/>
                     </Border>
                     <TextBlock Text="Номер дома"/>
                     <TextBox Height="25" x:Name="tb_HouseNumber" BorderBrush="Blue"/>

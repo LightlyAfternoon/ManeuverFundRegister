@@ -30,5 +30,19 @@ namespace Реестр_маневренного_фонда.Pages.Streets
             StreetManager sm = new StreetManager();
             sm.EditStreet(street, cmb_Locality.SelectedItem as Locality, tb_NameStreet.Text);
         }
+
+        private void cmb_Locality_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string[] words;
+
+            words = cmb_Locality.Text.ToString().Split(new char[] { ' ', ',' });
+
+            foreach (string word in words)
+            {
+                cmb_Locality.ItemsSource = dbContext.Locality.Where(l => l.NameLocality.ToLower().Contains(word.ToLower())).ToList();
+            }
+
+            cmb_Locality.IsDropDownOpen = true;
+        }
     }
 }

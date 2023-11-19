@@ -56,5 +56,33 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             HousingFundManager hm = new HousingFundManager();
             hm.EditHouseInFund(housingFund, cmb_Street.SelectedItem as Street, tb_HouseNumber.Text, tb_ApartmentNumber.Text, tb_RoomNumber.Text, cmb_ImprovementDegree.SelectedItem as ImprovementDegree, tb_DecreeArea.Text, tb_RegisterArea.Text, tb_Remark.Text);
         }
+
+        private void cmb_Locality_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string[] words;
+
+            words = cmb_Locality.Text.ToString().Split(new char[] { ' ', ',' });
+
+            foreach (string word in words)
+            {
+                cmb_Locality.ItemsSource = dbContext.Locality.Where(l => l.NameLocality.ToLower().Contains(word.ToLower())).ToList();
+            }
+
+            cmb_Locality.IsDropDownOpen = true;
+        }
+
+        private void cmb_Street_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string[] words;
+
+            words = cmb_Street.Text.ToString().Split(new char[] { ' ', ',' });
+
+            foreach (string word in words)
+            {
+                cmb_Street.ItemsSource = dbContext.Street.Where(l => l.NameStreet.ToLower().Contains(word.ToLower())).ToList();
+            }
+
+            cmb_Street.IsDropDownOpen = true;
+        }
     }
 }

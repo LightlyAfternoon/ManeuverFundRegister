@@ -31,48 +31,36 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                         if (listResidenceRegistration.SkipWhile(a => a.IdRegistration != residenceRegistration.IdRegistration).Skip(1).FirstOrDefault().AgreementId == listAgreements.SkipWhile(a => a.IdAgreement != agreement.IdAgreement).Skip(1).FirstOrDefault().IdAgreement
                             && residenceRegistration.DateEndResidence == null)
                         {
-                            if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(1) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1)
-                            {
-                                Notification newNotification = new Notification
-                                {
-                                    AgreementId = agreement.IdAgreement,
-                                    RecievingDate = DateTime.Now,
-                                    IsViewed = false
-                                };
-
-                                dbContext.Notification.Add(newNotification);
-                                dbContext.SaveChanges();
-
-                                new ToastContentBuilder()
-                                    .AddArgument("action", "viewConversation")
-                                    .AddArgument("conversationId", 9813)
-                                    .AddText($"Срок договора №{agreement.NumberAgreement} от {string.Format("{0:dd.MM.yyyy}", agreement.DateConclusionAgreement)} заканчивается {string.Format("{0:dd.MM.yyyy}", agreement.DateEndAgreement)}")
-                                    .Show();
-                            }
+                            addNotifications(agreement);
                         }
                     }
                     else if (residenceRegistration.DateEndResidence == null && agreement == listAgreements.Last() && residenceRegistration == listResidenceRegistration.Last())
                     {
-                        if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(1) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1)
-                        {
-                            Notification newNotification = new Notification
-                            {
-                                AgreementId = agreement.IdAgreement,
-                                RecievingDate = DateTime.Now,
-                                IsViewed = false
-                            };
-
-                            dbContext.Notification.Add(newNotification);
-                            dbContext.SaveChanges();
-
-                            new ToastContentBuilder()
-                                .AddArgument("action", "viewConversation")
-                                .AddArgument("conversationId", 9813)
-                                .AddText($"Срок договора №{agreement.NumberAgreement} от {string.Format("{0:dd.MM.yyyy}", agreement.DateConclusionAgreement)} заканчивается {string.Format("{0:dd.MM.yyyy}", agreement.DateEndAgreement)}")
-                                .Show();
-                        }
+                        addNotifications(agreement);
                     }
                 }
+            }
+        }
+
+        private void addNotifications(Agreement agreement)
+        {
+            if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(1) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1)
+            {
+                Notification newNotification = new Notification
+                {
+                    AgreementId = agreement.IdAgreement,
+                    RecievingDate = DateTime.Now,
+                    IsViewed = false
+                };
+
+                dbContext.Notification.Add(newNotification);
+                dbContext.SaveChanges();
+
+                new ToastContentBuilder()
+                    .AddArgument("action", "viewConversation")
+                    .AddArgument("conversationId", 9813)
+                    .AddText($"Срок договора №{agreement.NumberAgreement} от {string.Format("{0:dd.MM.yyyy}", agreement.DateConclusionAgreement)} заканчивается {string.Format("{0:dd.MM.yyyy}", agreement.DateEndAgreement)}")
+                    .Show();
             }
         }
 

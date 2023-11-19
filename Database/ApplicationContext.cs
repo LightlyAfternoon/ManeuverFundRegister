@@ -31,7 +31,7 @@ namespace Реестр_маневренного_фонда
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlite("Data Source="+ Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ManeuverFundRegister\\Database\\ManeuverFundRegister.db");
-            optionsBuilder.UseSqlite("Data Source=" + Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()) + "\\ManeuverFundRegister\\Database\\ManeuverFundRegister.db");
+            optionsBuilder.UseSqlite("Data Source=" + Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\Database\\ManeuverFundRegister.db");
         }
     }
 }
