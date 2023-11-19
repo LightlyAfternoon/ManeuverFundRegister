@@ -51,7 +51,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
 
             foreach (string word in words)
             {
-                cmb_Locality.ItemsSource = dbContext.Locality.Where(l => l.NameLocality.ToLower().Contains(word.ToLower())).ToList();
+                cmb_Locality.ItemsSource = dbContext.Locality.AsEnumerable().Where(l => l.NameLocality.ToLower().Contains(word.ToLower())).ToList();
             }
 
             cmb_Locality.IsDropDownOpen = true;
@@ -65,7 +65,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
 
             foreach (string word in words)
             {
-                cmb_Street.ItemsSource = dbContext.Street.Where(l => l.NameStreet.ToLower().Contains(word.ToLower())).ToList();
+                cmb_Street.ItemsSource = dbContext.Street.AsEnumerable().Where(l => l.NameStreet.ToLower().Contains(word.ToLower())).ToList();
             }
 
             cmb_Street.IsDropDownOpen = true;

@@ -25,7 +25,7 @@
                     </Border>
                     <TextBlock Text="Адрес жилья"/>
                     <Border BorderThickness="1" BorderBrush="Blue">
-                        <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged" BorderBrush="Blue"/>
+                        <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged" BorderBrush="Blue" SelectionChanged="cmb_HousingFund_SelectionChanged"/>
                     </Border>
                 </StackPanel>
 
@@ -34,6 +34,8 @@
                     <DatePicker x:Name="dp_DateConclusion" BorderBrush="Blue"/>
                     <TextBlock Text="Дата окончания"/>
                     <DatePicker x:Name="dp_DateEnd" BorderBrush="Blue"/>
+                    <TextBlock/>
+                    <TextBox x:Name="tb_ImprName" IsEnabled="False" Visibility="Collapsed"/>
                 </StackPanel>
             </StackPanel>
             <TextBlock Text="Примечание"/>

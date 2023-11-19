@@ -101,5 +101,16 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
 
             cmb_TempReident.IsDropDownOpen = true;
         }
+
+        private void cmb_HousingFund_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tb_ImprName.Visibility = Visibility.Visible;
+            HousingFund selectedHousingFund = cmb_HousingFund.SelectedItem as HousingFund;
+
+            if (selectedHousingFund != null)
+            {
+                tb_ImprName.Text = selectedHousingFund.ImprovementDegree.NameImprovementDegree;
+            }
+        }
     }
 }

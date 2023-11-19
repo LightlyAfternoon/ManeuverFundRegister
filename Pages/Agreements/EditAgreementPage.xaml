@@ -23,8 +23,10 @@
                     </Border>
                     <TextBlock Text="Адрес жилья"/>
                     <Border BorderThickness="1" BorderBrush="Blue">
-                        <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged"/>
+                        <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged" SelectionChanged="cmb_HousingFund_SelectionChanged"/>
                     </Border>
+                    <TextBlock/>
+                    <TextBox x:Name="tb_ImprName" IsEnabled="False" Visibility="Collapsed"/>
                 </StackPanel>
 
                 <StackPanel Margin="10,0">

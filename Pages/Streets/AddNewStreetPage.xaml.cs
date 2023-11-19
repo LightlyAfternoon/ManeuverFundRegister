@@ -34,7 +34,7 @@ namespace Реестр_маневренного_фонда.Pages.Streets
 
             foreach (string word in words)
             {
-                cmb_Locality.ItemsSource = dbContext.Locality.Where(l => l.NameLocality.ToLower().Contains(word.ToLower())).ToList();
+                cmb_Locality.ItemsSource = dbContext.Locality.AsEnumerable().Where(l => l.NameLocality.ToLower().Contains(word.ToLower())).ToList();
             }
 
             cmb_Locality.IsDropDownOpen = true;

@@ -47,7 +47,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату окончания договора\n");
             }
-            if (dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 1)
+            if ((tempResident != null && housingFund != null) && dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 1)
             {
                 errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен\n");
             }
@@ -93,18 +93,21 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                                 switch (boxResult)
                                 {
                                     case MessageBoxResult.Yes:
+
                                         newRegistration.HousingFundId = housingFund.IdHousingFund;
                                         newRegistration.TempResidentId = tempResident.IdTempResident;
                                         newRegistration.DateStartResidence = (DateTime)dateConclusion;
                                         newRegistration.AgreementId = newAgreement.IdAgreement;
 
+                                        lastRegistration.DateEndResidence = newRegistration.DateStartResidence;
+
                                         dbContext.ResidenceRegistration.Add(newRegistration);
+                                        dbContext.ResidenceRegistration.Update(lastRegistration);
                                         dbContext.SaveChanges();
                                         break;
                                     case MessageBoxResult.No:
                                         MessageBox.Show("Необходимо выбрать другое жильё", "", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                                        errors += "Необходимо выбрать другое жильё";
-                                        AddAgreement(newAgreement, number, tempResident, housingFund, dateConclusion, dateEnd, remark);
+                                        MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
                                         break;
                                 }
                             }
@@ -144,17 +147,20 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 try
                 {
-                    ResidenceRegistration currentRegistration = dbContext.ResidenceRegistration.First(r => r.AgreementId == currentAgreement.IdAgreement);
-
-                    MessageBoxResult messageBoxResult = MessageBox.Show($"Изменить дату начала проживания в соответсвии с датой заключения договора?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    switch (messageBoxResult)
+                    if (dbContext.ResidenceRegistration.Count(r => r.AgreementId == currentAgreement.IdAgreement) > 0)
                     {
-                        case MessageBoxResult.Yes:
-                            currentRegistration.DateStartResidence = Convert.ToDateTime(dateConclusion);
-                            dbContext.ResidenceRegistration.Update(currentRegistration);
-                            break;
-                        case MessageBoxResult.No:
-                            break;
+                        ResidenceRegistration currentRegistration = dbContext.ResidenceRegistration.First(r => r.AgreementId == currentAgreement.IdAgreement);
+
+                        MessageBoxResult messageBoxResult = MessageBox.Show($"Изменить дату начала проживания в соответсвии с датой заключения договора?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        switch (messageBoxResult)
+                        {
+                            case MessageBoxResult.Yes:
+                                currentRegistration.DateStartResidence = Convert.ToDateTime(dateConclusion);
+                                dbContext.ResidenceRegistration.Update(currentRegistration);
+                                break;
+                            case MessageBoxResult.No:
+                                break;
+                        }
                     }
 
                     currentAgreement.NumberAgreement = Convert.ToInt32(number);
