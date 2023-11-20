@@ -112,7 +112,17 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                                 }
                             }
                         }
-                    }
+                        else
+                        {
+                            newRegistration.HousingFundId = housingFund.IdHousingFund;
+                            newRegistration.TempResidentId = tempResident.IdTempResident;
+                            newRegistration.DateStartResidence = (DateTime)dateConclusion;
+                            newRegistration.AgreementId = newAgreement.IdAgreement;
+    
+                            dbContext.ResidenceRegistration.Add(newRegistration);
+                            dbContext.SaveChanges();
+                        }
+                    }//////
                     else
                     {
                         newRegistration.HousingFundId = housingFund.IdHousingFund;
