@@ -26,7 +26,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
                 dbContext.HousingFund.Load();
                 dbContext.TempResident.Load();
-                lb_ResidenceRegistration.ItemsSource = dbContext.ResidenceRegistration.ToList();
+                lb_ResidenceRegistration.ItemsSource = dbContext.ResidenceRegistration.OrderBy(r => r.DateStartResidence).ToList();
                 
                 cmb_FullNameTR.ItemsSource = dbContext.TempResident.ToList();
                 cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
@@ -39,7 +39,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
         private void Filtering()
         {
-            var currentResidenceRegistrations = dbContext.ResidenceRegistration.ToList();
+            var currentResidenceRegistrations = dbContext.ResidenceRegistration.OrderBy(r => r.DateStartResidence).ToList();
             
             if (cmb_FullNameTR.SelectedItem != null)
             {
