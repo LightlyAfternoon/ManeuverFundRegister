@@ -100,7 +100,11 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
 
             if (selectedHousingFund != null)
             {
-                tb_ImprName.Text = selectedHousingFund.ImprovementDegree.NameImprovementDegree;
+                try
+                {
+                    tb_ImprName.Text = selectedHousingFund.ImprovementDegree.NameImprovementDegree;
+                }
+                catch {}
             }
         }
     }
