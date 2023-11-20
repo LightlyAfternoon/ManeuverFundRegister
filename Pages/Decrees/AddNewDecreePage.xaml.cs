@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,10 +59,12 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
             string[] words;
 
             words = cmb_HousingFund.Text.ToString().Split(new char[] { ' ', ',' });
+            List<HousingFund> findList = dbContext.HousingFund.AsEnumerable().ToList();
 
             foreach (string word in words)
             {
-                cmb_HousingFund.ItemsSource = dbContext.HousingFund.AsEnumerable().Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
+                findList = findList.Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
+                cmb_HousingFund.ItemsSource = findList;
             }
 
             cmb_HousingFund.IsDropDownOpen = true;

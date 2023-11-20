@@ -19,7 +19,7 @@
                     <TextBox Height="25" x:Name="tb_Number" BorderBrush="Blue"/>
                     <TextBlock Text="Временно проживающий"/>
                     <Border BorderThickness="1" BorderBrush="Blue">
-                        <ComboBox x:Name="cmb_TempReident" Height="25" DisplayMemberPath="FullName" IsEditable="True" TextBoxBase.TextChanged="cmb_TempReident_TextChanged"/>
+                        <ComboBox x:Name="cmb_TempResident" Height="25" DisplayMemberPath="FullName" IsEditable="True" TextBoxBase.TextChanged="cmb_TempResident_TextChanged"/>
                     </Border>
                     <TextBlock Text="Адрес жилья"/>
                     <Border BorderThickness="1" BorderBrush="Blue">

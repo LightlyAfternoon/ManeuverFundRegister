@@ -70,10 +70,12 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             string[] words;
 
             words = cmb_HousingFund.Text.ToString().Split(new char[] { ' ', ',' });
+            List<HousingFund> findList = dbContext.HousingFund.AsEnumerable().ToList();
 
             foreach (string word in words)
             {
-                cmb_HousingFund.ItemsSource = dbContext.HousingFund.AsEnumerable().Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
+                findList = findList.Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
+                cmb_HousingFund.ItemsSource = findList;
             }
 
             cmb_HousingFund.IsDropDownOpen = true;
@@ -84,10 +86,12 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             string[] words;
 
             words = cmb_TempResident.Text.ToString().Split(' ');
+            List<TempResident> findList = dbContext.TempResident.AsEnumerable().ToList();
 
             foreach (string word in words)
             {
-                cmb_TempResident.ItemsSource = dbContext.TempResident.AsEnumerable().Where(h => h.FullName.ToLower().Contains(word.ToLower())).ToList();
+                findList = findList.Where(h => h.FullName.ToLower().Contains(word.ToLower())).ToList();
+                cmb_TempResident.ItemsSource = findList;
             }
 
             cmb_TempResident.IsDropDownOpen = true;

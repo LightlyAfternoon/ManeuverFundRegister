@@ -41,12 +41,12 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             }
 
             cmb_HousingFund.ItemsSource = listAvailableHousingFund;
-            cmb_TempReident.ItemsSource = dbContext.TempResident.ToList();
+            cmb_TempResident.ItemsSource = dbContext.TempResident.ToList();
             agreement = currentAgreement;
 
             tb_Number.Text = agreement.NumberAgreement.ToString();
             cmb_HousingFund.SelectedItem = agreement.HousingFund;
-            cmb_TempReident.SelectedItem = agreement.TempResident;
+            cmb_TempResident.SelectedItem = agreement.TempResident;
             dp_DateConclusion.SelectedDate = agreement.DateConclusionAgreement;
             dp_DateEnd.SelectedDate = agreement.DateEndAgreement;
             dp_DateTermination.SelectedDate = agreement.DateTerminationAgreement;
@@ -56,7 +56,7 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
         private void bt_Edit_Click(object sender, RoutedEventArgs e)
         {
             AgreementManager am = new AgreementManager();
-            am.EditAgreement(agreement, tb_Number.Text, cmb_TempReident.SelectedItem as TempResident, cmb_HousingFund.SelectedItem as HousingFund, dp_DateConclusion.SelectedDate, dp_DateEnd.SelectedDate, dp_DateTermination.SelectedDate, tb_Remark.Text);
+            am.EditAgreement(agreement, tb_Number.Text, cmb_TempResident.SelectedItem as TempResident, cmb_HousingFund.SelectedItem as HousingFund, dp_DateConclusion.SelectedDate, dp_DateEnd.SelectedDate, dp_DateTermination.SelectedDate, tb_Remark.Text);
         }
 
         private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
@@ -79,27 +79,31 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             string[] words;
 
             words = cmb_HousingFund.Text.ToString().Split(new char[] { ' ', ',' });
+            List<HousingFund> findList = dbContext.HousingFund.AsEnumerable().ToList();
 
             foreach (string word in words)
             {
-                cmb_HousingFund.ItemsSource = dbContext.HousingFund.AsEnumerable().Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
+                findList = findList.Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
+                cmb_HousingFund.ItemsSource = findList;
             }
 
             cmb_HousingFund.IsDropDownOpen = true;
         }
 
-        private void cmb_TempReident_TextChanged(object sender, TextChangedEventArgs e)
+        private void cmb_TempResident_TextChanged(object sender, TextChangedEventArgs e)
         {
             string[] words;
 
-            words = cmb_TempReident.Text.ToString().Split(' ');
+            words = cmb_TempResident.Text.ToString().Split(' ');
+            List<TempResident> findList = dbContext.TempResident.AsEnumerable().ToList();
 
             foreach (string word in words)
             {
-                cmb_TempReident.ItemsSource = dbContext.TempResident.AsEnumerable().Where(h => h.FullName.ToLower().Contains(word.ToLower())).ToList();
+                findList = findList.Where(h => h.FullName.ToLower().Contains(word.ToLower())).ToList();
+                cmb_TempResident.ItemsSource = findList;
             }
 
-            cmb_TempReident.IsDropDownOpen = true;
+            cmb_TempResident.IsDropDownOpen = true;
         }
 
         private void cmb_HousingFund_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -109,7 +113,11 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
 
             if (selectedHousingFund != null)
             {
-                tb_ImprName.Text = selectedHousingFund.ImprovementDegree.NameImprovementDegree;
+                try
+                {
+                    tb_ImprName.Text = selectedHousingFund.ImprovementDegree.NameImprovementDegree;
+                }
+                catch { }
             }
         }
     }

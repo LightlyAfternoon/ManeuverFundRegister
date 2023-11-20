@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,10 +49,12 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             string[] words;
 
             words = cmb_Locality.Text.ToString().Split(new char[] { ' ', ',' });
+            List<Locality> findList = dbContext.Locality.ToList();
 
             foreach (string word in words)
             {
-                cmb_Locality.ItemsSource = dbContext.Locality.AsEnumerable().Where(l => l.NameLocality.ToLower().Contains(word.ToLower())).ToList();
+                findList = findList.Where(l => l.NameLocality.ToLower().Contains(word.ToLower())).ToList();
+                cmb_Locality.ItemsSource = findList;
             }
 
             cmb_Locality.IsDropDownOpen = true;
@@ -62,10 +65,12 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             string[] words;
 
             words = cmb_Street.Text.ToString().Split(new char[] { ' ', ',' });
+            List<Street> findList = dbContext.Street.ToList();
 
             foreach (string word in words)
             {
-                cmb_Street.ItemsSource = dbContext.Street.AsEnumerable().Where(l => l.NameStreet.ToLower().Contains(word.ToLower())).ToList();
+                findList = findList.Where(s => s.NameStreet.ToLower().Contains(word.ToLower())).ToList();
+                cmb_Street.ItemsSource = findList;
             }
 
             cmb_Street.IsDropDownOpen = true;

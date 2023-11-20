@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,8 +28,8 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
                 dbContext.HousingFund.Load();
                 dbContext.TempResident.Load();
                 lb_ResidenceRegistration.ItemsSource = dbContext.ResidenceRegistration.OrderBy(r => r.DateStartResidence).ToList();
-                
-                cmb_FullNameTR.ItemsSource = dbContext.TempResident.ToList();
+
+                cmb_TempResident.ItemsSource = dbContext.TempResident.ToList();
                 cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
             }
             catch
@@ -41,9 +42,9 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
         {
             var currentResidenceRegistrations = dbContext.ResidenceRegistration.OrderBy(r => r.DateStartResidence).ToList();
             
-            if (cmb_FullNameTR.SelectedItem != null)
+            if (cmb_TempResident.SelectedItem != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.TempResidentId == (cmb_FullNameTR.SelectedItem as TempResident).IdTempResident).ToList();
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.TempResidentId == (cmb_TempResident.SelectedItem as TempResident).IdTempResident).ToList();
             }
             if (cmb_HousingFund.SelectedItem != null)
             {
@@ -85,27 +86,31 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             string[] words;
 
             words = cmb_HousingFund.Text.ToString().Split(new char[] { ' ', ',' });
+            List<HousingFund> findList = dbContext.HousingFund.AsEnumerable().ToList();
 
             foreach (string word in words)
             {
-                cmb_HousingFund.ItemsSource = dbContext.HousingFund.AsEnumerable().Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
+                findList = findList.Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
+                cmb_HousingFund.ItemsSource = findList;
             }
 
             cmb_HousingFund.IsDropDownOpen = true;
         }
 
-        private void cmb_FullNameTR_TextChanged(object sender, TextChangedEventArgs e)
+        private void cmb_TempResident_TextChanged(object sender, TextChangedEventArgs e)
         {
             string[] words;
 
-            words = cmb_FullNameTR.Text.ToString().Split(' ');
+            words = cmb_TempResident.Text.ToString().Split(' ');
+            List<TempResident> findList = dbContext.TempResident.AsEnumerable().ToList();
 
             foreach (string word in words)
             {
-                cmb_FullNameTR.ItemsSource = dbContext.TempResident.AsEnumerable().Where(h => h.FullName.ToLower().Contains(word.ToLower())).ToList();
+                findList = findList.Where(h => h.FullName.ToLower().Contains(word.ToLower())).ToList();
+                cmb_TempResident.ItemsSource = findList;
             }
 
-            cmb_FullNameTR.IsDropDownOpen = true;
+            cmb_TempResident.IsDropDownOpen = true;
         }
 
         private void bt_EditRegitration_Click(object sender, RoutedEventArgs e)

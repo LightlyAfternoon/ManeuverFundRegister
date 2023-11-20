@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Реестр_маневренного_фонда.database.tables_classes;
@@ -36,10 +37,12 @@ namespace Реестр_маневренного_фонда.Pages.Streets
             string[] words;
 
             words = cmb_Locality.Text.ToString().Split(new char[] { ' ', ',' });
+            List<Locality> findList = dbContext.Locality.ToList();
 
             foreach (string word in words)
             {
-                cmb_Locality.ItemsSource = dbContext.Locality.AsEnumerable().Where(l => l.NameLocality.ToLower().Contains(word.ToLower())).ToList();
+                findList = findList.Where(l => l.NameLocality.ToLower().Contains(word.ToLower())).ToList();
+                cmb_Locality.ItemsSource = findList;
             }
 
             cmb_Locality.IsDropDownOpen = true;
