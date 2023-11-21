@@ -38,7 +38,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
 
         private void Filtering()
         {
-            var currentHousesInFund = dbContext.HousingFund.ToList();
+            var currentHousesInFund = dbContext.HousingFund.AsEnumerable().OrderBy(h => h.listNum).ToList();
             
             if (cmb_Street.SelectedItem != null)
             {
