@@ -104,16 +104,17 @@ namespace Реестр_маневренного_фонда
 
         private void bt_NotificationsView_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
+            try
+            {
 
                 if (!pop_Notif.IsOpen)
                 {
                     ApplicationContext.GetContext().Agreement.Load();
-                try { 
-                    notifications = ApplicationContext.GetContext().Notification.OrderByDescending(n => n.RecievingDate).ToList();
-                    lv_pop.ItemsSource = notifications;
-                }
+                    try
+                    {
+                        notifications = ApplicationContext.GetContext().Notification.OrderByDescending(n => n.RecievingDate).ToList();
+                        lv_pop.ItemsSource = notifications;
+                    }
                     catch { }
 
                     pop_Notif.IsOpen = true;
@@ -122,11 +123,11 @@ namespace Реестр_маневренного_фонда
                 {
                     pop_Notif.IsOpen = false;
                 }
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
