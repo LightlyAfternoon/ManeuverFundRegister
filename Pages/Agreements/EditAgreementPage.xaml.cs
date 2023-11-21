@@ -129,8 +129,13 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             try
             {
                 Convert.ToInt16(tb_Term.Text);
+
+                if (dp_DateConclusion.SelectedDate != null)
+                {
+                    dp_DateEnd.SelectedDate = dp_DateConclusion.SelectedDate.Value.AddMonths(Convert.ToInt16(tb_Term.Text));
+                }
             }
-            catch 
+            catch
             {
                 tb_Term.Text = string.Empty;
             }
