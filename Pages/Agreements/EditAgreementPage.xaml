@@ -31,11 +31,19 @@
 
                 <StackPanel Margin="10,0">
                     <TextBlock Text="Дата заключения"/>
-                    <DatePicker x:Name="dp_DateConclusion" BorderBrush="Blue"/>
-                    <TextBlock Text="Дата окончания"/>
-                    <DatePicker x:Name="dp_DateEnd" BorderBrush="Blue"/>
+                    <DatePicker x:Name="dp_DateConclusion" BorderBrush="Blue" SelectedDateChanged="dp_DateConclusion_SelectedDateChanged"/>
+                    <TextBlock Text="Срок"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Height="25" x:Name="tb_Term" MinWidth="25" Text="6" TextChanged="tb_Term_TextChanged"/>
+                        <TextBlock Text="Месяцев" Padding="5,0"/>
+                    </StackPanel>
                     <TextBlock Text="Дата расторжения"/>
                     <DatePicker x:Name="dp_DateTermination"/>
+                </StackPanel>
+
+                <StackPanel Margin="10,0" VerticalAlignment="Center">
+                    <TextBlock Text="Дата окончания"/>
+                    <DatePicker x:Name="dp_DateEnd" BorderBrush="Blue"/>
                 </StackPanel>
             </StackPanel>
             <TextBlock Text="Примечание"/>

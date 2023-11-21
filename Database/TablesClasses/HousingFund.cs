@@ -110,5 +110,39 @@ namespace Реестр_маневренного_фонда
                 return color;
             }
         }
+        [NotMapped]
+        public int listNum
+        {
+            get
+            {
+                int num = 4;
+                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                {
+                    ResidenceRegistration lastRegistration = ApplicationContext.GetContext().ResidenceRegistration.OrderBy(t => t.DateStartResidence).Last(r => r.HousingFundId == IdHousingFund);
+                    Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
+                    if (lastRegistration.DateEndResidence == null && lastDecree.Status == true)
+                    {
+                        num = 3;
+                    }
+                    else if (lastRegistration.DateEndResidence != null && lastDecree.Status == true)
+                    {
+                        num = 2;
+                    }
+                }
+                else if (ApplicationContext.GetContext().Decree.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                {
+                    Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
+                    if (lastDecree.Status == true)
+                    {
+                        num = 2;
+                    }
+                }
+                else
+                {
+                    num = 1;
+                }
+                return num;
+            }
+        }
     }
 }

@@ -122,7 +122,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                             dbContext.ResidenceRegistration.Add(newRegistration);
                             dbContext.SaveChanges();
                         }
-                    }//////
+                    }
                     else
                     {
                         newRegistration.HousingFundId = housingFund.IdHousingFund;

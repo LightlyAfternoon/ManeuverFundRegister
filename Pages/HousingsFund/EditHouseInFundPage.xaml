@@ -33,7 +33,7 @@
                     <Border BorderThickness="1" BorderBrush="Blue">
                         <ComboBox Height="25" x:Name="cmb_ImprovementDegree" DisplayMemberPath="NameImprovementDegree"/>
                     </Border>
-                    <TextBlock Text="DecreeArea"/>
+                    <TextBlock Text="Площадь по постановлению"/>
                     <TextBox Height="25" x:Name="tb_DecreeArea"/>
                     <TextBlock Text="Площадь по реестру"/>
                     <TextBox Height="25" x:Name="tb_RegisterArea"/>

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.TablesManagersClasses;
@@ -54,7 +56,7 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
         private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = "Word файлы (*.doc; *.docx)|*.doc;*.docx";
+            openFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf|Документы Word (*.doc; *.docx)|*.doc;*.docx";
 
             if (openFileDialog.ShowDialog() == true)
             {
@@ -100,6 +102,7 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
         private void cmb_HousingFund_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             tb_ImprName.Visibility = Visibility.Visible;
+            dbContext.ImprovementDegree.Load();
             HousingFund selectedHousingFund = cmb_HousingFund.SelectedItem as HousingFund;
 
             if (selectedHousingFund != null)
@@ -109,6 +112,31 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
                     tb_ImprName.Text = selectedHousingFund.ImprovementDegree.NameImprovementDegree;
                 }
                 catch {}
+            }
+        }
+
+        private void tb_Term_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                Convert.ToInt16(tb_Term.Text);
+
+                if (dp_DateConclusion.SelectedDate != null)
+                {
+                    dp_DateEnd.SelectedDate = dp_DateConclusion.SelectedDate.Value.AddMonths(Convert.ToInt16(tb_Term.Text));
+                }
+            }
+            catch
+            {
+                tb_Term.Text = string.Empty;
+            }
+        }
+
+        private void dp_DateConclusion_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(tb_Term.Text) && dp_DateConclusion.SelectedDate != null)
+            {
+                dp_DateEnd.SelectedDate = dp_DateConclusion.SelectedDate.Value.AddMonths(Convert.ToInt16(tb_Term.Text));
             }
         }
     }

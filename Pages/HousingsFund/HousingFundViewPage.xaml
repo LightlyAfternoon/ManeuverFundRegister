@@ -31,7 +31,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Степень благоустройства" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <ComboBox x:Name="cmb_ImprovementDegree" DisplayMemberPath="NameStreet" Width="200" Margin="10"/>
+                    <ComboBox x:Name="cmb_ImprovementDegree" DisplayMemberPath="NameImprovementDegree" Width="200" Margin="10"/>
                     <TextBlock Text="S по постановлению" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <TextBox x:Name="tb_DecreeArea" Width="50" Margin="10"/>
                     <TextBlock Text="S по реестру" Margin="0,0,10,0" VerticalAlignment="Center"/>

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -112,12 +114,16 @@ namespace Реестр_маневренного_фонда.Pages
             Agreement currentAgreement = (sender as Button).DataContext as Agreement;
 
             SaveFileDialog saveFileDialog = new();
-            saveFileDialog.Filter = "Word файл (*.docx)|*.docx";
+            saveFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf|Документы Word (*.doc; *.docx)|*.doc;*.docx";
             saveFileDialog.FileName = $"Договор №{currentAgreement.NumberAgreement} от {currentAgreement.DateConclusionAgreement.ToString("dd.MM.yyyy")}";
 
             if (saveFileDialog.ShowDialog() == true)
             {
                 FileManager.getAttachedFile(currentAgreement.File, saveFileDialog.FileName);
+                try
+                {
+                    Process.Start("explorer.exe", Directory.GetParent(saveFileDialog.FileName).ToString());
+                } catch { }
             }
         }
 

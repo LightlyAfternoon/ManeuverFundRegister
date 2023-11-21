@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -101,12 +103,17 @@ namespace Реестр_маневренного_фонда.Pages
             Decree currentDecree = (sender as Button).DataContext as Decree;
 
             SaveFileDialog saveFileDialog = new();
-            saveFileDialog.Filter = "Word файл (*.docx)|*.docx";
+            saveFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf|Документы Word (*.doc; *.docx)|*.doc;*.docx";
             saveFileDialog.FileName = $"Постановление №{currentDecree.NumberDecree} от {currentDecree.DateDecree.ToString("dd.MM.yyyy")}";
 
             if (saveFileDialog.ShowDialog() == true)
             {
                 FileManager.getAttachedFile(currentDecree.File, saveFileDialog.FileName);
+                try
+                {
+                    Process.Start("explorer.exe", Directory.GetParent(saveFileDialog.FileName).ToString());
+                }
+                catch { }
             }
         }
 

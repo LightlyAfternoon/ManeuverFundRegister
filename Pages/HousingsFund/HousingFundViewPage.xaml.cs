@@ -26,7 +26,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
                 dbContext = ApplicationContext.GetContext();
 
                 dbContext.ImprovementDegree.Load();
-                lb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
+                lb_HousingFund.ItemsSource = dbContext.HousingFund.AsEnumerable().OrderBy(h => h.listNum).ToList();
 
                 cmb_Street.ItemsSource = dbContext.Street.ToList();
                 cmb_ImprovementDegree.ItemsSource = dbContext.ImprovementDegree.ToList();

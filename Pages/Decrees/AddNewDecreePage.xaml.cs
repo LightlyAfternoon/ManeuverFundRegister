@@ -44,7 +44,7 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
         private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = "Word файлы(*.doc;*.docx)|*.doc;*.docx";
+            openFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf|Документы Word (*.doc; *.docx)|*.doc;*.docx";
             if (openFileDialog.ShowDialog() == true)
             {
                 newDecree.File = FileManager.attachFile(openFileDialog.FileName);
