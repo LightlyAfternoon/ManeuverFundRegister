@@ -6,9 +6,9 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
+using PdfiumViewer;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.TablesManagersClasses;
-using Patagames.Pdf.Net;
 
 namespace Реестр_маневренного_фонда.Pages.Agreements
 {
@@ -63,7 +63,8 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
                     string fileName = Path.GetTempPath() + @"\ManeuverFund\" + Guid.NewGuid().ToString() + ".pdf";
                     FileManager.getAttachedFile(agreement.File, fileName);
 
-                    pdfViewer1.LoadDocument(fileName);
+                    var doc = PdfiumViewer.PdfDocument.Load(fileName);
+                    pdfViewer1.Document = doc;
                 } catch { }
             }
         }
@@ -81,9 +82,13 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
 
             if (openFileDialog.ShowDialog() == true)
             {
-                agreement.File = FileManager.attachFile(openFileDialog.FileName);
+                try
+                {
+                    agreement.File = FileManager.attachFile(openFileDialog.FileName);
 
-                pdfViewer1.LoadDocument(openFileDialog.FileName);
+                    var doc = PdfiumViewer.PdfDocument.Load(openFileDialog.FileName);
+                    pdfViewer1.Document = doc;
+                }catch { }
             }
         }
 

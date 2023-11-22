@@ -4,8 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Реестр_маневренного_фонда.Pages.Agreements"
-      xmlns:Wpf="clr-namespace:Patagames.Pdf.Net.Controls.Wpf;assembly=Patagames.Pdf.Wpf"
-      xmlns:Toolbars="clr-namespace:Patagames.Pdf.Net.Controls.Wpf.ToolBars;assembly=Patagames.Pdf.Wpf"
+      xmlns:Wpf="clr-namespace:PdfiumViewer;assembly=PdfiumViewer"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddNewAgreementPage">
@@ -18,7 +17,7 @@
         
         <Button HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="bt_AttachFile" Content="Прикрепить документ" Click="bt_AttachFile_Click"/>
 
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="10,0">
                     <TextBlock Text="Номер"/>
@@ -58,17 +57,9 @@
         </StackPanel>
 
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <ToolBarTray>
-                <Toolbars:PdfToolBarMain x:Name="toolbarMain1" PdfViewer="{Binding ElementName=pdfViewer1}"/>
-            </ToolBarTray>
-            <ScrollViewer Grid.Row="1" CanContentScroll="True"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <Wpf:PdfViewer Name="pdfViewer1" Width="auto" Height="auto"/>
-            </ScrollViewer>
+            <WindowsFormsHost Grid.Row="1">
+                <Wpf:PdfViewer x:Name="pdfViewer1" Width="200" Height="300" Visible="True" ZoomMode="FitBest" ShowToolbar="True"/>
+            </WindowsFormsHost>
         </Grid>
     </Grid>
 </Page>

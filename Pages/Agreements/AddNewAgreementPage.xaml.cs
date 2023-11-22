@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
-using Patagames.Pdf.Net;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
@@ -61,9 +59,13 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
 
             if (openFileDialog.ShowDialog() == true)
             {
-                newAgreement.File = FileManager.attachFile(openFileDialog.FileName);
+                try
+                {
+                    newAgreement.File = FileManager.attachFile(openFileDialog.FileName);
 
-                pdfViewer1.LoadDocument(openFileDialog.FileName);
+                    var doc = PdfiumViewer.PdfDocument.Load(openFileDialog.FileName);
+                    pdfViewer1.Document = doc;
+                } catch { }
             }
         }
 
