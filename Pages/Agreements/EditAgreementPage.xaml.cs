@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.TablesManagersClasses;
+using Patagames.Pdf.Net;
 
 namespace Реестр_маневренного_фонда.Pages.Agreements
 {
@@ -53,6 +54,18 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             dp_DateEnd.SelectedDate = agreement.DateEndAgreement;
             dp_DateTermination.SelectedDate = agreement.DateTerminationAgreement;
             tb_Remark.Text = agreement.Remark;
+
+            if (agreement.File != null)
+            {
+                try
+                {
+                    Directory.CreateDirectory(Path.GetTempPath() + @"\ManeuverFund");
+                    string fileName = Path.GetTempPath() + @"\ManeuverFund\" + Guid.NewGuid().ToString() + ".pdf";
+                    FileManager.getAttachedFile(agreement.File, fileName);
+
+                    pdfViewer1.LoadDocument(fileName);
+                } catch { }
+            }
         }
 
         private void bt_Edit_Click(object sender, RoutedEventArgs e)
@@ -64,16 +77,14 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
         private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf|Документы Word (*.doc; *.docx)|*.doc;*.docx";
+            openFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf";
 
             if (openFileDialog.ShowDialog() == true)
             {
                 agreement.File = FileManager.attachFile(openFileDialog.FileName);
-                
-                FileInfo fileInfo = new(openFileDialog.FileName);
-                tbl_AttachedFile.Text = fileInfo.Name;
-            }
 
+                pdfViewer1.LoadDocument(openFileDialog.FileName);
+            }
         }
 
         private void cmb_HousingFund_TextChanged(object sender, TextChangedEventArgs e)

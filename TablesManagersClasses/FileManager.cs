@@ -14,7 +14,9 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 using (BinaryReader reader = new(stream))
                 {
                     fileBytes = reader.ReadBytes((int)stream.Length);
+                    reader.Close();
                 }
+                stream.Close();
             }
 
             return fileBytes;
@@ -25,6 +27,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             using (FileStream stream = new(pathToNewLocation, FileMode.Create, FileAccess.Write))
             {
                 stream.Write(fileBytes, 0, fileBytes.Length);
+                stream.Close();
             }
         }
     }

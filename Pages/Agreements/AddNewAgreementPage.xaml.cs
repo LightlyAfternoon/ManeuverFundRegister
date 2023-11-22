@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
+using Patagames.Pdf.Net;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
@@ -56,14 +57,13 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
         private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf|Документы Word (*.doc; *.docx)|*.doc;*.docx";
+            openFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf";
 
             if (openFileDialog.ShowDialog() == true)
             {
                 newAgreement.File = FileManager.attachFile(openFileDialog.FileName);
 
-                FileInfo fileInfo = new(openFileDialog.FileName);
-                tbl_AttachedFile.Text = fileInfo.Name;
+                pdfViewer1.LoadDocument(openFileDialog.FileName);
             }
         }
 

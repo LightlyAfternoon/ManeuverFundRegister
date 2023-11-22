@@ -56,7 +56,7 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
         private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf|Документы Word (*.doc; *.docx)|*.doc;*.docx";
+            openFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf";
 
             if (openFileDialog.ShowDialog() == true)
             {

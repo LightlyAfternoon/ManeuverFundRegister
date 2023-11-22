@@ -23,26 +23,27 @@ namespace Реестр_маневренного_фонда
         public MainWindow()
         {
             InitializeComponent();
+            DeleteTempFilesClass.deleteTempFiles();
 
             MainFrameObj.mainFrame = fr_Frame;
 
             using (TaskService ts = new TaskService())
             {
-                // Создание процесса консольной программы для проверки уведомлений
-                Process.Start(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\ExecuteNotificationManagerClass.exe");
+                //// Создание процесса консольной программы для проверки уведомлений
+                //Process.Start(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\ExecuteNotificationManagerClass.exe");
 
-                // Создание новой задачи и добавление её описания
-                TaskDefinition td = ts.NewTask();
-                td.RegistrationInfo.Description = "Добавление и удаление уведомлений";
+                //// Создание новой задачи и добавление её описания
+                //TaskDefinition td = ts.NewTask();
+                //td.RegistrationInfo.Description = "Добавление и удаление уведомлений";
 
-                // Создание триггера, который будет запускать задачу в 10 часов каждый день
-                td.Triggers.Add(new DailyTrigger { DaysInterval = 1 });
+                //// Создание триггера, который будет запускать задачу в 10 часов каждый день
+                //td.Triggers.Add(new DailyTrigger { DaysInterval = 1 });
 
-                // Определение команды, которую нужно запустить
-                td.Actions.Add(new ExecAction(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\ExecuteNotificationManagerClass.exe"));
+                //// Определение команды, которую нужно запустить
+                //td.Actions.Add(new ExecAction(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\ExecuteNotificationManagerClass.exe"));
 
-                // Регистрация задачи в планировщике
-                ts.RootFolder.RegisterTaskDefinition(@"AddAndRemoveNotifications", td);
+                //// Регистрация задачи в планировщике
+                //ts.RootFolder.RegisterTaskDefinition(@"AddAndRemoveNotifications", td);
             }
         }
 
