@@ -24,6 +24,7 @@ namespace Реестр_маневренного_фонда
         {
             InitializeComponent();
             DeleteTempFilesClass.deleteTempFiles();
+            Directory.CreateDirectory(Path.GetTempPath() + @"\ManeuverFund");
 
             MainFrameObj.mainFrame = fr_Frame;
 
@@ -107,7 +108,6 @@ namespace Реестр_маневренного_фонда
         {
             try
             {
-
                 if (!pop_Notif.IsOpen)
                 {
                     ApplicationContext.GetContext().Agreement.Load();

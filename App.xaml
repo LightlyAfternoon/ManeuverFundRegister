@@ -24,6 +24,11 @@
                 <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
             </Style>
 
+            <Style TargetType="Page">
+                <Setter Property="Height" Value="550"/>
+                <Setter Property="Width" Value="900"/>
+            </Style>
+
             <Style TargetType="ComboBox">
                 <Setter Property="Background" Value="White"/>
                 <Setter Property="StaysOpenOnEdit" Value="True"/>
