@@ -47,7 +47,7 @@ namespace Реестр_маневренного_фонда
             get
             {
                 string freedomStatus = "Исключено";
-                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().Decree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
                     ResidenceRegistration lastRegistration = ApplicationContext.GetContext().ResidenceRegistration.OrderBy(t => t.DateStartResidence).Last(r => r.HousingFundId == IdHousingFund);
                     Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
@@ -70,7 +70,7 @@ namespace Реестр_маневренного_фонда
                 }
                 else
                 {
-                    freedomStatus = string.Empty;
+                    freedomStatus = "Нет постановления";
                 }
                 return freedomStatus;
             }
@@ -82,7 +82,7 @@ namespace Реестр_маневренного_фонда
             get
             {
                 Brush color = Brushes.LightGray;
-                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().Decree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
                     ResidenceRegistration lastRegistration = ApplicationContext.GetContext().ResidenceRegistration.OrderBy(t => t.DateStartResidence).Last(r => r.HousingFundId == IdHousingFund);
                     Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
@@ -116,7 +116,7 @@ namespace Реестр_маневренного_фонда
             get
             {
                 int num = 4;
-                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().Decree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
                     ResidenceRegistration lastRegistration = ApplicationContext.GetContext().ResidenceRegistration.OrderBy(t => t.DateStartResidence).Last(r => r.HousingFundId == IdHousingFund);
                     Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
