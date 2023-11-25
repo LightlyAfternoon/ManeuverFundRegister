@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.TaskScheduler;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
+using Реестр_маневренного_фонда.Database.TablesClasses;
 using Реестр_маневренного_фонда.Pages;
 using Реестр_маневренного_фонда.Pages.HousingsFund;
 using Реестр_маневренного_фонда.Pages.ResidenceRegistrations;
@@ -18,11 +20,15 @@ namespace Реестр_маневренного_фонда
     /// </summary>
     public partial class MainWindow : Window
     {
+        ApplicationContext dbContext;
         List<Notification> notifications = new();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            UpdateDB();
+
             DeleteTempFilesClass.deleteTempFiles();
             Directory.CreateDirectory(Path.GetTempPath() + @"\ManeuverFund");
 
@@ -45,6 +51,32 @@ namespace Реестр_маневренного_фонда
 
                 // Регистрация задачи в планировщике
                 ts.RootFolder.RegisterTaskDefinition(@"AddAndRemoveNotifications", td);
+            }
+        }
+
+        private void UpdateDB()
+        {
+
+            FormattableString addHouseDecreeTableCommand = $"CREATE TABLE IF NOT EXISTS HouseDecree (IdHouseDecree INTEGER NOT NULL, DecreeId INTEGER NOT NULL, HousingFundId INTEGER NOT NULL, FOREIGN KEY(DecreeId) REFERENCES Decree(IdDecree), FOREIGN KEY(HousingFundId) REFERENCES HousingFund(IdHousingFund), PRIMARY KEY(IdHouseDecree AUTOINCREMENT));";
+            dbContext = ApplicationContext.GetContext();
+            dbContext.Database.ExecuteSql(addHouseDecreeTableCommand);
+
+            foreach (Decree decree in dbContext.Decree.ToList())
+            {
+                int firstIdDecree = dbContext.Decree.First(d => d.NumberDecree == decree.NumberDecree && d.DateDecree == decree.DateDecree).IdDecree;
+                if (dbContext.HouseDecree.Count(hd => hd.DecreeId == firstIdDecree && hd.HousingFundId == decree.HousingFundId) < 1)
+                {
+                    HouseDecree houseDecree = new HouseDecree();
+                    houseDecree.DecreeId = firstIdDecree;
+                    houseDecree.HousingFundId = decree.HousingFundId;
+                    dbContext.HouseDecree.Add(houseDecree);
+
+                    if (decree != dbContext.Decree.First(d => d.NumberDecree == decree.NumberDecree && d.DateDecree == decree.DateDecree))
+                    {
+                        dbContext.Decree.Remove(decree);
+                    }
+                    dbContext.SaveChanges();
+                }
             }
         }
 

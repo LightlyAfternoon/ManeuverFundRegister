@@ -5,6 +5,7 @@ using System.Media;
 using System.Linq;
 using Реестр_маневренного_фонда.database.tables_classes;
 using System.Windows.Media;
+using Реестр_маневренного_фонда.Database.TablesClasses;
 
 namespace Реестр_маневренного_фонда
 {
@@ -47,23 +48,23 @@ namespace Реестр_маневренного_фонда
             get
             {
                 string freedomStatus = "Исключено";
-                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().Decree.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().HouseDecree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
                     ResidenceRegistration lastRegistration = ApplicationContext.GetContext().ResidenceRegistration.OrderBy(t => t.DateStartResidence).Last(r => r.HousingFundId == IdHousingFund);
-                    Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
-                    if (lastRegistration.DateEndResidence == null && lastDecree.Status == true)
+                    HouseDecree lastDecree = ApplicationContext.GetContext().HouseDecree.OrderBy(t => t.Decree.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
+                    if (lastRegistration.DateEndResidence == null && lastDecree.Decree.Status == true)
                     {
                         freedomStatus = "Занято";
                     }
-                    else if (lastRegistration.DateEndResidence != null && lastDecree.Status == true)
+                    else if (lastRegistration.DateEndResidence != null && lastDecree.Decree.Status == true)
                     {
                         freedomStatus = "Свободно";
                     }
                 }
-                else if (ApplicationContext.GetContext().Decree.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                else if (ApplicationContext.GetContext().HouseDecree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
-                    Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
-                    if (lastDecree.Status == true)
+                    HouseDecree lastDecree = ApplicationContext.GetContext().HouseDecree.OrderBy(t => t.Decree.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
+                    if (lastDecree.Decree.Status == true)
                     {
                         freedomStatus = "Свободно";
                     }
@@ -82,23 +83,23 @@ namespace Реестр_маневренного_фонда
             get
             {
                 Brush color = Brushes.LightGray;
-                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().Decree.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().HouseDecree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
                     ResidenceRegistration lastRegistration = ApplicationContext.GetContext().ResidenceRegistration.OrderBy(t => t.DateStartResidence).Last(r => r.HousingFundId == IdHousingFund);
-                    Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
-                    if (lastRegistration.DateEndResidence == null && lastDecree.Status == true)
+                    HouseDecree lastDecree = ApplicationContext.GetContext().HouseDecree.OrderBy(t => t.Decree.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
+                    if (lastRegistration.DateEndResidence == null && lastDecree.Decree.Status == true)
                     {
                         color = Brushes.PaleVioletRed;
                     }
-                    else if (lastRegistration.DateEndResidence != null && lastDecree.Status == true)
+                    else if (lastRegistration.DateEndResidence != null && lastDecree.Decree.Status == true)
                     {
                         color = Brushes.LightGreen;
                     }
                 }
-                else if (ApplicationContext.GetContext().Decree.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                else if (ApplicationContext.GetContext().HouseDecree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
-                    Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
-                    if (lastDecree.Status == true)
+                    HouseDecree lastDecree = ApplicationContext.GetContext().HouseDecree.OrderBy(t => t.Decree.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
+                    if (lastDecree.Decree.Status == true)
                     {
                         color = Brushes.LightGreen;
                     }
@@ -116,23 +117,23 @@ namespace Реестр_маневренного_фонда
             get
             {
                 int num = 4;
-                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().Decree.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().HouseDecree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
                     ResidenceRegistration lastRegistration = ApplicationContext.GetContext().ResidenceRegistration.OrderBy(t => t.DateStartResidence).Last(r => r.HousingFundId == IdHousingFund);
-                    Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
-                    if (lastRegistration.DateEndResidence == null && lastDecree.Status == true)
+                    HouseDecree lastDecree = ApplicationContext.GetContext().HouseDecree.OrderBy(t => t.Decree.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
+                    if (lastRegistration.DateEndResidence == null && lastDecree.Decree.Status == true)
                     {
                         num = 3;
                     }
-                    else if (lastRegistration.DateEndResidence != null && lastDecree.Status == true)
+                    else if (lastRegistration.DateEndResidence != null && lastDecree.Decree.Status == true)
                     {
                         num = 2;
                     }
                 }
-                else if (ApplicationContext.GetContext().Decree.Count(r => r.HousingFundId == IdHousingFund) > 0)
+                else if (ApplicationContext.GetContext().HouseDecree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
-                    Decree lastDecree = ApplicationContext.GetContext().Decree.OrderBy(t => t.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
-                    if (lastDecree.Status == true)
+                    HouseDecree lastDecree = ApplicationContext.GetContext().HouseDecree.OrderBy(t => t.Decree.DateDecree).Last(r => r.HousingFundId == IdHousingFund);
+                    if (lastDecree.Decree.Status == true)
                     {
                         num = 2;
                     }

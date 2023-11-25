@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Windows;
+using Реестр_маневренного_фонда.Database.TablesClasses;
 
 namespace Реестр_маневренного_фонда
 {
@@ -15,8 +18,6 @@ namespace Реестр_маневренного_фонда
         public bool Status { get; set; }
         public byte[]? File { get; set; }
 
-        public virtual HousingFund HousingFund { get; set; }
-
         public string getStatusName()
         {
             if (Status == false)
@@ -27,7 +28,20 @@ namespace Реестр_маневренного_фонда
 
         [NotMapped]
         public string StatusName => getStatusName();
-        
+        public string getAllHousingFundAddresses()
+        {
+            string addresses = string.Empty;
+            List<HouseDecree> houseDecrees = ApplicationContext.GetContext().HouseDecree.Where(hd => hd.DecreeId == IdDecree).ToList();
+            foreach (HouseDecree houseDecree in houseDecrees)
+            {
+                addresses += $"{houseDecree.HousingFund.FullAddress}\n";
+            }
+            return addresses;
+        }
+
+        [NotMapped]
+        public string AllHousingFundAddresses => getAllHousingFundAddresses();
+
         [NotMapped]
         public Visibility ShowButton 
         {

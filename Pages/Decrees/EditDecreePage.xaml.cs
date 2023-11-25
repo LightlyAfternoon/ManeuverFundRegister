@@ -3,7 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using Microsoft.Win32;
+using Реестр_маневренного_фонда.Database.TablesClasses;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages.Decrees
@@ -15,6 +17,8 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
     {
         Decree decree;
         ApplicationContext dbContext = ApplicationContext.GetContext();
+        List<HouseDecree> houseDecrees;
+        List<HousingFund> housingFund = new List<HousingFund>();
 
         public EditDecreePage(Decree currentDecree)
         {
@@ -22,6 +26,14 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
 
             decree = currentDecree;
             cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
+            ComboBox? comboBox = new ComboBox()
+            {
+                Height = 25,
+                ItemsSource = dbContext.HousingFund.ToList(),
+                DisplayMemberPath = "FullAddress",
+                IsEditable = true,
+            };
+            comboBox.AddHandler(TextBoxBase.TextChangedEvent, new TextChangedEventHandler(cmb_HousingFund_TextChanged));
 
             tb_Number.Text = currentDecree.NumberDecree.ToString();
             dp_DateConclusion.SelectedDate = currentDecree.DateDecree.Date;
@@ -33,7 +45,27 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
             {
                 rb_Exclusion.IsChecked = true;
             }
-            cmb_HousingFund.SelectedItem = currentDecree.HousingFund;
+
+            houseDecrees = dbContext.HouseDecree.Where(hd => hd.DecreeId == currentDecree.IdDecree).ToList();
+            cmb_HousingFund.SelectedItem = houseDecrees.First().HousingFund;
+            houseDecrees.Remove(houseDecrees.First());
+
+            if (houseDecrees.Count > 0)
+            {
+                foreach (HouseDecree houseDecree in houseDecrees)
+                {
+                    sp_HousesFund.Children.Add(comboBox);
+                    comboBox.SelectedItem = houseDecree.HousingFund;
+                    comboBox = new ComboBox()
+                    {
+                        Height = 25,
+                        ItemsSource = dbContext.HousingFund.ToList(),
+                        DisplayMemberPath = "FullAddress",
+                        IsEditable = true
+                    };
+                    comboBox.AddHandler(TextBoxBase.TextChangedEvent, new TextChangedEventHandler(cmb_HousingFund_TextChanged));
+                }
+            }
         }
 
         private void bt_Edit_Click(object sender, RoutedEventArgs e)
@@ -50,7 +82,14 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
                 status = false;
             }
 
-            dm.EditDecree(decree, tb_Number.Text, dp_DateConclusion.SelectedDate, cmb_HousingFund.SelectedItem as HousingFund, status);
+            foreach (ComboBox comboBox in sp_HousesFund.Children)
+            {
+                if (comboBox.SelectedItem != null)
+                {
+                    housingFund.Add(comboBox.SelectedItem as HousingFund);
+                }
+            }
+            dm.EditDecree(decree, tb_Number.Text, dp_DateConclusion.SelectedDate, housingFund, status);
         }
 
         private void bt_AttachFile_Click(object sender, RoutedEventArgs e)
@@ -70,17 +109,39 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
         private void cmb_HousingFund_TextChanged(object sender, TextChangedEventArgs e)
         {
             string[] words;
+            ComboBox thisComboBox = ((FrameworkElement)sender) as ComboBox;
 
-            words = cmb_HousingFund.Text.ToString().Split(new char[] { ' ', ',' });
+            words = thisComboBox.Text.ToString().Split(new char[] { ' ', ',' });
             List<HousingFund> findList = dbContext.HousingFund.AsEnumerable().ToList();
 
             foreach (string word in words)
             {
                 findList = findList.Where(h => h.FullAddress.ToLower().Contains(word.ToLower())).ToList();
-                cmb_HousingFund.ItemsSource = findList;
+                thisComboBox.ItemsSource = findList;
             }
 
-            cmb_HousingFund.IsDropDownOpen = true;
+            thisComboBox.IsDropDownOpen = true;
+        }
+
+        private void bt_AddAnotherOneHousingFund_Click(object sender, RoutedEventArgs e)
+        {
+            if (sp_HousesFund.Children.Count < 20)
+            {
+                ComboBox comboBox = new ComboBox()
+                {
+                    Height = 25,
+                    ItemsSource = dbContext.HousingFund.ToList(),
+                    DisplayMemberPath = "FullAddress",
+                    IsEditable = true
+                };
+                comboBox.AddHandler(TextBoxBase.TextChangedEvent, new TextChangedEventHandler(cmb_HousingFund_TextChanged));
+
+                sp_HousesFund.Children.Add(comboBox);
+            }
+            else
+            {
+                bt_AddAnotherOneHousingFund.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

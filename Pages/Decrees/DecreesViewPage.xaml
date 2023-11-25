@@ -56,7 +56,7 @@
 
                         <StackPanel Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
                             <TextBlock Text="{Binding DateDecree, StringFormat='Дата постановления: {0:dd.MM.yyyy}'}"/>
-                            <TextBlock Text="{Binding HousingFund.FullAddress, StringFormat='Адрес жилья: {0}'}"/>
+                            <TextBlock Text="{Binding AllHousingFundAddresses, StringFormat='Адрес жилья: {0}'}"/>
                             <TextBlock Text="{Binding StatusName}"/>
                         </StackPanel>
 

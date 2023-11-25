@@ -28,6 +28,8 @@ namespace Реестр_маневренного_фонда.Pages
                 dbContext = ApplicationContext.GetContext();
 
                 dbContext.HousingFund.Load();
+                dbContext.HouseDecree.Load();
+
                 lb_Decrees.ItemsSource = dbContext.Decree.ToList();
 
                 cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();

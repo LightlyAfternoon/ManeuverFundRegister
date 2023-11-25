@@ -2,6 +2,7 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Database.TablesClasses;
 
 namespace Реестр_маневренного_фонда
 {
@@ -25,6 +26,7 @@ namespace Реестр_маневренного_фонда
         public virtual DbSet<ResidenceRegistration> ResidenceRegistration { get; set; }
         public virtual DbSet<Street> Street { get; set; }
         public virtual DbSet<TempResident> TempResident { get; set; }
+        public virtual DbSet<HouseDecree> HouseDecree { get; set; }
 
         //переопределение метода OnConfiguring для установления параметров подключения к бд
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

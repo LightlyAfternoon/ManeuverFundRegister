@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using Реестр_маневренного_фонда.Database.TablesClasses;
 using Реестр_маневренного_фонда.Pages;
 
 namespace Реестр_маневренного_фонда.TablesManagersClasses
@@ -8,9 +11,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
     {
         private ApplicationContext dbContext = ApplicationContext.GetContext();
 
+        List<HouseDecree> houseDecrees = new List<HouseDecree>();
         private string errors = string.Empty;
 
-        private void showErrors(string? number, DateTime? dateDecree, HousingFund? housingFund)
+        private void showErrors(string? number, DateTime? dateDecree, List<HousingFund>? housingFund)
         {
             if (string.IsNullOrWhiteSpace(number))
             {
@@ -30,7 +34,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     errors += ("Укажите номер постановления корректно (только цифры)\n");
                 }
             }
-            if (housingFund == null)
+            if (housingFund.Count() == 0)
             {
                 errors += ("Необходимо выбрать жильё\n");
             }
@@ -40,7 +44,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
         }
         
-        public void AddDecree(Decree newDecree, string? number, DateTime? dateDecree, HousingFund? housingFund, bool? status)
+        public void AddDecree(Decree newDecree, string? number, DateTime? dateDecree, List<HousingFund>? housingFund, bool? status)
         {   
             showErrors(number, dateDecree, housingFund);
             if (!string.IsNullOrEmpty(errors))
@@ -54,11 +58,25 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 {
                     newDecree.NumberDecree = Convert.ToInt32(number);
                     newDecree.DateDecree = Convert.ToDateTime(dateDecree);
-                    newDecree.HousingFundId = housingFund.IdHousingFund;
+                    newDecree.HousingFundId = housingFund.FirstOrDefault().IdHousingFund;
                     newDecree.Status = Convert.ToBoolean(status);
 
                     dbContext.Decree.Add(newDecree);
                     dbContext.SaveChanges();
+
+                    foreach (HousingFund house in housingFund)
+                    {
+                        if (houseDecrees.Count(hd => hd.HousingFundId == house.IdHousingFund) < 1)
+                        {
+                            HouseDecree newHouseDecree = new HouseDecree();
+                            newHouseDecree.DecreeId = newDecree.IdDecree;
+                            newHouseDecree.HousingFundId = house.IdHousingFund;
+
+                            houseDecrees.Add(newHouseDecree);
+                            dbContext.HouseDecree.Add(newHouseDecree);
+                            dbContext.SaveChanges();
+                        }
+                    }
 
                     MessageBox.Show("Постановление добавлено", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     MainFrameObj.mainFrame.Navigate(new DecreesViewPage());
@@ -70,7 +88,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
         }
 
-        public void EditDecree(Decree currentDecree, string? number, DateTime? dateDecree, HousingFund? housingFund, bool? status)
+        public void EditDecree(Decree currentDecree, string? number, DateTime? dateDecree, List<HousingFund>? housingFund, bool? status)
         {
             showErrors(number, dateDecree, housingFund);
             if (!string.IsNullOrEmpty(errors))
@@ -84,8 +102,30 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 {
                     currentDecree.NumberDecree = Convert.ToInt32(number);
                     currentDecree.DateDecree = Convert.ToDateTime(dateDecree);
-                    currentDecree.HousingFundId = housingFund.IdHousingFund;
+                    currentDecree.HousingFundId = housingFund.FirstOrDefault().IdHousingFund;
                     currentDecree.Status = Convert.ToBoolean(status);
+
+                    houseDecrees = dbContext.HouseDecree.Where(hd => hd.DecreeId == currentDecree.IdDecree).ToList();
+                    foreach (HousingFund house in housingFund)
+                    {
+                        if (houseDecrees.Count(hd => hd.HousingFundId == house.IdHousingFund) < 1)
+                        {
+                            HouseDecree newHouseDecree = new HouseDecree();
+                            newHouseDecree.DecreeId = currentDecree.IdDecree;
+                            newHouseDecree.HousingFundId = house.IdHousingFund;
+
+                            dbContext.HouseDecree.Add(newHouseDecree);
+                            dbContext.SaveChanges();
+                        }
+                    }
+                    foreach (HouseDecree houseDecree in houseDecrees)
+                    {
+                        if (housingFund.Count(h => h.IdHousingFund == houseDecree.HousingFundId) < 1)
+                        {
+                            dbContext.HouseDecree.Remove(houseDecree);
+                            dbContext.SaveChanges();
+                        }
+                    }
 
                     dbContext.Decree.Update(currentDecree);
                     dbContext.SaveChanges();
@@ -104,10 +144,16 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         {
             try
             {
+                List<HouseDecree> houseDecrees = dbContext.HouseDecree.Where(hd => hd.DecreeId == currentDecree.IdDecree).ToList();
+
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить нанимателя?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 switch (messageBoxResult)
                 {
                     case MessageBoxResult.Yes:
+                        foreach (HouseDecree houseDecree in houseDecrees)
+                        {
+                            dbContext.HouseDecree.Remove(houseDecree);
+                        }
                         dbContext.Decree.Remove(currentDecree);
                         dbContext.SaveChanges();
                 
