@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Windows;
+using System.Windows.Media;
 using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда
@@ -44,6 +45,21 @@ namespace Реестр_маневренного_фонда
                 string agreementInfo = $"№{NumberAgreement} от {DateConclusionAgreement}";
 
                 return agreementInfo;
+            }
+        }
+
+        [NotMapped]
+        public Brush BackColor
+        {
+            get
+            {
+                Brush color = Brushes.Transparent;
+
+                if (DateTerminationAgreement != null)
+                {
+                    color = Brushes.LightGray;
+                }
+                return color;
             }
         }
     }

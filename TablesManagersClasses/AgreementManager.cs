@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
@@ -178,9 +179,30 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     currentAgreement.HousingFundId = housingFund.IdHousingFund;
                     currentAgreement.DateConclusionAgreement = Convert.ToDateTime(dateConclusion);
                     currentAgreement.DateEndAgreement = Convert.ToDateTime(dateEnd);
+                    currentAgreement.DateTerminationAgreement = dateTermination;
+
                     if (dateTermination != null)
                     {
-                        currentAgreement.DateTerminationAgreement = dateTermination;
+                        List<Agreement> listAgreements = dbContext.Agreement.OrderBy(a => a.DateConclusionAgreement).OrderBy(a => a.HousingFundId).Where(a => a.DateTerminationAgreement == null).ToList();
+                        List<ResidenceRegistration> listResidenceRegistration = dbContext.ResidenceRegistration.OrderBy(r => r.DateStartResidence).OrderBy(r => r.HousingFundId).ToList();
+                        ResidenceRegistration lastRegistration = dbContext.ResidenceRegistration.OrderBy(t => t.DateStartResidence).Last(r => r.HousingFundId == housingFund.IdHousingFund);
+                        if (listAgreements.SkipWhile(a => a.IdAgreement != currentAgreement.IdAgreement).Skip(1).FirstOrDefault() != null && listResidenceRegistration.SkipWhile(a => a.IdRegistration != lastRegistration.IdRegistration).Skip(1).FirstOrDefault() != null)
+                        {
+                            MessageBox.Show("1");
+                            if (listResidenceRegistration.SkipWhile(a => a.IdRegistration != lastRegistration.IdRegistration).Skip(1).FirstOrDefault().AgreementId == listAgreements.SkipWhile(a => a.IdAgreement != currentAgreement.IdAgreement).Skip(1).FirstOrDefault().IdAgreement
+                                && lastRegistration.DateEndResidence == null)
+                            {
+                                lastRegistration.DateEndResidence = currentAgreement.DateTerminationAgreement;
+                                dbContext.ResidenceRegistration.Update(lastRegistration);
+                                MessageBox.Show("2");
+                            }
+                        }
+                        else if (lastRegistration.DateEndResidence == null && currentAgreement == listAgreements.Last() && lastRegistration == listResidenceRegistration.Last())
+                        {
+                            lastRegistration.DateEndResidence = currentAgreement.DateTerminationAgreement;
+                            dbContext.ResidenceRegistration.Update(lastRegistration);
+                            MessageBox.Show("3");
+                        }
                     }
                     if (!string.IsNullOrWhiteSpace(remark))
                     {

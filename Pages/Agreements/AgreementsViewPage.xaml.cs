@@ -29,7 +29,7 @@ namespace Реестр_маневренного_фонда.Pages
                 dbContext = ApplicationContext.GetContext();
 
                 dbContext.HousingFund.Load();
-                lb_Agreements.ItemsSource = dbContext.Agreement.ToList();
+                lb_Agreements.ItemsSource = dbContext.Agreement.OrderByDescending(a => a.DateConclusionAgreement).ToList();
 
                 cmb_TempResident.ItemsSource = dbContext.TempResident.ToList();
                 cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
@@ -63,6 +63,14 @@ namespace Реестр_маневренного_фонда.Pages
             if (dp_DateTerminationAgreement.SelectedDate != null)
             {
                 currentAgreements = currentAgreements.Where(a => a.DateTerminationAgreement == dp_DateTerminationAgreement.SelectedDate).ToList();
+            }
+            if (cmb_DateConclusionSort.SelectedIndex == 0)
+            {
+                currentAgreements = currentAgreements.OrderByDescending(a => a.DateConclusionAgreement).ToList();
+            }
+            else
+            {
+                currentAgreements = currentAgreements.OrderBy(a => a.DateConclusionAgreement).ToList();
             }
 
             lb_Agreements.ItemsSource = currentAgreements.ToList();

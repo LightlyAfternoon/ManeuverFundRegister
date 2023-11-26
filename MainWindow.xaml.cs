@@ -56,7 +56,6 @@ namespace Реестр_маневренного_фонда
 
         private void UpdateDB()
         {
-
             FormattableString addHouseDecreeTableCommand = $"CREATE TABLE IF NOT EXISTS HouseDecree (IdHouseDecree INTEGER NOT NULL, DecreeId INTEGER NOT NULL, HousingFundId INTEGER NOT NULL, FOREIGN KEY(DecreeId) REFERENCES Decree(IdDecree), FOREIGN KEY(HousingFundId) REFERENCES HousingFund(IdHousingFund), PRIMARY KEY(IdHouseDecree AUTOINCREMENT));";
             dbContext = ApplicationContext.GetContext();
             dbContext.Database.ExecuteSql(addHouseDecreeTableCommand);

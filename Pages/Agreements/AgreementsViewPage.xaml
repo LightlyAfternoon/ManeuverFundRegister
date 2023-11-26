@@ -20,9 +20,13 @@
             <StackPanel HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="ФИО нанимателя" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <ComboBox x:Name="cmb_TempResident" DisplayMemberPath="FullName" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_TempResident_TextChanged" Margin="10" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmb_TempResident" DisplayMemberPath="FullName" Width="220" IsEditable="True" TextBoxBase.TextChanged="cmb_TempResident_TextChanged" Margin="10" VerticalAlignment="Center"/>
                     <TextBlock Text="Адрес" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                    <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged" Margin="0,10,0,10"/>
+                    <ComboBox x:Name="cmb_HousingFund" DisplayMemberPath="FullAddress" Width="250" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmb_DateConclusionSort" Margin="10,0,10,0" SelectedIndex="0" VerticalAlignment="Center">
+                        <ComboBoxItem Content="Новые"/>
+                        <ComboBoxItem Content="Старые"/>
+                    </ComboBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
@@ -47,6 +51,7 @@
                     <Setter Property="BorderThickness" Value="1"/>
                     <Setter Property="BorderBrush" Value="Black"/>
                     <Setter Property="Margin" Value="0,5"/>
+                    <Setter Property="Background" Value="{Binding Path=BackColor}"/>
                 </Style>
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
