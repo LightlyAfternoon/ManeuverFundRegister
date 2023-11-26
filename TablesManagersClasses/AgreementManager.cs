@@ -188,20 +188,17 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                         ResidenceRegistration lastRegistration = dbContext.ResidenceRegistration.OrderBy(t => t.DateStartResidence).Last(r => r.HousingFundId == housingFund.IdHousingFund);
                         if (listAgreements.SkipWhile(a => a.IdAgreement != currentAgreement.IdAgreement).Skip(1).FirstOrDefault() != null && listResidenceRegistration.SkipWhile(a => a.IdRegistration != lastRegistration.IdRegistration).Skip(1).FirstOrDefault() != null)
                         {
-                            MessageBox.Show("1");
                             if (listResidenceRegistration.SkipWhile(a => a.IdRegistration != lastRegistration.IdRegistration).Skip(1).FirstOrDefault().AgreementId == listAgreements.SkipWhile(a => a.IdAgreement != currentAgreement.IdAgreement).Skip(1).FirstOrDefault().IdAgreement
                                 && lastRegistration.DateEndResidence == null)
                             {
                                 lastRegistration.DateEndResidence = currentAgreement.DateTerminationAgreement;
                                 dbContext.ResidenceRegistration.Update(lastRegistration);
-                                MessageBox.Show("2");
                             }
                         }
                         else if (lastRegistration.DateEndResidence == null && currentAgreement == listAgreements.Last() && lastRegistration == listResidenceRegistration.Last())
                         {
                             lastRegistration.DateEndResidence = currentAgreement.DateTerminationAgreement;
                             dbContext.ResidenceRegistration.Update(lastRegistration);
-                            MessageBox.Show("3");
                         }
                     }
                     if (!string.IsNullOrWhiteSpace(remark))
