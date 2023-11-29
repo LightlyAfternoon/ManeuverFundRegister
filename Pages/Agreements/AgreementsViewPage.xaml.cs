@@ -52,17 +52,29 @@ namespace Реестр_маневренного_фонда.Pages
             {
                 currentAgreements = currentAgreements.Where(a => a.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund).ToList();
             }
-            if (dp_DateConclusionAgreement.SelectedDate != null)
+            if (dp_DateConclusionAgreementFrom.SelectedDate != null)
             {
-                currentAgreements = currentAgreements.Where(a => a.DateConclusionAgreement == dp_DateConclusionAgreement.SelectedDate).ToList();
+                currentAgreements = currentAgreements.Where(a => a.DateConclusionAgreement >= dp_DateConclusionAgreementFrom.SelectedDate).ToList();
             }
-            if (dp_DateEndAgreement.SelectedDate != null)
+            if (dp_DateConclusionAgreementUntil.SelectedDate != null)
             {
-                currentAgreements = currentAgreements.Where(a => a.DateEndAgreement == dp_DateEndAgreement.SelectedDate).ToList();
+                currentAgreements = currentAgreements.Where(a => a.DateConclusionAgreement <= dp_DateConclusionAgreementUntil.SelectedDate).ToList();
             }
-            if (dp_DateTerminationAgreement.SelectedDate != null)
+            if (dp_DateEndAgreementFrom.SelectedDate != null)
             {
-                currentAgreements = currentAgreements.Where(a => a.DateTerminationAgreement == dp_DateTerminationAgreement.SelectedDate).ToList();
+                currentAgreements = currentAgreements.Where(a => a.DateEndAgreement >= dp_DateEndAgreementFrom.SelectedDate).ToList();
+            }
+            if (dp_DateEndAgreementUntil.SelectedDate != null)
+            {
+                currentAgreements = currentAgreements.Where(a => a.DateEndAgreement <= dp_DateEndAgreementUntil.SelectedDate).ToList();
+            }
+            if (dp_DateTerminationAgreementFrom.SelectedDate != null)
+            {
+                currentAgreements = currentAgreements.Where(a => a.DateTerminationAgreement >= dp_DateTerminationAgreementFrom.SelectedDate).ToList();
+            }
+            if (dp_DateTerminationAgreementUntil.SelectedDate != null)
+            {
+                currentAgreements = currentAgreements.Where(a => a.DateTerminationAgreement <= dp_DateTerminationAgreementUntil.SelectedDate).ToList();
             }
             if (cmb_DateConclusionSort.SelectedIndex == 0)
             {
