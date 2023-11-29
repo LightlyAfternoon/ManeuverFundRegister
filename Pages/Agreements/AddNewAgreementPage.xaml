@@ -34,7 +34,7 @@
                     </Border>
                     <TextBlock Text="Адрес жилья"/>
                     <Border BorderThickness="1" BorderBrush="Blue">
-                        <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged" BorderBrush="Blue" SelectionChanged="cmb_HousingFund_SelectionChanged"/>
+                        <ComboBox x:Name="cmb_HousingFund" Height="25" DisplayMemberPath="FullAddress" IsEditable="True" TextBoxBase.TextChanged="cmb_HousingFund_TextChanged" BorderBrush="Blue"/>
                     </Border>
                 </StackPanel>
 
@@ -46,8 +46,6 @@
                         <TextBox Height="25" x:Name="tb_Term" MinWidth="25" Text="6" TextChanged="tb_Term_TextChanged"/>
                         <TextBlock Text="Месяцев" Padding="5,0"/>
                     </StackPanel>
-                    <TextBlock/>
-                    <TextBox x:Name="tb_ImprName" IsEnabled="False" Visibility="Collapsed"/>
                 </StackPanel>
 
                 <StackPanel Margin="10,0" VerticalAlignment="Center">

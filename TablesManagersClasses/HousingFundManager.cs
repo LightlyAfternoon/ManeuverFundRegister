@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
-using Реестр_маневренного_фонда.Pages;
 using Реестр_маневренного_фонда.Pages.HousingsFund;
 
 namespace Реестр_маневренного_фонда.TablesManagersClasses
@@ -12,15 +11,43 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         private string errors = string.Empty;
 
-        private void showErrors(Street? street, string? houseNumber, string? apartmentNumber, string? roomNumber, ImprovementDegree? improvementDegree, string? decreeArea, string? registerArea)
+        private void showErrors(Locality? locality, string? houseNumber, string? entranceNumber, string? floorNumber, string? apartmentNumber, string? roomNumber, string? decreeArea, string? registerArea)
         {
-            if (street == null)
+            if (locality == null)
             {
-                errors += ("Необходимо выбрать адрес жилья\n");
+                errors += ("Необходимо выбрать населённый пункт\n");
             }
             if (string.IsNullOrWhiteSpace(houseNumber))
             {
-                errors += ("Неоходимо ввести номер дома\n");
+                errors += ("Необходимо ввести номер дома\n");
+            }
+            if (!string.IsNullOrWhiteSpace(entranceNumber))
+            {
+                try
+                {
+                    checked
+                    {
+                        Convert.ToInt32(entranceNumber);
+                    }
+                }
+                catch
+                {
+                    errors += ("Укажите номер подъезда корректно (только цифры)\n");
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(floorNumber))
+            {
+                try
+                {
+                    checked
+                    {
+                        Convert.ToInt32(floorNumber);
+                    }
+                }
+                catch
+                {
+                    errors += ("Укажите номер этажа корректно (только цифры)\n");
+                }
             }
             if (!string.IsNullOrWhiteSpace(apartmentNumber))
             {
@@ -49,10 +76,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 {
                     errors += ("Укажите номер комнаты корректно (только цифры)\n");
                 }
-            }
-            if (improvementDegree == null)
-            {
-                errors += ("Необходимо выбрать степень благоустроенности\n");
             }
             if (!string.IsNullOrWhiteSpace(decreeArea))
             {
@@ -84,11 +107,13 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
         }
         
-        public void AddHouseInFund(Street? street, string? houseNumber, string? apartmentNumber, string? roomNumber, ImprovementDegree? improvementDegree, string? decreeArea, string? registerArea, string? remark)
+        public void AddHouseInFund(Locality? locality, Street? street, string? houseNumber, string? entranceNumber, string? floorNumber, string? apartmentNumber, 
+                                   string? roomNumber, string? decreeArea, string? registerArea, string? remark, bool? CWS, bool? HWS, bool? CG, 
+                                   bool? BG, bool? SH, bool? CH, bool? Electricity, bool? KeysAvailability)
         {
             HousingFund newHouseInFund = new HousingFund();
 
-            showErrors(street, houseNumber, apartmentNumber, roomNumber, improvementDegree, decreeArea, registerArea);
+            showErrors(locality, houseNumber, entranceNumber, floorNumber, apartmentNumber, roomNumber, decreeArea, registerArea);
             if (!string.IsNullOrEmpty(errors))
             {
                 MessageBox.Show(errors);
@@ -98,8 +123,20 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 try
                 {
-                    newHouseInFund.StreetId = street.IdStreet;
+                    newHouseInFund.LocalityId = locality.IdLocality;
+                    if (street != null)
+                    {
+                        newHouseInFund.StreetId = street.IdStreet;
+                    }
                     newHouseInFund.HouseNumber = houseNumber;
+                    if (!string.IsNullOrWhiteSpace(entranceNumber))
+                    {
+                        newHouseInFund.EntranceNumber = Convert.ToInt32(entranceNumber);
+                    }
+                    if (!string.IsNullOrWhiteSpace(floorNumber))
+                    {
+                        newHouseInFund.FloorNumber = Convert.ToInt32(floorNumber);
+                    }
                     if (!string.IsNullOrWhiteSpace(apartmentNumber))
                     {
                         newHouseInFund.ApartmentNumber = Convert.ToInt32(apartmentNumber);
@@ -108,7 +145,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     {
                         newHouseInFund.RoomNumber = Convert.ToInt32(roomNumber);
                     }
-                    newHouseInFund.ImprovementDegreeId = improvementDegree.IdImprovementDegree;
                     if (!string.IsNullOrWhiteSpace(decreeArea))
                     {
                         newHouseInFund.DecreeArea = Convert.ToDouble(decreeArea);
@@ -120,6 +156,70 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     if (!string.IsNullOrWhiteSpace(remark))
                     {
                         newHouseInFund.Remark = remark;
+                    }
+                    if (CWS == true)
+                    {
+                        newHouseInFund.CWS = true;
+                    }
+                    else
+                    {
+                        newHouseInFund.CWS = false;
+                    }
+                    if (HWS == true)
+                    {
+                        newHouseInFund.HWS = true;
+                    }
+                    else
+                    {
+                        newHouseInFund.HWS = false;
+                    }
+                    if (CG == true)
+                    {
+                        newHouseInFund.CG = true;
+                    }
+                    else
+                    {
+                        newHouseInFund.CG = false;
+                    }
+                    if (BG == true)
+                    {
+                        newHouseInFund.BG = true;
+                    }
+                    else
+                    {
+                        newHouseInFund.BG = false;
+                    }
+                    if (SH == true)
+                    {
+                        newHouseInFund.SH = true;
+                    }
+                    else
+                    {
+                        newHouseInFund.SH = false;
+                    }
+                    if (CH == true)
+                    {
+                        newHouseInFund.CH = true;
+                    }
+                    else
+                    {
+                        newHouseInFund.CH = false;
+                    }
+                    if (Electricity == true)
+                    {
+                        newHouseInFund.Electricity = true;
+                    }
+                    else
+                    {
+                        newHouseInFund.Electricity = false;
+                    }
+                    if (KeysAvailability == true)
+                    {
+                        newHouseInFund.KeysAvailability = true;
+                    }
+                    else
+                    {
+                        newHouseInFund.KeysAvailability = false;
                     }
 
                     dbContext.HousingFund.Add(newHouseInFund);
@@ -135,9 +235,11 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
         }
 
-        public void EditHouseInFund(HousingFund? currentHouseInFund, Street? street, string? houseNumber, string? apartmentNumber, string? roomNumber, ImprovementDegree? improvementDegree, string? decreeArea, string? registerArea, string? remark)
+        public void EditHouseInFund(HousingFund? currentHouseInFund, Locality? locality, Street? street, string? houseNumber, string? entranceNumber, string? floorNumber, 
+                                    string? apartmentNumber, string? roomNumber, string? decreeArea, string? registerArea, string? remark,
+                                    bool? CWS, bool? HWS, bool? CG, bool? BG, bool? SH, bool? CH, bool? Electricity, bool? KeysAvailability)
         {
-            showErrors(street, houseNumber, apartmentNumber, roomNumber, improvementDegree, decreeArea, registerArea);
+            showErrors(locality, houseNumber, entranceNumber, floorNumber, apartmentNumber, roomNumber, decreeArea, registerArea);
             if (!string.IsNullOrEmpty(errors))
             {
                 MessageBox.Show(errors);
@@ -147,8 +249,20 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 try
                 {
-                    currentHouseInFund.StreetId = street.IdStreet;
+                    currentHouseInFund.LocalityId = locality.IdLocality;
+                    if (street != null)
+                    {
+                        currentHouseInFund.StreetId = street.IdStreet;
+                    }
                     currentHouseInFund.HouseNumber = houseNumber;
+                    if (!string.IsNullOrWhiteSpace(entranceNumber))
+                    {
+                        currentHouseInFund.EntranceNumber = Convert.ToInt32(entranceNumber);
+                    }
+                    if (!string.IsNullOrWhiteSpace(floorNumber))
+                    {
+                        currentHouseInFund.FloorNumber = Convert.ToInt32(floorNumber);
+                    }
                     if (!string.IsNullOrWhiteSpace(apartmentNumber))
                     {
                         currentHouseInFund.ApartmentNumber = Convert.ToInt32(apartmentNumber);
@@ -157,7 +271,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     {
                         currentHouseInFund.RoomNumber = Convert.ToInt32(roomNumber);
                     }
-                    currentHouseInFund.ImprovementDegreeId = improvementDegree.IdImprovementDegree;
                     if (!string.IsNullOrWhiteSpace(decreeArea))
                     {
                         currentHouseInFund.DecreeArea = Convert.ToDouble(decreeArea);
@@ -169,6 +282,70 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     if (!string.IsNullOrWhiteSpace(remark))
                     {
                         currentHouseInFund.Remark = remark;
+                    }
+                    if (CWS == true)
+                    {
+                        currentHouseInFund.CWS = true;
+                    }
+                    else
+                    {
+                        currentHouseInFund.CWS = false;
+                    }
+                    if (HWS == true)
+                    {
+                        currentHouseInFund.HWS = true;
+                    }
+                    else
+                    {
+                        currentHouseInFund.HWS = false;
+                    }
+                    if (CG == true)
+                    {
+                        currentHouseInFund.CG = true;
+                    }
+                    else
+                    {
+                        currentHouseInFund.CG = false;
+                    }
+                    if (BG == true)
+                    {
+                        currentHouseInFund.BG = true;
+                    }
+                    else
+                    {
+                        currentHouseInFund.BG = false;
+                    }
+                    if (SH == true)
+                    {
+                        currentHouseInFund.SH = true;
+                    }
+                    else
+                    {
+                        currentHouseInFund.SH = false;
+                    }
+                    if (CH == true)
+                    {
+                        currentHouseInFund.CH = true;
+                    }
+                    else
+                    {
+                        currentHouseInFund.CH = false;
+                    }
+                    if (Electricity == true)
+                    {
+                        currentHouseInFund.Electricity = true;
+                    }
+                    else
+                    {
+                        currentHouseInFund.Electricity = false;
+                    }
+                    if (KeysAvailability == true)
+                    {
+                        currentHouseInFund.KeysAvailability = true;
+                    }
+                    else
+                    {
+                        currentHouseInFund.KeysAvailability = false;
                     }
 
                     dbContext.HousingFund.Update(currentHouseInFund);

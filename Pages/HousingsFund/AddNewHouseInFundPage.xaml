@@ -20,23 +20,35 @@
                     <Border BorderThickness="1" BorderBrush="Blue">
                         <ComboBox Height="25" x:Name="cmb_Street" IsEditable="True" DisplayMemberPath="NameStreet" IsEnabled="False" TextBoxBase.TextChanged="cmb_Street_TextChanged"/>
                     </Border>
-                    <TextBlock Text="Номер дома"/>
+                    <TextBlock Text="№ дома"/>
                     <TextBox Height="25" x:Name="tb_HouseNumber" BorderBrush="Blue"/>
-                    <TextBlock Text="Номер квартиры"/>
+                    <TextBlock Text="№ квартиры"/>
                     <TextBox Height="25" x:Name="tb_ApartmentNumber"/>
-                    <TextBlock Text="Номер комнаты"/>
+                    <TextBlock Text="№ подъезда"/>
+                    <TextBox Height="25" x:Name="tb_EntranceNumber"/>
+                    <TextBlock Text="№ этажа"/>
+                    <TextBox Height="25" x:Name="tb_FloorNumber"/>
+                    <TextBlock Text="№ комнаты"/>
                     <TextBox Height="25" x:Name="tb_RoomNumber"/>
                 </StackPanel>
 
                 <StackPanel Margin="10,0">
-                    <TextBlock Text="Степень благоустройства"/>
-                    <Border BorderThickness="1" BorderBrush="Blue">
-                        <ComboBox Height="25" x:Name="cmb_ImprovementDegree" DisplayMemberPath="NameImprovementDegree"/>
-                    </Border>
                     <TextBlock Text="Площадь по постановлению"/>
                     <TextBox Height="25" x:Name="tb_DecreeArea"/>
                     <TextBlock Text="Площадь по реестру"/>
                     <TextBox Height="25" x:Name="tb_RegisterArea"/>
+                    <CheckBox x:Name="chb_KeysAvalibility" Content="Ключи" Margin="0,25,0,15"/>
+                    <GroupBox Header="Благоустройство">
+                        <StackPanel>
+                            <CheckBox x:Name="chb_CWS" Content="ХВС"/>
+                            <CheckBox x:Name="chb_HWS" Content="ГВС"/>
+                            <CheckBox x:Name="chb_CG" Content="Газ централизованный"/>
+                            <CheckBox x:Name="chb_BG" Content="Газ баллонный"/>
+                            <CheckBox x:Name="chb_SH" Content="Отопление печное"/>
+                            <CheckBox x:Name="chb_CH" Content="Отопление централизованное"/>
+                            <CheckBox x:Name="chb_Electricity" Content="Электричество"/>
+                        </StackPanel>
+                    </GroupBox>
                 </StackPanel>
             </StackPanel>
             <TextBlock Text="Примечание" Margin="0,10"/>

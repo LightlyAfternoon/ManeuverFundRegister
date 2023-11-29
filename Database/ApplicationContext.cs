@@ -20,7 +20,6 @@ namespace Реестр_маневренного_фонда
         public virtual DbSet<Agreement> Agreement { get; set; }
         public virtual DbSet<Decree> Decree { get; set; }
         public virtual DbSet<HousingFund> HousingFund { get; set; }
-        public virtual DbSet<ImprovementDegree> ImprovementDegree { get; set; }
         public virtual DbSet<Locality> Locality { get; set; }
         public virtual DbSet<Notification> Notification { get; set; }
         public virtual DbSet<ResidenceRegistration> ResidenceRegistration { get; set; }

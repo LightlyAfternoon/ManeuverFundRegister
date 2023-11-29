@@ -11,7 +11,7 @@ namespace Реестр_маневренного_фонда
     {
         [Key]
         public int IdAgreement { get; set; }
-        public int NumberAgreement { get; set; }
+        public int? NumberAgreement { get; set; }
         public int TempResidentId { get; set; }
         public int HousingFundId { get; set; }
         public DateTime DateConclusionAgreement { get; set; }
@@ -56,6 +56,10 @@ namespace Реестр_маневренного_фонда
                 Brush color = Brushes.Transparent;
 
                 if (DateTerminationAgreement != null)
+                {
+                    color = Brushes.LightSlateGray;
+                }
+                else if (DateEndAgreement <= DateTime.Today)
                 {
                     color = Brushes.LightGray;
                 }

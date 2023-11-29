@@ -74,7 +74,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
             foreach (Notification notification in listNotifications)
             {
-                if (notification.RecievingDate > DateTime.Now.AddMonths(6))
+                if (notification.RecievingDate > DateTime.Now.AddMonths(1))
                 {
                     dbContext.Remove(notification);
                     dbContext.SaveChanges();

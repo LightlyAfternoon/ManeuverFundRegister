@@ -24,17 +24,50 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
 
             cmb_Locality.ItemsSource = dbContext.Locality.ToList();
             cmb_Street.ItemsSource = dbContext.Street.Where(s => s.IdStreet == currentHousingFund.StreetId).ToList();
-            cmb_ImprovementDegree.ItemsSource = dbContext.ImprovementDegree.ToList();
 
-            cmb_Locality.SelectedItem = currentHousingFund.Street.Locality;
+            cmb_Locality.SelectedItem = currentHousingFund.Locality;
             cmb_Street.SelectedItem = currentHousingFund.Street;
             tb_HouseNumber.Text = currentHousingFund.HouseNumber;
+            tb_EntranceNumber.Text = currentHousingFund.EntranceNumber.ToString();
+            tb_FloorNumber.Text = currentHousingFund.FloorNumber.ToString();
             tb_ApartmentNumber.Text = currentHousingFund.ApartmentNumber.ToString();
             tb_RoomNumber.Text = currentHousingFund.RoomNumber.ToString();
-            cmb_ImprovementDegree.SelectedItem = currentHousingFund.ImprovementDegree;
             tb_DecreeArea.Text = currentHousingFund.DecreeArea.ToString();
             tb_RegisterArea.Text = currentHousingFund.RegisterArea.ToString();
             tb_Remark.Text = currentHousingFund.Remark;
+
+            if (currentHousingFund.KeysAvailability == true)
+            {
+                chb_KeysAvalibility.IsChecked = true;
+            }
+            if (currentHousingFund.CWS == true )
+            {
+                chb_CWS.IsChecked = true;
+            }
+            if (currentHousingFund.HWS == true)
+            {
+                chb_HWS.IsChecked = true;
+            }
+            if (currentHousingFund.CG == true)
+            {
+                chb_CG.IsChecked = true;
+            }
+            if (currentHousingFund.BG == true)
+            {
+                chb_BG.IsChecked = true;
+            }
+            if (currentHousingFund.SH == true)
+            {
+                chb_SH.IsChecked = true;
+            }
+            if (currentHousingFund.CH == true)
+            {
+                chb_CH.IsChecked = true;
+            }
+            if (currentHousingFund.Electricity == true)
+            {
+                chb_Electricity.IsChecked = true;
+            }
         }
 
         private void cmb_Locality_DropDownClosed(object sender, EventArgs e)
@@ -55,7 +88,9 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
         private void bt_Edit_Click(object sender, RoutedEventArgs e)
         {
             HousingFundManager hm = new HousingFundManager();
-            hm.EditHouseInFund(housingFund, cmb_Street.SelectedItem as Street, tb_HouseNumber.Text, tb_ApartmentNumber.Text, tb_RoomNumber.Text, cmb_ImprovementDegree.SelectedItem as ImprovementDegree, tb_DecreeArea.Text, tb_RegisterArea.Text, tb_Remark.Text);
+            hm.EditHouseInFund(housingFund, cmb_Locality.SelectedItem as Locality, cmb_Street.SelectedItem as Street, tb_HouseNumber.Text, tb_EntranceNumber.Text, tb_FloorNumber.Text, 
+                               tb_ApartmentNumber.Text, tb_RoomNumber.Text, tb_DecreeArea.Text, tb_RegisterArea.Text, tb_Remark.Text, chb_CWS.IsChecked, 
+                               chb_HWS.IsChecked, chb_CG.IsChecked, chb_BG.IsChecked, chb_SH.IsChecked, chb_CH.IsChecked, chb_Electricity.IsChecked, chb_KeysAvalibility.IsChecked);
         }
 
         private void cmb_Locality_TextChanged(object sender, TextChangedEventArgs e)

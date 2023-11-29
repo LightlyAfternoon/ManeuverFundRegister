@@ -29,22 +29,34 @@
                     </ComboBox>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Дата заключения" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <TextBlock Text="с" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <DatePicker x:Name="dp_DateConclusionAgreementFrom" Margin="10"/>
-                    <TextBlock Text="до" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <DatePicker x:Name="dp_DateConclusionAgreementUntil" Margin="10"/>
-                    <TextBlock Text="Дата окончания" VerticalAlignment="Center"/>
-                    <TextBlock Text="с" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <DatePicker x:Name="dp_DateEndAgreementFrom" Margin="10"/>
-                    <TextBlock Text="до" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <DatePicker x:Name="dp_DateEndAgreementUntil" Margin="10"/>
-                    <TextBlock Text="Дата расторжения" VerticalAlignment="Center"/>
-                    <TextBlock Text="с" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <DatePicker x:Name="dp_DateTerminationAgreementFrom" Margin="10"/>
-                    <TextBlock Text="до" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <DatePicker x:Name="dp_DateTerminationAgreementUntil" Margin="10"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Margin="10,0,0,0">
+                        <TextBlock Text="Дата заключения" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="с" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dp_DateConclusionAgreementFrom" Margin="10"/>
+                            <TextBlock Text="до" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dp_DateConclusionAgreementUntil" Margin="10"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="10,0,0,0">
+                        <TextBlock Text="Дата окончания" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="с" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dp_DateEndAgreementFrom" Margin="10"/>
+                            <TextBlock Text="до" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dp_DateEndAgreementUntil" Margin="10"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="10,0,0,0">
+                        <TextBlock Text="Дата расторжения" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="с" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dp_DateTerminationAgreementFrom" Margin="10"/>
+                            <TextBlock Text="до" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dp_DateTerminationAgreementUntil" Margin="10"/>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
 
                 <Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>
@@ -71,7 +83,7 @@
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        
+
                         <TextBlock Text="{Binding NumberAgreement, StringFormat='Договор №{0}'}" VerticalAlignment="Center"/>
 
                         <StackPanel Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">

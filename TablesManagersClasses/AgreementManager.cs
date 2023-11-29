@@ -14,11 +14,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         private string errors = string.Empty;
         private void showErrors(string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd)
         {
-            if (string.IsNullOrWhiteSpace(number))
-            {
-                errors += ("Неоходимо ввести номер\n");
-            }
-            else
+            if (!string.IsNullOrWhiteSpace(number))
             {
                 try
                 {
@@ -67,7 +63,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 try
                 {
-                    newAgreement.NumberAgreement = Convert.ToInt32(number);
+                    if (!string.IsNullOrWhiteSpace(number))
+                    {
+                        newAgreement.NumberAgreement = Convert.ToInt32(number);
+                    }
                     newAgreement.TempResidentId = tempResident.IdTempResident;
                     newAgreement.HousingFundId = housingFund.IdHousingFund;
                     newAgreement.DateConclusionAgreement = Convert.ToDateTime(dateConclusion);
@@ -173,8 +172,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                                 break;
                         }
                     }
-
-                    currentAgreement.NumberAgreement = Convert.ToInt32(number);
+                    if (!string.IsNullOrWhiteSpace(number))
+                    {
+                        currentAgreement.NumberAgreement = Convert.ToInt32(number);
+                    }
                     currentAgreement.TempResidentId = tempResident.IdTempResident;
                     currentAgreement.HousingFundId = housingFund.IdHousingFund;
                     currentAgreement.DateConclusionAgreement = Convert.ToDateTime(dateConclusion);
