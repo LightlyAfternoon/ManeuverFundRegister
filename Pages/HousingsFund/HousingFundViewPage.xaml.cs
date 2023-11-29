@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -187,9 +187,9 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
         {
             var ReportExcel = Generate(lb_HousingFund.ItemsSource as List<HousingFund>);
 
-            File.WriteAllBytes("Реестр жилья фонда.xlsx", ReportExcel);
+            File.WriteAllBytes($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\!Реестр жилья фонда.xlsx", ReportExcel);
 
-            Process.Start("explorer.exe", Directory.GetParent("Реестр жилья фонда.xlsx").ToString());
+            Process.Start("explorer.exe", $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}");
         }
     }
 }
