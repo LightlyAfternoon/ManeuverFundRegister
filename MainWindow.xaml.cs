@@ -77,6 +77,8 @@ namespace Реестр_маневренного_фонда
                     dbContext.SaveChanges();
                 }
             }
+
+            FormattableString changeAgreementNumberCommand = $"ALTER TABLE Agreement ;";
         }
 
         private void bt_AgreementsViewPage_Click(object sender, RoutedEventArgs e)
