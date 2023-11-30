@@ -123,7 +123,7 @@ namespace Реестр_маневренного_фонда
                         housingFund.KeysAvailability = true;
 
                     if (housingFund.Sewerage == null)
-                        housingFund.Sewerage = true;
+                        housingFund.Sewerage = false;
                         
                     dbContext.HousingFund.Update(housingFund);
                     dbContext.SaveChanges();
