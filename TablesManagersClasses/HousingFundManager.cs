@@ -129,7 +129,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     }
                     if (!string.IsNullOrWhiteSpace(roomNumber))
                     {
-                        newHouseInFund.RoomNumber = Convert.ToInt32(roomNumber);
+                        newHouseInFund.RoomNumber = roomNumber;
                     }
                     if (!string.IsNullOrWhiteSpace(decreeArea))
                     {
@@ -263,7 +263,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     }
                     if (!string.IsNullOrWhiteSpace(roomNumber))
                     {
-                        currentHouseInFund.RoomNumber = Convert.ToInt32(roomNumber);
+                        currentHouseInFund.RoomNumber = roomNumber;
                     }
                     if (!string.IsNullOrWhiteSpace(decreeArea))
                     {
