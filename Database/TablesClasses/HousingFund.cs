@@ -31,6 +31,7 @@ namespace Реестр_маневренного_фонда
         public bool? CH { get; set; }
         public bool? Electricity { get; set; }
         public bool? KeysAvailability { get; set; }
+        public bool? Sewerage { get; set; }
 
         public virtual ImprovementDegree ImprovementDegree { get; set; }
         public virtual Locality Locality { get; set; }
