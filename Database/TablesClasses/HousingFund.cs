@@ -19,7 +19,7 @@ namespace Реестр_маневренного_фонда
         public int? ApartmentNumber { get; set; }
         public int? EntranceNumber { get; set; }
         public int? FloorNumber { get; set; }
-        public int? RoomNumber { get; set; }
+        public string? RoomNumber { get; set; }
         public double? DecreeArea { get; set; }
         public double? RegisterArea { get; set; }
         public string? Remark { get; set; }
