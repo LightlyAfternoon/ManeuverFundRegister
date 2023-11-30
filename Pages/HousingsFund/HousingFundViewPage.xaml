@@ -89,6 +89,7 @@
                             <CheckBox Content="Отопление печное" IsChecked="{Binding SH}" IsEnabled="False"/>
                             <CheckBox Content="Отопление централизованное" IsChecked="{Binding CH}" IsEnabled="False"/>
                             <CheckBox Content="Электричество" IsChecked="{Binding Electricity}" IsEnabled="False"/>
+                            <CheckBox Content="Канализация" IsChecked="{Binding Sewerage}" IsEnabled="False"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="3" VerticalAlignment="Center">
