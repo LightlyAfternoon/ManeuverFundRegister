@@ -343,11 +343,11 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     }
                     if (Sewerage == true)
                     {
-                        newHouseInFund.Sewerage = true;
+                        currentHouseInFund.Sewerage = true;
                     }
                     else
                     {
-                        newHouseInFund.Sewerage = false;
+                        currentHouseInFund.Sewerage = false;
                     }
 
                     dbContext.HousingFund.Update(currentHouseInFund);
