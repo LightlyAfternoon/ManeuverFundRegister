@@ -63,20 +63,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     errors += ("Укажите номер квартиры корректно (только цифры)\n");
                 }
             }
-            if (!string.IsNullOrWhiteSpace(roomNumber))
-            {
-                try
-                {
-                    checked
-                    {
-                        Convert.ToInt32(roomNumber);
-                    }
-                }
-                catch
-                {
-                    errors += ("Укажите номер комнаты корректно (только цифры)\n");
-                }
-            }
             if (!string.IsNullOrWhiteSpace(decreeArea))
             {
                 try
@@ -109,7 +95,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         
         public void AddHouseInFund(Locality? locality, Street? street, string? houseNumber, string? entranceNumber, string? floorNumber, string? apartmentNumber, 
                                    string? roomNumber, string? decreeArea, string? registerArea, string? remark, bool? CWS, bool? HWS, bool? CG, 
-                                   bool? BG, bool? SH, bool? CH, bool? Electricity, bool? KeysAvailability)
+                                   bool? BG, bool? SH, bool? CH, bool? Electricity, bool? KeysAvailability, bool? Sewerage)
         {
             HousingFund newHouseInFund = new HousingFund();
 
@@ -143,7 +129,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     }
                     if (!string.IsNullOrWhiteSpace(roomNumber))
                     {
-                        newHouseInFund.RoomNumber = Convert.ToInt32(roomNumber);
+                        newHouseInFund.RoomNumber = roomNumber;
                     }
                     if (!string.IsNullOrWhiteSpace(decreeArea))
                     {
@@ -221,6 +207,14 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     {
                         newHouseInFund.KeysAvailability = false;
                     }
+                    if (Sewerage == true)
+                    {
+                        newHouseInFund.Sewerage = true;
+                    }
+                    else
+                    {
+                        newHouseInFund.Sewerage = false;
+                    }
 
                     dbContext.HousingFund.Add(newHouseInFund);
                     dbContext.SaveChanges();
@@ -237,7 +231,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditHouseInFund(HousingFund? currentHouseInFund, Locality? locality, Street? street, string? houseNumber, string? entranceNumber, string? floorNumber, 
                                     string? apartmentNumber, string? roomNumber, string? decreeArea, string? registerArea, string? remark,
-                                    bool? CWS, bool? HWS, bool? CG, bool? BG, bool? SH, bool? CH, bool? Electricity, bool? KeysAvailability)
+                                    bool? CWS, bool? HWS, bool? CG, bool? BG, bool? SH, bool? CH, bool? Electricity, bool? KeysAvailability, bool? Sewerage)
         {
             showErrors(locality, houseNumber, entranceNumber, floorNumber, apartmentNumber, roomNumber, decreeArea, registerArea);
             if (!string.IsNullOrEmpty(errors))
@@ -269,7 +263,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     }
                     if (!string.IsNullOrWhiteSpace(roomNumber))
                     {
-                        currentHouseInFund.RoomNumber = Convert.ToInt32(roomNumber);
+                        currentHouseInFund.RoomNumber = roomNumber;
                     }
                     if (!string.IsNullOrWhiteSpace(decreeArea))
                     {
@@ -346,6 +340,14 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     else
                     {
                         currentHouseInFund.KeysAvailability = false;
+                    }
+                    if (Sewerage == true)
+                    {
+                        newHouseInFund.Sewerage = true;
+                    }
+                    else
+                    {
+                        newHouseInFund.Sewerage = false;
                     }
 
                     dbContext.HousingFund.Update(currentHouseInFund);

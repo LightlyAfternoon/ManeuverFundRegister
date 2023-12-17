@@ -93,6 +93,9 @@ namespace Реестр_маневренного_фонда
                     {
                     }
 
+                    if (dbContext.HousingFund.Count(h => h.Sewerage != null) > 1)
+                    {
+                    }
                 }
                 catch
                 {
@@ -126,17 +129,15 @@ namespace Реестр_маневренного_фонда
                         if (housingFund.KeysAvailability == null)
                             housingFund.KeysAvailability = true;
 
+                        if (housingFund.Sewerage == null)
+                            housingFund.Sewerage = false;
+
                         dbContext.HousingFund.Update(housingFund);
                         dbContext.SaveChanges();
                     }
                 }
             }
-            catch
-            {
-                MessageBox.Show("Не удалось изменить базу данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
-
         private void bt_AgreementsViewPage_Click(object sender, RoutedEventArgs e)
         {
             fr_Frame.Navigate(new AgreementsViewPage());

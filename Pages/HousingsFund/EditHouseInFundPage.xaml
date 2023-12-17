@@ -47,6 +47,7 @@
                             <CheckBox x:Name="chb_SH" Content="Отопление печное"/>
                             <CheckBox x:Name="chb_CH" Content="Отопление централизованное"/>
                             <CheckBox x:Name="chb_Electricity" Content="Электричество"/>
+                            <CheckBox x:Name="chb_Sewerage" Content="Канализация"/>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>
