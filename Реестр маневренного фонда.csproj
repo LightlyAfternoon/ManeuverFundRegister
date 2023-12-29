@@ -10,8 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Database\ManeuverFundRegister.db" />
     <None Remove="Resources\town-hall.png" />
     <None Remove="Resources\townhall.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Database\ManeuverFundRegister.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
