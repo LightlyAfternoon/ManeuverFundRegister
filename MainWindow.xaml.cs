@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,15 @@ namespace Реестр_маневренного_фонда
                 using (TaskService ts = new TaskService())
                 {
                     // Создание процесса консольной программы для проверки уведомлений
-                    Process.Start(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\ExecuteNotificationManagerClass.exe");
+                    if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\Database\\ManeuverFundRegister.db"))
+                    {
+                        Process.Start(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\ExecuteNotificationManagerClass.exe");
+                    }//////////////////
+                    else
+                    {
+                        Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
+                    }
+                    
 
                     // Создание новой задачи и добавление её описания
                     TaskDefinition td = ts.NewTask();
@@ -284,8 +293,13 @@ namespace Реестр_маневренного_фонда
         {
             foreach (Notification notification in notifications)
             {
-                ApplicationContext.GetContext().Notification.First(n => n == notification).IsViewed = true;
-                ApplicationContext.GetContext().SaveChanges();
+                try
+                {
+                    notification.IsViewed = true;
+                    ApplicationContext.GetContext().Update(notification);
+                    ApplicationContext.GetContext().SaveChanges();
+                }
+                catch { }
             }
         }
     }

@@ -25,7 +25,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 MessageBox.Show("Не удалось изменить факт проживания\n" + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        ///////////////////////////////////////////////////////
         public void RemoveResidenceRegistration(ResidenceRegistration currenResidenceRegistration)
         {
             try

@@ -73,7 +73,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-
+        ///////////////////////////////////////////////////////
         public void RemoveLocality(Locality currenLocality)
         {
             try

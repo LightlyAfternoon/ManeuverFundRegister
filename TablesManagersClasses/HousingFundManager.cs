@@ -362,7 +362,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-
+        ///////////////////////////////////////////////////////
         public void RemoveHouseInFund(HousingFund currentHouseInFund)
         {
             try

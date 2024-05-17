@@ -94,7 +94,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-
+        ///////////////////////////////////////////////////////
         public void RemoveTempResident(TempResident currentTempResident)
         {
             try

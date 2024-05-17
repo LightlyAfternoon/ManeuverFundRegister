@@ -79,7 +79,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-
+        ///////////////////////////////////////////////////////
         public void RemoveStreet(Street currenStreet)
         {
             try

@@ -219,7 +219,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-
+        ///////////////////////////////////////////////////////
         public void RemoveAgreement(Agreement currentAgreement)
         {
             try

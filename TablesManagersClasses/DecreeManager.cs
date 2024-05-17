@@ -139,7 +139,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-
+        ///////////////////////////////////////////////////////
         public void RemoveDecree(Decree currentDecree)
         {
             try
