@@ -61,10 +61,16 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             {
                 try
                 {
+                    if (pdfViewer.Document != null)
+                    {
+                        pdfViewer.Document.Dispose();
+                        pdfViewer.Renderer.Document.Dispose();
+                    }
+
                     newAgreement.File = FileManager.attachFile(openFileDialog.FileName);
 
                     var doc = PdfiumViewer.PdfDocument.Load(openFileDialog.FileName);
-                    pdfViewer1.Document = doc;
+                    pdfViewer.Document = doc;
                 } catch { }
             }
         }
@@ -123,6 +129,15 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
             if (!string.IsNullOrWhiteSpace(tb_Term.Text) && dp_DateConclusion.SelectedDate != null)
             {
                 dp_DateEnd.SelectedDate = dp_DateConclusion.SelectedDate.Value.AddMonths(Convert.ToInt16(tb_Term.Text));
+            }
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (pdfViewer.Document != null)
+            {
+                pdfViewer.Document.Dispose();
+                pdfViewer.Renderer.Document.Dispose();
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Microsoft.Win32;
+using PdfiumViewer;
 using Реестр_маневренного_фонда.Database.TablesClasses;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
@@ -99,10 +100,20 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
 
             if (openFileDialog.ShowDialog() == true)
             {
-                decree.File = FileManager.attachFile(openFileDialog.FileName);
+                try
+                {
+                    if (pdfViewer.Document != null)
+                    {
+                        pdfViewer.Document.Dispose();
+                        pdfViewer.Renderer.Document.Dispose();
+                    }
 
-                FileInfo fileInfo = new(openFileDialog.FileName);
-                tbl_AttachedFile.Text = fileInfo.Name;
+                    decree.File = FileManager.attachFile(openFileDialog.FileName);
+
+                    var doc = PdfiumViewer.PdfDocument.Load(openFileDialog.FileName);
+                    pdfViewer.Document = doc;
+                }
+                catch { }
             }
         }
 
@@ -141,6 +152,15 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
             else
             {
                 bt_AddAnotherOneHousingFund.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (pdfViewer.Document != null)
+            {
+                pdfViewer.Document.Dispose();
+                pdfViewer.Renderer.Document.Dispose();
             }
         }
     }

@@ -17,8 +17,8 @@ namespace Реестр_маневренного_фонда.Pages
     /// </summary>
     public partial class AgreementsViewPage : Page
     {
-        ApplicationContext dbContext;
-        Agreement currentAgreement;
+        ApplicationContext? dbContext;
+        Agreement? currentAgreement;
 
         public AgreementsViewPage()
         {
@@ -110,7 +110,7 @@ namespace Реестр_маневренного_фонда.Pages
             catch { }
         }
 
-        private void bt_showOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
+        private void bt_ShowOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
         {
             if (gr_FilterGrid.Visibility == Visibility.Collapsed)
             {

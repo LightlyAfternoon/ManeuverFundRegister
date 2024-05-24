@@ -18,7 +18,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         {
             if (string.IsNullOrWhiteSpace(number))
             {
-                errors += ("Неоходимо ввести номер\n");
+                errors += ("Необходимо ввести номер\n");
             }
             else
             {

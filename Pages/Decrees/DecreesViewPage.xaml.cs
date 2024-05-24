@@ -50,7 +50,8 @@ namespace Реестр_маневренного_фонда.Pages
             }
             if (cmb_HousingFund.SelectedItem != null)
             {
-                currentDecrees = currentDecrees.Where(d => d.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund).ToList();
+                HousingFund housingFund = (cmb_HousingFund.SelectedItem as HousingFund);
+                currentDecrees = currentDecrees.Where(d => d.HousingFundId == housingFund.IdHousingFund).ToList();
             }
             if (chb_Inclusion.IsChecked == true && chb_Exclusion.IsChecked == false)
             {

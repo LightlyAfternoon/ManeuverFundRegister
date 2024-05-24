@@ -267,7 +267,7 @@ namespace Реестр_маневренного_фонда
         {
             WindowState = WindowState.Minimized;
         }
-
+        //////////////////////////
         private void bt_Info_Click(object sender, RoutedEventArgs e)
         {
             HelpWindow helpWindow = new HelpWindow();

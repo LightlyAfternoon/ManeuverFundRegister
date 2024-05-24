@@ -55,12 +55,23 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
         {
             OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = "PDF файлы (*.pdf)|*.pdf";
+
             if (openFileDialog.ShowDialog() == true)
             {
-                newDecree.File = FileManager.attachFile(openFileDialog.FileName);
+                try
+                {
+                    if (pdfViewer.Document != null)
+                    {
+                        pdfViewer.Document.Dispose();
+                        pdfViewer.Renderer.Document.Dispose();
+                    }
 
-                FileInfo fileInfo = new(openFileDialog.FileName);
-                tbl_AttachedFile.Text = fileInfo.Name;
+                    newDecree.File = FileManager.attachFile(openFileDialog.FileName);
+
+                    var doc = PdfiumViewer.PdfDocument.Load(openFileDialog.FileName);
+                    pdfViewer.Document = doc;
+                }
+                catch { }
             }
         }
 
@@ -98,6 +109,15 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
             else
             {
                 bt_AddAnotherOneHousingFund.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (pdfViewer.Document != null)
+            {
+                pdfViewer.Document.Dispose();
+                pdfViewer.Renderer.Document.Dispose();
             }
         }
     }
