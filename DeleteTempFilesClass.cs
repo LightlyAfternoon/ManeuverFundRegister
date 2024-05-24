@@ -5,7 +5,7 @@ namespace Реестр_маневренного_фонда
 {
     public static class DeleteTempFilesClass
     {
-        public static void deleteTempFiles()
+        public static void DeleteTempFiles()
         {
             try
             {

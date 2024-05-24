@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace Реестр_маневренного_фонда
     /// </summary>
     public partial class MainWindow : Window
     {
-        ApplicationContext dbContext;
+        ApplicationContext? dbContext;
         List<Notification> notifications = new();
 
         public MainWindow()
@@ -30,7 +29,7 @@ namespace Реестр_маневренного_фонда
 
             UpdateDB();
 
-            DeleteTempFilesClass.deleteTempFiles();
+            DeleteTempFilesClass.DeleteTempFiles();
             Directory.CreateDirectory(Path.GetTempPath() + @"\ManeuverFund");
 
             MainFrameObj.mainFrame = fr_Frame;
