@@ -6,30 +6,31 @@
         xmlns:local="clr-namespace:Реестр_маневренного_фонда"
         mc:Ignorable="d"
         Title="Реестр маневренного фонда" Height="550" Width="925" MinHeight="500" MinWidth="875" MouseDown="Window_MouseDown"
-        WindowStyle="None" WindowStartupLocation="CenterScreen">
+        WindowStyle="None" WindowStartupLocation="CenterScreen" Icon="/Resources/townhall.ico">
+
     <Grid>
         <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
-                <RowDefinition/>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <DockPanel LastChildFill="False">
-                <Image Source="Resources/town-hall.png" Margin="7,0" VerticalAlignment="Center" Height="17"/>
-                <TextBlock DockPanel.Dock="Left" Text="Реестр маневренного фонда" VerticalAlignment="Center" FontSize="12"/>
-                <Button x:Name="bt_CloseWindow" Content="✕" Click="bt_CloseWindow_Click"  DockPanel.Dock="Right">
-                        <Button.Style>
-                                <Style TargetType="Button" BasedOn="{StaticResource titleBarButtons}">
-                                        <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="Red"/>
-                                                        <Setter Property="Foreground" Value="White"/>
-                                                </Trigger>
-                                        </Style.Triggers>
-                                </Style>
-                        </Button.Style>
-                </Button>
-                <Button x:Name="bt_MaxWindow" Content="☐" Click="bt_MaxWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
-                <Button x:Name="bt_MinWindow" Content="🗕" Click="bt_MinWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
+            <Image Source="Resources/town-hall.png" Margin="7,0" VerticalAlignment="Center" Height="17"/>
+            <TextBlock DockPanel.Dock="Left" Text="Реестр маневренного фонда" VerticalAlignment="Center" FontSize="12"/>
+            <Button x:Name="bt_CloseWindow" Content="✕" Click="bt_CloseWindow_Click"  DockPanel.Dock="Right">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource titleBarButtons}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="bt_MaxWindow" Content="☐" Click="bt_MaxWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
+            <Button x:Name="bt_MinWindow" Content="🗕" Click="bt_MinWindow_Click"  DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
             <Button Name = "bt_NotificationsView" HorizontalAlignment="Right" DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}" Content="🔔" Click="bt_NotificationsView_Click"/>
             <Button x:Name="bt_Info" Content="🛈" Click="bt_Info_Click" DockPanel.Dock="Right" Style="{StaticResource titleBarButtons}"/>
         </DockPanel>

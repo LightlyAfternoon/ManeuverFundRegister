@@ -11,8 +11,10 @@
 
   <ItemGroup>
     <None Remove="Database\ManeuverFundRegister.db" />
+    <None Remove="Resources\cityhall.ico" />
     <None Remove="Resources\town-hall.png" />
     <None Remove="Resources\townhall.ico" />
+    <None Remove="Resources\Руководство пользователя.docx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,8 +34,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\townhall.ico" />
-    <Resource Include="Resources\town-hall.png" />
+    <Content Include="Resources\townhall.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\cityhall.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\town-hall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\Руководство пользователя.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

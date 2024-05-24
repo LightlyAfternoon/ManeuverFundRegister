@@ -267,11 +267,10 @@ namespace Реестр_маневренного_фонда
         {
             WindowState = WindowState.Minimized;
         }
-        //////////////////////////
+
         private void bt_Info_Click(object sender, RoutedEventArgs e)
         {
-            HelpWindow helpWindow = new HelpWindow();
-            helpWindow.Show();
+            Process.Start("explorer.exe", $"{Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString())}\\Resources\\Руководство пользователя.docx");
         }
 
         private void bt_MenuVisibility_Click(object sender, RoutedEventArgs e)
