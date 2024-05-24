@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.Pages;
 
@@ -73,28 +74,35 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-        ///////////////////////////////////////////////////////
+
         public void RemoveLocality(Locality currenLocality)
         {
-            try
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить населённый пункт?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (messageBoxResult)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить нанимателя?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                switch (messageBoxResult)
-                {
-                    case MessageBoxResult.Yes:
-                        dbContext.Locality.Remove(currenLocality);
-                        dbContext.SaveChanges();
-                
-                        MessageBox.Show("Населённый пункт удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                        MainFrameObj.mainFrame.Navigate(new LocalitiesViewPage());
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Не удалось удалить населённый пункт", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                case MessageBoxResult.Yes:
+                    try
+                    {
+                        if (dbContext.HousingFund.Count(h => h.LocalityId == currenLocality.IdLocality) < 1)
+                        {
+                            dbContext.Locality.Remove(currenLocality);
+                            dbContext.SaveChanges();
+
+                            MessageBox.Show("Населённый пункт удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MainFrameObj.mainFrame.Navigate(new LocalitiesViewPage());
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не удалось удалить населённый пункт", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не удалось удалить населённый пункт", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
         }
     }

@@ -63,7 +63,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     .Show();
             }
         }
-        ///////////////////////////////////////////////////////
+
         public void RemoveNotification()
         {
             dbContext.Agreement.Load();

@@ -139,34 +139,34 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-        ///////////////////////////////////////////////////////
+
         public void RemoveDecree(Decree currentDecree)
         {
-            try
-            {
-                List<HouseDecree> houseDecrees = dbContext.HouseDecree.Where(hd => hd.DecreeId == currentDecree.IdDecree).ToList();
+            List<HouseDecree> houseDecrees = dbContext.HouseDecree.Where(hd => hd.DecreeId == currentDecree.IdDecree).ToList();
 
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить нанимателя?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                switch (messageBoxResult)
-                {
-                    case MessageBoxResult.Yes:
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить постановление?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (messageBoxResult)
+            {
+                case MessageBoxResult.Yes:
+                    try
+                    {
                         foreach (HouseDecree houseDecree in houseDecrees)
                         {
                             dbContext.HouseDecree.Remove(houseDecree);
                         }
                         dbContext.Decree.Remove(currentDecree);
                         dbContext.SaveChanges();
-                
+
                         MessageBox.Show("Постановление удалено", "", MessageBoxButton.OK, MessageBoxImage.Information);
                         MainFrameObj.mainFrame.Navigate(new DecreesViewPage());
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Не получилось удалить постановление", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не получилось удалить постановление", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
         }
     }

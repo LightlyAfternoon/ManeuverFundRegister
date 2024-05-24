@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.TablesManagersClasses;
@@ -44,6 +43,8 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
 
             cmb_HousingFund.ItemsSource = listAvailableHousingFund;
             cmb_TempResident.ItemsSource = dbContext.TempResident.ToList();
+
+            dp_DateConclusion.SelectedDate = DateTime.Now.Date;
         }
 
         private void bt_Add_Click(object sender, RoutedEventArgs e)

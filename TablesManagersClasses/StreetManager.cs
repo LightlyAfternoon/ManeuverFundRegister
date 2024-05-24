@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.Pages;
 
@@ -18,7 +19,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             }
             if (string.IsNullOrWhiteSpace(nameStreet))
             {
-                errors += ("Неоходимо ввести название улицы");
+                errors += ("Необходимо ввести название улицы");
             }
         }
         
@@ -79,28 +80,35 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-        ///////////////////////////////////////////////////////
+
         public void RemoveStreet(Street currenStreet)
         {
-            try
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить улицу?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (messageBoxResult)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить улицу?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                switch (messageBoxResult)
-                {
-                    case MessageBoxResult.Yes:
-                        dbContext.Street.Remove(currenStreet);
-                        dbContext.SaveChanges();
-                
-                        MessageBox.Show("Улица удалена", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                        MainFrameObj.mainFrame.Navigate(new StreetsViewPage());
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Не получилось удалить улицу", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                case MessageBoxResult.Yes:
+                    try
+                    {
+                        if (dbContext.HousingFund.Count(h => h.StreetId == currenStreet.IdStreet) < 1)
+                        {
+                            dbContext.Street.Remove(currenStreet);
+                            dbContext.SaveChanges();
+
+                            MessageBox.Show("Улица удалена", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MainFrameObj.mainFrame.Navigate(new StreetsViewPage());
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не получилось удалить улицу", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не получилось удалить улицу", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.Pages.HousingsFund;
@@ -362,28 +363,35 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-        ///////////////////////////////////////////////////////
+
         public void RemoveHouseInFund(HousingFund currentHouseInFund)
         {
-            try
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить жильё?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (messageBoxResult)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить нанимателя?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                switch (messageBoxResult)
-                {
-                    case MessageBoxResult.Yes:
-                        dbContext.HousingFund.Remove(currentHouseInFund);
-                        dbContext.SaveChanges();
-                
-                        MessageBox.Show("Жильё удалено", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                        MainFrameObj.mainFrame.Navigate(new HousingFundViewPage());
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Не удалось удалить жильё", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                case MessageBoxResult.Yes:
+                    try
+                    {
+                        if (dbContext.Agreement.Count(a => a.HousingFundId == currentHouseInFund.IdHousingFund) < 1 || dbContext.HouseDecree.Count(hd => hd.HousingFundId == currentHouseInFund.IdHousingFund) < 1 || dbContext.ResidenceRegistration.Count(r => r.HousingFundId == currentHouseInFund.IdHousingFund) < 1)
+                        {
+                            dbContext.HousingFund.Remove(currentHouseInFund);
+                            dbContext.SaveChanges();
+
+                            MessageBox.Show("Жильё удалено", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MainFrameObj.mainFrame.Navigate(new HousingFundViewPage());
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не удалось удалить жильё", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не удалось удалить жильё", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
         }
     }

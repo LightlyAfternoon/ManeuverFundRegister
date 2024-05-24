@@ -20,6 +20,8 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             InitializeComponent();
 
             cmb_Locality.ItemsSource = dbContext.Locality.ToList();
+
+            chb_KeysAvalibility.IsChecked = true;
         }
 
         private void cmb_Locality_DropDownClosed(object sender, EventArgs e)

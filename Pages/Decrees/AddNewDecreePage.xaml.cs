@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +24,8 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
             InitializeComponent();
 
             cmb_HousingFund.ItemsSource = dbContext.HousingFund.ToList();
+
+            dp_DateConclusion.SelectedDate = DateTime.Now.Date;
         }
 
         private void bt_Add_Click(object sender, RoutedEventArgs e)

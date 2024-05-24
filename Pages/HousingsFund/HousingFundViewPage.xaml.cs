@@ -126,7 +126,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             ExcelPackage package = new();
             var sheet = package.Workbook.Worksheets.Add("Реестр жилья фонда");
 
-            sheet.Cells[1, 1, 1, 1].LoadFromArrays(new object[][] { new[] { "Населённый пункт", "Улица", "Ключи", "№ дома", "№ подъезда", "№ этажа", "№ квартиры", "№ комнаты", "Площадь по постановлению", "Площадь по реестру", "ХВС", "ГВС", "Газ централизованный", "Газ баллонный", "Отопление печное", "Отопление централизованное", "Электричество", "Примечание" } });
+            sheet.Cells[1, 1, 1, 1].LoadFromArrays(new object[][] { new[] { "Населённый пункт", "Улица", "Ключи", "№ дома", "№ подъезда", "№ этажа", "№ квартиры", "№ комнаты", "Площадь по постановлению", "Площадь по реестру", "ХВС", "ГВС", "Газ централизованный", "Газ баллонный", "Отопление печное", "Отопление централизованное", "Электричество", "Примечание", "Статус" } });
             int row = 2;
             int column = 1;
             foreach (var item in housingFund)
@@ -176,6 +176,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
                 else
                     sheet.Cells[row, column + 16].Value = "-";
                 sheet.Cells[row, column + 17].Value = item.Remark;
+                sheet.Cells[row, column + 18].Value = item.Freedom;
 
                 row++;
             }
@@ -187,7 +188,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
         {
             var ReportExcel = Generate(lb_HousingFund.ItemsSource as List<HousingFund>);
 
-            File.WriteAllBytes($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\!Реестр жилья фонда.xlsx", ReportExcel);
+            File.WriteAllBytes($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\{DateTime.Now.ToShortDateString()} Реестр жилья фонда.xlsx", ReportExcel);
 
             Process.Start("explorer.exe", $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}");
         }

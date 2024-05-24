@@ -25,28 +25,28 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 MessageBox.Show("Не удалось изменить факт проживания\n" + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        ///////////////////////////////////////////////////////
+
         public void RemoveResidenceRegistration(ResidenceRegistration currenResidenceRegistration)
         {
-            try
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить факт проживания?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (messageBoxResult)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить факт проживания?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                switch (messageBoxResult)
-                {
-                    case MessageBoxResult.Yes:
+                case MessageBoxResult.Yes:
+                    try
+                    {
                         dbContext.ResidenceRegistration.Remove(currenResidenceRegistration);
                         dbContext.SaveChanges();
 
                         MessageBox.Show("Факт проживания удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
                         MainFrameObj.mainFrame.Navigate(new ResidenceRegistrationViewPage());
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Не удалось удалить факт проживания", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не удалось удалить факт проживания", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
         }
     }

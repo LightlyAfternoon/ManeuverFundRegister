@@ -219,32 +219,39 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-        ///////////////////////////////////////////////////////
+
         public void RemoveAgreement(Agreement currentAgreement)
         {
-            try
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить договор?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (messageBoxResult)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить договор?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                switch (messageBoxResult)
-                {
-                    case MessageBoxResult.Yes:
-                        foreach (Notification notification in dbContext.Notification.Where(n => n.AgreementId == currentAgreement.IdAgreement).ToList())
+                case MessageBoxResult.Yes:
+                    try
+                    {
+                        if (dbContext.ResidenceRegistration.Count(r => r.AgreementId == currentAgreement.IdAgreement) < 1)
                         {
-                            dbContext.Notification.Remove(notification);
-                        }
-                        dbContext.Agreement.Remove(currentAgreement);
-                        dbContext.SaveChanges();
+                            foreach (Notification notification in dbContext.Notification.Where(n => n.AgreementId == currentAgreement.IdAgreement).ToList())
+                            {
+                                dbContext.Notification.Remove(notification);
+                            }
+                            dbContext.Agreement.Remove(currentAgreement);
+                            dbContext.SaveChanges();
 
-                        MessageBox.Show("Удаление прошло успешно", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                        MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Не получилось удалить договор", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Удаление прошло успешно", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MainFrameObj.mainFrame.Navigate(new AgreementsViewPage());
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не получилось удалить договор", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не получилось удалить договор", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
         }
     }

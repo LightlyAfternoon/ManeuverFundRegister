@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
 using Реестр_маневренного_фонда.Pages;
 
@@ -94,28 +95,35 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 }
             }
         }
-        ///////////////////////////////////////////////////////
+
         public void RemoveTempResident(TempResident currentTempResident)
         {
-            try
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить нанимателя?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (messageBoxResult)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Удалить нанимателя?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                switch (messageBoxResult)
-                {
-                    case MessageBoxResult.Yes:
-                        dbContext.TempResident.Remove(currentTempResident);
-                        dbContext.SaveChanges();
+                case MessageBoxResult.Yes:
+                    try
+                    {
+                        if (dbContext.Agreement.Count(a => a.TempResidentId == currentTempResident.IdTempResident) < 1 || dbContext.ResidenceRegistration.Count(r => r.TempResidentId == currentTempResident.IdTempResident) < 1)
+                        {
+                            dbContext.TempResident.Remove(currentTempResident);
+                            dbContext.SaveChanges();
 
-                        MessageBox.Show("Наниматель удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                        MainFrameObj.mainFrame.Navigate(new TempResidentsViewPage());
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Не получилось удалить нанимателя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Наниматель удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MainFrameObj.mainFrame.Navigate(new TempResidentsViewPage());
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не получилось удалить нанимателя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }    
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не получилось удалить нанимателя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
         }
     }
