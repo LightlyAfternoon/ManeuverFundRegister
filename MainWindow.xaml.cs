@@ -44,7 +44,7 @@ namespace Реестр_маневренного_фонда
                 Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
             }
 
-            try
+            /*try
             {
                 using (TaskService ts = new TaskService())
                 {
@@ -62,7 +62,7 @@ namespace Реестр_маневренного_фонда
                     ts.RootFolder.RegisterTaskDefinition(@"AddAndRemoveNotifications", td);
                 }
             }
-            catch { }
+            catch { }*/
         }
 
         private void UpdateDB()

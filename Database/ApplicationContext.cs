@@ -36,7 +36,9 @@ namespace Реестр_маневренного_фонда
             }
             else
             {
-                optionsBuilder.UseSqlite("Data Source="+ Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ManeuverFundRegister\\Database\\ManeuverFundRegister.db");
+                optionsBuilder.UseSqlite("Data Source=" + Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ManeuverFundRegister\\bin\\Debug\\net6.0-windows10.0.17763.0\\Database\\ManeuverFundRegister.db");
+
+                //optionsBuilder.UseSqlite("Data Source="+ Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ManeuverFundRegister\\Database\\ManeuverFundRegister.db");
             }
         }
     }
