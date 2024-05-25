@@ -35,14 +35,14 @@ namespace Реестр_маневренного_фонда
             MainFrameObj.mainFrame = fr_Frame;
 
             // Создание процесса консольной программы для проверки уведомлений
-            if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\Database\\ManeuverFundRegister.db"))
-            {
+            //if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\Database\\ManeuverFundRegister.db"))
+            //{
                 Process.Start(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\ExecuteNotificationManagerClass.exe");
-            }//////////////////
-            else
-            {
-                Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
-            }
+            //}//////////////////
+            //else
+            //{
+            //    Process.Start(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ExecuteNotificationManagerClass\\bin\\Debug\\net6.0-windows10.0.17763.0\\ExecuteNotificationManagerClass.exe");
+            //}
 
             /*try
             {

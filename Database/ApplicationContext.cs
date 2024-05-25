@@ -30,16 +30,14 @@ namespace Реестр_маневренного_фонда
         //переопределение метода OnConfiguring для установления параметров подключения к бд
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\Database\\ManeuverFundRegister.db"))
-            {
+            //if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\Database\\ManeuverFundRegister.db"))
+            //{
                 optionsBuilder.UseSqlite("Data Source=" + Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\Database\\ManeuverFundRegister.db");
-            }
-            else
-            {
-                optionsBuilder.UseSqlite("Data Source=" + Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ManeuverFundRegister\\bin\\Debug\\net6.0-windows10.0.17763.0\\Database\\ManeuverFundRegister.db");
-
-                //optionsBuilder.UseSqlite("Data Source="+ Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ManeuverFundRegister\\Database\\ManeuverFundRegister.db");
-            }
+            //}
+            //else
+            //{
+            //    optionsBuilder.UseSqlite("Data Source="+ Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString()).ToString()).ToString()).ToString()) + "\\ManeuverFundRegister\\Database\\ManeuverFundRegister.db");
+            //}
         }
     }
 }
