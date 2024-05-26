@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Реестр_маневренного_фонда.Pages.HousingsFund"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HousingFundViewPage">
+      Title="Жильё фонда">
 
     <Grid>
         <Grid.RowDefinitions>

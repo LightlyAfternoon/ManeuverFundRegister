@@ -122,5 +122,13 @@ namespace Реестр_маневренного_фонда.Pages.Decrees
                 pdfViewer.Renderer.Document.Dispose();
             }
         }
+
+        private void bt_Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
+        }
     }
 }

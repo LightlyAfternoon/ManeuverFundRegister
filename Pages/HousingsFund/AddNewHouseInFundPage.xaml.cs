@@ -78,5 +78,13 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
 
             cmb_Street.IsDropDownOpen = true;
         }
+
+        private void bt_Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
+        }
     }
 }

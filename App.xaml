@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Реестр_маневренного_фонда"
              StartupUri="MainWindow.xaml">
+    
     <Application.Resources>
         <ResourceDictionary>
             <Style TargetType="TextBlock">

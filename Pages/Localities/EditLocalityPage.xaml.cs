@@ -26,5 +26,13 @@ namespace Реестр_маневренного_фонда.Pages.Localities
             LocalityManager lm = new LocalityManager();
             lm.EditLocality(locality, tb_NameLocality.Text);
         }
+
+        private void bt_Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
+        }
     }
 }

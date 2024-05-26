@@ -44,9 +44,13 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату окончания договора\n");
             }
-            if ((tempResident != null && housingFund != null) && dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 1)
+            if ((tempResident != null && housingFund != null) && dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 0)
             {
                 errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен\n");
+            }
+            if (dbContext.Agreement.Count(a => a.NumberAgreement == Convert.ToInt32(number)) > 0)
+            {
+                errors += ("Договор с данным номером уже добавлен\n");
             }
         }
 
@@ -161,7 +165,9 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     {
                         ResidenceRegistration currentRegistration = dbContext.ResidenceRegistration.First(r => r.AgreementId == currentAgreement.IdAgreement);
 
-                        MessageBoxResult messageBoxResult = MessageBox.Show($"Изменить дату начала проживания в соответствии с датой заключения договора?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (currentRegistration.DateStartResidence.Date.ToShortDateString() != dateConclusion.Value.Date.ToShortDateString())
+                        {
+                            MessageBoxResult messageBoxResult = MessageBox.Show($"Изменить дату начала проживания в соответствии с датой заключения договора?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         switch (messageBoxResult)
                         {
                             case MessageBoxResult.Yes:
@@ -171,6 +177,8 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                             case MessageBoxResult.No:
                                 break;
                         }
+                        }
+                        
                     }
                     if (!string.IsNullOrWhiteSpace(number))
                     {

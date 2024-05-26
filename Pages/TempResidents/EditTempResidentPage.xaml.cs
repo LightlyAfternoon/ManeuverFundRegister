@@ -30,5 +30,13 @@ namespace Реестр_маневренного_фонда.Pages.TempResidents
             TempResidentManager tm = new TempResidentManager();
             tm.EditTempResident(tempResident, tb_LastName.Text, tb_FirstName.Text, tb_Patronymic.Text, tb_Remark.Text);
         }
+
+        private void bt_Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
+        }
     }
 }

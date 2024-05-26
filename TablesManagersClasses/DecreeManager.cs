@@ -42,6 +42,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату постановления");
             }
+            if (dbContext.Decree.Count(a => a.NumberDecree == Convert.ToInt32(number)) > 0)
+            {
+                errors += ("Постановление с данным номером уже добавлено\n");
+            }
         }
         
         public void AddDecree(Decree newDecree, string? number, DateTime? dateDecree, List<HousingFund>? housingFund, bool? status)

@@ -11,22 +11,71 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         private string errors = string.Empty;
 
-        private void showErrors(string? lastName, string? firstName)
+        private void showErrors(string? lastName, string? firstName, string? patronymic)
         {
             if (string.IsNullOrWhiteSpace(lastName))
             {
                 errors += ("Необходимо написать фамилию нанимателя\n");
             }
+            else
+            {
+                int digitsCount = 0;
+                foreach (char character in lastName)
+                {
+                    if (char.IsDigit(character))
+                    {
+                        digitsCount++;
+                    }
+                }
+
+                if (digitsCount > 0)
+                {
+                    errors += ("Фамилия не должна иметь цифр\n");
+                }
+            }
             if (string.IsNullOrWhiteSpace(firstName))
             {
-                errors += ("Необходимо написать имя нанимателя");
+                errors += ("Необходимо написать имя нанимателя\n");
+            }
+            else
+            {
+                int digitsCount = 0;
+                foreach (char character in firstName)
+                {
+                    if (char.IsDigit(character))
+                    {
+                        digitsCount++;
+                    }
+                }
+
+                if (digitsCount > 0)
+                {
+                    errors += ("Имя не должно иметь цифр\n");
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(patronymic))
+            {
+                int digitsCount = 0;
+                foreach (char character in firstName)
+                {
+                    if (char.IsDigit(character))
+                    {
+                        digitsCount++;
+                    }
+                }
+
+                if (digitsCount > 0)
+                {
+                    errors += ("Отчество не должно иметь цифр\n");
+                }
             }
         }
+
         public void AddTempResident(string? lastName, string? firstName, string? patronymic, string? remark)
         {
             TempResident newTempResident = new TempResident();
             
-            showErrors(lastName, firstName);
+            showErrors(lastName, firstName, patronymic);
             if (!string.IsNullOrEmpty(errors))
             {
                 MessageBox.Show(errors);
@@ -62,7 +111,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditTempResident(TempResident currentTempResident, string? lastName, string? firstName, string? patronymic, string? remark)
         {
-            showErrors(lastName, firstName);
+            showErrors(lastName, firstName, patronymic);
             if (!string.IsNullOrEmpty(errors))
             {
                 MessageBox.Show(errors);
