@@ -44,18 +44,18 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату окончания договора\n");
             }
-            if ((tempResident != null && housingFund != null) && dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 0)
-            {
-                errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен\n");
-            }
-            if (dbContext.Agreement.Count(a => a.NumberAgreement == Convert.ToInt32(number)) > 0)
-            {
-                errors += ("Договор с данным номером уже добавлен\n");
-            }
         }
 
         public void AddAgreement(Agreement newAgreement, string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, string? remark)
         {
+            if (dbContext.Agreement.Count(a => a.NumberAgreement == Convert.ToInt32(number)) > 0)
+            {
+                errors += ("Договор с данным номером уже добавлен\n");
+            }
+            if ((tempResident != null && housingFund != null) && dbContext.Agreement.Count(a => a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 0)
+            {
+                errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен\n");
+            }
 
             showErrors(number, tempResident, housingFund, dateConclusion, dateEnd);
             if (!string.IsNullOrEmpty(errors))
@@ -151,6 +151,11 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditAgreement(Agreement currentAgreement, string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, DateTime? dateTermination, string? remark)
         {
+            if ((tempResident != null && housingFund != null) && dbContext.Agreement.Count(a => a.IdAgreement != currentAgreement.IdAgreement && a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 0)
+            {
+                errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен\n");
+            }
+
             showErrors(number, tempResident, housingFund, dateConclusion, dateEnd);
             if (!string.IsNullOrEmpty(errors))
             {

@@ -15,7 +15,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         {
             if (string.IsNullOrWhiteSpace(nameLocality))
             {
-                errors += ("Неоходимо ввести название населённого пункта");
+                errors += ("Необходимо ввести название населённого пункта");
             }
         }
      

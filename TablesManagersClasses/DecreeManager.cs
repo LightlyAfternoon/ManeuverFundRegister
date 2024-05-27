@@ -42,14 +42,15 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату постановления");
             }
+        }
+        
+        public void AddDecree(Decree newDecree, string? number, DateTime? dateDecree, List<HousingFund>? housingFund, bool? status)
+        {
             if (dbContext.Decree.Count(a => a.NumberDecree == Convert.ToInt32(number)) > 0)
             {
                 errors += ("Постановление с данным номером уже добавлено\n");
             }
-        }
-        
-        public void AddDecree(Decree newDecree, string? number, DateTime? dateDecree, List<HousingFund>? housingFund, bool? status)
-        {   
+
             showErrors(number, dateDecree, housingFund);
             if (!string.IsNullOrEmpty(errors))
             {
@@ -94,6 +95,11 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditDecree(Decree currentDecree, string? number, DateTime? dateDecree, List<HousingFund>? housingFund, bool? status)
         {
+            if (dbContext.Decree.Count(a => a.IdDecree == currentDecree.IdDecree && a.NumberDecree == Convert.ToInt32(number)) > 0)
+            {
+                errors += ("Постановление с данным номером уже добавлено\n");
+            }
+
             showErrors(number, dateDecree, housingFund);
             if (!string.IsNullOrEmpty(errors))
             {
