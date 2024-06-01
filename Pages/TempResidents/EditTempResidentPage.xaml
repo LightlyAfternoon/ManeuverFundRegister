@@ -10,7 +10,7 @@
 
     <Grid>
         <Button Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="bt_Back" Content="Назад" Click="bt_Back_Click"/>
-        
+
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Фамилия"/>
             <TextBox Height="25" x:Name="tb_LastName" BorderBrush="Blue"/>

@@ -26,7 +26,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 foreach (Agreement agreement in listAgreements)
                 {
-                    if (residenceRegistration.DateEndResidence == null && agreement == listAgreements.Last( a => a.HousingFundId == residenceRegistration.HousingFundId) && residenceRegistration == listResidenceRegistration.Last(r => r.HousingFundId == agreement.HousingFundId))
+                    if (residenceRegistration.DateEndResidence == null && agreement == listAgreements.Last(a => a.HousingFundId == residenceRegistration.HousingFundId) && residenceRegistration == listResidenceRegistration.Last(r => r.HousingFundId == agreement.HousingFundId))
                     {
                         if (agreement.DateEndAgreement <= DateTime.Now.AddMonths(1) && dbContext.Notification.Count(n => n.AgreementId == agreement.IdAgreement) < 1)
                         {

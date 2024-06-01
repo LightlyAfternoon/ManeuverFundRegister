@@ -36,7 +36,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             {
                 MessageBox.Show("Не получилось подключится к базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-}
+        }
 
         private void Filtering()
         {

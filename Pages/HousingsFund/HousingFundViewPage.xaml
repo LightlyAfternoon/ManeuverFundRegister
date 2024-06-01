@@ -80,7 +80,7 @@
                             <TextBlock Text="{Binding RegisterArea, StringFormat='S по реестру: {0}'}"/>
                             <TextBlock Text="{Binding Remark, StringFormat='Примечание: {0}'}" MaxWidth="500" TextWrapping="Wrap"/>
                         </StackPanel>
-                        
+
                         <StackPanel Grid.Column="2" Margin="20" HorizontalAlignment="Stretch">
                             <CheckBox Content="ХВС" IsChecked="{Binding CWS}" IsEnabled="False"/>
                             <CheckBox Content="ГВС" IsChecked="{Binding HWS}" IsEnabled="False"/>

@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Microsoft.Win32;
-using PdfiumViewer;
 using Реестр_маневренного_фонда.Database.TablesClasses;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
