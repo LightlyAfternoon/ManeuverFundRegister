@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Windows;
 using Реестр_маневренного_фонда.database.tables_classes;
@@ -100,49 +101,49 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         {
             HousingFund newHouseInFund = new HousingFund();
 
-            if (street != null)
+            if (street != null && locality != null && !string.IsNullOrWhiteSpace(houseNumber))
             {
-                if (roomNumber != null)
+                if (!string.IsNullOrWhiteSpace(roomNumber))
                 {
-                    if (dbContext.HousingFund.Count(h => h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber == houseNumber && h.ApartmentNumber.ToString().Equals(apartmentNumber) && h.RoomNumber.ToString().Equals(roomNumber)) > 0)
+                    if (dbContext.HousingFund.Any(h => h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber) && h.ApartmentNumber.Value.ToString().Equals(apartmentNumber) && h.RoomNumber.Equals(roomNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
-                else if (apartmentNumber != null)
+                else if (!string.IsNullOrWhiteSpace(apartmentNumber))
                 {
-                    if (dbContext.HousingFund.Count(h => h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber == houseNumber && h.ApartmentNumber.ToString().Equals(apartmentNumber)) > 0)
+                    if (dbContext.HousingFund.Any(h => h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber) && h.ApartmentNumber.Value.ToString().Equals(apartmentNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
                 else
                 {
-                    if (dbContext.HousingFund.Count(h => h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber == houseNumber) > 0)
+                    if (dbContext.HousingFund.Any(h => h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
             }
-            else
+            else if (locality != null && !string.IsNullOrWhiteSpace(houseNumber))
             {
-                if (roomNumber != null)
+                if (!string.IsNullOrWhiteSpace(roomNumber))
                 {
-                    if (dbContext.HousingFund.Count(h => h.LocalityId == locality.IdLocality && h.HouseNumber == houseNumber && h.ApartmentNumber.ToString().Equals(apartmentNumber) && h.RoomNumber.ToString().Equals(roomNumber)) > 0)
+                    if (dbContext.HousingFund.Any(h => h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber) && h.RoomNumber.Equals(roomNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
-                else if (apartmentNumber != null)
+                else if (!string.IsNullOrWhiteSpace(apartmentNumber))
                 {
-                    if (dbContext.HousingFund.Count(h => h.LocalityId == locality.IdLocality && h.HouseNumber == houseNumber && h.ApartmentNumber.ToString().Equals(apartmentNumber)) > 0)
+                    if (dbContext.HousingFund.Any(h => h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
                 else
                 {
-                    if (dbContext.HousingFund.Count(h => h.LocalityId == locality.IdLocality && h.HouseNumber == houseNumber) > 0)
+                    if (dbContext.HousingFund.Any(h => h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
@@ -282,49 +283,49 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                                     string? apartmentNumber, string? roomNumber, string? decreeArea, string? registerArea, string? remark,
                                     bool? CWS, bool? HWS, bool? CG, bool? BG, bool? SH, bool? CH, bool? Electricity, bool? KeysAvailability, bool? Sewerage)
         {
-            if (street != null)
+            if (street != null && locality != null && !string.IsNullOrWhiteSpace(houseNumber))
             {
-                if (roomNumber != null)
+                if (!string.IsNullOrWhiteSpace(roomNumber))
                 {
-                    if (dbContext.HousingFund.Count(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber == houseNumber && h.ApartmentNumber.ToString().Equals(apartmentNumber) && h.RoomNumber.ToString().Equals(roomNumber)) > 0)
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber) && h.RoomNumber.Equals(roomNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
-                else if (apartmentNumber != null)
+                else if (!string.IsNullOrWhiteSpace(apartmentNumber))
                 {
-                    if (dbContext.HousingFund.Count(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber == houseNumber && h.ApartmentNumber.ToString().Equals(apartmentNumber)) > 0)
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
                 else
                 {
-                    if (dbContext.HousingFund.Count(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber == houseNumber) > 0)
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
             }
-            else
+            else if (locality != null && !string.IsNullOrWhiteSpace(houseNumber))
             {
-                if (roomNumber != null)
+                if (!string.IsNullOrWhiteSpace(roomNumber))
                 {
-                    if (dbContext.HousingFund.Count(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber == houseNumber && h.ApartmentNumber.ToString().Equals(apartmentNumber) && h.RoomNumber.ToString().Equals(roomNumber)) > 0)
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber) && h.RoomNumber.Equals(roomNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
-                else if (apartmentNumber != null)
+                else if (!string.IsNullOrWhiteSpace(apartmentNumber))
                 {
-                    if (dbContext.HousingFund.Count(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber == houseNumber && h.ApartmentNumber.ToString().Equals(apartmentNumber)) > 0)
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
                 else
                 {
-                    if (dbContext.HousingFund.Count(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber == houseNumber) > 0)
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
@@ -345,34 +346,66 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     {
                         currentHouseInFund.StreetId = street.IdStreet;
                     }
+                    else
+                    {
+                        currentHouseInFund.StreetId = null;
+                    }
                     currentHouseInFund.HouseNumber = houseNumber;
                     if (!string.IsNullOrWhiteSpace(entranceNumber))
                     {
                         currentHouseInFund.EntranceNumber = Convert.ToInt32(entranceNumber);
                     }
+                    else
+                    {
+                        currentHouseInFund.EntranceNumber = null;
+                    }
                     if (!string.IsNullOrWhiteSpace(floorNumber))
                     {
                         currentHouseInFund.FloorNumber = Convert.ToInt32(floorNumber);
+                    }
+                    else
+                    {
+                        currentHouseInFund.FloorNumber = null;
                     }
                     if (!string.IsNullOrWhiteSpace(apartmentNumber))
                     {
                         currentHouseInFund.ApartmentNumber = Convert.ToInt32(apartmentNumber);
                     }
+                    else
+                    {
+                        currentHouseInFund.ApartmentNumber = null;
+                    }
                     if (!string.IsNullOrWhiteSpace(roomNumber))
                     {
                         currentHouseInFund.RoomNumber = roomNumber;
+                    }
+                    else
+                    {
+                        currentHouseInFund.RoomNumber = null;
                     }
                     if (!string.IsNullOrWhiteSpace(decreeArea))
                     {
                         currentHouseInFund.DecreeArea = Convert.ToDouble(decreeArea);
                     }
+                    else
+                    {
+                        currentHouseInFund.DecreeArea = null;
+                    }
                     if (!string.IsNullOrWhiteSpace(registerArea))
                     {
                         currentHouseInFund.RegisterArea = Convert.ToDouble(registerArea);
                     }
+                    else
+                    {
+                        currentHouseInFund.RegisterArea = null;
+                    }
                     if (!string.IsNullOrWhiteSpace(remark))
                     {
                         currentHouseInFund.Remark = remark;
+                    }
+                    else
+                    {
+                        currentHouseInFund.Remark = null;
                     }
                     if (CWS == true)
                     {

@@ -31,7 +31,7 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             tb_EntranceNumber.Text = currentHousingFund.EntranceNumber.ToString();
             tb_FloorNumber.Text = currentHousingFund.FloorNumber.ToString();
             tb_ApartmentNumber.Text = currentHousingFund.ApartmentNumber.ToString();
-            tb_RoomNumber.Text = currentHousingFund.RoomNumber.ToString();
+            tb_RoomNumber.Text = currentHousingFund.RoomNumber;
             tb_DecreeArea.Text = currentHousingFund.DecreeArea.ToString();
             tb_RegisterArea.Text = currentHousingFund.RegisterArea.ToString();
             tb_Remark.Text = currentHousingFund.Remark;
@@ -72,6 +72,15 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             {
                 chb_Sewerage.IsChecked = true;
             }
+
+            if (cmb_Locality.IsDropDownOpen == true)
+            {
+                cmb_Locality.IsDropDownOpen = false;
+            }
+            if (cmb_Street.IsDropDownOpen == true)
+            {
+                cmb_Street.IsDropDownOpen = false;
+            }
         }
 
         private void cmb_Locality_DropDownClosed(object sender, EventArgs e)
@@ -82,11 +91,20 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
                 cmb_Street.IsEnabled = true;
                 cmb_Street.ItemsSource = dbContext.Street.Where(s => s.LocalityId == currentLocality.IdLocality).ToList();
             }
+            else
+            {
+                cmb_Street.IsEnabled = false;
+                cmb_Street.ItemsSource = null;
+            }
         }
 
         private void cmb_Locality_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             cmb_Street.SelectedItem = null;
+            if (cmb_Street.IsDropDownOpen == true)
+            {
+                cmb_Street.IsDropDownOpen = false;
+            }
         }
 
         private void bt_Edit_Click(object sender, RoutedEventArgs e)

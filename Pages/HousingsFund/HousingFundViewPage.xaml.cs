@@ -30,7 +30,8 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
 
                 lb_HousingFund.ItemsSource = dbContext.HousingFund.AsEnumerable().OrderBy(h => h.listNum).ToList();
 
-                cmb_Street.ItemsSource = dbContext.Street.ToList();
+                cmb_Locality.ItemsSource = dbContext.Locality.ToList();
+                cmb_Street.IsEnabled = false;
             }
             catch
             {
@@ -42,6 +43,10 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
         {
             var currentHousesInFund = dbContext.HousingFund.AsEnumerable().OrderBy(h => h.listNum).ToList();
             
+            if (cmb_Locality.SelectedItem != null)
+            {
+                currentHousesInFund = currentHousesInFund.Where(h => h.LocalityId == (cmb_Locality.SelectedItem as Locality).IdLocality).ToList();
+            }
             if (cmb_Street.SelectedItem != null)
             {
                 currentHousesInFund = currentHousesInFund.Where(h => h.StreetId == (cmb_Street.SelectedItem as Street).IdStreet).ToList();
@@ -62,19 +67,19 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             {
                 currentHousesInFund = currentHousesInFund.Where(h => h.RegisterArea.ToString() == tb_RegisterArea.Text).ToList();
             }
-            if (cmb_Freedom.SelectedIndex == 0)
+            if (cmb_Freedom.SelectedIndex == 1)
             {
                 currentHousesInFund = currentHousesInFund.AsEnumerable().Where(h => h.Freedom.Equals("Свободно")).ToList();
             }
-            else if (cmb_Freedom.SelectedIndex == 1)
+            else if (cmb_Freedom.SelectedIndex == 2)
             {
                 currentHousesInFund = currentHousesInFund.AsEnumerable().Where(h => h.Freedom.Equals("Занято")).ToList();
             }
-            else if (cmb_Freedom.SelectedIndex == 2)
+            else if (cmb_Freedom.SelectedIndex == 3)
             {
                 currentHousesInFund = currentHousesInFund.AsEnumerable().Where(h => h.Freedom.Equals("Исключено")).ToList();
             }
-            else if (cmb_Freedom.SelectedIndex == 3)
+            else if (cmb_Freedom.SelectedIndex == 4)
             {
                 currentHousesInFund = currentHousesInFund.AsEnumerable().Where(h => h.Freedom.Equals("Нет постановления")).ToList();
             }
@@ -191,6 +196,21 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
             File.WriteAllBytes($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\{DateTime.Now.ToShortDateString()} Реестр жилья фонда.xlsx", ReportExcel);
 
             Process.Start("explorer.exe", $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}");
+        }
+
+        private void cmb_Locality_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            cmb_Street.SelectedItem = null;
+            if (cmb_Locality.SelectedItem != null)
+            {
+                cmb_Street.ItemsSource = dbContext.Street.Where(s => s.LocalityId == (cmb_Locality.SelectedItem as Locality).IdLocality).ToList();
+                cmb_Street.IsEnabled = true;
+            }
+            else
+            {
+                cmb_Street.ItemsSource = null;
+                cmb_Street.IsEnabled = false;
+            }
         }
     }
 }

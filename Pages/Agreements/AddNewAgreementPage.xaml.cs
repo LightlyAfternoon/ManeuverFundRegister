@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using Реестр_маневренного_фонда.database.tables_classes;
+using Реестр_маневренного_фонда.Database.TablesClasses;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
 namespace Реестр_маневренного_фонда.Pages.Agreements
@@ -18,24 +20,25 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
 
         Agreement newAgreement = new Agreement();
 
-        List<Decree> listDecrees = new List<Decree>();
+        List<HouseDecree> listDecrees = new List<HouseDecree>();
         List<HousingFund> listAvailableHousingFund = new List<HousingFund>();
 
         public AddNewAgreementPage()
         {
             InitializeComponent();
 
-            listDecrees = dbContext.Decree.OrderBy(d => d.DateDecree).ToList();
-            foreach (Decree decree in listDecrees)
+            ApplicationContext.GetContext().Decree.Load();
+            listDecrees = dbContext.HouseDecree.OrderBy(d => d.Decree.DateDecree).ToList();
+            foreach (HouseDecree decree in listDecrees)
             {
-                if (decree == listDecrees.Last(d => d.HousingFundId == decree.HousingFundId) && decree.Status == true)
+                if (decree == listDecrees.Last(d => d.HousingFundId == decree.HousingFundId) && decree.Decree.Status == true)
                 {
                     listAvailableHousingFund.Add(dbContext.HousingFund.First(h => h.IdHousingFund == decree.HousingFundId));
                 }
             }
             foreach (HousingFund housingFund in dbContext.HousingFund.ToList())
             {
-                if (dbContext.Decree.Count(d => d.HousingFundId == housingFund.IdHousingFund) < 1)
+                if (dbContext.HouseDecree.Count(d => d.HousingFundId == housingFund.IdHousingFund) < 1)
                 {
                     listAvailableHousingFund.Add(housingFund);
                 }

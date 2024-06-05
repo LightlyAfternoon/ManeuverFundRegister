@@ -44,11 +44,15 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Необходимо выбрать дату окончания договора\n");
             }
+            if (dateConclusion != null && dateEnd != null && dateConclusion > dateEnd)
+            {
+                errors += ("Дата заключения не может быть позже даты окончания\n");
+            }
         }
 
         public void AddAgreement(Agreement newAgreement, string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, string? remark)
         {
-            if (dbContext.Agreement.Count(a => a.NumberAgreement == Convert.ToInt32(number)) > 0)
+            if (!string.IsNullOrWhiteSpace(number) && dbContext.Agreement.Count(a => a.NumberAgreement == Convert.ToInt32(number)) > 0)
             {
                 errors += ("Договор с данным номером уже добавлен\n");
             }
@@ -151,6 +155,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditAgreement(Agreement currentAgreement, string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, DateTime? dateTermination, string? remark)
         {
+            if (!string.IsNullOrWhiteSpace(number) && dbContext.Agreement.Count(a => a.IdAgreement != currentAgreement.IdAgreement && a.NumberAgreement == Convert.ToInt32(number)) > 0)
+            {
+                errors += ("Договор с данным номером уже добавлен\n");
+            }
             if ((tempResident != null && housingFund != null) && dbContext.Agreement.Count(a => a.IdAgreement != currentAgreement.IdAgreement && a.TempResidentId == tempResident.IdTempResident && a.HousingFundId == housingFund.IdHousingFund && a.DateConclusionAgreement == dateConclusion) > 0)
             {
                 errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен\n");
@@ -188,6 +196,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     if (!string.IsNullOrWhiteSpace(number))
                     {
                         currentAgreement.NumberAgreement = Convert.ToInt32(number);
+                    }
+                    else
+                    {
+                        currentAgreement.NumberAgreement = null;
                     }
                     currentAgreement.TempResidentId = tempResident.IdTempResident;
                     currentAgreement.HousingFundId = housingFund.IdHousingFund;

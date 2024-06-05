@@ -19,6 +19,8 @@
         <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
             <StackPanel HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Н/П" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmb_Locality" DisplayMemberPath="NameLocality" Width="200" IsEditable="True" Margin="10" SelectionChanged="cmb_Locality_SelectionChanged"/>
                     <TextBlock Text="Улица" Margin="10,0,0,0" VerticalAlignment="Center"/>
                     <ComboBox x:Name="cmb_Street" DisplayMemberPath="NameStreet" Width="200" IsEditable="True" Margin="10"/>
                     <TextBlock Text="№ дома" Margin="0,0,10,0" VerticalAlignment="Center"/>
@@ -35,6 +37,7 @@
                     <StackPanel Margin="10,0,10,0" VerticalAlignment="Center">
                         <TextBlock Text="Занятость"/>
                         <ComboBox x:Name="cmb_Freedom">
+                            <ComboBoxItem Content=""/>
                             <ComboBoxItem Content="Свободно"/>
                             <ComboBoxItem Content="Занято"/>
                             <ComboBoxItem Content="Исключено"/>

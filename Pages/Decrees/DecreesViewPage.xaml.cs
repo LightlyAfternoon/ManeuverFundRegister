@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Реестр_маневренного_фонда.Database.TablesClasses;
 using Реестр_маневренного_фонда.Pages.Decrees;
 using Реестр_маневренного_фонда.TablesManagersClasses;
 
@@ -51,7 +52,8 @@ namespace Реестр_маневренного_фонда.Pages
             if (cmb_HousingFund.SelectedItem != null)
             {
                 HousingFund housingFund = (cmb_HousingFund.SelectedItem as HousingFund);
-                currentDecrees = currentDecrees.Where(d => d.HousingFundId == housingFund.IdHousingFund).ToList();
+                List<HouseDecree> houseDecrees = dbContext.HouseDecree.Where(hd => hd.HousingFundId == housingFund.IdHousingFund).ToList();
+                currentDecrees = currentDecrees.Where(d => houseDecrees.Where(hd => hd.DecreeId == d.IdDecree).Count() > 0).ToList();
             }
             if (chb_Inclusion.IsChecked == true && chb_Exclusion.IsChecked == false)
             {

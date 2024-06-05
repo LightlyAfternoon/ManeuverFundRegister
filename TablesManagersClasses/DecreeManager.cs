@@ -46,7 +46,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         
         public void AddDecree(Decree newDecree, string? number, DateTime? dateDecree, List<HousingFund>? housingFund, bool? status)
         {
-            if (dbContext.Decree.Count(a => a.NumberDecree == Convert.ToInt32(number)) > 0)
+            if (!string.IsNullOrWhiteSpace(number) && dbContext.Decree.Count(a => a.NumberDecree == Convert.ToInt32(number)) > 0)
             {
                 errors += ("Постановление с данным номером уже добавлено\n");
             }
@@ -63,7 +63,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 {
                     newDecree.NumberDecree = Convert.ToInt32(number);
                     newDecree.DateDecree = Convert.ToDateTime(dateDecree);
-                    newDecree.HousingFundId = housingFund.FirstOrDefault().IdHousingFund;
                     newDecree.Status = Convert.ToBoolean(status);
 
                     dbContext.Decree.Add(newDecree);
@@ -95,7 +94,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditDecree(Decree currentDecree, string? number, DateTime? dateDecree, List<HousingFund>? housingFund, bool? status)
         {
-            if (dbContext.Decree.Count(a => a.IdDecree == currentDecree.IdDecree && a.NumberDecree == Convert.ToInt32(number)) > 0)
+            if (dbContext.Decree.Count(a => a.IdDecree == currentDecree.IdDecree && !string.IsNullOrWhiteSpace(number) && a.NumberDecree == Convert.ToInt32(number)) > 0)
             {
                 errors += ("Постановление с данным номером уже добавлено\n");
             }
@@ -112,7 +111,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 {
                     currentDecree.NumberDecree = Convert.ToInt32(number);
                     currentDecree.DateDecree = Convert.ToDateTime(dateDecree);
-                    currentDecree.HousingFundId = housingFund.FirstOrDefault().IdHousingFund;
                     currentDecree.Status = Convert.ToBoolean(status);
 
                     houseDecrees = dbContext.HouseDecree.Where(hd => hd.DecreeId == currentDecree.IdDecree).ToList();

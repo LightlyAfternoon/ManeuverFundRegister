@@ -14,7 +14,6 @@ namespace Реестр_маневренного_фонда
         public int IdHousingFund { get; set; }
         public int? LocalityId { get; set; }
         public int? StreetId { get; set; }
-        public int? ImprovementDegreeId { get; set; }
         public string HouseNumber { get; set; }
         public int? ApartmentNumber { get; set; }
         public int? EntranceNumber { get; set; }
@@ -33,7 +32,6 @@ namespace Реестр_маневренного_фонда
         public bool? KeysAvailability { get; set; }
         public bool? Sewerage { get; set; }
 
-        public virtual ImprovementDegree ImprovementDegree { get; set; }
         public virtual Locality Locality { get; set; }
         public virtual Street Street { get; set; }
 
@@ -48,33 +46,84 @@ namespace Реестр_маневренного_фонда
                 StreetName = Street.NameStreet;
             }
 
-            if (StreetName != string.Empty)
+            if (StreetName == string.Empty && ApartmentNumber == null)
             {
-                if (ApartmentNumber == null)
-                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}";
-                else if (RoomNumber == null)
-                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}";
-                else if (EntranceNumber == null)
-                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}";
-                else if (FloorNumber == null)
-                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}, подъезд {EntranceNumber}";
-                else
-                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}, подъезд {EntranceNumber}, этаж {FloorNumber}";
-            }
-            else
-            {
-                if (ApartmentNumber == null)
+                if (RoomNumber == null && EntranceNumber == null && FloorNumber == null)
                     return $"{LocalityName}, д. {HouseNumber}";
-                else if (RoomNumber == null)
+                else if (RoomNumber != null && EntranceNumber == null && FloorNumber == null)
+                    return $"{LocalityName}, д. {HouseNumber}, ком. {RoomNumber}";
+                else if (RoomNumber == null && EntranceNumber != null && FloorNumber == null)
+                    return $"{LocalityName}, д. {HouseNumber}, подъезд {EntranceNumber}";
+                else if (RoomNumber == null && EntranceNumber == null && FloorNumber != null)
+                    return $"{LocalityName}, д. {HouseNumber}, этаж {FloorNumber}";
+                else if (RoomNumber == null && EntranceNumber != null && FloorNumber != null)
+                    return $"{LocalityName}, д. {HouseNumber}, подъезд {EntranceNumber}, этаж {FloorNumber}";
+                else if (RoomNumber != null && EntranceNumber != null && FloorNumber == null)
+                    return $"{LocalityName}, д. {HouseNumber}, ком. {RoomNumber}, подъезд {EntranceNumber}";
+                else if (RoomNumber != null && EntranceNumber == null && FloorNumber != null)
+                    return $"{LocalityName}, д. {HouseNumber}, ком. {RoomNumber}, этаж {FloorNumber}";
+                else
+                    return $"{LocalityName}, д. {HouseNumber}, ком. {RoomNumber}, подъезд {EntranceNumber}, этаж {FloorNumber}";
+            }
+            else if (StreetName != string.Empty && ApartmentNumber == null)
+            {
+                if (RoomNumber == null && EntranceNumber == null && FloorNumber == null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}";
+                else if (RoomNumber != null && EntranceNumber == null && FloorNumber == null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, ком. {RoomNumber}";
+                else if (RoomNumber == null && EntranceNumber != null && FloorNumber == null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, подъезд {EntranceNumber}";
+                else if (RoomNumber == null && EntranceNumber == null && FloorNumber != null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, этаж {FloorNumber}";
+                else if (RoomNumber == null && EntranceNumber != null && FloorNumber != null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, подъезд {EntranceNumber}, этаж {FloorNumber}";
+                else if (RoomNumber != null && EntranceNumber != null && FloorNumber == null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, ком. {RoomNumber}, подъезд {EntranceNumber}";
+                else if (RoomNumber != null && EntranceNumber == null && FloorNumber != null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, ком. {RoomNumber}, этаж {FloorNumber}";
+                else
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, ком. {RoomNumber}, подъезд {EntranceNumber}, этаж {FloorNumber}";
+            }
+            else if (StreetName == string.Empty && ApartmentNumber != null)
+            {
+                if (RoomNumber == null && EntranceNumber == null && FloorNumber == null)
                     return $"{LocalityName}, д. {HouseNumber}, кв. {ApartmentNumber}";
-                else if (EntranceNumber == null)
+                else if (RoomNumber != null && EntranceNumber == null && FloorNumber == null)
                     return $"{LocalityName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}";
-                else if (FloorNumber == null)
+                else if (RoomNumber == null && EntranceNumber != null && FloorNumber == null)
+                    return $"{LocalityName}, д. {HouseNumber}, кв. {ApartmentNumber}, подъезд {EntranceNumber}";
+                else if (RoomNumber == null && EntranceNumber == null && FloorNumber != null)
+                    return $"{LocalityName}, д. {HouseNumber}, кв. {ApartmentNumber}, этаж {FloorNumber}";
+                else if (RoomNumber == null && EntranceNumber != null && FloorNumber != null)
+                    return $"{LocalityName}, д. {HouseNumber}, кв. {ApartmentNumber}, подъезд {EntranceNumber}, этаж {FloorNumber}";
+                else if (RoomNumber != null && EntranceNumber != null && FloorNumber == null)
                     return $"{LocalityName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}, подъезд {EntranceNumber}";
+                else if (RoomNumber != null && EntranceNumber == null && FloorNumber != null)
+                    return $"{LocalityName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}, этаж {FloorNumber}";
                 else
                     return $"{LocalityName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}, подъезд {EntranceNumber}, этаж {FloorNumber}";
             }
+            else
+            {
+                if (RoomNumber == null && EntranceNumber == null && FloorNumber == null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}";
+                else if (RoomNumber != null && EntranceNumber == null && FloorNumber == null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}";
+                else if (RoomNumber == null && EntranceNumber != null && FloorNumber == null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, подъезд {EntranceNumber}";
+                else if (RoomNumber == null && EntranceNumber == null && FloorNumber != null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, этаж {FloorNumber}";
+                else if (RoomNumber == null && EntranceNumber != null && FloorNumber != null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, подъезд {EntranceNumber}, этаж {FloorNumber}";
+                else if (RoomNumber != null && EntranceNumber != null && FloorNumber == null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}, подъезд {EntranceNumber}";
+                else if (RoomNumber != null && EntranceNumber == null && FloorNumber != null)
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}, этаж {FloorNumber}";
+                else
+                    return $"{LocalityName}, ул. {StreetName}, д. {HouseNumber}, кв. {ApartmentNumber}, ком. {RoomNumber}, подъезд {EntranceNumber}, этаж {FloorNumber}";
+            }
         }
+
         [NotMapped]
         public string FullAddress => getFullAddress();
 
@@ -83,6 +132,7 @@ namespace Реестр_маневренного_фонда
         {
             get
             {
+                ApplicationContext.GetContext().Decree.Load();
                 string freedomStatus = "Исключено";
                 if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().HouseDecree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
@@ -118,6 +168,7 @@ namespace Реестр_маневренного_фонда
         {
             get
             {
+                ApplicationContext.GetContext().Decree.Load();
                 Brush color = Brushes.LightGray;
                 if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().HouseDecree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
@@ -152,6 +203,7 @@ namespace Реестр_маневренного_фонда
         {
             get
             {
+                ApplicationContext.GetContext().Decree.Load();
                 int num = 4;
                 if (ApplicationContext.GetContext().ResidenceRegistration.Count(r => r.HousingFundId == IdHousingFund) > 0 && ApplicationContext.GetContext().HouseDecree.Count(r => r.HousingFundId == IdHousingFund) > 0)
                 {
