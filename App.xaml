@@ -32,9 +32,14 @@
 
             <Style TargetType="ComboBox">
                 <Setter Property="Background" Value="White"/>
-                <Setter Property="StaysOpenOnEdit" Value="True"/>
+                <Setter Property="IsTextSearchEnabled" Value="False"/>
             </Style>
+
             <Style TargetType="TextBox">
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            
+            <Style TargetType="DatePickerTextBox">
                 <Setter Property="FontSize" Value="14"/>
             </Style>
 

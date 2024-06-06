@@ -10,7 +10,7 @@ namespace Реестр_маневренного_фонда
         [Key]
         public int IdNotification { get; set; }
         public int AgreementId { get; set; }
-        public DateTime RecievingDate { get; set; }
+        public DateTime ReceivingDate { get; set; }
         public bool IsViewed { get; set; }
 
         public Agreement Agreement { get; set; }

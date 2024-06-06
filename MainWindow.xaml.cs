@@ -126,7 +126,7 @@ namespace Реестр_маневренного_фонда
                     ApplicationContext.GetContext().Agreement.Load();
                     try
                     {
-                        notifications = ApplicationContext.GetContext().Notification.OrderByDescending(n => n.RecievingDate).ToList();
+                        notifications = ApplicationContext.GetContext().Notification.OrderByDescending(n => n.ReceivingDate).ToList();
                         lv_pop.ItemsSource = notifications;
                     }
                     catch { }

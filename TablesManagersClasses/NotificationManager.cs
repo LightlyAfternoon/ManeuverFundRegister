@@ -32,7 +32,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                         {
                             Notification newNotification = new Notification();
                             newNotification.AgreementId = agreement.IdAgreement;
-                            newNotification.RecievingDate = DateTime.Now.Date;
+                            newNotification.ReceivingDate = DateTime.Now.Date;
                             newNotification.IsViewed = false;
 
                             dbContext.Notification.Add(newNotification);
@@ -59,7 +59,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
             foreach (Notification notification in listNotifications)
             {
-                if (notification.RecievingDate < DateTime.Now.AddMonths(-1))
+                if (notification.ReceivingDate < DateTime.Now.AddMonths(-1))
                 {
                     dbContext.Remove(notification);
                     dbContext.SaveChanges();

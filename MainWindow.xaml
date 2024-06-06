@@ -90,7 +90,7 @@
                                             </TextBlock.Text>
                                         </TextBlock>
                                     </StackPanel>
-                                    <TextBlock Text="{Binding RecievingDate, StringFormat='dd.MM.yyyy'}" FontStyle="Italic" Foreground="Gray"/>
+                                    <TextBlock Text="{Binding ReceivingDate, StringFormat='dd.MM.yyyy'}" FontStyle="Italic" Foreground="Gray"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
