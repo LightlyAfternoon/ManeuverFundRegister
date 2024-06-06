@@ -27,7 +27,7 @@ namespace Реестр_маневренного_фонда
         public Visibility ShowButton 
         {
             get
-            {////////////////////////
+            {
                 bool existsFile;
                 if (File != null)
                     existsFile = true;

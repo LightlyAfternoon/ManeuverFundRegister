@@ -12,7 +12,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         private ApplicationContext dbContext = ApplicationContext.GetContext();
 
         private string errors = string.Empty;
-        private void showErrors(string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd)
+        private void showErrors(string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, DateTime? dateTermination)
         {
             if (!string.IsNullOrWhiteSpace(number))
             {
@@ -48,6 +48,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 errors += ("Дата заключения не может быть позже даты окончания\n");
             }
+            if (dateConclusion != null && dateTermination != null && dateConclusion > dateTermination)
+            {
+                errors += ("Дата заключения не может быть позже даты расторжения\n");
+            }
         }
 
         public void AddAgreement(Agreement newAgreement, string? number, TempResident? tempResident, HousingFund? housingFund, DateTime? dateConclusion, DateTime? dateEnd, string? remark)
@@ -61,7 +65,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен\n");
             }
 
-            showErrors(number, tempResident, housingFund, dateConclusion, dateEnd);
+            showErrors(number, tempResident, housingFund, dateConclusion, dateEnd, null);
             if (!string.IsNullOrEmpty(errors))
             {
                 MessageBox.Show(errors);
@@ -86,7 +90,6 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
                     dbContext.Agreement.Add(newAgreement);
                     dbContext.SaveChanges();
-
 
                     ResidenceRegistration newRegistration = new ResidenceRegistration();
                     if (dbContext.ResidenceRegistration.Count(r => r.HousingFundId == housingFund.IdHousingFund) > 0)
@@ -164,7 +167,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 errors += ("Договор с данным нанимателем, жильём и датой заключения уже добавлен\n");
             }
 
-            showErrors(number, tempResident, housingFund, dateConclusion, dateEnd);
+            showErrors(number, tempResident, housingFund, dateConclusion, dateEnd, dateTermination);
             if (!string.IsNullOrEmpty(errors))
             {
                 MessageBox.Show(errors);
