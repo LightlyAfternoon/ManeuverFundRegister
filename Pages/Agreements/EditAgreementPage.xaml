@@ -27,7 +27,7 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="10,0">
                     <TextBlock Text="Номер"/>
-                    <TextBox Height="25" x:Name="tb_Number" BorderBrush="Blue"/>
+                    <TextBox Height="25" x:Name="tb_Number"/>
                     <TextBlock Text="Временно проживающий"/>
                     <Border BorderThickness="1" BorderBrush="Blue">
                         <ComboBox x:Name="cmb_TempResident" Height="25" DisplayMemberPath="FullName" IsEditable="True" TextBoxBase.TextChanged="cmb_TempResident_TextChanged"/>
