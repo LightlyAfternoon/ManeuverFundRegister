@@ -7,22 +7,40 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
     public class ResidenceRegistrationManager
     {
         private ApplicationContext dbContext = ApplicationContext.GetContext();
+        private string errors = string.Empty;
+
+        private void showErrors(ResidenceRegistration currentResidenceRegistration, DateTime? dateEndResidence)
+        {
+            if (dateEndResidence != null && currentResidenceRegistration.DateStartResidence > dateEndResidence)
+            {
+                errors += ("Дата окончания проживания не может быть позже даты начала");
+            }
+        }
 
         public void EditResidenceRegistration(ResidenceRegistration currentResidenceRegistration, DateTime? dateEndResidence)
         {
-            try
+            showErrors(currentResidenceRegistration, dateEndResidence);
+            if (!string.IsNullOrEmpty(errors))
             {
-                currentResidenceRegistration.DateEndResidence = dateEndResidence;
-
-                dbContext.ResidenceRegistration.Update(currentResidenceRegistration);
-                dbContext.SaveChanges();
-
-                MessageBox.Show("Факт проживания изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                MainFrameObj.mainFrame.Navigate(new ResidenceRegistrationViewPage());
+                MessageBox.Show(errors);
+                errors = string.Empty;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Не удалось изменить факт проживания\n" + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    currentResidenceRegistration.DateEndResidence = dateEndResidence;
+
+                    dbContext.ResidenceRegistration.Update(currentResidenceRegistration);
+                    dbContext.SaveChanges();
+
+                    MessageBox.Show("Факт проживания изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MainFrameObj.mainFrame.Navigate(new ResidenceRegistrationViewPage());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Не удалось изменить факт проживания\n" + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

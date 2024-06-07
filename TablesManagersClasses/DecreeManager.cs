@@ -46,7 +46,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         
         public void AddDecree(Decree newDecree, string? number, DateTime? dateDecree, List<HousingFund>? housingFund, bool? status)
         {
-            if (!string.IsNullOrWhiteSpace(number) && dbContext.Decree.Count(a => a.NumberDecree == Convert.ToInt32(number)) > 0)
+            if (!string.IsNullOrWhiteSpace(number) && int.TryParse(number, out int value) && dbContext.Decree.Count(a => a.NumberDecree == Convert.ToInt32(number)) > 0)
             {
                 errors += ("Постановление с данным номером уже добавлено\n");
             }
@@ -94,7 +94,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditDecree(Decree currentDecree, string? number, DateTime? dateDecree, List<HousingFund>? housingFund, bool? status)
         {
-            if (dbContext.Decree.Count(a => a.IdDecree == currentDecree.IdDecree && !string.IsNullOrWhiteSpace(number) && a.NumberDecree == Convert.ToInt32(number)) > 0)
+            if (!string.IsNullOrWhiteSpace(number) && int.TryParse(number, out int value) && dbContext.Decree.Count(a => a.IdDecree == currentDecree.IdDecree && a.NumberDecree == Convert.ToInt32(number)) > 0)
             {
                 errors += ("Постановление с данным номером уже добавлено\n");
             }

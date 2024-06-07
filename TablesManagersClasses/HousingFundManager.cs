@@ -287,21 +287,21 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 if (!string.IsNullOrWhiteSpace(roomNumber))
                 {
-                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber) && h.RoomNumber.Equals(roomNumber)))
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund != currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber) && h.RoomNumber.Equals(roomNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
                 else if (!string.IsNullOrWhiteSpace(apartmentNumber))
                 {
-                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber)))
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund != currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
                 else
                 {
-                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber)))
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund != currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.StreetId == street.IdStreet && h.HouseNumber.Equals(houseNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
@@ -311,21 +311,21 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
             {
                 if (!string.IsNullOrWhiteSpace(roomNumber))
                 {
-                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber) && h.RoomNumber.Equals(roomNumber)))
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund != currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber) && h.RoomNumber.Equals(roomNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
                 else if (!string.IsNullOrWhiteSpace(apartmentNumber))
                 {
-                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber)))
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund != currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber) && DbFunctions.Equals(h.ApartmentNumber,apartmentNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }
                 }
                 else
                 {
-                    if (dbContext.HousingFund.Any(h => h.IdHousingFund == currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber)))
+                    if (dbContext.HousingFund.Any(h => h.IdHousingFund != currentHouseInFund.IdHousingFund && h.LocalityId == locality.IdLocality && h.HouseNumber.Equals(houseNumber)))
                     {
                         errors += ("Жильё с данным адресом уже добавлено\n");
                     }

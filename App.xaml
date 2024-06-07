@@ -32,7 +32,6 @@
 
             <Style TargetType="ComboBox">
                 <Setter Property="Background" Value="White"/>
-                <Setter Property="IsTextSearchEnabled" Value="False"/>
             </Style>
 
             <Style TargetType="TextBox">
