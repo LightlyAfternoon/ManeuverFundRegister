@@ -124,5 +124,10 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             currentRegistration = (sender as Button).DataContext as ResidenceRegistration;
             rrm.RemoveResidenceRegistration(currentRegistration);
         }
+
+        private void bt_ReportPage_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ResidenceRegistrationsReport());
+        }
     }
 }
