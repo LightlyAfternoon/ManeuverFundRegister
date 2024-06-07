@@ -38,7 +38,7 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                 errors = string.Empty;
             }
             else
-            {
+            {//
                 try
                 {
                     newStreet.LocalityId = locality.IdLocality;
