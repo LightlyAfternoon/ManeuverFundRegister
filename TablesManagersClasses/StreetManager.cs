@@ -25,6 +25,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         
         public void AddStreet(Locality? locality, string? nameStreet)
         {
+            if (!string.IsNullOrWhiteSpace(nameStreet) && dbContext.Street.Any(l => l.NameStreet.Trim().Equals(nameStreet.Trim())))
+            {
+                errors += ("Улица с данным наименованием уже есть");
+            }
             Street newStreet = new Street();
             
             showErrors(locality, nameStreet);
@@ -55,6 +59,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditStreet(Street currentStreet, Locality? locality, string? nameStreet)
         {
+            if (!string.IsNullOrWhiteSpace(nameStreet) && dbContext.Street.Any(l => l.IdStreet != currentStreet.IdStreet && l.NameStreet.Trim().Equals(nameStreet.Trim())))
+            {
+                errors += ("Населённый пункт с данным наименованием уже есть");
+            }
             showErrors(locality, nameStreet);
             if (!string.IsNullOrEmpty(errors))
             {

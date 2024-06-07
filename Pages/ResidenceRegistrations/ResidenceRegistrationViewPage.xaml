@@ -25,9 +25,9 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Дата начала проживания" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Проживание с " Margin="10,0,0,0" VerticalAlignment="Center"/>
                     <DatePicker x:Name="dp_DateStartResidence" Margin="10"/>
-                    <TextBlock Text="Дата окончания проживания" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="до" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <DatePicker x:Name="dp_DateEndResidence" Margin="0,10,0,10"/>
                 </StackPanel>
 

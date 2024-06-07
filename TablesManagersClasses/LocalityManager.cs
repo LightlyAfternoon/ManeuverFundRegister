@@ -22,7 +22,11 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
         public void AddLocality(string? nameLocality)
         {
             Locality newLocality = new Locality();
-            
+
+            if (!string.IsNullOrWhiteSpace(nameLocality) && dbContext.Locality.Any(l => l.NameLocality.Trim().Equals(nameLocality.Trim())))
+            {
+                errors += ("Населённый пункт с данным наименованием уже есть");
+            }
             showErrors(nameLocality);
             if (!string.IsNullOrEmpty(errors))
             {
@@ -50,6 +54,10 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
 
         public void EditLocality(Locality currentLocality, string? nameLocality)
         {
+            if (!string.IsNullOrWhiteSpace(nameLocality) && dbContext.Locality.Any(l => l.IdLocality != currentLocality.IdLocality && l.NameLocality.Trim().Equals(nameLocality.Trim())))
+            {
+                errors += ("Населённый пункт с данным наименованием уже есть");
+            }
             showErrors(nameLocality);
             if (!string.IsNullOrEmpty(errors))
             {
