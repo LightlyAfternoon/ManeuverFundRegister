@@ -40,6 +40,9 @@
     <Compile Update="Pages\ResidenceRegistrations\EditResidenceRegistrationPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\ResidenceRegistrations\ResidenceRegistrationsReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\ResidenceRegistrations\ResidenceRegistrationViewPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -97,6 +100,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\ResidenceRegistrations\EditResidenceRegistrationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\ResidenceRegistrations\ResidenceRegistrationsReport.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\ResidenceRegistrations\ResidenceRegistrationViewPage.xaml">

@@ -211,5 +211,13 @@ namespace Реестр_маневренного_фонда
                 catch { }
             }
         }
+
+        private void bt_ReportsPage_Click(object sender, RoutedEventArgs e)
+        {
+            fr_Frame.Navigate(new ResidenceRegistrationsReport());
+
+            bt_MenuVisibility.Content = "☰";
+            sp_ViewPageButtons.Visibility = Visibility.Collapsed;
+        }
     }
 }
