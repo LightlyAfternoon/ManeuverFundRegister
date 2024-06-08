@@ -95,7 +95,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             }
             if (dp_DateEndResidence.SelectedDate != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence <= dp_DateEndResidence.SelectedDate).ToList();
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence <= dp_DateEndResidence.SelectedDate || a.DateEndResidence == null).ToList();
             }
 
             ResidenceRegistration r = e.Item as ResidenceRegistration;
@@ -113,11 +113,13 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             }
         }
     }
+
     public class ResidenceRegistrations : ObservableCollection<ResidenceRegistration>
     {
         public ResidenceRegistrations()
         {
             ApplicationContext? dbContext = ApplicationContext.GetContext();
+            dbContext.Locality.Load();
             dbContext.HousingFund.Load();
             dbContext.TempResident.Load();
             foreach (ResidenceRegistration registration in Registrations)

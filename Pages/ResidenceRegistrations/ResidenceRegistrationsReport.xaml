@@ -14,12 +14,12 @@
         <local:ResidenceRegistrations x:Key="registrations"/>
         <CollectionViewSource x:Key="cvs_Registrations" Source="{StaticResource registrations}" Filter="CollectionViewSource_Filter">
             <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="StartYear" StringComparison="CurrentCulture"/>
                 <PropertyGroupDescription PropertyName="HousingFund.Locality.NameLocality"/>
-                <PropertyGroupDescription PropertyName="HousingFund.FullAddress"/>
             </CollectionViewSource.GroupDescriptions>
             <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="StartYear"/>
                 <scm:SortDescription PropertyName="HousingFund.Locality.NameLocality"/>
-                <scm:SortDescription PropertyName="HousingFund.FullAddress"/>
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </Page.Resources>

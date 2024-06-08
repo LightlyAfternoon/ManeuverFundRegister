@@ -17,5 +17,15 @@ namespace Реестр_маневренного_фонда
         public virtual TempResident TempResident { get; set; }
         public virtual HousingFund HousingFund { get; set; }
         public virtual Agreement Agreement { get; set; }
+
+        public string getStartYear()
+        {
+            if (DateEndResidence != null)
+                return DateStartResidence.Year.ToString() + " - " + DateEndResidence.Value.Year.ToString();
+            else
+                return DateStartResidence.Year.ToString() + " - ";
+        }
+
+        public string StartYear => getStartYear();
     }
 }
