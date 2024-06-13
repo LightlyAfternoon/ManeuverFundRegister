@@ -18,14 +18,26 @@ namespace Реестр_маневренного_фонда
         public virtual HousingFund HousingFund { get; set; }
         public virtual Agreement Agreement { get; set; }
 
-        public string getStartYear()
+        public int[] getStartYear()
         {
+            int dd;
             if (DateEndResidence != null)
-                return DateStartResidence.Year.ToString() + " - " + DateEndResidence.Value.Year.ToString();
+                dd = DateEndResidence.Value.Year - DateStartResidence.Year + 1;
             else
-                return DateStartResidence.Year.ToString() + " - ";
+                dd = DateTime.Now.Year - DateStartResidence.Year + 1;
+
+            int[] years = new int[dd];
+            int thisStartYear = DateStartResidence.Year;
+
+            for (int i = 0; i < dd; i++)
+            {
+                years[i] = thisStartYear;
+                thisStartYear++;
+            }
+
+            return years;
         }
 
-        public string StartYear => getStartYear();
+        public int[] StartYear => getStartYear();
     }
 }
