@@ -166,11 +166,11 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             }
             if (dp_DateStartResidence.SelectedDate != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateStartResidence >= dp_DateStartResidence.SelectedDate).ToList();
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateStartResidence >= dp_DateStartResidence.SelectedDate || a.DateEndResidence == null || (a.DateEndResidence != null && dp_DateStartResidence.SelectedDate <= a.DateEndResidence)).ToList();
             }
             if (dp_DateEndResidence.SelectedDate != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence <= dp_DateEndResidence.SelectedDate).ToList();
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence == null || a.DateEndResidence <= dp_DateEndResidence.SelectedDate).ToList();
             }
 
             return currentResidenceRegistrations;
