@@ -62,7 +62,6 @@
                     <Button Name="bt_ResidenceRegistrationViewPage" Content="Факты проживания в жилье" Click="bt_ResidenceRegistrationViewPage_Click" Style="{StaticResource menuButtons}"/>
                     <Button Name="bt_StreetsViewPage" Content="Улицы" Click="bt_StreetsViewPage_Click" Style="{StaticResource menuButtons}"/>
                     <Button Name="bt_TempResidentsViewPage" Content="Наниматели" Click="bt_TempResidentsViewPage_Click" Style="{StaticResource menuButtons}"/>
-                    <Button Name="bt_ReportsPage" Content="Отчёт" Click="bt_ReportsPage_Click"  Style="{StaticResource menuButtons}"/>
                 </StackPanel>
             </Grid>
 

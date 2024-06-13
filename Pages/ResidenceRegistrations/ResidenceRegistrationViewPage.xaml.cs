@@ -112,7 +112,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             cmb_TempResident.IsDropDownOpen = true;
         }
 
-        private void bt_EditRegitration_Click(object sender, RoutedEventArgs e)
+        private void bt_EditRegistration_Click(object sender, RoutedEventArgs e)
         {
             currentRegistration = (sender as Button).DataContext as ResidenceRegistration;
             NavigationService.Navigate(new EditResidenceRegistrationPage(currentRegistration));

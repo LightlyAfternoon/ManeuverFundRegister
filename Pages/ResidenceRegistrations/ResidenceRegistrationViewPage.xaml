@@ -57,7 +57,7 @@
                         </StackPanel>
 
                         <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center">
-                            <Button Content="Редактировать" x:Name="bt_EditRegitration" Click="bt_EditRegitration_Click"/>
+                            <Button Content="Редактировать" x:Name="bt_EditRegistration" Click="bt_EditRegistration_Click"/>
                             <Button Content="Удалить" x:Name="bt_DeleteRegistration" Click="bt_DeleteRegistration_Click"/>
                         </StackPanel>
                     </DockPanel>
@@ -65,6 +65,6 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Grid.Row="3" x:Name="bt_ReportPage" Content="Сформировать отчёт" Click="bt_ReportPage_Click"/>
+        <Button Grid.Row="3" x:Name="bt_ReportPage" Content="Сформировать отчёт по годам" Click="bt_ReportPage_Click"/>
     </Grid>
 </Page>

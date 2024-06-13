@@ -152,7 +152,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             }
         }
 
-        private void CollectionViewSource_Filter(object sender, System.Windows.Data.FilterEventArgs e)
+        private List<ResidenceRegistration> getFilteredList()
         {
             var currentResidenceRegistrations = dbContext.ResidenceRegistration.Distinct().OrderBy(r => r.DateStartResidence).ToList();
 
@@ -170,14 +170,18 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             }
             if (dp_DateEndResidence.SelectedDate != null)
             {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence <= dp_DateEndResidence.SelectedDate || a.DateEndResidence == null).ToList();
+                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence <= dp_DateEndResidence.SelectedDate).ToList();
             }
 
+            return currentResidenceRegistrations;
+        }
+
+        private void CollectionViewSource_Filter(object sender, System.Windows.Data.FilterEventArgs e)
+        {
             ResidenceRegistration r = e.Item as ResidenceRegistration;
             if (r != null)
-            // If filter is turned on, filter completed items.
             {
-                if (currentResidenceRegistrations.Any(rr => rr.IdRegistration == r.IdRegistration))
+                if (getFilteredList().Any(rr => rr.IdRegistration == r.IdRegistration))
                 {
                     e.Accepted = true;
                 }
@@ -190,26 +194,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
         private void bt_GetExcel_Click(object sender, RoutedEventArgs e)
         {
-            var currentResidenceRegistrations = dbContext.ResidenceRegistration.OrderBy(r => r.DateStartResidence).ToList();
-
-            if (cmb_TempResident.SelectedItem != null)
-            {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.TempResidentId == (cmb_TempResident.SelectedItem as TempResident).IdTempResident).ToList();
-            }
-            if (cmb_HousingFund.SelectedItem != null)
-            {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.HousingFundId == (cmb_HousingFund.SelectedItem as HousingFund).IdHousingFund).ToList();
-            }
-            if (dp_DateStartResidence.SelectedDate != null)
-            {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateStartResidence >= dp_DateStartResidence.SelectedDate).ToList();
-            }
-            if (dp_DateEndResidence.SelectedDate != null)
-            {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence <= dp_DateEndResidence.SelectedDate || a.DateEndResidence == null).ToList();
-            }
-
-            var ReportExcel = Generate(currentResidenceRegistrations);
+            var ReportExcel = Generate(getFilteredList());
 
             File.WriteAllBytes($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\{DateTime.Now.ToShortDateString()} Факты проживания в жилье.xlsx", ReportExcel);
 
