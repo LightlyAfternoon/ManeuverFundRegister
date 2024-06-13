@@ -29,6 +29,7 @@ namespace Реестр_маневренного_фонда
             Directory.CreateDirectory(Path.GetTempPath() + @"\ManeuverFund");
 
             MainFrameObj.mainFrame = fr_Frame;
+            fr_Frame.Navigate(new AgreementsViewPage());
 
             // Создание процесса консольной программы для проверки уведомлений
             if (File.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\ExecuteNotificationManagerClass.exe"))
