@@ -25,13 +25,13 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="gr_FilterGrid" Visibility="Collapsed">
-            <StackPanel HorizontalAlignment="Center">
+        <Grid x:Name="gr_FilterGrid">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="ФИО нанимателя" Margin="10,0,0,0" VerticalAlignment="Center"/>
                     <ComboBox x:Name="cmb_TempResident" DisplayMemberPath="FullName" Width="250" Margin="10" IsEditable="True" TextBoxBase.TextChanged="cmb_TempResident_TextChanged"/>
@@ -46,13 +46,13 @@
                     <DatePicker x:Name="dp_DateEndResidence" Margin="0,10,0,10"/>
                 </StackPanel>
 
-                <Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>
+                <!--<Button x:Name="bt_Filter" Content="Отфильтровать" Click="bt_Filter_Click"/>-->
                 <Button x:Name="bt_GetExcel" Content="Выгрузить отчёт" Click="bt_GetExcel_Click"/>
             </StackPanel>
         </Grid>
-        <Button Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="v" Click="bt_ShowOrHideFilterGrid_Click"/>
+        <Button Visibility="Collapsed" Grid.Row="1" x:Name="bt_ShowOrHideFilterGrid" Content="v" Click="bt_ShowOrHideFilterGrid_Click"/>
 
-        <DataGrid Grid.Row="2" x:Name="dg_RegistrationsReport" AutoGenerateColumns="False" ItemsSource="{Binding Source={StaticResource cvs_Registrations}}" HorizontalScrollBarVisibility="Disabled" CanUserAddRows="False" CanUserReorderColumns="False" ColumnWidth="*">
+        <DataGrid Visibility="Collapsed" Grid.Row="2" x:Name="dg_RegistrationsReport" AutoGenerateColumns="False" ItemsSource="{Binding Source={StaticResource cvs_Registrations}}" HorizontalScrollBarVisibility="Disabled" CanUserAddRows="False" CanUserReorderColumns="False" ColumnWidth="*">
             <DataGrid.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.ContainerStyle>

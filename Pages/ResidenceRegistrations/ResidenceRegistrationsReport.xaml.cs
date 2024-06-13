@@ -32,12 +32,18 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
         public byte[] Generate(List<ResidenceRegistration> registrations)
         {
+            ////
+            CollectionViewSource.GetDefaultView(dg_RegistrationsReport.ItemsSource).Refresh();
+            ////
+
             List<int> array = new List<int>();
             foreach (ResidenceRegistration registration in registrations)
             {
                 foreach (int startYear in registration.StartYear)
                 {
-                    array.Add(startYear);
+                    if (dp_DateStartResidence.SelectedDate == null || (dp_DateStartResidence.SelectedDate != null && startYear >= dp_DateStartResidence.SelectedDate.Value.Year))
+                        if (dp_DateEndResidence.SelectedDate == null || (dp_DateEndResidence.SelectedDate != null && startYear <= dp_DateEndResidence.SelectedDate.Value.Year))
+                            array.Add(startYear);
                 }
             }
             array.Sort();
