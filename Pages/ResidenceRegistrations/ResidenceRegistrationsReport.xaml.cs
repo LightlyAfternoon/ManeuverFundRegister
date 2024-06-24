@@ -1,17 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using Реестр_маневренного_фонда.database.tables_classes;
 
 namespace Реестр_маневренного_фонда.Pages.ResidenceRegistrations
@@ -32,10 +28,6 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
         public byte[] Generate(List<ResidenceRegistration> registrations)
         {
-            ////
-            CollectionViewSource.GetDefaultView(dg_RegistrationsReport.ItemsSource).Refresh();
-            ////
-
             List<int> array = new List<int>();
             foreach (ResidenceRegistration registration in registrations)
             {
@@ -51,7 +43,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             List<Tuple<int, ResidenceRegistration>> listTuple = new List<Tuple<int, ResidenceRegistration>>();
             foreach (int year in array)
             {
-                foreach(ResidenceRegistration registration in registrations)
+                foreach (ResidenceRegistration registration in registrations)
                 {
                     if (registration.DateStartResidence.Year <= year && (registration.DateEndResidence == null || registration.DateEndResidence.Value.Year >= year))
                     {
@@ -102,7 +94,7 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
                     }
                 }
             }
-            
+
             sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
             return package.GetAsByteArray();
         }
@@ -139,25 +131,6 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             cmb_HousingFund.IsDropDownOpen = true;
         }
 
-        private void bt_Filter_Click(object sender, RoutedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(dg_RegistrationsReport.ItemsSource).Refresh();
-        }
-
-        private void bt_ShowOrHideFilterGrid_Click(object sender, RoutedEventArgs e)
-        {
-            if (gr_FilterGrid.Visibility == Visibility.Collapsed)
-            {
-                gr_FilterGrid.Visibility = Visibility.Visible;
-                bt_ShowOrHideFilterGrid.Content = "^";
-            }
-            else
-            {
-                gr_FilterGrid.Visibility = Visibility.Collapsed;
-                bt_ShowOrHideFilterGrid.Content = "v";
-            }
-        }
-
         private List<ResidenceRegistration> getFilteredList()
         {
             var currentResidenceRegistrations = dbContext.ResidenceRegistration.Distinct().OrderBy(r => r.DateStartResidence).ToList();
@@ -182,58 +155,21 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             return currentResidenceRegistrations;
         }
 
-        private void CollectionViewSource_Filter(object sender, System.Windows.Data.FilterEventArgs e)
-        {
-            ResidenceRegistration r = e.Item as ResidenceRegistration;
-            if (r != null)
-            {
-                if (getFilteredList().Any(rr => rr.IdRegistration == r.IdRegistration))
-                {
-                    e.Accepted = true;
-                }
-                else
-                {
-                    e.Accepted = false;
-                }
-            }
-        }
-
         private void bt_GetExcel_Click(object sender, RoutedEventArgs e)
         {
             var ReportExcel = Generate(getFilteredList());
 
-            File.WriteAllBytes($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\{DateTime.Now.ToShortDateString()} Факты проживания в жилье.xlsx", ReportExcel);
-
-            Process.Start("explorer.exe", $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}");
-        }
-    }
-
-    public class ResidenceRegistrations : ObservableCollection<ResidenceRegistration>
-    {
-        public ResidenceRegistrations()
-        {
-            ApplicationContext? dbContext = ApplicationContext.GetContext();
-            dbContext.Locality.Load();
-            dbContext.HousingFund.Load();
-            dbContext.TempResident.Load();
-            foreach (ResidenceRegistration registration in Registrations)
+            string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\{DateTime.Now.ToShortDateString()} Факты проживания в жилье.xlsx";
+            try
             {
-                Add(registration);
+                File.WriteAllBytes(path, ReportExcel);
+
+                Process.Start("explorer.exe", $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}");
+                Process.Start("explorer.exe", path);
             }
-        }
-
-        ObservableCollection<ResidenceRegistration> Registrations
-        {
-            get
+            catch
             {
-                ApplicationContext? dbContext = ApplicationContext.GetContext();
-                ObservableCollection<ResidenceRegistration> registrations = new ObservableCollection<ResidenceRegistration>();
-
-                foreach (ResidenceRegistration residenceRegistration in dbContext.ResidenceRegistration.Distinct())
-                {
-                    registrations.Add(residenceRegistration);
-                }
-                return registrations;
+                MessageBox.Show("Не удалось изменить или открыть файл.");
             }
         }
     }

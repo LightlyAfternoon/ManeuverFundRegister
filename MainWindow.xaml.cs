@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.TaskScheduler;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -182,7 +183,14 @@ namespace Реестр_маневренного_фонда
 
         private void bt_Info_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("explorer.exe", $"{Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString())}\\Resources\\Руководство пользователя.docx");
+            try
+            {
+                Process.Start("explorer.exe", $"{Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString())}\\Resources\\Руководство пользователя.docx");
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось открыть файл.");
+            }
         }
 
         private void bt_MenuVisibility_Click(object sender, RoutedEventArgs e)

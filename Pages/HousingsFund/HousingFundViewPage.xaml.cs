@@ -193,9 +193,18 @@ namespace Реестр_маневренного_фонда.Pages.HousingsFund
         {
             var ReportExcel = Generate(lb_HousingFund.ItemsSource as List<HousingFund>);
 
-            File.WriteAllBytes($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\{DateTime.Now.ToShortDateString()} Реестр жилья фонда.xlsx", ReportExcel);
+            string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\{DateTime.Now.ToShortDateString()} Реестр жилья фонда.xlsx";
+            try
+            {
+                File.WriteAllBytes(path, ReportExcel);
 
-            Process.Start("explorer.exe", $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}");
+                Process.Start("explorer.exe", $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}");
+                Process.Start("explorer.exe", path);
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось изменить или открыть файл.");
+            }
         }
 
         private void cmb_Locality_SelectionChanged(object sender, SelectionChangedEventArgs e)
