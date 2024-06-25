@@ -82,7 +82,12 @@ namespace Реестр_маневренного_фонда.TablesManagersClasses
                     }
                     if (lastRegistration != null && lastRegistration.DateEndResidence == null && lastRegistration.TempResidentId != tempResident.IdTempResident)
                     {
-                        MessageBoxResult boxResult = MessageBox.Show($"Для данного жилья на данный момент проживающим числится {lastRegistration.TempResident.FullName}. Поставить дату окончания его проживания в жилье и назначить сейчас проживающим {tempResident.FullName}?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        string messageBoxQuestionText = $"Для данного жилья на данный момент проживающим числится {lastRegistration.TempResident.FullName}. Поставить дату окончания его проживания в жилье и назначить сейчас проживающим {tempResident.FullName}?";
+                        if (lastRegistration.DateStartResidence > dateConclusion)
+                        {
+                            messageBoxQuestionText = $"Для данного жилья на данный момент проживающим числится {lastRegistration.TempResident.FullName} и дата заключения поставлена раньше даты начала проживания текущего факта проживания. Добавить факт проживания вместе с датой окончания?";
+                        }
+                        MessageBoxResult boxResult = MessageBox.Show(messageBoxQuestionText, "", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                         switch (boxResult)
                         {
