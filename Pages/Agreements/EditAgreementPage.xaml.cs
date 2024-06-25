@@ -44,6 +44,18 @@ namespace Реестр_маневренного_фонда.Pages.Agreements
                 }
             }
 
+            if (currentAgreement != null)
+            {
+                if (currentAgreement.DateTerminationAgreement == null)
+                {
+                    tb_Term.Text = Math.Round((double)(currentAgreement.DateEndAgreement.Date - currentAgreement.DateConclusionAgreement.Date).Days / 30).ToString();
+                }
+                else
+                {
+                    tb_Term.Text = Math.Round((double)(currentAgreement.DateTerminationAgreement.Value.Date - currentAgreement.DateConclusionAgreement.Date).Days / 30).ToString();
+                }
+            }
+
             cmb_HousingFund.ItemsSource = listAvailableHousingFund;
             cmb_TempResident.ItemsSource = dbContext.TempResident.ToList();
             agreement = currentAgreement;
