@@ -28,30 +28,21 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
 
         public byte[] Generate(List<ResidenceRegistration> registrations)
         {
-            List<int> array = new List<int>();
+            List<Tuple<int, ResidenceRegistration>> listTuple = new List<Tuple<int, ResidenceRegistration>>();
             foreach (ResidenceRegistration registration in registrations)
             {
                 foreach (int startYear in registration.StartYear)
                 {
-                    if (dp_DateStartResidence.SelectedDate == null || (dp_DateStartResidence.SelectedDate != null && startYear >= dp_DateStartResidence.SelectedDate.Value.Year))
-                        if (dp_DateEndResidence.SelectedDate == null || (dp_DateEndResidence.SelectedDate != null && startYear <= dp_DateEndResidence.SelectedDate.Value.Year))
-                            array.Add(startYear);
-                }
-            }
-            array.Sort();
-
-            List<Tuple<int, ResidenceRegistration>> listTuple = new List<Tuple<int, ResidenceRegistration>>();
-            foreach (int year in array)
-            {
-                foreach (ResidenceRegistration registration in registrations)
-                {
-                    if (registration.DateStartResidence.Year <= year && (registration.DateEndResidence == null || registration.DateEndResidence.Value.Year >= year))
+                    if (dp_DateStartResidence.SelectedDate == null || startYear >= dp_DateStartResidence.SelectedDate.Value.Year)
                     {
-                        listTuple.Add(new Tuple<int, ResidenceRegistration>(year, registration));
+                        if (dp_DateEndResidence.SelectedDate == null || startYear < dp_DateEndResidence.SelectedDate.Value.Year || (startYear == dp_DateEndResidence.SelectedDate.Value.Year && ((registration.DateEndResidence != null && registration.DateEndResidence.Value.Year != startYear) || registration.DateEndResidence == null || registration.DateEndResidence <= dp_DateEndResidence.SelectedDate)))
+                        {
+                            listTuple.Add(new Tuple<int, ResidenceRegistration>(startYear, registration));
+                        }
                     }
                 }
             }
-            listTuple = listTuple.Distinct().ToList();
+            listTuple = listTuple.Distinct().OrderBy(t => t.Item2.DateStartResidence).ToList();
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
@@ -146,10 +137,6 @@ namespace Реестр_маневренного_фонда.Pages.ResidenceRegist
             if (dp_DateStartResidence.SelectedDate != null)
             {
                 currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateStartResidence >= dp_DateStartResidence.SelectedDate || a.DateEndResidence == null || (a.DateEndResidence != null && dp_DateStartResidence.SelectedDate <= a.DateEndResidence)).ToList();
-            }
-            if (dp_DateEndResidence.SelectedDate != null)
-            {
-                currentResidenceRegistrations = currentResidenceRegistrations.Where(a => a.DateEndResidence == null || a.DateEndResidence <= dp_DateEndResidence.SelectedDate).ToList();
             }
 
             return currentResidenceRegistrations;
